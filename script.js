@@ -1,3 +1,22 @@
+
+// ATLAS build stamp + runtime error capture
+document.addEventListener("DOMContentLoaded", () => {
+  const b = document.querySelector("#build");
+  if (b) b.textContent = "b260221-1847";
+});
+
+function atlasReportError(msg) {
+  const el = document.querySelector("#atlas-err");
+  if (el) el.textContent = " • " + String(msg).slice(0,120);
+}
+
+window.addEventListener("error", (e) => {
+  atlasReportError(e.message || "runtime error");
+});
+window.addEventListener("unhandledrejection", (e) => {
+  atlasReportError(e.reason && (e.reason.message || e.reason) || "promise rejection");
+});
+
 const $ = (s, r=document)=>r.querySelector(s);
 const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
 

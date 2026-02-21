@@ -150,3 +150,30 @@ input{color:var(--text)}
 .mini{display:flex; gap:8px; align-items:center}
 .mini__label{font-size:11px; color:var(--muted); letter-spacing:1px}
 .mini__value{font-size:11px; padding:4px 8px; border:1px solid rgba(25,36,58,.75); border-radius:999px; background:rgba(11,15,25,.2)}
+
+/* ATLAS Build Panel */
+#atlas-build{
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(10,10,12,0.75);
+  backdrop-filter: blur(10px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  letter-spacing: .2px;
+}
+#atlas-build .label{ opacity: .9; }
+#atlas-build .meta{ opacity: .7; }
+#atlas-build .dot{
+  width: 8px; height: 8px; border-radius: 99px;
+  background: rgba(80,255,160,0.9);
+  box-shadow: 0 0 10px rgba(80,255,160,0.35);
+}
+#atlas-err{ opacity: .85; color: rgba(255,120,120,0.95); max-width: 40vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
