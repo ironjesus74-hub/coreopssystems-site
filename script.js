@@ -26,20 +26,51 @@ function addLine(el, text, cls="") {
   el.appendChild(div);
   el.scrollTop = el.scrollHeight;
 }
-
 function speak(text) {
   if (!state.ttsOn) return;
   if (!("speechSynthesis" in window)) return;
+
   try {
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    // Slightly slower, “commanding”
+    const synth = window.speechSynthesis;
+    synth.cancel();
+
+    const u = new SpeechSynthesisUtterance(String(text || ""));
+
+    const pickVoice = () => {
+      const voices = synth.getVoices() || [];
+      if (!voices.length) return null;
+
+      const en = voices.filter(v => /en/i.test(v.lang || ""));
+      const pool = en.length ? en : voices;
+
+      const prefer = /(male|daniel|fred|alex|google|en[-_]?us|english)/i;
+
+      const score = (v) => {
+        let n = 0;
+        if (prefer.test(v.name || "")) n += 2;
+        if ((v.lang || "").toLowerCase().includes("en")) n += 1;
+        return n;
+      };
+
+      pool.sort((a,b) => score(b) - score(a));
+      return pool[0] || null;
+    };
+
+    const chosen = pickVoice();
+    if (chosen) u.voice = chosen;
+
+    // “Spartan” tuning (deep-ish + controlled)
     u.rate = 0.92;
-    u.pitch = 0.85;
+    u.pitch = 0.72;
     u.volume = 1.0;
-    window.speechSynthesis.speak(u);
+
+    // Keep voice list fresh (some Android builds load voices after first interaction)
+    synth.onvoiceschanged = () => {};
+
+    synth.speak(u);
   } catch (_) {}
 }
+
 
 function setTTS(btn, on) {
   state.ttsOn = on;
@@ -406,3 +437,5 @@ function closeDrawer() {
 }
 
 wireUI();
+
+// (patched) removed duplicate ATLAS VOICE ENGINE tail
