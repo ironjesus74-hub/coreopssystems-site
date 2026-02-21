@@ -1,0 +1,21 @@
+name: ATLAS Guard
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure core files exist
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+
+      - name: JS syntax check (prevents broken UI)
+        run: node --check script.js
