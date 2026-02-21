@@ -1,72 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#06080d" />
-  <title>Forge Atlas</title>
-  <meta name="description" content="Forge Atlas — Forged from nothing. Deployed everywhere. Modules, automation, and systems for builders." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Optional: swap fonts later; keeping system fonts for speed on mobile -->
+  <meta name="color-scheme" content="dark" />
+  <title>Forge Atlas — Forged From Nothing. Deployed Everywhere.</title>
+  <meta name="description" content="Forge Atlas — modular toolkits, automation, and diagnostics for builders. Powered by ATLAS." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Ambient background layers -->
   <div class="bg">
     <div class="bg__vignette"></div>
     <div class="bg__grid"></div>
-    <div class="bg__noise"></div>
     <div class="bg__glow"></div>
   </div>
 
-  <!-- Top Nav -->
   <header class="top">
-    <div class="top__inner">
-      <a class="brand" href="#">
-        <span class="brand__mark">FA</span>
-        <span class="brand__text">
-          <span class="brand__name">Forge Atlas</span>
-          <span class="brand__tag">Architect of Tactical Logic & Advanced Systems</span>
-        </span>
-      </a>
+    <a class="brand" href="#">
+      <span class="brand__mark">FA</span>
+      <span class="brand__text">
+        <span class="brand__name">Forge Atlas</span>
+        <span class="brand__tag">Forged From Nothing. Deployed Everywhere.</span>
+      </span>
+    </a>
 
-      <nav class="nav">
-        <a href="#modules">Modules</a>
-        <a href="#how">How it works</a>
-        <a href="#trust">Trust</a>
-        <a href="#faq">FAQ</a>
-        <button class="btn btn--ghost" id="atlasOpenBtn" type="button" aria-haspopup="dialog">
-          <span class="dot dot--ok" aria-hidden="true"></span>
-          ATLAS: ONLINE
-        </button>
-      </nav>
-
-      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <!-- Mobile nav drawer -->
-    <div class="mnav" id="mnav" hidden>
+    <nav class="nav" aria-label="Primary navigation">
       <a href="#modules">Modules</a>
-      <a href="#how">How it works</a>
+      <a href="#how">How</a>
       <a href="#trust">Trust</a>
       <a href="#faq">FAQ</a>
-      <button class="btn btn--ghost" id="atlasOpenBtn2" type="button">
+      <button class="pill" id="atlasOpenTop" type="button" aria-haspopup="dialog">
         <span class="dot dot--ok" aria-hidden="true"></span>
-        ATLAS: ONLINE
+        <span id="atlasPillText">ATLAS: ONLINE</span>
       </button>
-    </div>
+    </nav>
+
+    <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
-  <!-- Broadcast banner (random quote) -->
+  <div class="mnav" id="mnav" hidden>
+    <a href="#modules">Modules</a>
+    <a href="#how">How</a>
+    <a href="#trust">Trust</a>
+    <a href="#faq">FAQ</a>
+    <button class="pill" id="atlasOpenMobile" type="button">
+      <span class="dot dot--ok" aria-hidden="true"></span>
+      <span>ATLAS: ONLINE</span>
+    </button>
+  </div>
+
   <section class="broadcast" aria-live="polite">
     <div class="broadcast__inner">
       <div class="badge">ATLAS BROADCAST</div>
       <div class="broadcast__quote">
-        <span id="quoteText">Loading inspiration…</span>
+        <span id="quoteText">Loading…</span>
         <span class="broadcast__meta" id="quoteMeta"></span>
       </div>
       <button class="btn btn--ghost btn--xs" id="newQuoteBtn" type="button">New</button>
@@ -74,12 +64,11 @@
   </section>
 
   <main class="wrap">
-    <!-- Hero -->
     <section class="hero">
       <div class="hero__left">
         <div class="kicker">
           <span class="kicker__chip">FORGE • SPARTAN</span>
-          <span class="kicker__chip kicker__chip--warn">ACCENT: EMBER</span>
+          <span class="kicker__chip kicker__chip--warn">EMBER MODE</span>
         </div>
 
         <h1 class="h1">
@@ -88,340 +77,200 @@
         </h1>
 
         <p class="lead">
-          A modular marketplace for builders — dev toolkits, automation packs, and systems you can deploy fast.
-          Powered by <strong>ATLAS</strong> — tactical guidance, demos, and diagnostics on demand.
+          A digital marketplace for builders — toolkits, automation packs, and systems.
+          Powered by <strong>ATLAS</strong>: watchdog scans, diagnostics, demos, and tactical guidance.
         </p>
 
         <div class="cta">
           <a class="btn" href="#modules">Explore Modules</a>
-          <button class="btn btn--ghost" id="engageBtn" type="button">Engage ATLAS</button>
+          <button class="btn btn--ghost" id="atlasOpenHero" type="button">Engage ATLAS</button>
         </div>
 
-        <!-- System scan (safe flex, not creepy) -->
-        <div class="scan panel">
+        <div class="panel scan">
           <div class="panel__top">
             <div class="panel__title">ATLAS SYSTEM SCAN</div>
-            <div class="panel__status">
-              <span class="dot dot--ok"></span> Stable
-            </div>
+            <div class="panel__status" id="scanStatus"><span class="dot dot--ok"></span> Stable</div>
           </div>
           <div class="scan__grid">
             <div class="scan__item"><span>Connection</span><b id="scanConn">Checking…</b></div>
-            <div class="scan__item"><span>Device</span><b id="scanDevice">Checking…</b></div>
-            <div class="scan__item"><span>Browser</span><b id="scanBrowser">Checking…</b></div>
-            <div class="scan__item"><span>Latency</span><b id="scanLatency">Checking…</b></div>
+            <div class="scan__item"><span>Latency</span><b id="scanLatency">—</b></div>
+            <div class="scan__item"><span>Assets</span><b id="scanAssets">—</b></div>
+            <div class="scan__item"><span>Viewport</span><b id="scanViewport">—</b></div>
           </div>
-          <div class="scan__note">
-            *No creepy tracking. This is local device + performance info only.
-          </div>
+          <div class="scan__note">No creepy tracking — just local diagnostics + safe checks.</div>
         </div>
       </div>
 
       <div class="hero__right">
-        <!-- ATLAS Command Panel (demo) -->
-        <div class="terminal panel">
+        <div class="panel terminal">
           <div class="panel__top">
             <div class="panel__title">ATLAS COMMAND</div>
-            <div class="panel__status" id="atlasStatus">
-              <span class="dot dot--ok"></span> Online
-            </div>
+            <div class="panel__status"><span class="dot dot--ok"></span> Guardian</div>
           </div>
 
           <div class="terminal__body">
             <div class="terminal__prompt">
               <span class="terminal__glyph">❯</span>
-              <input id="atlasInput" autocomplete="off" spellcheck="false" placeholder="Describe your objective… (e.g. 'termux dev setup', 'secure nginx', 'youtube creator pipeline')" />
+              <input id="atlasInput" autocomplete="off" spellcheck="false"
+                placeholder="Try /scan  •  /help  •  /ping  •  /theme ice" />
               <button class="btn btn--xs" id="atlasRunBtn" type="button">Run</button>
             </div>
 
-            <div class="chips" aria-label="Quick objectives">
-              <button class="chip" data-q="Generate a Termux dev environment checklist">Termux Checklist</button>
-              <button class="chip" data-q="Show a demo hardening script for Ubuntu VPS">VPS Hardening Demo</button>
-              <button class="chip" data-q="Create a YouTube creator workflow tool idea">Creator Ops Idea</button>
-              <button class="chip" data-q="Recommend a module for freelance web deploys">Freelance Deploy</button>
+            <div class="chips">
+              <button class="chip" data-cmd="/scan">/scan</button>
+              <button class="chip" data-cmd="/ping">/ping</button>
+              <button class="chip" data-cmd="/status">/status</button>
+              <button class="chip" data-cmd="/quote">/quote</button>
+              <button class="chip" data-cmd="/help">/help</button>
             </div>
 
-            <div class="terminal__out" id="atlasOut" aria-live="polite">
-              <div class="out__line out__muted">ATLAS ready. Awaiting command.</div>
-            </div>
+            <div class="terminal__out" id="atlasOut" aria-live="polite"></div>
 
             <div class="terminal__footer">
               <button class="btn btn--ghost btn--xs" id="ttsToggle" type="button" aria-pressed="false">Voice: Off</button>
               <button class="btn btn--ghost btn--xs" id="clearOut" type="button">Clear</button>
               <div class="mini">
-                <span class="mini__label">Mode</span>
-                <span class="mini__value">DEMO</span>
+                <span class="mini__label">MODE</span>
+                <span class="mini__value" id="modeBadge">EMBER</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Donation + credibility panel -->
         <div class="panel donate">
           <div class="panel__top">
             <div class="panel__title">SUPPORT THE FORGE</div>
             <div class="panel__status"><span class="dot dot--warn"></span> $1 Fuel</div>
           </div>
-          <p class="muted">
-            Keep the systems shipping. If this helps you, throw <b>$1</b> into the forge.
-          </p>
+          <p class="muted">If this helps you, throw <b>$1</b> into the forge. (Coffee is optional.)</p>
           <div class="donate__row">
             <a class="btn btn--amber" id="donateLink" href="#" rel="noopener">Donate $1</a>
-            <span class="donate__note">You can swap this link to BuyMeACoffee, Ko-fi, Stripe, etc.</span>
+            <span class="donate__note">Swap to Ko-fi / BuyMeACoffee / Stripe later.</span>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Modules / Marketplace preview -->
     <section class="section" id="modules">
       <div class="section__head">
         <h2 class="h2">System Modules</h2>
-        <p class="muted">Clean, tactical packs. Built to deploy fast. More drops coming.</p>
+        <p class="muted">ATLAS can explain each module, run demos, and verify the site health.</p>
       </div>
 
       <div class="grid">
         <article class="card">
           <div class="card__top">
-            <div class="tag">TERMUX</div>
-            <div class="tag tag--amber">NEW</div>
+            <div class="tag">TERMUX</div><div class="tag tag--amber">NEW</div>
           </div>
           <h3>Forge Starter Loadout</h3>
-          <p class="muted">Baseline dev + ops setup you can run from Android.</p>
-          <div class="card__meta">
-            <span>v0.1</span><span>Android • Linux</span><span>15 min</span>
-          </div>
+          <p class="muted">Baseline dev + ops setup built to run from Android.</p>
           <div class="card__actions">
-            <button class="btn btn--ghost btn--xs" data-demo="starter">View Demo</button>
-            <button class="btn btn--xs" data-deploy="starter">Deploy</button>
+            <button class="btn btn--ghost btn--xs" data-atlas="Explain Forge Starter Loadout">Ask ATLAS</button>
+            <button class="btn btn--xs" data-cmd="/scan">Verify</button>
           </div>
         </article>
 
         <article class="card">
-          <div class="card__top">
-            <div class="tag">SECURITY</div>
-          </div>
-          <h3>VPS Hardening Module</h3>
-          <p class="muted">Defensive baseline hardening steps + checklists.</p>
-          <div class="card__meta">
-            <span>v0.1</span><span>Ubuntu • Debian</span><span>20 min</span>
-          </div>
+          <div class="card__top"><div class="tag">HARDENING</div></div>
+          <h3>Secure Baseline</h3>
+          <p class="muted">Practical guardrails + safe defaults. Defensive posture only.</p>
           <div class="card__actions">
-            <button class="btn btn--ghost btn--xs" data-demo="vps">View Demo</button>
-            <button class="btn btn--xs" data-deploy="vps">Deploy</button>
+            <button class="btn btn--ghost btn--xs" data-atlas="Explain Secure Baseline">Ask ATLAS</button>
+            <button class="btn btn--xs" data-cmd="/status">Status</button>
           </div>
         </article>
 
         <article class="card">
-          <div class="card__top">
-            <div class="tag">CREATOR OPS</div>
-          </div>
-          <h3>YouTube Ops Toolkit</h3>
-          <p class="muted">Workflow helpers + setup checklists for creators.</p>
-          <div class="card__meta">
-            <span>v0.1</span><span>Windows • macOS</span><span>30 min</span>
-          </div>
+          <div class="card__top"><div class="tag">AUTOMATION</div></div>
+          <h3>AutoDeploy Pack</h3>
+          <p class="muted">Build → release → verify → notify patterns you can reuse.</p>
           <div class="card__actions">
-            <button class="btn btn--ghost btn--xs" data-demo="creator">View Demo</button>
-            <button class="btn btn--xs" data-deploy="creator">Deploy</button>
+            <button class="btn btn--ghost btn--xs" data-atlas="Explain AutoDeploy Pack">Ask ATLAS</button>
+            <button class="btn btn--xs" data-cmd="/ping">Ping</button>
           </div>
         </article>
-      </div>
-
-      <!-- Purchase panel mock (UI first, logic later) -->
-      <div class="buy panel" aria-label="Purchase panel">
-        <div class="panel__top">
-          <div class="panel__title">DEPLOY PANEL</div>
-          <div class="panel__status"><span class="dot dot--ok"></span> Ready</div>
-        </div>
-
-        <div class="buy__grid">
-          <div class="buy__left">
-            <div class="buy__label">Selected module</div>
-            <div class="buy__value" id="selectedModule">None</div>
-
-            <div class="buy__label">License</div>
-            <div class="seg" role="tablist" aria-label="License selector">
-              <button class="seg__btn is-on" data-license="Personal" type="button">Personal</button>
-              <button class="seg__btn" data-license="Freelancer" type="button">Freelancer</button>
-              <button class="seg__btn" data-license="Team" type="button">Team</button>
-            </div>
-
-            <div class="buy__label">Authorization Code</div>
-            <div class="row">
-              <input class="input" id="coupon" placeholder="Enter code (optional)" />
-              <button class="btn btn--ghost btn--xs" id="applyCoupon" type="button">Apply</button>
-            </div>
-
-            <div class="buy__fine muted" id="couponMsg"></div>
-          </div>
-
-          <div class="buy__right">
-            <div class="price">
-              <div class="price__label">Total</div>
-              <div class="price__value" id="total">$0.00</div>
-            </div>
-            <button class="btn btn--amber" id="deployNow" type="button" disabled>Deploy (Mock)</button>
-            <div class="trust muted">
-              <span>• Instant access</span>
-              <span>• Updates included</span>
-              <span>• Termux-friendly</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- How it works -->
     <section class="section" id="how">
-      <div class="section__head">
-        <h2 class="h2">How it works</h2>
-        <p class="muted">Clean pipeline. Tactical results. No fluff.</p>
-      </div>
-
+      <div class="section__head"><h2 class="h2">How it works</h2></div>
       <div class="steps">
-        <div class="step panel">
-          <div class="step__num">01</div>
-          <h3>Choose Objective</h3>
-          <p class="muted">Pick a module or tell ATLAS what you need.</p>
-        </div>
-        <div class="step panel">
-          <div class="step__num">02</div>
-          <h3>Preview Demo</h3>
-          <p class="muted">Get a controlled taste: redacted scripts + guidance.</p>
-        </div>
-        <div class="step panel">
-          <div class="step__num">03</div>
-          <h3>Deploy</h3>
-          <p class="muted">Unlock full pack. You test. You own it.</p>
-        </div>
+        <div class="step panel"><div class="step__num">01</div><h3>Objective</h3><p class="muted">Choose a module or ask ATLAS.</p></div>
+        <div class="step panel"><div class="step__num">02</div><h3>Demo</h3><p class="muted">ATLAS shows previews + guidance.</p></div>
+        <div class="step panel"><div class="step__num">03</div><h3>Verify</h3><p class="muted">Run /scan to catch issues fast.</p></div>
       </div>
     </section>
 
-    <!-- Trust -->
     <section class="section" id="trust">
-      <div class="section__head">
-        <h2 class="h2">Trust & clarity</h2>
-        <p class="muted">Designed to scale from freelancers to enterprise.</p>
-      </div>
-
+      <div class="section__head"><h2 class="h2">Trust & clarity</h2></div>
       <div class="trustGrid">
-        <div class="panel trustItem">
-          <div class="trustItem__title">No auto voice</div>
-          <p class="muted">Voice is manual-only. Tactical presence, never annoying.</p>
-        </div>
-        <div class="panel trustItem">
-          <div class="trustItem__title">Defensive posture</div>
-          <p class="muted">Focus on legitimate automation and defensive checklists.</p>
-        </div>
-        <div class="panel trustItem">
-          <div class="trustItem__title">Built different</div>
-          <p class="muted">Forged on Android. Shipped like infrastructure.</p>
-        </div>
+        <div class="panel trustItem"><div class="trustItem__title">No creepy tracking</div><p class="muted">Local-only telemetry + safe checks.</p></div>
+        <div class="panel trustItem"><div class="trustItem__title">Voice is manual</div><p class="muted">Optional TTS, never autoplay.</p></div>
+        <div class="panel trustItem"><div class="trustItem__title">Defensive posture</div><p class="muted">Legit automation + guardrails only.</p></div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section" id="faq">
-      <div class="section__head">
-        <h2 class="h2">FAQ</h2>
-      </div>
-
+      <div class="section__head"><h2 class="h2">FAQ</h2></div>
       <div class="faq">
-        <details class="panel">
-          <summary>Is ATLAS a chatbot?</summary>
-          <p class="muted">No. ATLAS is a command layer: demos, diagnostics, recommendations, and later real tool generation.</p>
-        </details>
-
-        <details class="panel">
-          <summary>Are modules downloadable?</summary>
-          <p class="muted">Yes — the marketplace is built for instant delivery. We’ll wire payments + licenses next.</p>
-        </details>
-
-        <details class="panel">
-          <summary>Can this really be built from Android?</summary>
-          <p class="muted">Yep. Termux + Git + Cloudflare Pages can ship real products.</p>
-        </details>
+        <details class="panel"><summary>Is ATLAS “real AI”?</summary><p class="muted">Right now it’s an elite command layer. Later we can connect it to an AI endpoint.</p></details>
+        <details class="panel"><summary>Can you really build this on Android?</summary><p class="muted">Yes. Termux + Git + Cloudflare Pages ships real systems.</p></details>
       </div>
     </section>
 
     <footer class="footer">
       <div class="footer__inner">
-        <div class="footer__left">
-          <div class="brand brand--footer">
-            <span class="brand__mark">FA</span>
-            <span class="brand__text">
-              <span class="brand__name">Forge Atlas</span>
-              <span class="brand__tag">Forged From Nothing. Deployed Everywhere.</span>
-            </span>
-          </div>
-          <div class="muted tiny">© <span id="year"></span> Forge Atlas. Version <span id="ver">0.1</span></div>
-        </div>
-
-        <div class="footer__right">
-          <a href="#modules">Modules</a>
-          <a href="#how">How</a>
-          <a href="#trust">Trust</a>
-          <a href="#faq">FAQ</a>
-        </div>
+        <div class="muted tiny">© <span id="year"></span> Forge Atlas</div>
+        <div class="muted tiny">Keyboard: <b>/</b> or <b>Ctrl+K</b> opens ATLAS</div>
       </div>
     </footer>
   </main>
 
-  <!-- ATLAS Drawer -->
-  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="ATLAS Command Drawer" hidden>
+  <!-- ATLAS Drawer (God Mode) -->
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="ATLAS Console" hidden>
     <div class="drawer__panel">
       <div class="drawer__head">
         <div>
           <div class="drawer__title">ATLAS</div>
-          <div class="drawer__sub">Tactical command layer</div>
+          <div class="drawer__sub" id="drawerSub">Guardian mode active</div>
         </div>
-        <button class="btn btn--ghost btn--xs" id="atlasCloseBtn" type="button">Close</button>
+        <div class="drawer__actions">
+          <button class="btn btn--ghost btn--xs" id="drawerVoice" type="button" aria-pressed="false">Voice: Off</button>
+          <button class="btn btn--ghost btn--xs" id="drawerClose" type="button">Close</button>
+        </div>
       </div>
 
       <div class="drawer__body">
-        <div class="drawer__row">
-          <div class="drawer__label">Mode</div>
-          <div class="drawer__value">DEMO • Spartan Profile</div>
+        <div class="drawer__out" id="drawerOut" aria-live="polite"></div>
+
+        <div class="drawer__chips">
+          <button class="chip chip--wide" data-cmd="/scan">/scan</button>
+          <button class="chip chip--wide" data-cmd="/ping">/ping</button>
+          <button class="chip chip--wide" data-cmd="/quote">/quote</button>
+          <button class="chip chip--wide" data-cmd="/status">/status</button>
+          <button class="chip chip--wide" data-cmd="/theme ember">/theme ember</button>
+          <button class="chip chip--wide" data-cmd="/theme ice">/theme ice</button>
+          <button class="chip chip--wide" data-cmd="/help">/help</button>
         </div>
 
-        <div class="drawer__row">
-          <div class="drawer__label">Voice</div>
-          <div class="drawer__value">
-            <button class="btn btn--ghost btn--xs" id="ttsToggle2" type="button" aria-pressed="false">Voice: Off</button>
-          </div>
-        </div>
+        <form class="drawer__input" id="drawerForm">
+          <input id="drawerInput" autocomplete="off" spellcheck="false" placeholder="Type command… (/help)" />
+          <button class="btn btn--amber btn--xs" type="submit">Execute</button>
+        </form>
 
-        <div class="drawer__row">
-          <div class="drawer__label">Quick Commands</div>
-          <div class="drawer__value">
-            <div class="chips chips--stack">
-              <button class="chip" data-q="Recommend a module based on my goal: freelancing">Recommend</button>
-              <button class="chip" data-q="Run diagnostics: why is my site slow on mobile?">Diagnostics</button>
-              <button class="chip" data-q="Show a demo script for setting up a dev environment in Termux">Demo Script</button>
-              <button class="chip" data-q="Explain what Forge Atlas is in one tactical paragraph">Explain</button>
-            </div>
-          </div>
+        <div class="drawer__meta">
+          <div class="meta"><span>MODE</span><b id="metaMode">EMBER</b></div>
+          <div class="meta"><span>ONLINE</span><b id="metaOnline">—</b></div>
+          <div class="meta"><span>LAST SCAN</span><b id="metaLastScan">—</b></div>
         </div>
-
-        <div class="drawer__row">
-          <div class="drawer__label">Output</div>
-          <div class="drawer__value">
-            <div class="drawer__out" id="drawerOut">
-              <div class="out__line out__muted">Engage ATLAS to begin.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="drawer__foot">
-        <button class="btn btn--amber" id="engageDrawer" type="button">Engage ATLAS</button>
-        <button class="btn" id="runDrawerDemo" type="button">Run Demo</button>
       </div>
     </div>
 
     <div class="drawer__backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   </div>
+
+  <button class="fab" id="atlasFab" type="button" aria-label="Open ATLAS">
+    <span class="dot dot--ok" aria-hidden="true"></span> ATLAS
+  </button>
 
   <script src="script.js"></script>
 </body>

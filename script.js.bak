@@ -1,0 +1,462 @@
+/* Forge Atlas — ATLAS Console (static, no backend)
+   - Watchdog scans asset/link health
+   - Diagnostics (online/latency/viewport)
+   - Command console + optional voice output (TTS)
+*/
+
+const $ = (q, root=document) => root.querySelector(q);
+const $$ = (q, root=document) => Array.from(root.querySelectorAll(q));
+
+const state = {
+  theme: "EMBER",
+  voiceEnabled: false,
+  lastScan: null,
+};
+
+const QUOTES = [
+  { t: "Discipline is choosing between what you want now and what you want most.", a: "Abraham Lincoln (attributed)" },
+  { t: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", a: "Aristotle (paraphrase)" },
+  { t: "The impediment to action advances action. What stands in the way becomes the way.", a: "Marcus Aurelius" },
+  { t: "If you’re going through hell, keep going.", a: "Winston Churchill (attributed)" },
+  { t: "Make it work. Make it right. Make it fast.", a: "Kent Beck" },
+  { t: "Ship small. Learn fast. Repeat.", a: "Forge Atlas" },
+];
+
+function nowTime(){
+  const d = new Date();
+  return d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+}
+
+function setQuote(){
+  const pick = QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  const el = $("#quoteText");
+  if (!el) return;
+  el.textContent = `${pick.t} — ${pick.a}`;
+}
+
+function setYear(){
+  const y = $("#year");
+  if (y) y.textContent = String(new Date().getFullYear());
+}
+
+function setDonate(){
+  const d = $("#donateLink");
+  if (!d) return;
+  // TODO: put your real link here when ready
+  d.href = "https://buymeacoffee.com/";
+}
+
+function setViewport(){
+  const v = $("#viewportValue");
+  if (!v) return;
+  v.textContent = `${window.innerWidth}×${window.innerHeight}`;
+}
+
+function setOnlineUI(){
+  const online = navigator.onLine;
+  const connValue = $("#connValue");
+  const metaOnline = $("#metaOnline");
+  const scanStatus = $("#scanStatus");
+
+  if (connValue) connValue.textContent = online ? "Online" : "Offline";
+  if (metaOnline) metaOnline.textContent = online ? "Yes" : "No";
+
+  if (scanStatus){
+    scanStatus.textContent = online ? "Stable" : "Degraded";
+    scanStatus.style.color = online ? "#42ff88" : "#ffcc66";
+    scanStatus.style.borderColor = online ? "rgba(66,255,136,.25)" : "rgba(255,204,102,.30)";
+    scanStatus.style.background = online ? "rgba(66,255,136,.08)" : "rgba(255,204,102,.10)";
+  }
+
+  const pill = $("#atlasPill");
+  const pillText = $("#atlasPillText");
+  if (pillText) pillText.textContent = online ? "ATLAS: ONLINE" : "ATLAS: DEGRADED";
+  if (pill){
+    const dot = pill.querySelector(".dot");
+    if (dot){
+      dot.style.background = online ? "#42ff88" : "#ffcc66";
+      dot.style.boxShadow = online ? "0 0 0 6px rgba(66,255,136,.12)" : "0 0 0 6px rgba(255,204,102,.12)";
+    }
+  }
+}
+
+async function measureLatency(){
+  const el = $("#latencyValue");
+  if (!el) return;
+
+  if (!navigator.onLine){
+    el.textContent = "Offline";
+    return;
+  }
+
+  // lightweight: ping the current origin with a HEAD request + cache-buster
+  const url = `${location.origin}/?atlas_ping=${Date.now()}`;
+  const t0 = performance.now();
+  try{
+    const r = await fetch(url, { method:"HEAD", cache:"no-store" });
+    const t1 = performance.now();
+    const ms = Math.round(t1 - t0);
+    el.textContent = r.ok ? `${ms} ms` : `Err (${r.status})`;
+  }catch(e){
+    el.textContent = "Err";
+  }
+}
+
+function feedAdd(who, text, badge){
+  const feed = $("#atlasFeed");
+  if (!feed) return;
+
+  const msg = document.createElement("div");
+  msg.className = `msg ${who === "USER" ? "user" : "atlas"}`;
+
+  const top = document.createElement("div");
+  top.className = "who";
+  top.innerHTML = `<span>${who}</span><span class="badge">${badge || nowTime()}</span>`;
+
+  const body = document.createElement("div");
+  body.className = "body";
+  body.textContent = text;
+
+  msg.appendChild(top);
+  msg.appendChild(body);
+
+  feed.appendChild(msg);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function feedThinking(){
+  const feed = $("#atlasFeed");
+  if (!feed) return null;
+
+  const msg = document.createElement("div");
+  msg.className = "msg atlas";
+
+  const top = document.createElement("div");
+  top.className = "who";
+  top.innerHTML = `<span>ATLAS</span><span class="badge">Processing</span>`;
+
+  const body = document.createElement("div");
+  body.className = "body";
+
+  const wrap = document.createElement("span");
+  wrap.className = "thinking";
+  wrap.innerHTML = `<span class="dotty"></span><span class="dotty"></span><span class="dotty"></span><span style="margin-left:8px;color:var(--muted);font-weight:800">Thinking…</span>`;
+
+  body.appendChild(wrap);
+  msg.appendChild(top);
+  msg.appendChild(body);
+
+  feed.appendChild(msg);
+  feed.scrollTop = feed.scrollHeight;
+
+  return msg;
+}
+
+function speak(text){
+  if (!state.voiceEnabled) return;
+  if (!("speechSynthesis" in window)) return;
+
+  // Cancel previous speech to avoid stacking
+  window.speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(text);
+  // “Kratos-ish” approximation: lower pitch + slightly slower
+  u.rate = 0.92;
+  u.pitch = 0.70;
+  u.volume = 1;
+
+  // Try to pick a deeper English voice if available
+  const voices = window.speechSynthesis.getVoices?.() || [];
+  const preferred = voices.find(v =>
+    /en/i.test(v.lang) && /male|man|english|us|uk|daniel|fred|alex/i.test(v.name)
+  ) || voices.find(v => /en/i.test(v.lang)) || null;
+
+  if (preferred) u.voice = preferred;
+
+  window.speechSynthesis.speak(u);
+}
+
+function atlasReply(text, badge){
+  feedAdd("ATLAS", text, badge);
+  speak(text);
+}
+
+function setTheme(mode){
+  state.theme = mode;
+  const metaMode = $("#metaMode");
+  if (metaMode) metaMode.textContent = mode;
+
+  // Visual hint only (future: theme tokens)
+  const sub = $("#atlasSub");
+  if (sub) sub.textContent = `Guardian mode: active • ${mode}`;
+}
+
+function parseCmd(raw){
+  const s = raw.trim();
+  if (!s) return { type:"EMPTY" };
+
+  if (s.startsWith("/")){
+    const parts = s.slice(1).split(/\s+/);
+    return { type:"CMD", name: parts[0].toLowerCase(), args: parts.slice(1) };
+  }
+  return { type:"CHAT", text: s };
+}
+
+function helpText(){
+  return [
+    "Commands:",
+    "/help — show commands",
+    "/scan — run watchdog scan (assets + links + basic telemetry)",
+    "/quote — new inspiration broadcast",
+    "/ping — measure latency",
+    "/theme ember|ice — swap ATLAS mode",
+    "/status — show quick system summary",
+    "",
+    "Tip: Click the quick chips under the feed."
+  ].join("\n");
+}
+
+async function watchdogScan(){
+  // Asset scan: images, stylesheets, scripts + same-origin links in page sections
+  const assets = new Set();
+
+  // scripts + styles
+  $$("script[src]").forEach(s => assets.add(new URL(s.src, location.href).href));
+  $$('link[rel="stylesheet"][href]').forEach(l => assets.add(new URL(l.href, location.href).href));
+  $$("img[src]").forEach(i => assets.add(new URL(i.src, location.href).href));
+
+  // Also scan a few known files we rely on
+  ["index.html","style.css","script.js","assets/favicon.svg"].forEach(p => assets.add(new URL(p, location.href).href));
+
+  // Link scan (same-origin)
+  const links = $$("a[href]")
+    .map(a => a.getAttribute("href") || "")
+    .filter(h => h && !h.startsWith("mailto:") && !h.startsWith("tel:") && !h.startsWith("http"))
+    .map(h => new URL(h, location.href).href);
+
+  const targets = [...assets, ...links];
+  let ok = 0;
+  let bad = 0;
+
+  const failures = [];
+
+  // Concurrency limiter
+  const limit = 8;
+  let i = 0;
+
+  async function worker(){
+    while (i < targets.length){
+      const idx = i++;
+      const url = targets[idx];
+
+      try{
+        const r = await fetch(url, { method: "HEAD", cache: "no-store" });
+        if (r.ok) ok++;
+        else { bad++; failures.push(`${r.status} ${url}`); }
+      }catch(e){
+        bad++; failures.push(`ERR ${url}`);
+      }
+    }
+  }
+
+  const workers = Array.from({length: Math.min(limit, targets.length)}, () => worker());
+  await Promise.all(workers);
+
+  const assetsValue = $("#assetsValue");
+  if (assetsValue) assetsValue.textContent = `${ok} ok • ${bad} issues`;
+
+  state.lastScan = new Date();
+  const metaLast = $("#metaLastScan");
+  if (metaLast) metaLast.textContent = state.lastScan.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+
+  return { ok, bad, failures };
+}
+
+async function atlasExecute(raw){
+  const cmd = parseCmd(raw);
+
+  if (cmd.type === "EMPTY") return;
+
+  if (cmd.type === "CHAT"){
+    // No backend yet: respond like a tactical assistant
+    const t = cmd.text.toLowerCase();
+    let reply =
+      "Acknowledged. I can run /scan, /ping, fetch /quote, or guide you through modules. Type /help.";
+    if (t.includes("coupon")) reply = "Coupons will live in the marketplace layer. For now, I can scaffold the UI + data model.";
+    if (t.includes("buy") || t.includes("checkout")) reply = "Checkout is a next step. We can wire Stripe later, but first we build the modules + cart foundation.";
+    if (t.includes("security")) reply = "We’ll keep it practical: safe defaults, diagnostics, and guardrails. No reckless tooling.";
+    atlasReply(reply);
+    return;
+  }
+
+  const name = cmd.name;
+  const args = cmd.args;
+
+  if (name === "help"){
+    atlasReply(helpText(), "Manual");
+    return;
+  }
+
+  if (name === "quote"){
+    setQuote();
+    const txt = $("#quoteText")?.textContent || "Quote loaded.";
+    atlasReply(`Broadcast updated: ${txt}`, "Broadcast");
+    return;
+  }
+
+  if (name === "ping"){
+    const thinking = feedThinking();
+    await measureLatency();
+    thinking?.remove();
+    const val = $("#latencyValue")?.textContent || "—";
+    atlasReply(`Latency check: ${val}`, "Telemetry");
+    return;
+  }
+
+  if (name === "theme"){
+    const v = (args[0] || "").toLowerCase();
+    if (v === "ember"){ setTheme("EMBER"); atlasReply("Mode set: EMBER. Heat controlled. Focus sharpened.", "Mode"); return; }
+    if (v === "ice"){ setTheme("ICE"); atlasReply("Mode set: ICE. Calm precision. Cold execution.", "Mode"); return; }
+    atlasReply("Usage: /theme ember  OR  /theme ice", "Mode");
+    return;
+  }
+
+  if (name === "status"){
+    const online = navigator.onLine ? "Yes" : "No";
+    const vp = `${window.innerWidth}×${window.innerHeight}`;
+    const lat = $("#latencyValue")?.textContent || "—";
+    const assets = $("#assetsValue")?.textContent || "—";
+    atlasReply(`Status:\nOnline: ${online}\nViewport: ${vp}\nLatency: ${lat}\nAssets: ${assets}`, "Status");
+    return;
+  }
+
+  if (name === "scan"){
+    const thinking = feedThinking();
+    setViewport();
+    setOnlineUI();
+    await measureLatency();
+    const res = await watchdogScan();
+    thinking?.remove();
+
+    if (res.bad === 0){
+      atlasReply(`Scan complete. All clear.\n${res.ok} checks passed.`, "Watchdog");
+    } else {
+      atlasReply(`Scan complete. Issues detected: ${res.bad}\nUse the list below to hunt failures.`, "Watchdog");
+      // print top failures (avoid wall of text)
+      res.failures.slice(0, 8).forEach(f => atlasReply(f, "Issue"));
+      if (res.failures.length > 8) atlasReply(`…and ${res.failures.length - 8} more.`, "Issue");
+    }
+    return;
+  }
+
+  atlasReply(`Unknown command: /${name}\nType /help`, "Error");
+}
+
+function openAtlas(){
+  $("#atlasPanel")?.removeAttribute("hidden");
+  $("#atlasOverlay")?.removeAttribute("hidden");
+  $("#atlasInput")?.focus();
+
+  // first-time greeting
+  const feed = $("#atlasFeed");
+  if (feed && feed.childElementCount === 0){
+    atlasReply("I am ATLAS. Guardian mode active. Type /scan to verify the forge.", "Boot");
+  }
+}
+
+function closeAtlas(){
+  $("#atlasPanel")?.setAttribute("hidden", "true");
+  $("#atlasOverlay")?.setAttribute("hidden", "true");
+}
+
+function wireAtlas(){
+  const openers = ["#atlasOpenBtn", "#atlasOpenBtn2", "#atlasFabBtn"].map(id => $(id)).filter(Boolean);
+  openers.forEach(btn => btn.addEventListener("click", openAtlas));
+  $("#atlasCloseBtn")?.addEventListener("click", closeAtlas);
+  $("#atlasOverlay")?.addEventListener("click", closeAtlas);
+
+  // Quick chips
+  $$(".chip-btn").forEach(b => b.addEventListener("click", () => {
+    const c = b.getAttribute("data-cmd") || "";
+    $("#atlasInput").value = c;
+    $("#atlasForm").dispatchEvent(new Event("submit", {cancelable:true}));
+  }));
+
+  // Module "Ask ATLAS" buttons
+  $$("[data-atlas]").forEach(b => b.addEventListener("click", () => {
+    openAtlas();
+    const cmd = b.getAttribute("data-atlas") || "";
+    feedAdd("USER", cmd, "Quick");
+    atlasExecute(cmd);
+  }));
+
+  // Input submit
+  $("#atlasForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const inp = $("#atlasInput");
+    if (!inp) return;
+    const raw = inp.value;
+    inp.value = "";
+    feedAdd("USER", raw, nowTime());
+    atlasExecute(raw);
+  });
+
+  // Voice toggle
+  $("#atlasVoiceBtn")?.addEventListener("click", () => {
+    state.voiceEnabled = !state.voiceEnabled;
+    const btn = $("#atlasVoiceBtn");
+    if (btn){
+      btn.setAttribute("aria-pressed", String(state.voiceEnabled));
+      btn.textContent = state.voiceEnabled ? "Voice: ON" : "Voice: OFF";
+    }
+    atlasReply(state.voiceEnabled
+      ? "Voice output enabled. I will speak concise responses."
+      : "Voice output disabled."
+    , "Audio");
+  });
+
+  // Ensure voices load on some browsers
+  if ("speechSynthesis" in window){
+    window.speechSynthesis.onvoiceschanged = () => { /* noop */ };
+  }
+}
+
+function wireBasics(){
+  $("#newQuoteBtn")?.addEventListener("click", setQuote);
+  window.addEventListener("resize", setViewport);
+  window.addEventListener("online", setOnlineUI);
+  window.addEventListener("offline", setOnlineUI);
+}
+
+async function boot(){
+  setYear();
+  setDonate();
+  setQuote();
+  setViewport();
+  setOnlineUI();
+
+  // lightweight boot telemetry
+  await measureLatency();
+  $("#assetsValue").textContent = "Ready";
+  $("#metaLastScan").textContent = "—";
+
+  wireBasics();
+  wireAtlas();
+
+  // optional: run a silent scan after load (keeps it snappy)
+  // await watchdogScan();
+
+  // Keyboard shortcut: Ctrl+K or /
+  window.addEventListener("keydown", (e) => {
+    const key = e.key?.toLowerCase();
+    if ((e.ctrlKey && key === "k") || (key === "/" && !/input|textarea/i.test((e.target?.tagName||"")))){
+      e.preventDefault();
+      openAtlas();
+    }
+    if (key === "escape"){
+      closeAtlas();
+    }
+  });
+}
+
+boot();

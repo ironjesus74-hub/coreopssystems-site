@@ -1,408 +1,324 @@
-/* Forge Atlas — Spartan Demo Layer (static) */
+const $ = (s, r=document)=>r.querySelector(s);
+const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
 
-const $ = (s) => document.querySelector(s);
+const state = { tts:false, mode:"EMBER", lastScan:null, quotes:[] };
 
-const state = {
-  ttsOn: false,
-  license: "Personal",
-  selected: null,
-  basePrices: {
-    starter: 9,
-    vps: 15,
-    creator: 12
-  },
-  coupon: null
-};
+function ts(){ return new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
 
-function nowTime() {
-  const d = new Date();
-  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-function addLine(el, text, cls="") {
-  const div = document.createElement("div");
-  div.className = `out__line ${cls}`.trim();
-  div.textContent = text;
-  el.appendChild(div);
+function addLine(el, text, cls=""){
+  const d=document.createElement("div");
+  d.className = `out__line ${cls}`.trim();
+  d.textContent = text;
+  el.appendChild(d);
   el.scrollTop = el.scrollHeight;
 }
 
-function speak(text) {
-  if (!state.ttsOn) return;
-  if (!("speechSynthesis" in window)) return;
-  try {
+function speak(text){
+  if(!state.tts) return;
+  if(!("speechSynthesis" in window)) return;
+  try{
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    // Slightly slower, “commanding”
-    u.rate = 0.92;
-    u.pitch = 0.85;
-    u.volume = 1.0;
+    u.rate = 0.92; u.pitch = 0.70; u.volume = 1.0;
+    const voices = window.speechSynthesis.getVoices?.() || [];
+    const v = voices.find(x=>/en/i.test(x.lang)) || null;
+    if(v) u.voice = v;
     window.speechSynthesis.speak(u);
-  } catch (_) {}
+  }catch(_){}
 }
 
-function setTTS(btn, on) {
-  state.ttsOn = on;
-  btn.setAttribute("aria-pressed", String(on));
-  btn.textContent = `Voice: ${on ? "On" : "Off"}`;
+function setMode(m){
+  state.mode = m;
+  $("#modeBadge").textContent = m;
+  $("#metaMode").textContent = m;
+  $("#drawerSub").textContent = `Guardian mode active • ${m}`;
 }
 
-function thinkingSequence(el, finalText) {
-  const steps = [
-    "Assessing objective…",
-    "Mapping environment…",
-    "Selecting modules…",
-    "Composing response…",
-    "Ready."
-  ];
-  let i = 0;
-
-  const runStep = () => {
-    if (i < steps.length) {
-      addLine(el, `[${nowTime()}] ${steps[i]}`, "out__brand");
-      i += 1;
-      setTimeout(runStep, 260 + Math.random() * 220);
-      return;
-    }
-    addLine(el, finalText, "");
-    speak(finalText);
-  };
-
-  runStep();
+function parseCmd(raw){
+  const s=(raw||"").trim();
+  if(!s) return {type:"EMPTY"};
+  if(s.startsWith("/")){
+    const parts=s.slice(1).split(/\s+/);
+    return {type:"CMD", name:(parts[0]||"").toLowerCase(), args:parts.slice(1)};
+  }
+  return {type:"TEXT", text:s};
 }
 
-function atlasRespond(q) {
-  const lower = q.toLowerCase();
-
-  // Defensive, legit suggestions only (no harmful instructions)
-  if (lower.includes("hack") || lower.includes("steal") || lower.includes("ddos")) {
-    return "Denied. Objective conflicts with defensive posture. Try diagnostics or hardening guidance.";
-  }
-
-  if (lower.includes("termux")) {
-    return [
-      "Termux Loadout (Demo):",
-      "✔ pkg update && pkg upgrade",
-      "✔ pkg install git nodejs openssh curl jq",
-      "✔ git config --global user.name \"...\"",
-      "✔ git config --global user.email \"...\"",
-      "Next: deploy a module from the marketplace and keep it versioned.",
-    ].join("\n");
-  }
-
-  if (lower.includes("vps") || lower.includes("hardening") || lower.includes("nginx") || lower.includes("ubuntu")) {
-    return [
-      "VPS Hardening (Demo Preview):",
-      "# (redacted) baseline updates + firewall policy",
-      "sudo apt update && sudo apt -y upgrade",
-      "sudo ufw default deny incoming",
-      "sudo ufw default allow outgoing",
-      "sudo ufw allow OpenSSH",
-      "# ... (full pack includes SSH hardening + fail2ban checklist + audit notes)",
-      "Recommendation: Deploy 'VPS Hardening Module' for full versioned pack.",
-    ].join("\n");
-  }
-
-  if (lower.includes("youtube") || lower.includes("creator")) {
-    return [
-      "Creator Ops (Demo):",
-      "• Capture checklist (audio, lights, scene)",
-      "• Upload pipeline (naming, tags, chapters)",
-      "• Backup strategy (local + cloud)",
-      "• Automation idea: a one-click project folder generator + asset checklist.",
-      "Recommendation: 'YouTube Ops Toolkit' module.",
-    ].join("\n");
-  }
-
-  if (lower.includes("freelance") || lower.includes("client")) {
-    return [
-      "Freelance Deploy (Demo):",
-      "• Pick stack: static / Node / Next / WordPress",
-      "• Add uptime + error logging",
-      "• Basic security headers + backup plan",
-      "Recommendation: Deploy 'Forge Starter Loadout' + add-on modules per client.",
-    ].join("\n");
-  }
-
+function helpText(){
   return [
-    "Acknowledged.",
-    "Try a specific objective:",
-    "• 'termux dev setup'",
-    "• 'demo vps hardening script'",
-    "• 'creator ops workflow'",
-    "• 'recommend a module for X'",
+    "ATLAS Commands:",
+    "/help   — commands",
+    "/scan   — watchdog scan (assets + links + telemetry)",
+    "/ping   — latency test (HEAD request)",
+    "/quote  — new broadcast quote",
+    "/status — summary",
+    "/theme ember|ice — mode",
+    "",
+    "Tip: / or Ctrl+K opens ATLAS drawer."
   ].join("\n");
 }
 
-function runAtlas(q, outEl) {
-  addLine(outEl, `❯ ${q}`, "out__ok");
-  const response = atlasRespond(q);
-
-  // Render response with “thinking steps”
-  thinkingSequence(outEl, response);
-}
-
-function initSystemScan() {
-  const isSecure = location.protocol === "https:";
-  $("#scanConn").textContent = isSecure ? "Secure (HTTPS)" : "Not secure";
-  $("#scanConn").style.color = isSecure ? "rgba(34,197,94,.95)" : "rgba(255,178,74,.95)";
-
-  const ua = navigator.userAgent || "";
-  const isAndroid = /Android/i.test(ua);
-  const device = isAndroid ? "Android" : "Desktop/Other";
-  $("#scanDevice").textContent = device;
-
-  // Browser guess (simple)
-  let browser = "Unknown";
-  if (/Chrome\//i.test(ua) && !/Edg\//i.test(ua)) browser = "Chromium (Chrome)";
-  if (/Edg\//i.test(ua)) browser = "Edge";
-  if (/Firefox\//i.test(ua)) browser = "Firefox";
-  if (/Safari\//i.test(ua) && !/Chrome\//i.test(ua)) browser = "Safari";
-  $("#scanBrowser").textContent = browser;
-
-  // Latency-ish: measure a small timer (client-only)
-  const t0 = performance.now();
-  setTimeout(() => {
-    const ms = Math.round(performance.now() - t0);
-    $("#scanLatency").textContent = `${ms}ms`;
-  }, 200);
-}
-
-async function loadQuotes() {
-  try {
-    const res = await fetch("data/quotes.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("quote fetch failed");
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  } catch (_) {
-    return [
-      { text: "Discipline is choosing between what you want now and what you want most.", author: "Unknown" },
-      { text: "The impediment to action advances action. What stands in the way becomes the way.", author: "Marcus Aurelius" },
-      { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" }
-    ];
+async function loadQuotes(){
+  try{
+    const r = await fetch("data/quotes.json", {cache:"no-store"});
+    const j = await r.json();
+    state.quotes = Array.isArray(j) ? j : [];
+  }catch(_){
+    state.quotes = [{text:"Ship small. Learn fast. Repeat.", author:"Forge Atlas"}];
   }
 }
 
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function applyQuote(q) {
+function applyQuote(q){
   $("#quoteText").textContent = `“${q.text}”`;
   $("#quoteMeta").textContent = q.author ? `— ${q.author}` : "";
 }
 
-/* Marketplace / Deploy panel demo logic */
-function setLicense(btn) {
-  document.querySelectorAll(".seg__btn").forEach(b => b.classList.remove("is-on"));
-  btn.classList.add("is-on");
-  state.license = btn.dataset.license;
-  recalcTotal();
+function newQuote(){
+  if(!state.quotes.length) return;
+  applyQuote(state.quotes[Math.floor(Math.random()*state.quotes.length)]);
 }
 
-function selectModule(key) {
-  state.selected = key;
-  const names = {
-    starter: "Forge Starter Loadout",
-    vps: "VPS Hardening Module",
-    creator: "YouTube Ops Toolkit"
+function setOnlineUI(){
+  const online = navigator.onLine;
+  $("#metaOnline").textContent = online ? "Yes" : "No";
+  $("#atlasPillText").textContent = online ? "ATLAS: ONLINE" : "ATLAS: DEGRADED";
+  $("#scanConn").textContent = online ? "Online" : "Offline";
+  const st = $("#scanStatus");
+  if(st){
+    st.innerHTML = online ? '<span class="dot dot--ok"></span> Stable' : '<span class="dot dot--warn"></span> Degraded';
+  }
+}
+
+function setViewport(){
+  $("#scanViewport").textContent = `${window.innerWidth}×${window.innerHeight}`;
+}
+
+async function ping(){
+  if(!navigator.onLine){ $("#scanLatency").textContent="Offline"; return "Offline"; }
+  const url = `${location.origin}/?atlas_ping=${Date.now()}`;
+  const t0 = performance.now();
+  try{
+    const r = await fetch(url, {method:"HEAD", cache:"no-store"});
+    const ms = Math.round(performance.now()-t0);
+    const out = r.ok ? `${ms}ms` : `Err(${r.status})`;
+    $("#scanLatency").textContent = out;
+    return out;
+  }catch(_){
+    $("#scanLatency").textContent = "Err";
+    return "Err";
+  }
+}
+
+async function watchdogScan(){
+  const assets = new Set();
+  $$("script[src]").forEach(s=>assets.add(new URL(s.src, location.href).href));
+  $$('link[rel="stylesheet"][href]').forEach(l=>assets.add(new URL(l.href, location.href).href));
+  $$("img[src]").forEach(i=>assets.add(new URL(i.src, location.href).href));
+  ["index.html","style.css","script.js","assets/favicon.svg","data/quotes.json"].forEach(p=>assets.add(new URL(p, location.href).href));
+
+  const links = $$("a[href]").map(a=>a.getAttribute("href")||"")
+    .filter(h=>h && !h.startsWith("mailto:") && !h.startsWith("tel:") && !h.startsWith("http"))
+    .map(h=>new URL(h, location.href).href);
+
+  const targets = [...assets, ...links];
+  let ok=0,bad=0; const failures=[];
+  let i=0; const limit=8;
+
+  async function worker(){
+    while(i<targets.length){
+      const url = targets[i++];
+      try{
+        const r = await fetch(url, {method:"HEAD", cache:"no-store"});
+        if(r.ok) ok++; else { bad++; failures.push(`${r.status} ${url}`); }
+      }catch(_){
+        bad++; failures.push(`ERR ${url}`);
+      }
+    }
+  }
+  await Promise.all(Array.from({length: Math.min(limit, targets.length)}, worker));
+
+  $("#scanAssets").textContent = `${ok} ok • ${bad} issues`;
+  state.lastScan = new Date();
+  $("#metaLastScan").textContent = state.lastScan.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  return {ok,bad,failures};
+}
+
+function thinkingSequence(outEl, finalText){
+  const steps=["Assessing objective…","Mapping environment…","Selecting modules…","Composing response…","Ready."];
+  let k=0;
+  const tick=()=>{
+    if(k<steps.length){
+      addLine(outEl, `[${ts()}] ${steps[k++]}`, "out__brand");
+      setTimeout(tick, 220 + Math.random()*220);
+      return;
+    }
+    addLine(outEl, finalText, "");
+    speak(finalText);
   };
-  $("#selectedModule").textContent = names[key] || "Unknown";
-  $("#deployNow").disabled = false;
-  $("#couponMsg").textContent = "";
-  recalcTotal();
+  tick();
 }
 
-function recalcTotal() {
-  const base = state.selected ? (state.basePrices[state.selected] || 0) : 0;
-  // License multipliers
-  const mult = state.license === "Personal" ? 1 : state.license === "Freelancer" ? 1.6 : 2.6;
-  let total = base * mult;
-
-  if (state.coupon === "FORGED") total *= 0.85;
-  if (state.coupon === "EMBER") total -= 2;
-
-  if (total < 0) total = 0;
-  $("#total").textContent = `$${total.toFixed(2)}`;
+function atlasTextRoute(text){
+  const t=text.toLowerCase();
+  if(t.includes("hack")||t.includes("steal")||t.includes("ddos")) return "Denied. Defensive posture only.";
+  if(t.includes("secure baseline")) return "Secure Baseline: guardrails, safe defaults, defensive checklists. Use /scan to verify site health.";
+  if(t.includes("autodeploy")) return "AutoDeploy Pack: build→release→verify→notify patterns. Next: we’ll wire real module pages + checkout.";
+  if(t.includes("starter")) return "Forge Starter Loadout: Termux-first dev/ops setup patterns. Ask for a checklist and I’ll generate it.";
+  return "Acknowledged. Type /help for commands or run /scan to verify the forge.";
 }
+function runCommand(raw, outEl){
+  const cmd = parseCmd(raw);
+  if(cmd.type==="EMPTY") return;
 
-function applyCoupon() {
-  const code = ($("#coupon").value || "").trim().toUpperCase();
-  state.coupon = null;
-  if (!code) {
-    $("#couponMsg").textContent = "No code entered.";
-    recalcTotal();
+  if(cmd.type==="TEXT"){
+    addLine(outEl, `❯ ${raw}`, "out__ok");
+    thinkingSequence(outEl, atlasTextRoute(raw));
     return;
   }
-  // Demo codes (front-end only)
-  if (code === "FORGED") {
-    state.coupon = "FORGED";
-    $("#couponMsg").textContent = "Code accepted: FORGED (15% off) — demo.";
-  } else if (code === "EMBER") {
-    state.coupon = "EMBER";
-    $("#couponMsg").textContent = "Code accepted: EMBER ($2 off) — demo.";
-  } else {
-    $("#couponMsg").textContent = "Invalid code (demo). Try FORGED or EMBER.";
+
+  const name=cmd.name, args=cmd.args;
+  addLine(outEl, `❯ /${name} ${args.join(" ")}`.trim(), "out__ok");
+
+  if(name==="help"){ addLine(outEl, helpText(), ""); speak("Commands displayed."); return; }
+
+  if(name==="theme"){
+    const v=(args[0]||"").toLowerCase();
+    if(v==="ember"){ setMode("EMBER"); addLine(outEl, "Mode set: EMBER.", "out__warn"); speak("Mode set. Ember."); return; }
+    if(v==="ice"){ setMode("ICE"); addLine(outEl, "Mode set: ICE.", "out__brand"); speak("Mode set. Ice."); return; }
+    addLine(outEl, "Usage: /theme ember  OR  /theme ice", "out__muted"); return;
   }
-  recalcTotal();
+
+  if(name==="quote"){
+    newQuote();
+    addLine(outEl, `Broadcast updated: ${$("#quoteText").textContent} ${$("#quoteMeta").textContent}`.trim(), "out__brand");
+    return;
+  }
+
+  if(name==="ping"){
+    (async()=>{
+      addLine(outEl, "Pinging…", "out__muted");
+      const v=await ping();
+      addLine(outEl, `Latency: ${v}`, "out__brand");
+    })();
+    return;
+  }
+
+  if(name==="status"){
+    const online=navigator.onLine ? "Yes":"No";
+    const vp=`${window.innerWidth}×${window.innerHeight}`;
+    addLine(outEl, `Status:\nOnline: ${online}\nMode: ${state.mode}\nViewport: ${vp}\nLatency: ${$("#scanLatency").textContent}\nAssets: ${$("#scanAssets").textContent}`, "");
+    return;
+  }
+
+  if(name==="scan"){
+    (async()=>{
+      addLine(outEl, "Watchdog running…", "out__muted");
+      setOnlineUI(); setViewport(); await ping();
+      const res=await watchdogScan();
+      if(res.bad===0){
+        addLine(outEl, `Scan complete. All clear. (${res.ok} checks)`, "out__brand");
+      } else {
+        addLine(outEl, `Scan complete. Issues: ${res.bad}`, "out__warn");
+        res.failures.slice(0,8).forEach(f=>addLine(outEl, f, "out__muted"));
+        if(res.failures.length>8) addLine(outEl, `…and ${res.failures.length-8} more`, "out__muted");
+      }
+    })();
+    return;
+  }
+
+  addLine(outEl, "Unknown command. Type /help", "out__muted");
 }
 
-function wireUI() {
-  // Year
+function openDrawer(){
+  $("#drawer").removeAttribute("hidden");
+  $("#drawerOut").innerHTML="";
+  addLine($("#drawerOut"), "ATLAS engaged. Type /scan to verify the forge.", "out__brand");
+  $("#drawerInput").focus();
+}
+function closeDrawer(){ $("#drawer").setAttribute("hidden",""); }
+
+function wireUI(){
   $("#year").textContent = String(new Date().getFullYear());
 
-  // Mobile menu
-  const mnav = $("#mnav");
-  $("#hamburger").addEventListener("click", () => {
-    const open = !mnav.hasAttribute("hidden");
-    if (open) mnav.setAttribute("hidden", "");
-    else mnav.removeAttribute("hidden");
-  });
-  // Close mobile nav on click
-  mnav.addEventListener("click", (e) => {
-    if (e.target && e.target.tagName === "A") mnav.setAttribute("hidden", "");
-  });
+  const mnav=$("#mnav");
+  $("#hamburger").addEventListener("click", ()=> mnav.hasAttribute("hidden") ? mnav.removeAttribute("hidden") : mnav.setAttribute("hidden",""));
+  mnav.addEventListener("click",(e)=>{ if(e.target.tagName==="A") mnav.setAttribute("hidden",""); });
 
   // Quotes
-  let quotesCache = [];
-  loadQuotes().then(qs => {
-    quotesCache = qs;
-    applyQuote(pickRandom(quotesCache));
-  });
-  $("#newQuoteBtn").addEventListener("click", () => {
-    if (quotesCache.length) applyQuote(pickRandom(quotesCache));
-  });
+  loadQuotes().then(()=>{ newQuote(); });
+  $("#newQuoteBtn").addEventListener("click", ()=>{ newQuote(); });
 
-  // Atlas terminal
-  const out = $("#atlasOut");
-  const input = $("#atlasInput");
-  $("#atlasRunBtn").addEventListener("click", () => {
-    const q = input.value.trim();
-    if (!q) return;
-    runAtlas(q, out);
-    input.value = "";
-  });
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") $("#atlasRunBtn").click();
-  });
+  // Top console
+  const out=$("#atlasOut");
+  const inp=$("#atlasInput");
+  addLine(out,"ATLAS ready. Try /help or /scan.","out__muted");
+  $("#atlasRunBtn").addEventListener("click", ()=>{ runCommand(inp.value, out); inp.value=""; });
+  inp.addEventListener("keydown",(e)=>{ if(e.key==="Enter"){ e.preventDefault(); $("#atlasRunBtn").click(); }});
 
-  document.querySelectorAll(".chip").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const q = btn.dataset.q || btn.textContent.trim();
-      runAtlas(q, out);
-    });
-  });
+  // chips (both chip types)
+  $$(".chip").forEach(b=>b.addEventListener("click", ()=>{
+    const c=b.dataset.cmd || b.dataset.atlas || b.textContent.trim();
+    inp.value=c; $("#atlasRunBtn").click();
+  }));
+  $$("[data-cmd]").forEach(b=>b.addEventListener("click", ()=>{
+    const c=b.getAttribute("data-cmd"); inp.value=c; $("#atlasRunBtn").click();
+  }));
+  $$("[data-atlas]").forEach(b=>b.addEventListener("click", ()=>{
+    const c=b.getAttribute("data-atlas"); inp.value=c; $("#atlasRunBtn").click();
+  }));
 
-  $("#clearOut").addEventListener("click", () => {
-    out.innerHTML = "";
-    addLine(out, "ATLAS ready. Awaiting command.", "out__muted");
-  });
+  $("#clearOut").addEventListener("click", ()=>{ out.innerHTML=""; addLine(out,"ATLAS ready. Awaiting command.","out__muted"); });
 
-  // TTS toggle (both buttons mirror)
-  const ttsBtn = $("#ttsToggle");
-  const ttsBtn2 = $("#ttsToggle2");
-  const toggle = () => {
-    const next = !state.ttsOn;
-    setTTS(ttsBtn, next);
-    setTTS(ttsBtn2, next);
-    if (next) speak("Voice engaged. Command when ready.");
+  // TTS
+  const setTTS=(on)=>{
+    state.tts=on;
+    $("#ttsToggle").setAttribute("aria-pressed", String(on));
+    $("#ttsToggle").textContent = `Voice: ${on?"On":"Off"}`;
+    $("#drawerVoice").setAttribute("aria-pressed", String(on));
+    $("#drawerVoice").textContent = `Voice: ${on?"On":"Off"}`;
   };
-  ttsBtn.addEventListener("click", toggle);
-  ttsBtn2.addEventListener("click", toggle);
+  const toggle=()=>{ setTTS(!state.tts); speak(state.tts ? "Voice engaged." : "Voice disabled."); };
+  $("#ttsToggle").addEventListener("click", toggle);
 
-  // Engage ATLAS button
-  $("#engageBtn").addEventListener("click", () => {
-    openDrawer();
-    addLine($("#drawerOut"), `[${nowTime()}] Engage request received.`, "out__brand");
-    thinkingSequence($("#drawerOut"), "ATLAS engaged. State your objective.");
-  });
-
-  // Drawer open/close
-  $("#atlasOpenBtn").addEventListener("click", openDrawer);
-  $("#atlasOpenBtn2").addEventListener("click", openDrawer);
-  $("#atlasCloseBtn").addEventListener("click", closeDrawer);
+  // Drawer
+  $("#atlasOpenTop").addEventListener("click", openDrawer);
+  $("#atlasOpenHero").addEventListener("click", openDrawer);
+  $("#atlasOpenMobile").addEventListener("click", openDrawer);
+  $("#atlasFab").addEventListener("click", openDrawer);
+  $("#drawerClose").addEventListener("click", closeDrawer);
   $("#drawerBackdrop").addEventListener("click", closeDrawer);
+  $("#drawerVoice").addEventListener("click", toggle);
 
-  $("#engageDrawer").addEventListener("click", () => {
-    const el = $("#drawerOut");
-    addLine(el, `[${nowTime()}] Command mode activated.`, "out__ok");
-    speak("Command mode activated.");
+  $("#drawerForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const din=$("#drawerInput"); const dout=$("#drawerOut");
+    const v=din.value; din.value="";
+    runCommand(v, dout);
   });
 
-  $("#runDrawerDemo").addEventListener("click", () => {
-    const el = $("#drawerOut");
-    addLine(el, `❯ Run demo overview`, "out__ok");
-    thinkingSequence(el,
-      [
-        "Operational summary:",
-        "• Marketplace: Modules + Deploy panel",
-        "• Demos: redacted previews",
-        "• Voice: manual-only",
-        "• Next: wire payments + licenses + downloads",
-      ].join("\n")
-    );
+  // Keyboard shortcuts
+  window.addEventListener("keydown",(e)=>{
+    const t=(e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+    const typing = t==="input" || t==="textarea";
+    if((e.ctrlKey && e.key.toLowerCase()==="k") || (!typing && e.key==="/")){
+      e.preventDefault(); openDrawer();
+    }
+    if(e.key==="Escape") closeDrawer();
   });
 
-  // Marketplace demo interactions
-  document.querySelectorAll("[data-demo]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const key = btn.dataset.demo;
-      runAtlas(`Show demo for module: ${key}`, out);
-    });
-  });
-
-  document.querySelectorAll("[data-deploy]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const key = btn.dataset.deploy;
-      selectModule(key);
-      // subtle nudge to ATLAS output
-      runAtlas(`Recommend usage steps for module: ${key}`, out);
-      location.hash = "#modules";
-    });
-  });
-
-  document.querySelectorAll(".seg__btn").forEach(btn => {
-    btn.addEventListener("click", () => setLicense(btn));
-  });
-
-  $("#applyCoupon").addEventListener("click", applyCoupon);
-
-  $("#deployNow").addEventListener("click", () => {
-    const el = $("#atlasOut");
-    addLine(el, `❯ Deploy initiated (mock)`, "out__warn");
-    thinkingSequence(el,
-      [
-        "Mock deploy only (no payments wired yet).",
-        `Selected: ${$("#selectedModule").textContent}`,
-        `License: ${state.license}`,
-        `Total: ${$("#total").textContent}`,
-        "Next step: connect Stripe + Cloudflare Functions for real checkout and license delivery.",
-      ].join("\n")
-    );
-  });
-
-  // Donate link placeholder
-  // Replace with your real link later:
-  // $("#donateLink").href = "https://buymeacoffee.com/yourname";
-  $("#donateLink").addEventListener("click", (e) => {
-    if ($("#donateLink").getAttribute("href") === "#") {
+  // donate placeholder
+  $("#donateLink").addEventListener("click",(e)=>{
+    if($("#donateLink").getAttribute("href")==="#"){
       e.preventDefault();
-      runAtlas("How do I set up the $1 donate link?", out);
-      addLine(out, "Tip: set #donateLink href to your BuyMeACoffee / Ko-fi / Stripe payment link.", "out__muted");
+      addLine(out,"Set donate link: edit script.js → donateLink href to Ko-fi/Stripe/BuyMeACoffee.","out__muted");
     }
   });
 
-  // Init scan
-  initSystemScan();
-}
-
-function openDrawer() {
-  $("#drawer").removeAttribute("hidden");
-  document.body.style.overflow = "hidden";
-}
-function closeDrawer() {
-  $("#drawer").setAttribute("hidden", "");
-  document.body.style.overflow = "";
+  // boot telemetry
+  setOnlineUI(); setViewport(); ping(); watchdogScan().catch(()=>{});
+  window.addEventListener("resize", setViewport);
+  window.addEventListener("online", setOnlineUI);
+  window.addEventListener("offline", setOnlineUI);
 }
 
 wireUI();

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Forge Atlas — Forged From Nothing. Deployed Everywhere.</title>
+  <meta name="description" content="A modular marketplace for builders — dev toolkits, automation packs, and systems you can deploy fast. Powered by ATLAS." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-badge">FA</span>
+      <span class="brand-title">Forge Atlas</span>
+      <span class="brand-sub">Architect of Tactical Logic & Advanced Systems</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#modules">Modules</a>
+      <a href="#how">How it works</a>
+      <a href="#trust">Trust</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="topbar-right">
+      <div class="atlas-pill" id="atlasPill" title="ATLAS status">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="atlasPillText">ATLAS: ONLINE</span>
+      </div>
+      <button class="btn ghost" id="atlasOpenBtn" type="button" aria-haspopup="dialog" aria-controls="atlasPanel">
+        Engage ATLAS
+      </button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="kicker">
+          <span class="chip">FORGE</span>
+          <span class="sep">•</span>
+          <span class="muted">SPARTAN ACCENT:</span>
+          <span class="accent">EMBER</span>
+        </div>
+
+        <h1 class="headline">
+          Forged From Nothing.<br />
+          Deployed Everywhere.
+        </h1>
+
+        <p class="lede">
+          A modular marketplace for builders — dev toolkits, automation packs, and systems you can deploy fast.
+          Powered by <strong>ATLAS</strong> — tactical guidance, demos, and diagnostics on demand.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#modules">Explore Modules</a>
+          <button class="btn" id="atlasOpenBtn2" type="button">Engage ATLAS</button>
+        </div>
+
+        <div class="scan card">
+          <div class="scan-head">
+            <div class="scan-title">ATLAS SYSTEM SCAN</div>
+            <div class="scan-status" id="scanStatus">Stable</div>
+          </div>
+          <div class="scan-body">
+            <div class="scan-row">
+              <span class="label">Connection</span>
+              <span class="value" id="connValue">Checking…</span>
+            </div>
+            <div class="scan-row">
+              <span class="label">Latency</span>
+              <span class="value" id="latencyValue">—</span>
+            </div>
+            <div class="scan-row">
+              <span class="label">Assets</span>
+              <span class="value" id="assetsValue">—</span>
+            </div>
+            <div class="scan-row">
+              <span class="label">Viewport</span>
+              <span class="value" id="viewportValue">—</span>
+            </div>
+          </div>
+
+          <div class="broadcast">
+            <div class="broadcast-title">ATLAS BROADCAST</div>
+            <div class="broadcast-quote" id="quoteText">Loading inspiration…</div>
+            <button class="btn tiny" id="newQuoteBtn" type="button">New</button>
+          </div>
+        </div>
+
+        <div class="fineprint">
+          Built on an Android. Still shipping like a war room. ✅
+        </div>
+      </div>
+
+      <div class="hero-right card">
+        <div class="panel-title">What ATLAS does</div>
+        <ul class="bullets">
+          <li><strong>Watchdog:</strong> scans assets + links for failures.</li>
+          <li><strong>Diagnostics:</strong> connection, latency, viewport, device hints.</li>
+          <li><strong>Command Console:</strong> tactical commands + quick actions.</li>
+          <li><strong>Voice:</strong> optional TTS output (hands-free mode).</li>
+        </ul>
+
+        <div class="hint">
+          Try opening ATLAS and typing:
+          <code>/scan</code>, <code>/quote</code>, <code>/help</code>, <code>/theme ember</code>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules" class="section card">
+      <h2>Modules</h2>
+      <p class="muted">Coming online. ATLAS will power previews + demos + diagnostics per module.</p>
+      <div class="module-grid">
+        <div class="module">
+          <div class="module-top">
+            <div class="module-name">CoreOps Starter</div>
+            <div class="tag">Toolkit</div>
+          </div>
+          <div class="module-desc">Reusable scripts + patterns for bootstrapping ops on any stack.</div>
+          <button class="btn tiny" data-atlas="demo coreops">Ask ATLAS</button>
+        </div>
+
+        <div class="module">
+          <div class="module-top">
+            <div class="module-name">AutoDeploy Pack</div>
+            <div class="tag">Automation</div>
+          </div>
+          <div class="module-desc">Drop-in automation recipes: build, release, verify, notify.</div>
+          <button class="btn tiny" data-atlas="demo autodeploy">Ask ATLAS</button>
+        </div>
+
+        <div class="module">
+          <div class="module-top">
+            <div class="module-name">Secure Baseline</div>
+            <div class="tag">Hardening</div>
+          </div>
+          <div class="module-desc">Practical baseline checks and guardrails for safer defaults.</div>
+          <button class="btn tiny" data-atlas="demo secure">Ask ATLAS</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section card">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><strong>Browse modules</strong> → pick a toolkit.</li>
+        <li><strong>Run a demo</strong> → ATLAS shows how it behaves.</li>
+        <li><strong>Deploy fast</strong> → verify with ATLAS scans.</li>
+      </ol>
+    </section>
+
+    <section id="trust" class="section card">
+      <h2>Trust</h2>
+      <p class="muted">
+        ATLAS shows what it can verify in-browser (connectivity, asset health, basic environment signals).
+        No creepy tracking — just practical diagnostics.
+      </p>
+    </section>
+
+    <section id="faq" class="section card">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Is this really built on Android?</summary>
+        <p>Yes. Termux + GitHub + Cloudflare Pages. The forge doesn’t care what you hold — only what you ship.</p>
+      </details>
+      <details>
+        <summary>Will ATLAS become “real” AI?</summary>
+        <p>That’s the roadmap: demos, module guidance, and eventually agent-assisted generation (with guardrails).</p>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <div class="muted">© <span id="year"></span> Forge Atlas. Built Different.</div>
+      <a class="muted" id="donateLink" href="#" target="_blank" rel="noreferrer">Donate $1 (fuel)</a>
+    </footer>
+  </main>
+
+  <!-- ATLAS Panel -->
+  <div class="atlas-fab">
+    <button class="fab" id="atlasFabBtn" type="button" aria-label="Open ATLAS">
+      <span class="fab-dot" aria-hidden="true"></span>
+      ATLAS
+    </button>
+  </div>
+
+  <div class="atlas-overlay" id="atlasOverlay" hidden></div>
+
+  <section class="atlas-panel" id="atlasPanel" role="dialog" aria-modal="true" aria-labelledby="atlasTitle" hidden>
+    <header class="atlas-head">
+      <div class="atlas-head-left">
+        <div class="atlas-title" id="atlasTitle">ATLAS Console</div>
+        <div class="atlas-sub" id="atlasSub">Guardian mode: active</div>
+      </div>
+
+      <div class="atlas-head-right">
+        <button class="btn tiny" id="atlasVoiceBtn" type="button" aria-pressed="false" title="Toggle voice output">
+          Voice: OFF
+        </button>
+        <button class="btn tiny ghost" id="atlasCloseBtn" type="button">Close</button>
+      </div>
+    </header>
+
+    <div class="atlas-body">
+      <div class="atlas-feed" id="atlasFeed" aria-live="polite"></div>
+
+      <div class="atlas-quick">
+        <button class="chip-btn" data-cmd="/scan">/scan</button>
+        <button class="chip-btn" data-cmd="/quote">/quote</button>
+        <button class="chip-btn" data-cmd="/help">/help</button>
+        <button class="chip-btn" data-cmd="/theme ember">/theme ember</button>
+        <button class="chip-btn" data-cmd="/theme ice">/theme ice</button>
+      </div>
+
+      <form class="atlas-input" id="atlasForm">
+        <input
+          id="atlasInput"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Type a command… (/help)"
+          aria-label="ATLAS command input"
+        />
+        <button class="btn primary" type="submit">Execute</button>
+      </form>
+
+      <div class="atlas-meta">
+        <div class="meta-row"><span class="k">Mode</span><span class="v" id="metaMode">EMBER</span></div>
+        <div class="meta-row"><span class="k">Online</span><span class="v" id="metaOnline">—</span></div>
+        <div class="meta-row"><span class="k">Last Scan</span><span class="v" id="metaLastScan">—</span></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
