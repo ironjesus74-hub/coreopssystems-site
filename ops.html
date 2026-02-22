@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATLAS Ops</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .ops-wrap{max-width:980px;margin:0 auto;padding:24px}
+    .ops-grid{display:grid;gap:14px}
+    .ops-card{border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:14px;background:rgba(10,10,12,.45);backdrop-filter:blur(10px)}
+    .ops-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .ops-title{font-weight:700}
+    .ops-meta{opacity:.75;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:12px}
+    .ops-pill{padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-family:ui-monospace,monospace;font-size:12px}
+    .ops-ok{background:rgba(80,255,160,.08)}
+    .ops-bad{background:rgba(255,120,120,.10)}
+    a{color:inherit}
+  </style>
+</head>
+<body>
+  <div class="ops-wrap">
+    <h1>ATLAS Ops</h1>
+    <p class="ops-meta">Public CI health feed for your repos. (No tokens in the browser.)</p>
+    <div id="ops" class="ops-grid"></div>
+  </div>
+
+  <script src="ops.js"></script>
+</body>
+</html>
