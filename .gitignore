@@ -2,3 +2,19 @@ _local/
 *.bak
 *.bak.*
 *.log
+
+# local reports + snapshots
+atlas_report.txt
+atlas_termux_snapshot.sh
+
+# local backup artifacts
+*.bak_*
+style.css.bak_*
+
+# local helper scripts / maps (ignore if you don't want them in the repo)
+atlas_js_map.*
+atlas_site_patch.sh
+patch_speak.py
+
+# optional local icon
+favicon.ico

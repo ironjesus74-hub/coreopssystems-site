@@ -1,0 +1,340 @@
+==============================
+ Termux Environment Audit
+==============================
+
+[1/7] BASIC INFO
+User: u0_a365
+Home: /data/data/com.termux/files/home
+PWD : /data/data/com.termux/files/home/forge/projects/coreopssystems-site
+Date: Sun Feb 22 07:13:47 EST 2026
+
+[2/7] TERMUX PACKAGES (first 200 lines)
+Listing...
+abseil-cpp/stable,now 20250814.1 aarch64 [installed,automatic]
+android-tools/stable,now 35.0.2-7 aarch64 [installed]
+apt/stable,now 2.8.1-2 aarch64 [installed]
+attr/stable,now 2.5.2-1 aarch64 [installed,automatic]
+bash/stable,now 5.3.9 aarch64 [installed]
+brotli/stable,now 1.2.0 aarch64 [installed,automatic]
+busybox/stable,now 1.37.0-3 aarch64 [installed]
+bzip2/stable,now 1.0.8-8 aarch64 [installed]
+c-ares/stable,now 1.34.6 aarch64 [installed,automatic]
+ca-certificates/stable,now 1:2025.12.02 all [installed]
+clang/stable,now 21.1.8 aarch64 [installed,automatic]
+cmocka/stable,now 2.0.2 aarch64 [installed,automatic]
+command-not-found/now 3.2-17 aarch64 [installed,upgradable to: 3.2-18]
+coreutils/stable,now 9.10-1 aarch64 [installed]
+curl/stable,now 8.18.0-1 aarch64 [installed]
+dash/stable,now 0.5.12-2 aarch64 [installed]
+debianutils/stable,now 5.23.2-1 aarch64 [installed]
+dialog/stable,now 1.3-20240307-1 aarch64 [installed]
+diffutils/stable,now 3.12-2 aarch64 [installed]
+dnsutils/stable,now 9.20.19 aarch64 [installed]
+dos2unix/stable,now 7.5.2-1 aarch64 [installed,upgradable to: 7.5.4]
+dpkg/stable,now 1.22.6-5 aarch64 [installed]
+ed/stable,now 1.22.5 aarch64 [installed]
+entr/stable,now 5.7-1 aarch64 [installed]
+fd/stable,now 10.3.0-1 aarch64 [installed]
+findutils/stable,now 4.10.0-1 aarch64 [installed]
+fmt/stable,now 1:11.2.0 aarch64 [installed,automatic]
+fzf/stable,now 0.68.0 aarch64 [installed]
+gawk/stable,now 5.3.1-2 aarch64 [installed,upgradable to: 5.3.2]
+gdbm/stable,now 1.26-1 aarch64 [installed,automatic]
+gh/stable,now 2.87.2 aarch64 [installed]
+git/stable,now 2.53.0 aarch64 [installed]
+glib/stable,now 2.86.4 aarch64 [installed,automatic]
+gpgv/stable,now 2.5.17 aarch64 [installed]
+grep/stable,now 3.12-3 aarch64 [installed]
+gzip/stable,now 1.14-1 aarch64 [installed]
+inetutils/stable,now 2.7 aarch64 [installed]
+jq/stable,now 1.8.1-1 aarch64 [installed]
+json-c/stable,now 0.18-2 aarch64 [installed,automatic]
+krb5/stable,now 1.22.2 aarch64 [installed,automatic]
+ldns/stable,now 1.8.4-1 aarch64 [installed,automatic]
+less/stable,now 692 aarch64 [installed]
+libacl/stable,now 2.3.2 aarch64 [installed,automatic]
+libandroid-execinfo/stable,now 0.1-3 aarch64 [installed,automatic]
+libandroid-glob/stable,now 0.6-3 aarch64 [installed]
+libandroid-posix-semaphore/stable,now 0.1-4 aarch64 [installed,automatic]
+libandroid-selinux/stable,now 14.0.0.11-1 aarch64 [installed]
+libandroid-support/stable,now 29-1 aarch64 [installed]
+libandroid-utimes/stable,now 0.4 aarch64 [installed,automatic]
+libassuan/stable,now 3.0.2-1 aarch64 [installed]
+libbsd/stable,now 0.11.7-2 aarch64 [installed,automatic]
+libbz2/stable,now 1.0.8-8 aarch64 [installed]
+libc++/stable,now 29 aarch64 [installed]
+libcap-ng/stable,now 2:0.9.1 aarch64 [installed]
+libcap/stable,now 2.69-1 aarch64 [installed,automatic]
+libcompiler-rt/stable,now 21.1.8 aarch64 [installed,automatic]
+libcrypt/stable,now 0.2-6 aarch64 [installed,automatic]
+libcurl/stable,now 8.18.0-1 aarch64 [installed]
+libdb/stable,now 18.1.40-5 aarch64 [installed,automatic]
+libedit/stable,now 20240517-3.1-1 aarch64 [installed,automatic]
+libevent/stable,now 2.1.12-3 aarch64 [installed]
+libexpat/stable,now 2.7.4 aarch64 [installed,automatic]
+libffi/stable,now 3.4.7-1 aarch64 [installed,automatic]
+libgcrypt/stable,now 1.11.2-1 aarch64 [installed]
+libgmp/stable,now 6.3.0-2 aarch64 [installed]
+libgnutls/stable,now 3.8.11 aarch64 [installed]
+libgpg-error/stable,now 1.58 aarch64 [installed]
+libiconv/stable,now 1.18-1 aarch64 [installed]
+libicu/stable,now 78.2 aarch64 [installed,automatic]
+libidn2/stable,now 2.3.8-1 aarch64 [installed]
+libllvm/stable,now 21.1.8 aarch64 [installed,automatic]
+liblz4/stable,now 1.10.0-1 aarch64 [installed]
+liblzma/stable,now 5.8.2 aarch64 [installed]
+libmd/stable,now 1.1.0-1 aarch64 [installed]
+libmpfr/stable,now 4.2.1-1 aarch64 [installed]
+libmsgpack/stable,now 6.1.0-1 aarch64 [installed,automatic]
+libnettle/stable,now 4.0+really3.10.2 aarch64 [installed]
+libnghttp2/stable,now 1.68.0-1 aarch64 [installed]
+libnghttp3/stable,now 1.15.0 aarch64 [installed]
+libngtcp2/stable,now 1.20.0 aarch64 [installed,automatic]
+libnpth/stable,now 1.6-3 aarch64 [installed]
+libpcap/stable,now 1.10.5-1 aarch64 [installed,automatic]
+libprotobuf/stable,now 2:33.1-1 aarch64 [installed,automatic]
+libresolv-wrapper/stable,now 1.1.7-6 aarch64 [installed,automatic]
+libsmartcols/stable,now 2.41.2-1 aarch64 [installed,upgradable to: 2.41.3]
+libsqlite/stable,now 3.51.2 aarch64 [installed,automatic]
+libssh2/stable,now 1.11.1-1 aarch64 [installed]
+libtirpc/stable,now 1.3.7-1 aarch64 [installed]
+libunbound/stable,now 1.24.2-1 aarch64 [installed]
+libunibilium/stable,now 2.1.2-1 aarch64 [installed,automatic]
+libunistring/stable,now 1.3-1 aarch64 [installed]
+liburcu/stable,now 0.15.6 aarch64 [installed,automatic]
+libuuid/stable,now 2.41.2-1 aarch64 [installed,upgradable to: 2.41.3]
+libuv/stable,now 1.52.0 aarch64 [installed,automatic]
+libvterm/stable,now 1:0.3.3-2 aarch64 [installed,automatic]
+libxml2/stable,now 2.15.1-1 aarch64 [installed,automatic]
+lld/stable,now 21.1.8 aarch64 [installed,automatic]
+llvm/stable,now 21.1.8 aarch64 [installed,automatic]
+lsof/stable,now 4.99.5-2 aarch64 [installed]
+lua51-lpeg/stable,now 1.1.0-4 aarch64 [installed,automatic]
+lua51/stable,now 5.1.5-7 aarch64 [installed,automatic]
+lua54/stable,now 5.4.8-6 aarch64 [installed,automatic]
+luajit/stable,now 1:2.1.1767980792+g707c12b-1 aarch64 [installed,automatic]
+luv/stable,now 1.51.0-2-0 aarch64 [installed,automatic]
+lz4/stable,now 1.10.0-1 aarch64 [installed,automatic]
+make/stable,now 4.4.1-1 aarch64 [installed,automatic]
+nano/stable,now 8.7.1 aarch64 [installed]
+ncurses-ui-libs/stable,now 6.6.20260124+really6.5.20250830 aarch64 [installed,automatic]
+ncurses-utils/stable,now 6.6.20260124+really6.5.20250830 aarch64 [installed,automatic]
+ncurses/stable,now 6.6.20260124+really6.5.20250830 aarch64 [installed]
+ndk-sysroot/stable,now 29-2 aarch64 [installed,automatic]
+neovim/stable,now 0.11.6-2 aarch64 [installed]
+net-tools/stable,now 2.10.0-1 aarch64 [installed]
+netcat-openbsd/stable,now 1.234-1-0 aarch64 [installed]
+nmap/stable,now 7.98-1 aarch64 [installed]
+nodejs/stable,now 25.3.0-1 aarch64 [installed]
+npm/stable,now 11.10.1 all [installed]
+oniguruma/stable,now 6.9.10-1 aarch64 [installed,automatic]
+openssh-sftp-server/stable,now 10.2p1-1 aarch64 [installed,automatic]
+openssh/stable,now 10.2p1-1 aarch64 [installed]
+openssl-tool/stable,now 1:3.6.1 aarch64 [installed]
+openssl/stable,now 1:3.6.1 aarch64 [installed]
+patch/stable,now 2.8-1 aarch64 [installed]
+pcre2/stable,now 10.47 aarch64 [installed]
+perl/now 5.40.3-3 aarch64 [installed,upgradable to: 5.42.0]
+pkg-config/stable,now 0.29.2-3 aarch64 [installed,automatic]
+procps/stable,now 3.3.17-6 aarch64 [installed]
+psmisc/stable,now 23.7-1 aarch64 [installed]
+python-ensurepip-wheels/stable,now 3.12.12-1 all [installed,automatic]
+python-pip/stable,now 26.0.1 all [installed,automatic]
+python/stable,now 3.12.12-1 aarch64 [installed]
+readline/stable,now 8.3.1-2 aarch64 [installed]
+resolv-conf/stable,now 1.3 aarch64 [installed]
+ripgrep/stable,now 15.1.0-1 aarch64 [installed]
+sed/stable,now 4.9-2 aarch64 [installed]
+shellcheck/stable,now 0.11.0 aarch64 [installed]
+tar/stable,now 1.35-2 aarch64 [installed]
+termux-am-socket/stable,now 1.5.0-1 aarch64 [installed]
+termux-am/stable,now 0.8.0-2 all [installed]
+termux-api/stable,now 0.59.1-1 aarch64 [installed]
+termux-auth/stable,now 1.5.0-1 aarch64 [installed,automatic]
+termux-core/stable,now 0.4.0-1 aarch64 [installed]
+termux-exec/stable,now 1:2.4.0-1 aarch64 [installed]
+termux-keyring/stable,now 3.13 all [installed]
+termux-licenses/stable,now 2.1 all [installed]
+termux-tools/stable,now 1.46.0+really1.45.0-1 aarch64 [installed]
+tmux/stable,now 3.6a aarch64 [installed]
+tree-sitter-bash/stable,now 0.25.1 aarch64 [installed,automatic]
+tree-sitter-c/stable,now 0.24.1-5 aarch64 [installed,automatic]
+tree-sitter-css/stable,now 0.25.0 aarch64 [installed,automatic]
+tree-sitter-go/stable,now 0.25.0 aarch64 [installed,automatic]
+tree-sitter-html/stable,now 0.23.2 aarch64 [installed,automatic]
+tree-sitter-java/stable,now 0.23.5 aarch64 [installed,automatic]
+tree-sitter-javascript/stable,now 0.25.0 aarch64 [installed,automatic]
+tree-sitter-json/stable,now 0.24.8 aarch64 [installed,automatic]
+tree-sitter-latex/stable,now 0.6.0 aarch64 [installed,automatic]
+tree-sitter-lua/stable,now 0.4.1 aarch64 [installed,automatic]
+tree-sitter-markdown/stable,now 0.5.2-1 aarch64 [installed,automatic]
+tree-sitter-parsers/stable,now 0.1.0 all [installed,automatic]
+tree-sitter-python/stable,now 0.25.0 aarch64 [installed,automatic]
+tree-sitter-query/stable,now 0.8.0-1 aarch64 [installed,automatic]
+tree-sitter-regex/stable,now 0.25.0 aarch64 [installed,automatic]
+tree-sitter-rust/stable,now 0.24.0 aarch64 [installed,automatic]
+tree-sitter-sql/stable,now 0.3.11 aarch64 [installed,automatic]
+tree-sitter-toml/stable,now 0.7.0 aarch64 [installed,automatic]
+tree-sitter-vim/stable,now 0.8.0 aarch64 [installed,automatic]
+tree-sitter-vimdoc/stable,now 4.1.0-1 aarch64 [installed,automatic]
+tree-sitter-xml/stable,now 0.7.0 aarch64 [installed,automatic]
+tree-sitter-yaml/stable,now 0.7.2 aarch64 [installed,automatic]
+tree-sitter/stable,now 0.25.10-2 aarch64 [installed,automatic]
+unzip/stable,now 6.0-10 aarch64 [installed]
+utf8proc/stable,now 2.11.3 aarch64 [installed,automatic]
+util-linux/stable,now 2.41.2-1 aarch64 [installed,upgradable to: 2.41.3]
+wget/stable,now 1.25.0-1 aarch64 [installed]
+which/stable,now 2.23-1 aarch64 [installed]
+xxhash/stable,now 0.8.3-1 aarch64 [installed]
+xz-utils/stable,now 5.8.2 aarch64 [installed]
+zip/stable,now 3.0-7 aarch64 [installed]
+zlib/stable,now 1.3.2 aarch64 [installed]
+zstd/stable,now 1.5.7-1 aarch64 [installed]
+
+[3/7] GIT STATUS
+git version: git version 2.53.0
+
+git config --global --list:
+url.git@github.com:.insteadof=https://github.com/
+user.name=IronJesus
+user.email=260971211+ironjesus74-hub@users.noreply.github.com
+push.autosetupremote=true
+pull.rebase=false
+credential.https://github.com.helper=
+credential.https://github.com.helper=!/data/data/com.termux/files/usr/bin/gh auth git-credential
+credential.https://gist.github.com.helper=
+credential.https://gist.github.com.helper=!/data/data/com.termux/files/usr/bin/gh auth git-credential
+
+SSH keys:
+total 31
+drwx------.  3 u0_a365 u0_a365 3452 Feb 19 07:31 .
+drwx------. 16 u0_a365 u0_a365 3452 Feb 22 06:38 ..
+drwx------.  2 u0_a365 u0_a365 3452 Feb 21 19:03 agent
+-rw-------.  1 u0_a365 u0_a365    0 Feb 19 06:40 authorized_keys
+-rw-------.  1 u0_a365 u0_a365  103 Feb 19 07:31 config
+-rw-------.  1 u0_a365 u0_a365  464 Feb 19 06:44 id_ed25519
+-rw-------.  1 u0_a365 u0_a365  103 Feb 19 06:44 id_ed25519.pub
+-rw-------.  1 u0_a365 u0_a365  828 Feb 19 06:50 known_hosts
+-rw-------.  1 u0_a365 u0_a365   92 Feb 19 06:50 known_hosts.old
+
+[4/7] NODE / NPM / PYTHON
+node: v25.3.0
+npm : 11.10.1
+python: Python 3.12.12
+python3: Python 3.12.12
+
+[5/7] DIRECTORY SNAPSHOT (HOME top level)
+total 148
+drwx------. 16 u0_a365 u0_a365  3452 Feb 22 06:38 .
+drwxrwx--x.  4 u0_a365 u0_a365  3452 Feb 19 06:16 ..
+-rw-------.  1 u0_a365 u0_a365 14188 Feb 21 04:52 .bash_history
+-rw-------.  1 u0_a365 u0_a365   920 Feb 19 07:53 .bashrc
+drwx------.  3 u0_a365 u0_a365  3452 Feb 21 06:06 .cache
+drwx------.  5 u0_a365 u0_a365  3452 Feb 21 07:54 .config
+-rw-------.  1 u0_a365 u0_a365   431 Feb 21 05:56 .gitconfig
+-rw-------.  1 u0_a365 u0_a365    26 Feb 21 19:20 .lesshst
+drwx------.  4 u0_a365 u0_a365  3452 Feb 22 06:38 .local
+drwx------.  5 u0_a365 u0_a365  3452 Feb 21 07:54 .npm
+-rw-------.  1 u0_a365 u0_a365    95 Feb 19 07:27 .python_history
+drwx------.  3 u0_a365 u0_a365  3452 Feb 19 07:31 .ssh
+drwx------.  2 u0_a365 u0_a365  3452 Feb 19 06:19 .termux
+drwx------.  2 u0_a365 u0_a365  3452 Feb 19 07:46 bin
+drwx------. 10 u0_a365 u0_a365  3452 Feb 21 19:25 coreops-starter-kit
+drwx------.  3 u0_a365 u0_a365  3452 Feb 19 06:18 forge
+drwx------.  2 u0_a365 u0_a365  3452 Feb 21 04:50 forge_atlas
+drwx------.  2 u0_a365 u0_a365  3452 Feb 21 04:50 forge_backups
+-rwx------.  1 u0_a365 u0_a365  1265 Feb 21 04:53 forge_diag.sh
+-rw-------.  1 u0_a365 u0_a365 10370 Feb 21 04:53 forge_diag_20260221_045329.txt
+-rwx------.  1 u0_a365 u0_a365  2004 Feb 19 11:00 g_audit.sh
+drwx------.  2 u0_a365 u0_a365  3452 Feb 19 11:01 google_audit_20260219_110102
+-rw-------.  1 u0_a365 u0_a365 15810 Feb 19 11:01 google_audit_20260219_110102.zip
+drwx------. 11 u0_a365 u0_a365  3452 Feb 19 18:32 ironjesus-lab
+-rw-------.  1 u0_a365 u0_a365     0 Feb 19 06:37 run.log
+-rwx------.  1 u0_a365 u0_a365  1068 Feb 21 04:53 ship.sh
+drwx------.  2 u0_a365 u0_a365  3452 Feb 21 19:07 storage
+-rwx------.  1 u0_a365 u0_a365  1436 Feb 21 00:15 termux_clean.sh
+-rw-------.  1 u0_a365 u0_a365 12809 Feb 20 21:10 termux_env_report.txt
+
+[6/7] FIND WEBSITE PROJECTS (common markers)
+Searching for: index.html, package.json, .git (this may take a moment)
+----------------------------------------
+/data/data/com.termux/files/home/forge/projects/coreopssystems-site/.git
+/data/data/com.termux/files/home/forge/projects/coreopssystems-site/index.html
+/data/data/com.termux/files/home/forge/projects/coreopssystems-site/atlas-control-plane/package.json
+/data/data/com.termux/files/home/ironjesus-lab/.git
+/data/data/com.termux/files/home/coreops-starter-kit/.git
+/data/data/com.termux/files/home/.npm/_npx/b92ed0e02e7e7f2b/node_modules/create-cloudflare/package.json
+/data/data/com.termux/files/home/.npm/_npx/b92ed0e02e7e7f2b/package.json
+----------------------------------------
+
+[7/7] DISK USAGE
+Filesystem        Size Used Avail Use% Mounted on
+/dev/block/dm-7   7.7G 7.7G     0 100% /
+tmpfs             5.0G 2.7M  5.0G   1% /dev
+tmpfs             5.0G    0  5.0G   0% /mnt
+/dev/block/dm-8   168M 168M     0 100% /system_ext
+/dev/block/dm-9   1.2G 1.2G     0 100% /product
+/dev/block/dm-10  1.9G 1.9G     0 100% /vendor
+/dev/block/dm-11   29M  29M     0 100% /vendor_dlkm
+/dev/block/dm-13  920K 920K     0 100% /odm
+/dev/block/dm-14  387M 251M  129M  67% /prism
+/dev/block/dm-15   19M 932K   18M   5% /optics
+tmpfs             5.0G  20K  5.0G   1% /apex
+/dev/block/loop15 232K  24K  204K  11% /apex/com.samsung.android.biometrics.face@311722300
+/dev/block/loop6  232K  24K  204K  11% /apex/com.samsung.android.camera.unihal@340673000
+/dev/block/loop5  736K 708K   16K  98% /apex/com.samsung.android.authfw.ta@342601070
+/dev/block/loop7  3.9M 3.8M     0 100% /apex/com.google.android.widevine@342415000
+/dev/block/loop13  12M  12M     0 100% /apex/com.samsung.android.media.imagecodec.system@342511251
+/dev/block/loop20 788K 756K   16K  98% /apex/com.android.tzdata@360527580
+/dev/block/loop12  36M  36M     0 100% /apex/com.android.i18n@1
+/dev/block/loop17 336K 304K   28K  92% /apex/com.samsung.android.shell@342601071
+/dev/block/loop19 232K 192K   36K  85% /apex/com.android.devicelock@1
+/dev/block/loop16  24M  24M     0 100% /apex/com.android.vndk.v34@1
+/dev/block/loop14 232K 112K  116K  50% /apex/com.android.apex.cts.shim@1
+/dev/block/loop18 7.6M 7.5M     0 100% /apex/com.android.runtime@1
+/dev/block/loop8  232K  24K  204K  11% /apex/com.samsung.android.biometrics.fingerprint@311722300
+/dev/block/loop9   24M  24M     0 100% /apex/com.android.bt@360499999
+/dev/block/loop10 3.5M 3.5M     0 100% /apex/com.android.compos@3
+/dev/block/dm-20  764K 736K   16K  98% /apex/com.android.sdkext@360655020
+/dev/block/loop23 232K  56K  172K  25% /apex/com.samsung.android.lifeguard@342505121
+/dev/block/loop22 232K  32K  196K  15% /apex/com.samsung.android.media.extractor@342505131
+/dev/block/loop21  90M  90M     0 100% /apex/com.android.virt@3
+/dev/block/loop24 2.3M 2.3M     0 100% /apex/com.samsung.android.spqr@432
+/dev/block/dm-54  2.8M 2.8M     0 100% /apex/com.android.os.statsd@360737020
+/dev/block/dm-55  5.6M 5.6M     0 100% /apex/com.android.media@360737060
+/dev/block/dm-53  1.3M 1.3M  4.0K 100% /apex/com.android.rkpd@360671160
+/dev/block/dm-37   28M  28M     0 100% /apex/com.android.media.swcodec@360737020
+/dev/block/dm-46  1.7M 1.7M     0 100% /apex/com.android.profiling@360499999
+/dev/block/dm-38  6.7M 6.7M     0 100% /apex/com.android.adbd@360527560
+/dev/block/dm-32   24M  24M     0 100% /apex/com.android.adservices@360738140
+/dev/block/dm-39  1.5M 1.5M     0 100% /apex/com.android.uprobestats@360499999
+/dev/block/dm-60   11M  11M     0 100% /apex/com.android.configinfrastructure@360527560
+/dev/block/dm-43  4.2M 4.1M     0 100% /apex/com.android.appsearch@360743400
+/dev/block/dm-30   19M  19M     0 100% /apex/com.android.cellbroadcast@360735060
+/dev/block/dm-57   26M  26M     0 100% /apex/com.android.permission@360743220
+/dev/block/dm-52   28M  28M     0 100% /apex/com.android.art@360729140
+/dev/block/dm-29  4.4M 4.4M     0 100% /apex/com.android.neuralnetworks@360527560
+/dev/block/dm-36  6.0M 6.0M     0 100% /apex/com.android.uwb@360499999
+/dev/block/dm-19   20M  20M     0 100% /apex/com.android.tethering@360743340
+/dev/block/loop46 232K  24K  204K  11% /apex/com.samsung.android.vital@340000000
+/dev/block/dm-21  232K 104K  124K  46% /apex/com.android.scheduling@360527560
+/dev/block/dm-25  836K 808K   12K  99% /apex/com.android.ipsec@360527560
+/dev/block/dm-33  8.9M 8.8M     0 100% /apex/com.android.wifi@360499999
+/dev/block/dm-24   25M  25M     0 100% /apex/com.android.mediaprovider@360738340
+/dev/block/dm-23   13M  13M     0 100% /apex/com.android.ondevicepersonalization@360738140
+/dev/block/dm-28  4.8M 4.8M     0 100% /apex/com.android.conscrypt@360527560
+/dev/block/dm-26   15M  15M     0 100% /apex/com.android.healthfitness@360745040
+/dev/block/dm-22  4.4M 4.4M     0 100% /apex/com.android.resolv@360735100
+/dev/block/dm-35  6.2M 6.2M     0 100% /apex/com.android.extservices@360737103
+tmpfs             5.0G 4.0K  5.0G   1% /bootstrap-apex
+/dev/block/loop1  788K 756K   16K  98% /bootstrap-apex/com.android.tzdata@360527580
+/dev/block/loop2  7.6M 7.5M     0 100% /bootstrap-apex/com.android.runtime@1
+/dev/block/loop3   24M  24M     0 100% /bootstrap-apex/com.android.vndk.v34@1
+/dev/block/loop0   90M  90M     0 100% /bootstrap-apex/com.android.virt@3
+/dev/block/loop4   36M  36M     0 100% /bootstrap-apex/com.android.i18n@1
+tmpfs             5.0G    0  5.0G   0% /tmp
+/dev/block/sda36  335M 8.2M  320M   3% /cache
+/dev/block/sda9    16M 5.6M   10M  38% /efs
+/dev/fuse         223G  20G  203G   9% /storage/emulated
+
+DONE.

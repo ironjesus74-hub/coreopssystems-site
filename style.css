@@ -177,3 +177,35 @@ input{color:var(--text)}
   box-shadow: 0 0 10px rgba(80,255,160,0.35);
 }
 #atlas-err{ opacity: .85; color: rgba(255,120,120,0.95); max-width: 40vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* --- RESPONSIVE FIXES (DEMO SAFE) --- */
+@media (max-width: 980px){
+  .wrap{ padding:14px; }
+  .brand{ min-width:0; }
+  .brand__tag{ display:none; }
+
+  .nav{ display:none; }
+  .hamburger{ display:block; }
+
+  .broadcast__inner{ flex-wrap:wrap; }
+
+  /* key fix: stop the right-side ATLAS offset on phones */
+  .hero{ grid-template-columns: 1fr; gap:14px; }
+  .hero__right{ order: 2; }
+  .hero__left{ order: 1; }
+
+  .h1{ font-size:36px; }
+  .lead{ max-width:none; }
+
+  .scan__grid{ grid-template-columns: 1fr; }
+
+  /* keep the fixed build badge from feeling like it pushes width */
+  #atlas-build{ left:14px; right:auto; max-width: calc(100vw - 28px); }
+  #atlas-err{ max-width: 55vw; }
+}
+
+@media (max-width: 520px){
+  .h1{ font-size:32px; }
+  .terminal__prompt{ flex-wrap:wrap; }
+  .terminal__prompt input{ width:100%; min-width:0; }
+}

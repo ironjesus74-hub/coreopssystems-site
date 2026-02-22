@@ -249,13 +249,20 @@ function runCommand(raw, outEl){
 }
 
 function openDrawer(){
+  // Demo fix: prefer the inline ATLAS terminal to avoid duplicate consoles on mobile.
+  const input = $("#atlasInput");
+  if (input){
+    input.scrollIntoView({ behavior:"smooth", block:"center" });
+    input.focus();
+    return;
+  }
+  // Fallback: only use drawer if inline terminal doesn't exist.
   $("#drawer").removeAttribute("hidden");
   $("#drawerOut").innerHTML="";
   addLine($("#drawerOut"), "ATLAS engaged. Type /scan to verify the forge.", "out__brand");
   $("#drawerInput").focus();
 }
 function closeDrawer(){ $("#drawer").setAttribute("hidden",""); }
-
 function wireUI(){
   $("#year").textContent = String(new Date().getFullYear());
 
