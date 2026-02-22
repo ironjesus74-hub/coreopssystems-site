@@ -2,294 +2,157 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atlas DevOps — Tools, Automation, Bots</title>
-  <meta name="description" content="Atlas DevOps: premium automation tools, scripts, wrappers, and developer bots. Build faster. Deploy cleaner. Operate stronger." />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>ATLAS • CoreOpsSystems — BUILT DIFFERENT</title>
+  <meta name="description" content="ATLAS: a next-generation DevOps + Automation marketplace. Built different. Speed. Precision. Clean execution." />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    /* fallback if css fails to load */
+    html,body{margin:0;background:#070b14;color:#eaf2ff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+  </style>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="theme-core" data-active="core">
   <div class="bg">
-    <div class="bgGrid"></div>
-    <div class="bgGlow"></div>
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <div class="grid"></div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="#">
-      <span class="brandMark" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <path d="M14 2.25c5.94 0 10.75 4.81 10.75 10.75S19.94 23.75 14 23.75 3.25 18.94 3.25 14 8.06 2.25 14 2.25Z" stroke="currentColor" stroke-width="1.6" opacity="0.9"/>
-          <path d="M7.2 16.5c2.1-2.5 5-4 6.8-4s4.7 1.5 6.8 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.9"/>
-          <path d="M14 6.8v14.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
-        </svg>
-      </span>
-      <span class="brandText">
-        <span class="brandName">ATLAS</span>
-        <span class="brandTag">DevOps Platform</span>
-      </span>
-    </a>
-
-    <nav class="nav">
-      <a href="#products">Products</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#deploy">Deploy</a>
-    </nav>
-
-    <div class="topActions">
-      <button class="btnGhost" id="themeBtn" type="button" aria-label="Toggle theme">Theme</button>
-      <a class="btnPrimary" href="#products">Explore</a>
+  <header class="topbar" role="banner">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div class="brandText">
+        <div class="brandName">ATLAS</div>
+        <div class="brandSub">CoreOpsSystems</div>
+      </div>
     </div>
+
+    <nav class="topnav" aria-label="Primary">
+      <a class="navlink" href="marketplace.html">Marketplace</a>
+      <a class="navlink" href="docs.html">Docs</a>
+      <a class="navlink" href="profile.html">Profile</a>
+      <a class="navlink" href="contact.html">Contact</a>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="heroLeft">
-        <div class="kicker">
-          <span class="dot"></span>
-          <span>Infrastructure-grade automation for developers</span>
-        </div>
-
-        <h1>
-          Build. Ship. Operate.
-          <span class="grad">Like Atlas Holds the World.</span>
-        </h1>
-
-        <p class="lead">
-          Atlas DevOps is a premium toolkit marketplace for automation scripts, wrappers, and developer bots —
-          designed to eliminate repetitive work and make deployments feel effortless.
+  <main class="shell" role="main">
+    <section class="hero" aria-label="ATLAS Command Hub">
+      <div class="heroCenter">
+        <div class="heroKicker">NEXT_GEN_COREOPS_AI</div>
+        <h1 class="heroTitle">BUILT DIFFERENT</h1>
+        <p class="heroDesc">
+          A premium automation + DevOps ecosystem. Orbital navigation. Zero noise. Pure execution.
         </p>
 
-        <div class="ctaRow">
-          <a class="btnPrimary" href="#products">View Products</a>
-          <a class="btnSecondary" href="#deploy">Deploy with Git Push</a>
+        <div class="heroActions">
+          <a class="btn primary" href="marketplace.html">Initialize Marketplace</a>
+          <button class="btn ghost" id="btnFocusOrbs" type="button">Enter Orb Dock</button>
         </div>
 
-        <div class="signalRow">
-          <div class="signal">
-            <div class="signalNum" id="stat1">0</div>
-            <div class="signalLabel">Automation Recipes</div>
-          </div>
-          <div class="signal">
-            <div class="signalNum" id="stat2">0</div>
-            <div class="signalLabel">Bots & Wrappers</div>
-          </div>
-          <div class="signal">
-            <div class="signalNum" id="stat3">0</div>
-            <div class="signalLabel">Deploy Templates</div>
-          </div>
+        <div class="statusRow" aria-label="Live telemetry (visual)">
+          <div class="chip"><span class="dot"></span> Neural Mesh: <b id="meshStat">STABLE</b></div>
+          <div class="chip"><span class="dot dot2"></span> Quantum Sync: <b id="qStat">LOCKED</b></div>
+          <div class="chip"><span class="dot dot3"></span> Deploy Mode: <b>STATIC</b></div>
         </div>
       </div>
 
-      <div class="heroRight" aria-hidden="true">
-        <div class="atlasCore">
-          <div class="coreRing ring1"></div>
-          <div class="coreRing ring2"></div>
-          <div class="coreRing ring3"></div>
-          <div class="coreNode nodeA"></div>
-          <div class="coreNode nodeB"></div>
-          <div class="coreNode nodeC"></div>
-          <div class="coreNode nodeD"></div>
-          <div class="coreText">
-            <div class="coreTitle">ATLAS CORE</div>
-            <div class="coreSub">Automation • Stability • Speed</div>
-          </div>
-        </div>
+      <!-- Orb Ring -->
+      <div class="orbRing" aria-label="Orbital navigation">
+        <button class="orb" data-key="bots" data-theme="theme-bots" aria-label="Automation Bots">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">🤖</span>
+          <span class="orbLabel">Automation Bots</span>
+        </button>
 
-        <div class="floatingCards">
-          <div class="miniCard">
-            <div class="miniTop">
-              <span class="pill">Script</span>
-              <span class="miniIcon">⚙️</span>
-            </div>
-            <div class="miniName">Deploy Guard</div>
-            <div class="miniDesc">Preflight checks before every push.</div>
-          </div>
+        <button class="orb" data-key="toolkits" data-theme="theme-toolkits" aria-label="AI Toolkits">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">🧰</span>
+          <span class="orbLabel">AI Toolkits</span>
+        </button>
 
-          <div class="miniCard">
-            <div class="miniTop">
-              <span class="pill">Bot</span>
-              <span class="miniIcon">🤖</span>
-            </div>
-            <div class="miniName">Log Sentinel</div>
-            <div class="miniDesc">Flags patterns + errors instantly.</div>
-          </div>
+        <button class="orb" data-key="devops" data-theme="theme-devops" aria-label="DevOps Systems">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">⚙️</span>
+          <span class="orbLabel">DevOps Systems</span>
+        </button>
 
-          <div class="miniCard">
-            <div class="miniTop">
-              <span class="pill">Wrapper</span>
-              <span class="miniIcon">🧩</span>
-            </div>
-            <div class="miniName">CLI Wrap</div>
-            <div class="miniDesc">One-command workflows.</div>
-          </div>
-        </div>
+        <button class="orb" data-key="scripts" data-theme="theme-scripts" aria-label="Custom Scripts">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">📜</span>
+          <span class="orbLabel">Custom Scripts</span>
+        </button>
+
+        <button class="orb" data-key="enterprise" data-theme="theme-enterprise" aria-label="Enterprise Systems">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">🏢</span>
+          <span class="orbLabel">Enterprise</span>
+        </button>
+
+        <button class="orb" data-key="quantum" data-theme="theme-quantum" aria-label="Quantum Lab (experimental)">
+          <span class="orbGlow"></span>
+          <span class="orbIcon">⚛️</span>
+          <span class="orbLabel">Quantum Lab</span>
+        </button>
       </div>
+
+      <!-- Preview Panel -->
+      <aside class="preview" aria-live="polite" aria-label="Module preview">
+        <div class="previewHead">
+          <div class="previewTitle" id="previewTitle">Select a Node</div>
+          <div class="previewMeta" id="previewMeta">Hover or tap an orb to reveal the module.</div>
+        </div>
+
+        <div class="previewBody" id="previewBody">
+          <div class="previewCard">
+            <div class="previewLine"></div>
+            <div class="previewLine short"></div>
+            <div class="previewLine"></div>
+            <div class="previewLine short"></div>
+          </div>
+
+          <div class="previewActions">
+            <a class="btn small primary" id="previewGo" href="marketplace.html">Open Marketplace</a>
+            <button class="btn small ghost" id="previewPin" type="button">Pin</button>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <section id="products" class="section">
-      <div class="sectionHead">
-        <h2>Products that feel premium — because your time is.</h2>
-        <p>
-          Each drop is designed to be readable, safe, and battle-tested.
-          No messy spaghetti scripts. No mystery behavior.
-        </p>
+    <!-- ATLAS-Ω Console -->
+    <section class="console" aria-label="ATLAS Omega Console">
+      <div class="consoleTop">
+        <div class="consoleName">ATLAS-Ω</div>
+        <div class="consoleState" id="atlasState">superposition: calm / tactical / witty</div>
       </div>
 
-      <div class="grid3">
-        <article class="card">
-          <div class="cardTop">
-            <span class="badge">DevOps Tools</span>
-            <span class="spark" aria-hidden="true"></span>
-          </div>
-          <h3>Atlas Tools</h3>
-          <p>Utilities for builds, deploys, backups, and reliability checks.</p>
-          <ul class="list">
-            <li>Preflight validation</li>
-            <li>Config sanity checks</li>
-            <li>Safe cleanup + restore</li>
-          </ul>
-        </article>
+      <div class="consoleLog" id="consoleLog" role="log" aria-live="polite"></div>
 
-        <article class="card">
-          <div class="cardTop">
-            <span class="badge">Automation Scripts</span>
-            <span class="spark" aria-hidden="true"></span>
-          </div>
-          <h3>Workflow Packs</h3>
-          <p>Opinionated, fast scripts that replace repetitive steps.</p>
-          <ul class="list">
-            <li>One-command releases</li>
-            <li>Project bootstrapper</li>
-            <li>Environment audits</li>
-          </ul>
-        </article>
+      <form class="consoleForm" id="consoleForm" autocomplete="off">
+        <input class="consoleInput" id="consoleInput" type="text"
+          placeholder='Try: "deploy devops" or "show bots" or "what are you"'
+          aria-label="Command input" />
+        <button class="btn primary" type="submit">Execute</button>
+      </form>
 
-        <article class="card">
-          <div class="cardTop">
-            <span class="badge">Bots & Wrappers</span>
-            <span class="spark" aria-hidden="true"></span>
-          </div>
-          <h3>Developer Assistants</h3>
-          <p>Bots that watch, alert, summarize, and help you ship.</p>
-          <ul class="list">
-            <li>Log summarizers</li>
-            <li>Deploy notifiers</li>
-            <li>Issue triage helpers</li>
-          </ul>
-        </article>
+      <div class="consoleHint">
+        Static-only mode now. Later we can wire this to a Cloudflare Worker AI endpoint with one config variable.
       </div>
     </section>
-
-    <section id="toolkit" class="section">
-      <div class="sectionHead">
-        <h2>The Atlas Toolkit Philosophy</h2>
-        <p>
-          Atlas isn’t “a bunch of files.” It’s a system: strong defaults, clean structure,
-          and predictable behavior — so you can trust what you run.
-        </p>
-      </div>
-
-      <div class="split">
-        <div class="panel">
-          <h3>Structure that scales</h3>
-          <p>
-            Keep your site, automation, scripts, wrappers, and bots separated —
-            so upgrades don’t break everything.
-          </p>
-          <div class="codeBox">
-            <pre><code>atlas/
-  site/
-  automation/
-    scripts/
-    wrappers/
-    bots/
-  docs/
-  devops/</code></pre>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h3>Premium = readable + safe</h3>
-          <p>
-            Every tool should say what it does, show what it changed, and fail safely.
-          </p>
-
-          <div class="checklist">
-            <div class="check"><span>✔</span> Clear output & logs</div>
-            <div class="check"><span>✔</span> Safe defaults</div>
-            <div class="check"><span>✔</span> Beginner-friendly</div>
-            <div class="check"><span>✔</span> Built to extend</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="roadmap" class="section">
-      <div class="sectionHead">
-        <h2>Roadmap (future expansion)</h2>
-        <p>These are “authority builders” — features that make developers trust you fast.</p>
-      </div>
-
-      <div class="grid2">
-        <div class="roadCard">
-          <h3>Atlas Vault</h3>
-          <p>Paid downloads + license keys + version history + changelogs.</p>
-        </div>
-        <div class="roadCard">
-          <h3>Atlas Forge</h3>
-          <p>Interactive script generator (choose stack → get a clean automation pack).</p>
-        </div>
-        <div class="roadCard">
-          <h3>Atlas Clinic</h3>
-          <p>Upload logs/configs → get safe diagnostics + suggested fixes (no secrets stored).</p>
-        </div>
-        <div class="roadCard">
-          <h3>Atlas Signals</h3>
-          <p>Status pages + incident summaries + deploy health dashboards.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="deploy" class="section">
-      <div class="sectionHead">
-        <h2>Beginner Git Push Deployment (GitHub + Cloudflare)</h2>
-        <p>This is the cleanest “starter flow” for a static site.</p>
-      </div>
-
-      <div class="panel">
-        <h3>What you’ll do</h3>
-        <ol class="steps">
-          <li>Create a GitHub repo (your site)</li>
-          <li>Commit and push from Termux</li>
-          <li>Point Cloudflare to your GitHub Pages or Cloudflare Pages</li>
-        </ol>
-
-        <p class="note">
-          ⚠️ If you already have a repo connected to the domain, you’ll just push updates.
-        </p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footerInner">
-        <div class="footBrand">
-          <div class="footName">ATLAS</div>
-          <div class="footTag">Strength for your workflows.</div>
-        </div>
-        <div class="footLinks">
-          <a href="#products">Products</a>
-          <a href="#toolkit">Toolkit</a>
-          <a href="#roadmap">Roadmap</a>
-          <a href="#deploy">Deploy</a>
-        </div>
-        <div class="footMeta">
-          <span id="year"></span> • Built in Termux • Premium by design
-        </div>
-      </div>
-    </footer>
   </main>
 
-  <script src="assets/js/app.js"></script>
+  <footer class="foot">
+    <div class="footInner">
+      <span>© <span id="year"></span> ATLAS • CoreOpsSystems</span>
+      <span class="sep">•</span>
+      <span>Speed. Precision. Clean execution.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
