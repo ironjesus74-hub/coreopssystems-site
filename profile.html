@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas ID • ATLAS</title>
+  <meta name="description" content="Atlas ID Studio — customize a profile (local-only) and share your operator identity." />
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <div class="brand">
+      <img class="brand__logo" src="assets/favicon.svg" alt="ATLAS" />
+      <div>
+        <div class="brand__name">ATLAS</div>
+        <div class="brand__tag">Atlas ID Studio</div>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="topbar__actions">
+      <a class="btn btn--tiny btn--ghost" href="https://github.com/ironjesus74-hub" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn--tiny btn--solid" href="contact.html">Hire Me</a>
+      <button class="hamburger" id="navToggle" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile" id="mobileNav" data-open="false" style="display:none">
+    <div class="wrap">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/ironjesus74-hub" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h1 class="h1">Atlas ID</h1>
+        <p class="lead">
+          Customize a profile that feels like an operator badge. Local-only for now — later you can turn it into real accounts.
+        </p>
+        <div class="builtDifferent"><b>BUILT DIFFERENT</b></div>
+      </div>
+
+      <div class="profileGrid">
+        <div class="card">
+          <h3>Profile Controls</h3>
+          <p class="muted">Updates live. Saves automatically to your browser (localStorage).</p>
+
+          <form id="atlasProfileForm">
+            <div class="field">
+              <label for="p_handle">Handle</label>
+              <input id="p_handle" type="text" placeholder="@ironjesus" />
+            </div>
+
+            <div class="field">
+              <label for="p_title">Title</label>
+              <input id="p_title" type="text" placeholder="DevOps Operator / Automation Builder" />
+            </div>
+
+            <div class="field">
+              <label for="p_bio">Bio</label>
+              <textarea id="p_bio" placeholder="What do you build? What do you ship?"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="p_accent">Accent (CSS gradient)</label>
+              <input id="p_accent" type="text" value="linear-gradient(135deg, #39c6ff, #7c5cff, #ff7a18)" />
+            </div>
+
+            <div class="row">
+              <div class="field" style="flex:1">
+                <label for="p_github">GitHub</label>
+                <input id="p_github" type="text" placeholder="ironjesus74-hub" />
+              </div>
+              <div class="field" style="flex:1">
+                <label for="p_email">Email</label>
+                <input id="p_email" type="text" placeholder="ironjesus74@gmail.com" />
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:8px">
+              <button class="btn btn--ghost" id="p_reset" type="button">Reset</button>
+              <a class="btn btn--solid" href="contact.html">Use this Profile to Hire</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="profileCard">
+          <div class="profileCard__inner">
+            <div class="handle" id="cardHandle">@operator</div>
+            <div style="margin-top:10px; font-weight:1000; font-size:22px" id="cardTitle">Operator Profile</div>
+            <div class="accentBar" id="accentBar"></div>
+            <div class="muted" style="line-height:1.65" id="cardBio">Built to ship clean. Built to scale.</div>
+
+            <div class="links" id="cardLinks" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div><strong>ATLAS</strong><br /><small>Identity. Community. Customers.</small></div>
+    <div class="footer__right"><small><a href="mailto:ironjesus74@gmail.com">ironjesus74@gmail.com</a></small></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

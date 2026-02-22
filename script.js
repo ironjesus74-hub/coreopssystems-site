@@ -1,343 +1,152 @@
+/* ==========================================================
+   ATLAS • Operator Terminal AI (local personality)
+   Targets:
+   - #termOut (output)
+   - #termIn  (input)
+   - #termRun (button)
+   ========================================================== */
+(function(){
+  const out = document.getElementById("termOut");
+  const input = document.getElementById("termIn");
+  const run = document.getElementById("termRun");
+  if (!out || !input || !run) return;
 
-// ATLAS build stamp + runtime error capture
-document.addEventListener("DOMContentLoaded", () => {
-  const b = document.querySelector("#build");
-  if (b) b.textContent = "b260221-1847";
-});
+  const QUOTES = [
+    { q:"The impediment to action advances action.", a:"Marcus Aurelius" },
+    { q:"He who has a why can bear almost any how.", a:"Nietzsche" },
+    { q:"Well begun is half done.", a:"Aristotle" },
+    { q:"Know thyself.", a:"Socrates" },
+    { q:"Nature loves to hide.", a:"Heraclitus" },
+    { q:"Excellence is a habit.", a:"Aristotle" },
+    { q:"A smooth sea never made a skilled sailor.", a:"Franklin (attributed)" }
+  ];
 
-function atlasReportError(msg) {
-  const el = document.querySelector("#atlas-err");
-  if (el) el.textContent = " • " + String(msg).slice(0,120);
-}
-
-window.addEventListener("error", (e) => {
-  atlasReportError(e.message || "runtime error");
-});
-window.addEventListener("unhandledrejection", (e) => {
-  atlasReportError(e.reason && (e.reason.message || e.reason) || "promise rejection");
-});
-
-const $ = (s, r=document)=>r.querySelector(s);
-const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
-
-const state = { tts:false, mode:"EMBER", lastScan:null, quotes:[] };
-
-function ts(){ return new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
-
-function addLine(el, text, cls=""){
-  const d=document.createElement("div");
-  d.className = `out__line ${cls}`.trim();
-  d.textContent = text;
-  el.appendChild(d);
-  el.scrollTop = el.scrollHeight;
-}
-
-function speak(text){
-  if(!state.tts) return;
-  if(!("speechSynthesis" in window)) return;
-  try{
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.rate = 0.92; u.pitch = 0.70; u.volume = 1.0;
-    const voices = window.speechSynthesis.getVoices?.() || [];
-    const v = voices.find(x=>/en/i.test(x.lang)) || null;
-    if(v) u.voice = v;
-    window.speechSynthesis.speak(u);
-  }catch(_){}
-}
-
-function setMode(m){
-  state.mode = m;
-  $("#modeBadge").textContent = m;
-  $("#metaMode").textContent = m;
-  $("#drawerSub").textContent = `Guardian mode active • ${m}`;
-}
-
-function parseCmd(raw){
-  const s=(raw||"").trim();
-  if(!s) return {type:"EMPTY"};
-  if(s.startsWith("/")){
-    const parts=s.slice(1).split(/\s+/);
-    return {type:"CMD", name:(parts[0]||"").toLowerCase(), args:parts.slice(1)};
+  function line(text, cls){
+    const d = document.createElement("div");
+    d.className = "line" + (cls ? " " + cls : "");
+    d.textContent = text;
+    out.appendChild(d);
+    out.scrollTop = out.scrollHeight;
   }
-  return {type:"TEXT", text:s};
-}
 
-function helpText(){
-  return [
-    "ATLAS Commands:",
-    "/help   — commands",
-    "/scan   — watchdog scan (assets + links + telemetry)",
-    "/ping   — latency test (HEAD request)",
-    "/quote  — new broadcast quote",
-    "/status — summary",
-    "/theme ember|ice — mode",
-    "",
-    "Tip: / or Ctrl+K opens ATLAS drawer."
-  ].join("\n");
-}
-
-async function loadQuotes(){
-  try{
-    const r = await fetch("data/quotes.json", {cache:"no-store"});
-    const j = await r.json();
-    state.quotes = Array.isArray(j) ? j : [];
-  }catch(_){
-    state.quotes = [{text:"Ship small. Learn fast. Repeat.", author:"Forge Atlas"}];
+  function quote(){
+    const x = QUOTES[Math.floor(Math.random()*QUOTES.length)];
+    return `“${x.q}” — ${x.a}`;
   }
-}
 
-function applyQuote(q){
-  $("#quoteText").textContent = `“${q.text}”`;
-  $("#quoteMeta").textContent = q.author ? `— ${q.author}` : "";
-}
-
-function newQuote(){
-  if(!state.quotes.length) return;
-  applyQuote(state.quotes[Math.floor(Math.random()*state.quotes.length)]);
-}
-
-function setOnlineUI(){
-  const online = navigator.onLine;
-  $("#metaOnline").textContent = online ? "Yes" : "No";
-  $("#atlasPillText").textContent = online ? "ATLAS: ONLINE" : "ATLAS: DEGRADED";
-  $("#scanConn").textContent = online ? "Online" : "Offline";
-  const st = $("#scanStatus");
-  if(st){
-    st.innerHTML = online ? '<span class="dot dot--ok"></span> Stable' : '<span class="dot dot--warn"></span> Degraded';
+  function help(){
+    line("ATLAS: Commands", "line--dim");
+    line("  /help      show commands", "line--dim");
+    line("  /scan      integrity scan", "line--dim");
+    line("  /market    marketplace preview", "line--dim");
+    line("  /roadmap   what ships next", "line--dim");
+    line("  /contact   email + GitHub", "line--dim");
+    line("Tip: type normally too (ex: “Hi”, “I need CI/CD”, “I need a bot”).", "line--dim");
   }
-}
 
-function setViewport(){
-  $("#scanViewport").textContent = `${window.innerWidth}×${window.innerHeight}`;
-}
+  function scan(){
+    line("Scan: forge integrity check…", "line--dim");
+    const has = (sel)=>!!document.querySelector(sel);
 
-async function ping(){
-  if(!navigator.onLine){ $("#scanLatency").textContent="Offline"; return "Offline"; }
-  const url = `${location.origin}/?atlas_ping=${Date.now()}`;
-  const t0 = performance.now();
-  try{
-    const r = await fetch(url, {method:"HEAD", cache:"no-store"});
-    const ms = Math.round(performance.now()-t0);
-    const out = r.ok ? `${ms}ms` : `Err(${r.status})`;
-    $("#scanLatency").textContent = out;
-    return out;
-  }catch(_){
-    $("#scanLatency").textContent = "Err";
-    return "Err";
+    const pages = [];
+    if (has("#marketplace")) pages.push("marketplace");
+    if (has("#atlas-id")) pages.push("atlas id");
+    if (has("#contact")) pages.push("contact");
+
+    line(`✓ Pages: ${pages.join(" / ") || "(anchors not detected)"}`, "line--ok");
+    line("✓ Deployment mode: git push → origin/main", "line--ok");
+    line("Next: ship packs, then automate delivery.", "line--dim");
   }
-}
 
-async function watchdogScan(){
-  const assets = new Set();
-  $$("script[src]").forEach(s=>assets.add(new URL(s.src, location.href).href));
-  $$('link[rel="stylesheet"][href]').forEach(l=>assets.add(new URL(l.href, location.href).href));
-  $$("img[src]").forEach(i=>assets.add(new URL(i.src, location.href).href));
-  ["index.html","style.css","script.js","assets/favicon.svg","data/quotes.json"].forEach(p=>assets.add(new URL(p, location.href).href));
-
-  const links = $$("a[href]").map(a=>a.getAttribute("href")||"")
-    .filter(h=>h && !h.startsWith("mailto:") && !h.startsWith("tel:") && !h.startsWith("http"))
-    .map(h=>new URL(h, location.href).href);
-
-  const targets = [...assets, ...links];
-  let ok=0,bad=0; const failures=[];
-  let i=0; const limit=8;
-
-  async function worker(){
-    while(i<targets.length){
-      const url = targets[i++];
-      try{
-        const r = await fetch(url, {method:"HEAD", cache:"no-store"});
-        if(r.ok) ok++; else { bad++; failures.push(`${r.status} ${url}`); }
-      }catch(_){
-        bad++; failures.push(`ERR ${url}`);
-      }
-    }
+  function market(){
+    line("Marketplace Preview");
+    line("• Ops Toolkits — deploy checks, logs, hardening helpers", "line--dim");
+    line("• Automation Packs — task runners, wrappers, templates", "line--dim");
+    line("• Bot Modules — repo guard, release pilot, ops sentinel", "line--dim");
   }
-  await Promise.all(Array.from({length: Math.min(limit, targets.length)}, worker));
 
-  $("#scanAssets").textContent = `${ok} ok • ${bad} issues`;
-  state.lastScan = new Date();
-  $("#metaLastScan").textContent = state.lastScan.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
-  return {ok,bad,failures};
-}
+  function roadmap(){
+    line("Roadmap");
+    line("1) Atlas Verify (pre-deploy validator)", "line--dim");
+    line("2) Blueprint Generator (automation scaffolds)", "line--dim");
+    line("3) Scorecard (maturity + fixes)", "line--dim");
+    line("4) Packs + services portal", "line--dim");
+  }
 
-function thinkingSequence(outEl, finalText){
-  const steps=["Assessing objective…","Mapping environment…","Selecting modules…","Composing response…","Ready."];
-  let k=0;
-  const tick=()=>{
-    if(k<steps.length){
-      addLine(outEl, `[${ts()}] ${steps[k++]}`, "out__brand");
-      setTimeout(tick, 220 + Math.random()*220);
+  function contact(){
+    line("Contact");
+    line("• Email: ironjesus74@gmail.com", "line--dim");
+    line("• GitHub: Ironjesus74-hub", "line--dim");
+    line("If you’re hiring: tell me stack + pain + deadline.", "line--dim");
+  }
+
+  function reply(text){
+    const t = text.trim();
+    const lower = t.toLowerCase();
+
+    if (lower === "/help") return help();
+    if (lower === "/scan") return scan();
+    if (lower === "/market") return market();
+    if (lower === "/roadmap") return roadmap();
+    if (lower === "/contact") return contact();
+
+    if (/^(hi|hello|yo|hey)\b/.test(lower)){
+      line("ATLAS: Online. Speak your objective.");
+      line("Try: “I need a pre-deploy validator” or “I want automated releases.”", "line--dim");
+      line(quote(), "line--dim");
       return;
     }
-    addLine(outEl, finalText, "");
-    speak(finalText);
-  };
-  tick();
-}
 
-function atlasTextRoute(text){
-  const t=text.toLowerCase();
-  if(t.includes("hack")||t.includes("steal")||t.includes("ddos")) return "Denied. Defensive posture only.";
-  if(t.includes("secure baseline")) return "Secure Baseline: guardrails, safe defaults, defensive checklists. Use /scan to verify site health.";
-  if(t.includes("autodeploy")) return "AutoDeploy Pack: build→release→verify→notify patterns. Next: we’ll wire real module pages + checkout.";
-  if(t.includes("starter")) return "Forge Starter Loadout: Termux-first dev/ops setup patterns. Ask for a checklist and I’ll generate it.";
-  return "Acknowledged. Type /help for commands or run /scan to verify the forge.";
-}
-function runCommand(raw, outEl){
-  const cmd = parseCmd(raw);
-  if(cmd.type==="EMPTY") return;
-
-  if(cmd.type==="TEXT"){
-    addLine(outEl, `❯ ${raw}`, "out__ok");
-    thinkingSequence(outEl, atlasTextRoute(raw));
-    return;
-  }
-
-  const name=cmd.name, args=cmd.args;
-  addLine(outEl, `❯ /${name} ${args.join(" ")}`.trim(), "out__ok");
-
-  if(name==="help"){ addLine(outEl, helpText(), ""); speak("Commands displayed."); return; }
-
-  if(name==="theme"){
-    const v=(args[0]||"").toLowerCase();
-    if(v==="ember"){ setMode("EMBER"); addLine(outEl, "Mode set: EMBER.", "out__warn"); speak("Mode set. Ember."); return; }
-    if(v==="ice"){ setMode("ICE"); addLine(outEl, "Mode set: ICE.", "out__brand"); speak("Mode set. Ice."); return; }
-    addLine(outEl, "Usage: /theme ember  OR  /theme ice", "out__muted"); return;
-  }
-
-  if(name==="quote"){
-    newQuote();
-    addLine(outEl, `Broadcast updated: ${$("#quoteText").textContent} ${$("#quoteMeta").textContent}`.trim(), "out__brand");
-    return;
-  }
-
-  if(name==="ping"){
-    (async()=>{
-      addLine(outEl, "Pinging…", "out__muted");
-      const v=await ping();
-      addLine(outEl, `Latency: ${v}`, "out__brand");
-    })();
-    return;
-  }
-
-  if(name==="status"){
-    const online=navigator.onLine ? "Yes":"No";
-    const vp=`${window.innerWidth}×${window.innerHeight}`;
-    addLine(outEl, `Status:\nOnline: ${online}\nMode: ${state.mode}\nViewport: ${vp}\nLatency: ${$("#scanLatency").textContent}\nAssets: ${$("#scanAssets").textContent}`, "");
-    return;
-  }
-
-  if(name==="scan"){
-    (async()=>{
-      addLine(outEl, "Watchdog running…", "out__muted");
-      setOnlineUI(); setViewport(); await ping();
-      const res=await watchdogScan();
-      if(res.bad===0){
-        addLine(outEl, `Scan complete. All clear. (${res.ok} checks)`, "out__brand");
-      } else {
-        addLine(outEl, `Scan complete. Issues: ${res.bad}`, "out__warn");
-        res.failures.slice(0,8).forEach(f=>addLine(outEl, f, "out__muted"));
-        if(res.failures.length>8) addLine(outEl, `…and ${res.failures.length-8} more`, "out__muted");
-      }
-    })();
-    return;
-  }
-
-  addLine(outEl, "Unknown command. Type /help", "out__muted");
-}
-
-function openDrawer(){
-  $("#drawer").removeAttribute("hidden");
-  $("#drawerOut").innerHTML="";
-  addLine($("#drawerOut"), "ATLAS engaged. Type /scan to verify the forge.", "out__brand");
-  $("#drawerInput").focus();
-}
-function closeDrawer(){ $("#drawer").setAttribute("hidden",""); }
-
-function wireUI(){
-  $("#year").textContent = String(new Date().getFullYear());
-
-  const mnav=$("#mnav");
-  $("#hamburger").addEventListener("click", ()=> mnav.hasAttribute("hidden") ? mnav.removeAttribute("hidden") : mnav.setAttribute("hidden",""));
-  mnav.addEventListener("click",(e)=>{ if(e.target.tagName==="A") mnav.setAttribute("hidden",""); });
-
-  // Quotes
-  loadQuotes().then(()=>{ newQuote(); });
-  $("#newQuoteBtn").addEventListener("click", ()=>{ newQuote(); });
-
-  // Top console
-  const out=$("#atlasOut");
-  const inp=$("#atlasInput");
-  addLine(out,"ATLAS ready. Try /help or /scan.","out__muted");
-  $("#atlasRunBtn").addEventListener("click", ()=>{ runCommand(inp.value, out); inp.value=""; });
-  inp.addEventListener("keydown",(e)=>{ if(e.key==="Enter"){ e.preventDefault(); $("#atlasRunBtn").click(); }});
-
-  // chips (both chip types)
-  $$(".chip").forEach(b=>b.addEventListener("click", ()=>{
-    const c=b.dataset.cmd || b.dataset.atlas || b.textContent.trim();
-    inp.value=c; $("#atlasRunBtn").click();
-  }));
-  $$("[data-cmd]").forEach(b=>b.addEventListener("click", ()=>{
-    const c=b.getAttribute("data-cmd"); inp.value=c; $("#atlasRunBtn").click();
-  }));
-  $$("[data-atlas]").forEach(b=>b.addEventListener("click", ()=>{
-    const c=b.getAttribute("data-atlas"); inp.value=c; $("#atlasRunBtn").click();
-  }));
-
-  $("#clearOut").addEventListener("click", ()=>{ out.innerHTML=""; addLine(out,"ATLAS ready. Awaiting command.","out__muted"); });
-
-  // TTS
-  const setTTS=(on)=>{
-    state.tts=on;
-    $("#ttsToggle").setAttribute("aria-pressed", String(on));
-    $("#ttsToggle").textContent = `Voice: ${on?"On":"Off"}`;
-    $("#drawerVoice").setAttribute("aria-pressed", String(on));
-    $("#drawerVoice").textContent = `Voice: ${on?"On":"Off"}`;
-  };
-  const toggle=()=>{ setTTS(!state.tts); speak(state.tts ? "Voice engaged." : "Voice disabled."); };
-  $("#ttsToggle").addEventListener("click", toggle);
-
-  // Drawer
-  $("#atlasOpenTop").addEventListener("click", openDrawer);
-  $("#atlasOpenHero").addEventListener("click", openDrawer);
-  $("#atlasOpenMobile").addEventListener("click", openDrawer);
-  $("#atlasFab").addEventListener("click", openDrawer);
-  $("#drawerClose").addEventListener("click", closeDrawer);
-  $("#drawerBackdrop").addEventListener("click", closeDrawer);
-  $("#drawerVoice").addEventListener("click", toggle);
-
-  $("#drawerForm").addEventListener("submit",(e)=>{
-    e.preventDefault();
-    const din=$("#drawerInput"); const dout=$("#drawerOut");
-    const v=din.value; din.value="";
-    runCommand(v, dout);
-  });
-
-  // Keyboard shortcuts
-  window.addEventListener("keydown",(e)=>{
-    const t=(e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-    const typing = t==="input" || t==="textarea";
-    if((e.ctrlKey && e.key.toLowerCase()==="k") || (!typing && e.key==="/")){
-      e.preventDefault(); openDrawer();
+    if (/(deploy|github actions|pipeline|ci\/cd|ci|cd)/.test(lower)){
+      line("ATLAS: Understood. We’ll forge a safe pipeline.");
+      line("Answer: Node or Python? Build step? Deploy target (Pages/CF/VPS)?", "line--dim");
+      return;
     }
-    if(e.key==="Escape") closeDrawer();
-  });
 
-  // donate placeholder
-  $("#donateLink").addEventListener("click",(e)=>{
-    if($("#donateLink").getAttribute("href")==="#"){
-      e.preventDefault();
-      addLine(out,"Set donate link: edit script.js → donateLink href to Ko-fi/Stripe/BuyMeACoffee.","out__muted");
+    if (/(bot|automation|script|termux)/.test(lower)){
+      line("ATLAS: Automation is leverage.");
+      line("Name the job (scan links / release notes / backups / lint / publish).", "line--dim");
+      return;
     }
-  });
 
-  // boot telemetry
-  setOnlineUI(); setViewport(); ping(); watchdogScan().catch(()=>{});
-  window.addEventListener("resize", setViewport);
-  window.addEventListener("online", setOnlineUI);
-  window.addEventListener("offline", setOnlineUI);
-}
+    line("ATLAS: I can help—give me 1 detail:", "line--dim");
+    line("Platform (Windows/Linux/Android/iOS) + goal (ship / secure / automate / diagnose).", "line--dim");
+    line(quote(), "line--dim");
+  }
 
-wireUI();
+  function thinkingThen(fn){
+    const think = document.createElement("div");
+    think.className = "line line--dim";
+    out.appendChild(think);
+
+    const dots = ["·","··","···","····"];
+    let i = 0;
+    think.textContent = "ATLAS: forging response " + dots[i];
+
+    const timer = setInterval(()=>{
+      i = (i+1) % dots.length;
+      think.textContent = "ATLAS: forging response " + dots[i];
+    }, 200);
+
+    setTimeout(()=>{
+      clearInterval(timer);
+      if (think.parentNode) think.parentNode.removeChild(think);
+      fn();
+    }, 520);
+  }
+
+  function submit(){
+    const v = input.value.trim();
+    if (!v) return;
+    line("$ " + v, "line--brand");
+    input.value = "";
+    thinkingThen(()=>reply(v));
+  }
+
+  run.addEventListener("click", submit);
+  input.addEventListener("keydown", (e)=>{ if (e.key === "Enter") submit(); });
+
+  // Boot message
+  line("ATLAS Operator Terminal");
+  line("Type /help", "line--dim");
+})();

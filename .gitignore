@@ -2,3 +2,9 @@ _local/
 *.bak
 *.bak.*
 *.log
+
+# local archives (do not deploy)
+_archive/
+
+# local archives (do not deploy)
+_archive/

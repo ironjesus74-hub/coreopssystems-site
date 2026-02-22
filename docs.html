@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docs — Atlas Systems</title>
+  <meta name="description" content="Docs for Atlas Systems: quickstart, tooling, security posture." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand">
+        <img class="brand__logo" src="assets/atlas-mark.svg" alt="Atlas Systems logo">
+        <div>
+          <div class="brand__name">DOCS</div>
+          <div class="brand__tag">No fluff • Just shipping</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button id="themeBtn" class="btn btn--ghost btn--tiny" type="button">Theme</button>
+        <button id="hamburger" class="hamburger" type="button" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div id="mobileNav" class="mobile wrap" hidden>
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="profile.html">Atlas ID</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h1 class="h2">Documentation</h1>
+          <p class="sub">This is a scaffold for your future docs. Next we can generate real content and link it in docs/.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Quickstart</h3>
+            <p class="muted">Run locally → verify → push deploy.</p>
+            <div class="code muted">python -m http.server 8080</div>
+          </div>
+          <div class="card">
+            <h3>Tooling</h3>
+            <p class="muted">Scripts, wrappers, bots — how to install and extend.</p>
+          </div>
+          <div class="card">
+            <h3>Security posture</h3>
+            <p class="muted">Guardrails and best practices to ship clean.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <a class="btn btn--ghost" href="index.html">← Back</a>
+          <a class="btn btn--solid" href="profile.html">Create Atlas ID</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div><b>ATLAS SYSTEMS</b> — Built Different</div>
+      <div class="muted">© <span id="year"></span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
