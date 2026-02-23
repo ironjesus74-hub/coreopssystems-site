@@ -7,6 +7,22 @@ set -euo pipefail
 APP="watchtower"
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CFG="${WATCHTOWER_CONFIG:-$DIR/watchtower.conf}"
+# --- config helpers (added by ATLAS patch) ---
+cfg_get(){
+  local k="$1" d="$2"
+  [ -f "$CFG" ] || { echo "$d"; return; }
+  local v
+  v="$(grep -m1 "^${k}=" "$CFG" 2>/dev/null | cut -d= -f2- || true)"
+  [ -n "${v:-}" ] && echo "$v" || echo "$d"
+}
+
+# thresholds (configurable via watchtower.conf)
+FAIL_THRESHOLD="$(cfg_get FAIL_THRESHOLD 3)"
+ALERT_COOLDOWN="$(cfg_get ALERT_COOLDOWN 900)"
+SLOW_MS="$(cfg_get SLOW_MS 1500)"
+
+# alert state file (separate from main state)
+ALERT_STATE="${ALERT_STATE:-${CFG%.conf}_alerts.tsv}"
 LOG="${WATCHTOWER_LOG:-$DIR/watchtower.log}"
 STATE="${WATCHTOWER_STATE:-$DIR/watchtower_state.tsv}"
 
@@ -27,6 +43,26 @@ notify(){
     termux-notification --title "$title" --content "$msg" >/dev/null 2>&1 || true
   fi
 }
+
+
+# --- alert cooldown state helpers ---
+alert_get_last(){
+  local key="$1"
+  [ -f "$ALERT_STATE" ] || { echo 0; return; }
+  awk -F'\t' -v k="$key" '$1==k{print $2; found=1} END{if(!found)print 0}' "$ALERT_STATE"
+}
+
+alert_set_last(){
+  local key="$1" ts="$2"
+  [ -f "$ALERT_STATE" ] || : > "$ALERT_STATE"
+  awk -F'\t' -v OFS='\t' -v k="$key" -v t="$ts" '
+    BEGIN{done=0}
+    $1==k{print k,t; done=1; next}
+    {print}
+    END{if(!done)print k,t}
+  ' "$ALERT_STATE" > "$ALERT_STATE.tmp" && mv "$ALERT_STATE.tmp" "$ALERT_STATE"
+}
+
 
 init_cfg(){
   if [ -f "$CFG" ]; then
@@ -181,7 +217,15 @@ run_check(){
         any_fail=1
         echo "[$now] FAIL $name ($code, ${ms}ms) streak=$fail" | tee -a "$LOG" >/dev/null
         if ! in_quiet; then
-          notify "Watchtower alert" "$name is failing ($code) streak=$fail"
+          # threshold + cooldown alerting
+          if [ "${fail:-0}" -ge "${FAIL_THRESHOLD:-3}" ]; then
+            now_epoch="$(date +%s)"
+            last_epoch="$(alert_get_last "$name")"
+            if [ $((now_epoch - last_epoch)) -ge "${ALERT_COOLDOWN:-900}" ]; then
+              notify "Watchtower alert" "$name is failing ($code) streak=$fail"
+              alert_set_last "$name" "$now_epoch"
+            fi
+          fi
         fi
       fi
 

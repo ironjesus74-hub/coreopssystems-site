@@ -21,3 +21,8 @@ venv/
 Thumbs.db
 node_modules/
 .env
+
+# watchtower runtime files
+docs/modules/watchtower/*.log
+docs/modules/watchtower/*_state.tsv
+docs/modules/watchtower/*_alerts.tsv
