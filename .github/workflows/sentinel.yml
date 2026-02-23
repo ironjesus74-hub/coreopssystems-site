@@ -1,22 +1,21 @@
-name: Sentinel
+name: ATLAS Sentinel
 
 on:
   push:
-    branches: ["main"]
-    paths:
-      - "docs/**"
-      - ".github/workflows/sentinel.yml"
-  workflow_dispatch: {}
+    branches: [ "main" ]
+  workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *" # every 30 min
+    - cron: "*/30 * * * *"   # every 30 minutes
 
 concurrency:
-  group: sentinel-${{ github.ref }}
+  group: atlas-sentinel-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   sentinel:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -37,44 +36,59 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y zip jq
 
-      - name: Sanity checks
+      - name: Sanity checks (JS + shell)
         run: |
+          set -e
           node --version
-          python3 --version
-
-          # JS syntax
+          python --version
+          bash -n docs/modules/watchtower/watchtower.sh
           node --check docs/app.js
           node --check docs/pay.js
           node --check docs/pay_config.js
 
-          # Watchtower shell syntax (don’t fail CI if it’s not present)
-          if [ -f docs/modules/watchtower/watchtower.sh ]; then
-            bash -n docs/modules/watchtower/watchtower.sh
-          fi
-
-      - name: Run Watchtower check (optional)
+      - name: Worker 1 — Market/Pay audit (hard fail if broken)
         run: |
-          if [ -f docs/modules/watchtower/watchtower.sh ]; then
-            cd docs/modules/watchtower
-            bash ./watchtower.sh check || true
-            bash ./watchtower.sh status || true
-          else
-            echo "watchtower.sh not found, skipping"
-          fi
+          python - <<'PY'
+          import re, pathlib, sys
+          data = pathlib.Path("docs/data.js").read_text(errors="ignore")
+          ids = sorted(set(re.findall(r'id:\s*"([^"]+)"', data)))
 
-      - name: Run Sentinel Pack (optional)
+          cfg = pathlib.Path("docs/pay_config.js").read_text(errors="ignore")
+          pairs = dict(re.findall(r'"([^"]+)":\s*\{[^}]*?paypalLink:\s*"([^"]*)"', cfg, flags=re.S))
+
+          missing = [i for i in ids if i not in pairs]
+          bad = [i for i in ids if i in pairs and not pairs[i].startswith("https://www.paypal.com/ncp/payment/")]
+
+          print("total ids:", len(ids))
+          print("missing in pay_config:", missing)
+          print("bad/empty paypalLink:", bad)
+
+          if missing or bad:
+            sys.exit(1)
+          PY
+
+      - name: Worker 2 — Watchtower check (non-blocking)
         run: |
-          if [ -x docs/modules/sentinel-pack/atlas_overseer.sh ]; then
-            cd docs/modules/sentinel-pack
-            ./atlas_overseer.sh run
+          cd docs/modules/watchtower
+          bash ./watchtower.sh check || true
+          bash ./watchtower.sh status || true
+
+      - name: Worker 3 — Sentinel pack (if present; non-blocking)
+        run: |
+          if [ -f docs/modules/sentinel-pack/atlas_overseer.sh ]; then
+            bash docs/modules/sentinel-pack/atlas_overseer.sh run || true
           else
-            echo "sentinel-pack not found or not executable, skipping"
-            ls -la docs/modules || true
+            echo "sentinel-pack not present yet; skipping"
           fi
 
-      - name: Upload report artifact (if any)
+      - name: Upload artifacts (reports/logs)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: atlas-report
-          path: docs/report/**
+          name: atlas-sentinel-${{ github.run_id }}
+          path: |
+            docs/report/**
+            docs/modules/watchtower/*.log
+            docs/modules/watchtower/*_state.tsv
+            docs/modules/watchtower/*_alerts.tsv
           if-no-files-found: ignore
