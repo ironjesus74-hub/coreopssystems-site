@@ -26,3 +26,7 @@ node_modules/
 docs/modules/watchtower/*.log
 docs/modules/watchtower/*_state.tsv
 docs/modules/watchtower/*_alerts.tsv
+
+# site build/backup noise
+docs/backups/
+docs/**/*.bak.*

@@ -1724,3 +1724,68 @@ button{ border:0; background:none; color:inherit; }
   font-size: 12px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
 }
+
+
+/* ATLAS UI POLISH */
+/* Make Shop stand out (nav + topbar) */
+.navbtn[data-view="market"]{
+  border-color: rgba(255,106,0,.22);
+  background: linear-gradient(90deg, rgba(255,106,0,.10), rgba(0,194,255,.05) 70%, transparent);
+}
+.navbtn[data-view="market"] .ico{
+  border-color: rgba(255,106,0,.30);
+  box-shadow: 0 0 16px rgba(255,106,0,.10);
+}
+
+/* Lookup overlay (like command palette, but lighter) */
+.atlasLookupOverlay{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.55);
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  z-index: 80;
+}
+.atlasLookupOverlay.open{ display:flex; }
+
+.atlasLookupModal{
+  width: min(760px, 96vw);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  background: rgba(10,12,16,.90);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 70px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+.atlasLookupHdr{
+  padding: 12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.atlasLookupHdr b{
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: .2px;
+}
+.atlasLookupBody{
+  padding: 14px;
+  display:grid;
+  gap:10px;
+}
+.atlasLookupOut{
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.02);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  color: rgba(231,238,252,.92);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+

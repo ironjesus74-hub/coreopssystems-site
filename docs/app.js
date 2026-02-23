@@ -561,3 +561,293 @@ renderForum();
   document.addEventListener("DOMContentLoaded", boot);
 })();
 
+
+
+/* ATLAS LOOKUP OVERLAY */
+(() => {
+  const $ = (q, el=document) => el.querySelector(q);
+
+  function ensureLookup(){
+    if ($("#atlasLookupOverlay")) return;
+
+    const wrap = document.createElement("div");
+    wrap.id = "atlasLookupOverlay";
+    wrap.className = "atlasLookupOverlay";
+    wrap.innerHTML = `
+      <div class="atlasLookupModal" role="dialog" aria-label="ATLAS Lookup">
+        <div class="atlasLookupHdr">
+          <b>ATLAS · LOOKUP</b>
+          <button class="btn" id="atlasLookupClose">esc</button>
+        </div>
+        <div class="atlasLookupBody">
+          <input class="input" id="atlasLookupInput" placeholder="domain or IP (example.com / 1.1.1.1)" />
+          <div class="row">
+            <button class="btn primary" id="atlasLookupGo" type="button">lookup</button>
+            <button class="btn" id="atlasLookupCopy" type="button">copy</button>
+          </div>
+          <div class="atlasLookupOut" id="atlasLookupOut">Ready.</div>
+          <div class="muted mono">Best-effort: some networks block lookups. If blocked, it will say so (no freeze).</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(wrap);
+
+    const close = () => wrap.classList.remove("open");
+    $("#atlasLookupClose").addEventListener("click", close);
+    wrap.addEventListener("click", (e) => { if(e.target === wrap) close(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") close(); });
+
+    $("#atlasLookupCopy").addEventListener("click", async () => {
+      const txt = $("#atlasLookupOut")?.textContent || "";
+      try { await navigator.clipboard.writeText(txt); } catch {}
+    });
+
+    $("#atlasLookupGo").addEventListener("click", runLookup);
+  }
+
+  function openLookup(){
+    ensureLookup();
+    $("#atlasLookupOverlay").classList.add("open");
+    setTimeout(() => $("#atlasLookupInput")?.focus(), 50);
+  }
+
+  function looksLikeIP(x){
+    return /^(\d{1,3}\.){3}\d{1,3}$/.test(x.trim());
+  }
+
+  async function runLookup(){
+    const q = ($("#atlasLookupInput")?.value || "").trim();
+    const out = $("#atlasLookupOut");
+    if(!out) return;
+
+    if(!q){ out.textContent = "Enter a domain or IP."; return; }
+
+    out.textContent = "Running…";
+
+    try{
+      if(looksLikeIP(q)){
+        // IP info (public, best-effort)
+        const r = await fetch(`https://ipapi.co/${encodeURIComponent(q)}/json/`);
+        const j = await r.json();
+        if(j.error){
+          out.textContent = `IP lookup blocked/limited.\nIP: ${q}`;
+          return;
+        }
+        out.textContent =
+          `IP: ${q}\n` +
+          `Org: ${j.org || "?"}\n` +
+          `ASN: ${j.asn || "?"}\n` +
+          `City: ${j.city || "?"}\n` +
+          `Region: ${j.region || "?"}\n` +
+          `Country: ${j.country_name || j.country || "?"}`;
+        return;
+      }
+
+      // DNS A record lookup (Google DoH JSON)
+      const u = `https://dns.google/resolve?name=${encodeURIComponent(q)}&type=A`;
+      const r = await fetch(u);
+      const j = await r.json();
+      const ans = (j.Answer || []).filter(x => x.type === 1).map(x => x.data);
+
+      if(!ans.length){
+        out.textContent = `Domain: ${q}\nNo A records found (or blocked).`;
+        return;
+      }
+      out.textContent = `Domain: ${q}\nA: ` + ans.join(", ");
+    } catch(e){
+      out.textContent = `Lookup failed (blocked or offline).\nInput: ${q}`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Topbar buttons (safe even if missing)
+    $("#openShop")?.addEventListener("click", () => (location.hash = "#market"));
+    $("#openSuggest")?.addEventListener("click", () => (location.hash = "#suggest"));
+    $("#openLookup")?.addEventListener("click", openLookup);
+  });
+})();
+
+
+/* ATLAS MARKET BUTTONS (DELEGATION) */
+(() => {
+  if (window.__ATLAS_MARKET_BTN__) return;
+  window.__ATLAS_MARKET_BTN__ = true;
+
+  const pickItemById = (id) => {
+    const arr = (window.ATLAS_DATA && (window.ATLAS_DATA.market || window.ATLAS_DATA.modules)) || [];
+    return arr.find(x => x.id === id) || arr.find(x => (x.sku || "") === id) || null;
+  };
+
+  const inferIdFromCard = (btn) => {
+    // 1) direct dataset
+    const direct = btn.dataset.marketOpen || btn.dataset.marketBuy || btn.dataset.marketDeploy;
+    if (direct) return direct;
+
+    // 2) sibling/nearby inspect button holds the id in your current UI
+    const card = btn.closest(".card, .marketCard, .moduleCard, .tile") || btn.parentElement;
+    const inspect = card && card.querySelector && card.querySelector("[data-market-open]");
+    if (inspect && inspect.dataset.marketOpen) return inspect.dataset.marketOpen;
+
+    // 3) generic data-id patterns
+    const any = card && card.querySelector && card.querySelector("[data-id],[data-item],[data-sku]");
+    return (any && (any.dataset.id || any.dataset.item || any.dataset.sku)) || "";
+  };
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button, a");
+    if (!btn) return;
+
+    const txt = (btn.textContent || "").trim().toLowerCase();
+    const isDeploy  = btn.matches("[data-market-deploy]") || txt === "deploy";
+    const isInspect = btn.matches("[data-market-open]")   || txt === "inspect";
+    const isBuy     = btn.matches("[data-market-buy]")    || txt === "buy";
+
+    if (!isDeploy && !isInspect && !isBuy) return;
+
+    const id = inferIdFromCard(btn);
+    const it = pickItemById(id) || { title: id || "ATLAS item", sku: id || "ATLAS-SKU" };
+
+    if (isDeploy || isBuy) {
+      if (window.ATLAS_PAY && typeof window.ATLAS_PAY.openCheckout === "function") {
+        window.ATLAS_PAY.openCheckout(it);
+      } else {
+        // fallback: send to PayPal link if you set one later
+        alert("Checkout not ready yet.");
+      }
+      e.preventDefault();
+      return;
+    }
+
+    if (isInspect) {
+      // If your market viewer exposes an open function, use it
+      if (window.ATLAS_MARKET && typeof window.ATLAS_MARKET.open === "function") {
+        window.ATLAS_MARKET.open(id);
+      } else if (window.ATLAS_MARKET_VIEWER && typeof window.ATLAS_MARKET_VIEWER.open === "function") {
+        window.ATLAS_MARKET_VIEWER.open(id);
+      } else {
+        // fallback: show checkout instead of doing nothing
+        if (window.ATLAS_PAY && typeof window.ATLAS_PAY.openCheckout === "function") {
+          window.ATLAS_PAY.openCheckout(it);
+        }
+      }
+      e.preventDefault();
+      return;
+    }
+  }, { passive: false });
+})();
+
+/* ATLAS MARKET ROUTER (inspect vs checkout) */
+(() => {
+  if (window.__ATLAS_MARKET_ROUTER__) return;
+  window.__ATLAS_MARKET_ROUTER__ = true;
+
+  const esc = (x) => String(x ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const $ = (q, el=document) => el.querySelector(q);
+
+  function getItem(id){
+    const arr = (window.ATLAS_DATA?.market || window.ATLAS_DATA?.modules || []);
+    return arr.find(x => x.id === id) || null;
+  }
+
+  // Minimal inspect modal (details only)
+  function ensureInspectModal(){
+    if ($("#atlasInspectOverlay")) return;
+
+    const st = document.createElement("style");
+    st.textContent = `
+#atlasInspectOverlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;z-index:120;background:rgba(0,0,0,.55)}
+#atlasInspectOverlay.open{display:flex}
+.atlasInspectModal{width:min(720px,96vw);border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(10,12,16,.92);backdrop-filter:blur(10px);box-shadow:0 30px 70px rgba(0,0,0,.55);overflow:hidden}
+.atlasInspectHdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.atlasInspectHdr b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;letter-spacing:.2px}
+.atlasInspectBody{padding:14px;display:grid;gap:10px}
+.atlasInspectTitle{font-size:18px;font-weight:700}
+.atlasInspectMeta{display:flex;gap:8px;flex-wrap:wrap}
+.atlasInspectPill{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);border-radius:999px;padding:6px 10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:rgba(231,238,252,.92)}
+.atlasInspectDesc{color:rgba(210,224,245,.92);line-height:1.55}
+.atlasInspectBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.atlasInspectBtn{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);color:rgba(231,238,252,.95);padding:10px 12px;border-radius:12px;cursor:pointer;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.atlasInspectBtn.primary{border-color:rgba(255,106,0,.35);background:linear-gradient(180deg, rgba(255,106,0,.16), rgba(255,106,0,.04));box-shadow:0 0 18px rgba(255,106,0,.14)}
+`;
+    document.head.appendChild(st);
+
+    const wrap = document.createElement("div");
+    wrap.id = "atlasInspectOverlay";
+    wrap.innerHTML = `
+      <div class="atlasInspectModal" role="dialog" aria-label="Inspect module">
+        <div class="atlasInspectHdr">
+          <b>ATLAS · INSPECT</b>
+          <button class="atlasInspectBtn" id="atlasInspectClose">close</button>
+        </div>
+        <div class="atlasInspectBody">
+          <div class="atlasInspectTitle" id="atlasInspectTitle">Module</div>
+          <div class="atlasInspectMeta" id="atlasInspectMeta"></div>
+          <div class="atlasInspectDesc" id="atlasInspectDesc"></div>
+          <div class="atlasInspectBtns">
+            <button class="atlasInspectBtn primary" id="atlasInspectBuy">buy / deploy</button>
+            <button class="atlasInspectBtn" id="atlasInspectJustClose">close</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(wrap);
+
+    const close = () => wrap.classList.remove("open");
+    $("#atlasInspectClose").addEventListener("click", close);
+    $("#atlasInspectJustClose").addEventListener("click", close);
+    wrap.addEventListener("click", (e) => { if (e.target === wrap) close(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  }
+
+  function openInspect(id){
+    ensureInspectModal();
+    const it = getItem(id) || { id, title:"ATLAS item", category:"", rating:"", tags:[], desc:"" };
+
+    $("#atlasInspectTitle").textContent = it.title || it.name || "ATLAS item";
+
+    const pills = [];
+    if (it.category) pills.push(`<span class="atlasInspectPill">category: ${esc(it.category)}</span>`);
+    if (it.rating) pills.push(`<span class="atlasInspectPill">rating: ${esc(it.rating)}</span>`);
+    if (it.priceUSD != null) pills.push(`<span class="atlasInspectPill">price: $${esc(it.priceUSD)}</span>`);
+    if (it.sku) pills.push(`<span class="atlasInspectPill">sku: ${esc(it.sku)}</span>`);
+    if (Array.isArray(it.tags)) for (const t of it.tags.slice(0,6)) pills.push(`<span class="atlasInspectPill">${esc(t)}</span>`);
+    $("#atlasInspectMeta").innerHTML = pills.join("");
+
+    $("#atlasInspectDesc").textContent = it.desc || it.description || "No description yet.";
+
+    $("#atlasInspectBuy").onclick = () => {
+      const overlay = $("#atlasInspectOverlay");
+      overlay?.classList.remove("open");
+      if (window.ATLAS_PAY?.openCheckout) return window.ATLAS_PAY.openCheckout(it);
+      // fallback: go to PayPal link if present
+      const link = window.ATLAS_PAY?.PAYPAL_LINK;
+      if (link) window.location.href = link;
+    };
+
+    $("#atlasInspectOverlay").classList.add("open");
+  }
+
+  // CAPTURE ROUTER: stops any other handler from “auto-checkout”
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-market-open],[data-market-buy],[data-market-deploy]");
+    if (!btn) return;
+
+    const id = btn.dataset.marketOpen || btn.dataset.marketBuy || btn.dataset.marketDeploy || "";
+    const label = (btn.textContent || "").trim().toLowerCase();
+
+    if (label.includes("inspect")) {
+      openInspect(id);
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+    if (label.includes("deploy") || label.includes("buy") || label.includes("checkout")) {
+      const it = getItem(id);
+      if (window.ATLAS_PAY?.openCheckout) window.ATLAS_PAY.openCheckout(it);
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+  }, true);
+})();
+

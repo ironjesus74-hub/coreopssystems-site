@@ -241,7 +241,14 @@
 
     const payBtn = $("#atlasMarketPay");
     payBtn.textContent = `Pay $${amount}`;
-    payBtn.onclick = () => { window.location.href = cashUrl(amount); };
+    payBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      // route through ATLAS checkout instead of hard redirect
+      if (window.ATLAS_PAY && typeof window.ATLAS_PAY.openCheckout === "function") {
+        window.ATLAS_PAY.openCheckout(null);
+      }
+    };
 
     $("#atlasMarketCopy").onclick = () => copyText(note);
 

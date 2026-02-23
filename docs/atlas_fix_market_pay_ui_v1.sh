@@ -1,3 +1,85 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel 2>/dev/null || echo "$HOME/project1")" || exit 1
+cd docs || exit 1
+
+ts="$(date +%Y%m%d_%H%M%S)"
+echo "[1/5] backups ($ts)..."
+mkdir -p backups
+for f in index.html app.js data.js styles.css pay.js pay_config.js market/market_viewer.js; do
+  if [ -f "$f" ]; then
+    dst="backups/${f//\//__}.bak.$ts"
+    cp -v "$f" "$dst"
+  fi
+done
+
+echo "[2/5] write pay_config.js (PayPal links + prices)..."
+cat > pay_config.js <<'JS'
+/* Project Atlas — Payment config (edit anytime) */
+window.ATLAS_PAY_CONFIG = {
+  deliveryEmail: "ironjesus74@gmail.com",
+
+  // Tip jar / Donate (customer-set or fixed — up to you)
+  donatePaypalLink: "https://www.paypal.com/ncp/payment/TQBZ3KKVM6YKU",
+
+  // Cash App fallback
+  cashappLink: "https://cash.app/$herdtnerbryant",
+
+  // Per-item: fixed-price PayPal links (recommended)
+  items: {
+    "ops-watchtower": {
+      title: "Watchtower",
+      priceUSD: 12,
+      sku: "WATCHTOWER",
+      paypalLink: "https://www.paypal.com/ncp/payment/VBTZ3DASMJ7Y8"
+    },
+
+    "deploy-sentinel": {
+      title: "Deploy Sentinel",
+      priceUSD: 12,
+      sku: "SENTINEL",
+      paypalLink: "https://www.paypal.com/ncp/payment/ML876QAGEPPXY"
+    },
+
+    "creator-clipline": {
+      title: "Clipline",
+      priceUSD: 7,
+      sku: "CLIPLINE",
+      paypalLink: "https://www.paypal.com/ncp/payment/ZU5AA47JRE6M6"
+    },
+
+    "dev-briefsmith": {
+      title: "Briefsmith",
+      priceUSD: 6,
+      sku: "BRIEFSMITH",
+      paypalLink: "https://www.paypal.com/ncp/payment/79RDK5SCDE7DQ"
+    },
+
+    "ops-janitor": {
+      title: "Ops Janitor",
+      priceUSD: 5,
+      sku: "OPSJANITOR",
+      paypalLink: "https://www.paypal.com/ncp/payment/X9JEZGZN5PEDE"
+    },
+
+    "sec-surface": {
+      title: "Surface Scan",
+      priceUSD: 10,
+      sku: "SURFSCAN",
+      paypalLink: "https://www.paypal.com/ncp/payment/6DDVZZG4AWKCW"
+    },
+
+    "af-001": { title: "AF-001", priceUSD: 5,  sku: "AF001", paypalLink: "https://www.paypal.com/ncp/payment/SNAC2XF8LJYUC" },
+    "af-002": { title: "AF-002", priceUSD: 9,  sku: "AF002", paypalLink: "https://www.paypal.com/ncp/payment/K676UAGP9VBHS" },
+    "af-003": { title: "AF-003", priceUSD: 15, sku: "AF003", paypalLink: "https://www.paypal.com/ncp/payment/MJNRHR32HYCGY" },
+    "af-004": { title: "AF-004", priceUSD: 25, sku: "AF004", paypalLink: "https://www.paypal.com/ncp/payment/82SM4SFPKS8K6" }
+  }
+};
+JS
+
+echo "[3/5] write pay.js (single click-boss; inspect != checkout; no auto-redirect)..."
+cat > pay.js <<'JS'
 /* Project Atlas — Pay UI (MVP) */
 (() => {
   const CFG = (window.ATLAS_PAY_CONFIG || {});
@@ -278,3 +360,57 @@ ${note}`;
   // Expose for other scripts (optional)
   window.ATLAS_PAY = { openInspect, openCheckout };
 })();
+JS
+
+echo "[4/5] ensure index.html loads pay_config.js + pay.js (cache-bust)..."
+python - <<'PY'
+from pathlib import Path
+import re, time
+p = Path("index.html")
+s = p.read_text(encoding="utf-8", errors="ignore")
+v = time.strftime("%Y%m%d_%H%M%S")
+
+def bust(src):
+    if "?v=" in src: return src
+    return src + ("&" if "?" in src else "?") + f"v={v}"
+
+# stop favicon 404 spam
+if 'rel="icon" href="data:,' not in s:
+    s = s.replace("</title>", '</title>\n  <link rel="icon" href="data:,">', 1)
+
+# ensure pay_config BEFORE pay.js
+if "pay_config.js" not in s:
+    # insert before pay.js if pay.js exists, else before app.js
+    if "pay.js" in s:
+        s = re.sub(r'(<script\s+src="\./pay\.js[^"]*"></script>)',
+                   f'<script src="./pay_config.js?v={v}"></script>\\n  \\1', s, count=1)
+    else:
+        s = s.replace('<script src="./app.js"></script>',
+                      f'<script src="./pay_config.js?v={v}"></script>\\n  <script src="./pay.js?v={v}"></script>\\n  <script src="./app.js"></script>', 1)
+else:
+    # refresh cache bust
+    s = re.sub(r'src="\./pay_config\.js[^"]*"', f'src="{bust("./pay_config.js")}"', s)
+
+# ensure pay.js exists + bust it
+if "pay.js" not in s:
+    s = s.replace('<script src="./app.js"></script>',
+                  f'<script src="./pay.js?v={v}"></script>\\n  <script src="./app.js"></script>', 1)
+else:
+    s = re.sub(r'src="\./pay\.js[^"]*"', f'src="{bust("./pay.js")}"', s)
+
+# also bust app.js/data.js/styles.css a bit
+s = re.sub(r'href="\./styles\.css[^"]*"', f'href="{bust("./styles.css")}"', s)
+s = re.sub(r'src="\./data\.js[^"]*"', f'src="{bust("./data.js")}"', s)
+s = re.sub(r'src="\./app\.js[^"]*"', f'src="{bust("./app.js")}"', s)
+
+p.write_text(s, encoding="utf-8")
+print("index.html ok")
+PY
+
+echo "[5/5] syntax checks..."
+node --check pay.js && echo "pay.js parses ✅"
+node --check pay_config.js && echo "pay_config.js parses ✅"
+echo "DONE ✅ Restart server + hard refresh browser."
+echo
+echo "Local test URL:"
+echo "  http://127.0.0.1:8090/#mar"

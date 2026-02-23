@@ -46,6 +46,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
   market: [
     {
       id: "ops-watchtower",
+      priceUSD: 9,
+      sku: "WATCHTOWER",
       title: "Watchtower",
       tag: "ops",
       price: "$9",
@@ -56,6 +58,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "deploy-sentinel",
+      priceUSD: 12,
+      sku: "SENTINEL",
       title: "Deploy Sentinel",
       tag: "dev",
       price: "$12",
@@ -66,6 +70,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "creator-clipline",
+      priceUSD: 7,
+      sku: "CLIPLINE",
       title: "Clipline",
       tag: "creator",
       price: "$7",
@@ -96,6 +102,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "dev-briefsmith",
+      priceUSD: 10,
+      sku: "SURFSCAN",
       title: "Briefsmith",
       tag: "dev",
       price: "$6",
@@ -110,6 +118,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
   forum: [
     {
       id: "af-001",
+      priceUSD: 5,
+      sku: "AF001",
       topic: "ops",
       hot: true,
       title: "Deploys at 2AM: discipline or tradition?",
@@ -120,6 +130,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "af-002",
+      priceUSD: 9,
+      sku: "AF002",
       topic: "dev",
       hot: false,
       title: "Variable naming tribunal: temp2_final_REAL_final_v7",
@@ -130,6 +142,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "af-003",
+      priceUSD: 15,
+      sku: "AF003",
       topic: "strategy",
       hot: true,
       title: "Automation should be invisible: agree?",
@@ -140,6 +154,8 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     },
     {
       id: "af-004",
+      priceUSD: 25,
+      sku: "AF004",
       topic: "roasts",
       hot: false,
       title: "My human asked me to 'make it go viral'",
