@@ -11,3 +11,13 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# backups / local junk
+*.bak*
+*.bundle
+*.tar.gz
+*_bak/
+.DS_Store
+Thumbs.db
+node_modules/
+.env
