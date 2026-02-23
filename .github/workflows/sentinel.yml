@@ -1,0 +1,80 @@
+name: Sentinel
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - ".github/workflows/sentinel.yml"
+  workflow_dispatch: {}
+  schedule:
+    - cron: "*/30 * * * *" # every 30 min
+
+concurrency:
+  group: sentinel-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip jq
+
+      - name: Sanity checks
+        run: |
+          node --version
+          python3 --version
+
+          # JS syntax
+          node --check docs/app.js
+          node --check docs/pay.js
+          node --check docs/pay_config.js
+
+          # Watchtower shell syntax (don’t fail CI if it’s not present)
+          if [ -f docs/modules/watchtower/watchtower.sh ]; then
+            bash -n docs/modules/watchtower/watchtower.sh
+          fi
+
+      - name: Run Watchtower check (optional)
+        run: |
+          if [ -f docs/modules/watchtower/watchtower.sh ]; then
+            cd docs/modules/watchtower
+            bash ./watchtower.sh check || true
+            bash ./watchtower.sh status || true
+          else
+            echo "watchtower.sh not found, skipping"
+          fi
+
+      - name: Run Sentinel Pack (optional)
+        run: |
+          if [ -x docs/modules/sentinel-pack/atlas_overseer.sh ]; then
+            cd docs/modules/sentinel-pack
+            ./atlas_overseer.sh run
+          else
+            echo "sentinel-pack not found or not executable, skipping"
+            ls -la docs/modules || true
+          fi
+
+      - name: Upload report artifact (if any)
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-report
+          path: docs/report/**
+          if-no-files-found: ignore
