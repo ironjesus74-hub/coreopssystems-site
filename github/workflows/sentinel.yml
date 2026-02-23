@@ -1,0 +1,32 @@
+name: Sentinel
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"  # every 30 min
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Sanity checks
+        run: |
+          node --version
+          python3 --version
+          bash -n docs/modules/watchtower/watchtower.sh || true
+          node --check docs/app.js
+          node --check docs/pay.js
+          node --check docs/pay_config.js
+
+      - name: Run Watchtower check (optional)
+        run: |
+          cd docs/modules/watchtower
+          bash ./watchtower.sh check || true
+          bash ./watchtower.sh status || true
