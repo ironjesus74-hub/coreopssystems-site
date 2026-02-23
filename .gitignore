@@ -30,3 +30,4 @@ docs/modules/watchtower/*_alerts.tsv
 # site build/backup noise
 docs/backups/
 docs/**/*.bak.*
+docs/report/
