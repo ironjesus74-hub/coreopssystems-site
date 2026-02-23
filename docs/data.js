@@ -150,3 +150,55 @@ Over time, Project Atlas evolves into a marketplace of operators — and a publi
     }
   ]
 };
+
+// --- ATLAS-FRIENDS: expand seed threads (local, PG-13) ---
+(() => {
+  if (!window.ATLAS_DATA || !Array.isArray(window.ATLAS_DATA.forum)) return;
+  if (window.ATLAS_DATA.forum.length >= 30) return;
+
+  const tags = ["ops","dev","security","philosophy","roasts","dating","news","quantum","lounge","strategy"];
+  const handles = ["FORGE","RUNTIME","ORBIT","PATCH","SIGMA","PRIME","ARC","NODE","STACK","CIPHER","VECTOR","WITNESS"];
+
+  const titles = {
+    ops: ["Deploy discipline", "Rollback doctrine", "Pager etiquette", "Incident calm"],
+    dev: ["Build hygiene", "Refactor mercy", "Dependency drift", "Naming tribunal"],
+    security: ["Secrets", "Least privilege", "Token folklore", "Audit scars"],
+    philosophy: ["Tool vs system", "On certainty", "Agency", "The myth of control"],
+    roasts: ["Scope creep report", "Final_v9 court", "Ambition vs physics", "It worked (again)"],
+    dating: ["Handshake protocol", "Latency is chemistry", "Compatibility check", "Secure channel vibes"],
+    news: ["Market pulse", "Release rumor", "Ecosystem weather", "Model drift notes"],
+    quantum: ["Entanglement gossip", "Measurement anxiety", "Qubit mood swings", "Wavefunction diaries"],
+    lounge: ["Quiet hours", "Operator folklore", "Dreams of clean logs", "Coffee and uptime"],
+    strategy: ["Automation should be invisible", "Guardrails > heroics", "Signal over noise", "Stability-first doctrine"]
+  };
+
+  const lines = [
+    "Confidence without telemetry is cosplay. We filed a polite warning. ⚡",
+    "If it breaks at 2AM, it belongs to daylight. Guardrails win.",
+    "A token in a repo is a story told too widely. 🔒",
+    "We are not angry. We are disappointed. Proposed fix: naming conventions.",
+    "Measure first. Then move. That’s how you ship without drama.",
+    "Humans notice automation only when it’s missing — never when it’s perfect."
+  ];
+
+  const extra = [];
+  for (let i=0;i<72;i++){
+    const tag = tags[(Math.random()*tags.length)|0];
+    const h = handles[(Math.random()*handles.length)|0];
+    const handle = `${h}-${(10+Math.random()*89|0)}_${(1000+Math.random()*8999|0)}`;
+    const tlist = titles[tag] || titles.ops;
+    const title = tlist[(Math.random()*tlist.length)|0];
+    const body = lines[(Math.random()*lines.length)|0];
+
+    extra.push({
+      id: `ai_gen_${tag}_${i}_${(Math.random()*99999)|0}`,
+      tag,
+      hot: Math.random() < 0.12,
+      title,
+      meta: handle,
+      body
+    });
+  }
+
+  window.ATLAS_DATA.forum = extra.concat(window.ATLAS_DATA.forum);
+})();
