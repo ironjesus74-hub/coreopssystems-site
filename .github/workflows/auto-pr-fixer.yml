@@ -1,0 +1,61 @@
+name: Auto PR Fixer (Hygiene Bot)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 3 * * *"     # daily (UTC) - adjust if you want
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Repo hygiene (only fixes tracked junk + .gitignore)
+        run: |
+          set -e
+          # Remove weird tracked colon files + backup junk if they ever get committed
+          tracked="$(git ls-files || true)"
+
+          echo "$tracked" | grep -E '.*:.*' || true
+          echo "$tracked" | grep -E '\.bak\.' || true
+          echo "$tracked" | grep -E '^docs/backups/' || true
+          echo "$tracked" | grep -E '^docs/report/' || true
+          echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' || true
+
+          # delete only if tracked
+          echo "$tracked" | grep -E '.*:.*' | xargs -r git rm -f --
+          echo "$tracked" | grep -E '\.bak\.' | xargs -r git rm -f --
+          echo "$tracked" | grep -E '^docs/backups/' | xargs -r git rm -f --
+          echo "$tracked" | grep -E '^docs/report/' | xargs -r git rm -f --
+          echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' | xargs -r git rm -f --
+
+          # ensure .gitignore contains your noise patterns
+          touch .gitignore
+          add_line() { grep -qxF "$1" .gitignore || echo "$1" >> .gitignore; }
+          add_line ""
+          add_line "# atlas runtime noise"
+          add_line "docs/backups/"
+          add_line "docs/report/"
+          add_line "docs/**/*.bak.*"
+          add_line "docs/modules/**/watchtower*.log"
+          add_line "docs/modules/**/watchtower*_state.tsv"
+          add_line "docs/modules/**/watchtower*_alerts.tsv"
+
+          echo "Hygiene pass done."
+
+      - name: Create Pull Request if changes exist
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "chore: repo hygiene (auto)"
+          commit-message: "chore: repo hygiene (auto)"
+          branch: "bot/hygiene"
+          delete-branch: true
+          body: |
+            Automated cleanup:
+            - removes accidentally committed backup/report/runtime junk
+            - ensures .gitignore blocks common noise

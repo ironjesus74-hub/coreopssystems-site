@@ -1,0 +1,68 @@
+name: Sentinel (CI Gate)
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - ".github/workflows/sentinel.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - ".github/workflows/sentinel.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Sanity - syntax checks
+        run: |
+          set -e
+          node --check docs/app.js
+          node --check docs/pay.js
+          node --check docs/pay_config.js
+          bash -n docs/modules/watchtower/watchtower.sh
+
+      - name: Sanity - PayPal mapping (data.js ids must exist in pay_config.js with valid paypalLink)
+        run: |
+          python - <<'PY'
+          import re, pathlib, sys
+          data = pathlib.Path("docs/data.js").read_text(errors="ignore")
+          ids = sorted(set(re.findall(r'id:\s*"([^"]+)"', data)))
+
+          cfg = pathlib.Path("docs/pay_config.js").read_text(errors="ignore")
+          pairs = dict(re.findall(r'"([^"]+)":\s*\{[^}]*?paypalLink:\s*"([^"]*)"', cfg, flags=re.S))
+
+          missing = [i for i in ids if i not in pairs]
+          bad = [i for i in ids if i in pairs and not pairs[i].startswith("https://www.paypal.com/ncp/payment/")]
+
+          print("total ids:", len(ids))
+          print("missing in pay_config:", missing)
+          print("bad/empty paypalLink:", bad)
+
+          if missing or bad:
+            sys.exit(1)
+          PY
+
+      - name: Upload artifacts (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-sentinel-${{ github.run_id }}
+          path: |
+            docs/report/**
+          if-no-files-found: ignore

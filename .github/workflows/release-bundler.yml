@@ -1,0 +1,56 @@
+name: Release Bundler
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install deps
+        run: |
+          set -e
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Build release zips
+        run: |
+          set -e
+          ts="$(date -u +%Y%m%d_%H%M%S)"
+          out="release_out"
+          mkdir -p "$out"
+
+          # modules only (skip runtime junk)
+          if [ -d "docs/modules" ]; then
+            (cd docs/modules && for d in *; do
+              [ -d "$d" ] || continue
+              zip -r "../../$out/module_${d}_${ts}.zip" "$d" \
+                -x "**/*.log" "**/*_state.tsv" "**/*_alerts.tsv" "**/*.bak.*"
+            done)
+          fi
+
+          # optional: site snapshot (skip report/backups)
+          (cd docs && zip -r "../$out/atlas_docs_${ts}.zip" . \
+            -x "report/*" "backups/*" "*.bak.*" )
+
+          (cd "$out" && sha256sum *.zip > SHA256SUMS.txt)
+
+          echo "ATLAS Release: ${GITHUB_REF_NAME}" > "$out/RELEASE_NOTES.md"
+          echo "" >> "$out/RELEASE_NOTES.md"
+          echo "Artifacts:" >> "$out/RELEASE_NOTES.md"
+          ls -1 "$out" >> "$out/RELEASE_NOTES.md"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release_out/*
+          body_path: release_out/RELEASE_NOTES.md
