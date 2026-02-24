@@ -20,18 +20,14 @@ jobs:
           set -e
           tracked="$(git ls-files || true)"
 
-          echo "$tracked" | grep -E '.*:.*' || true
-          echo "$tracked" | grep -E '\.bak\.' || true
-          echo "$tracked" | grep -E '^docs/backups/' || true
-          echo "$tracked" | grep -E '^docs/report/' || true
-          echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' || true
-
+          # delete only if tracked
           echo "$tracked" | grep -E '.*:.*' | xargs -r git rm -f --
           echo "$tracked" | grep -E '\.bak\.' | xargs -r git rm -f --
           echo "$tracked" | grep -E '^docs/backups/' | xargs -r git rm -f --
           echo "$tracked" | grep -E '^docs/report/' | xargs -r git rm -f --
           echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' | xargs -r git rm -f --
 
+          # ensure ignore rules exist
           touch .gitignore
           add_line() { grep -qxF "$1" .gitignore || echo "$1" >> .gitignore; }
           add_line ""

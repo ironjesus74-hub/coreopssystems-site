@@ -38,7 +38,7 @@ jobs:
           node --check docs/pay_config.js
           bash -n docs/modules/watchtower/watchtower.sh
 
-      - name: Sanity - PayPal mapping
+      - name: Sanity - PayPal mapping (data.js ids must exist in pay_config.js with valid paypalLink)
         run: |
           python - <<'PY'
           import re, pathlib, sys
