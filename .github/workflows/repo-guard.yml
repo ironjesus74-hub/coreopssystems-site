@@ -1,0 +1,51 @@
+name: Repo Guard
+
+on:
+  push: {}
+  pull_request: {}
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Repo basics
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "branch=$(git rev-parse --abbrev-ref HEAD || true)"
+          echo "head=$(git rev-parse --short HEAD || true)"
+          for f in README.md LICENSE SECURITY.md; do
+            if [ -f "$f" ]; then echo "present=$f"; else echo "missing=$f"; fi
+          done
+          if [ -d .github/workflows ]; then
+            echo "workflows=$(ls -1 .github/workflows | wc -l | tr -d ' ')"
+          else
+            echo "workflows=0"
+          fi
+
+      - name: Shellcheck (non-blocking)
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y shellcheck
+          find . -type f -name '*.sh' -print0 | xargs -0 -r shellcheck -x || true
+
+      - name: Python syntax (non-blocking)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Py compile
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-files '*.py' | grep -q .; then
+            git ls-files '*.py' | xargs -r python -m py_compile || true
+          fi
