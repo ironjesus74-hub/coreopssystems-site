@@ -5,18 +5,12 @@ on:
     - cron: "*/30 * * * *"   # every 30 minutes (UTC)
   workflow_dispatch: {}
 
-concurrency:
-  group: atlas-health
-  cancel-in-progress: true
-
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   health:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +39,7 @@ jobs:
           if [ -f docs/modules/sentinel-pack/atlas_overseer.sh ]; then
             bash docs/modules/sentinel-pack/atlas_overseer.sh run || true
           else
-            echo "sentinel-pack not present; skipping"
+            echo "sentinel-pack not present yet; skipping"
           fi
 
       - name: Upload health artifacts
@@ -58,15 +52,3 @@ jobs:
             docs/modules/watchtower/*_state.tsv
             docs/modules/watchtower/*_alerts.tsv
           if-no-files-found: ignore
-
-      - name: Open PR with updated health report (if changed)
-        uses: peter-evans/create-pull-request@v6
-        with:
-          title: "chore: update atlas health report"
-          commit-message: "chore: update atlas health report"
-          branch: "bot/health-report"
-          delete-branch: true
-          add-paths: |
-            docs/report/atlas_health.txt
-            docs/report/atlas_health.json
-            docs/report/.gitkeep

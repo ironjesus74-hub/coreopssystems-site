@@ -16,7 +16,8 @@ run_worker(){
   if bash "$WORKERS/$file" >>"$REPORT/atlas_health.txt" 2>&1; then
     echo "[$(ts)] ✅ $name" | tee -a "$REPORT/atlas_health.txt"
   else
-    echo "[$(ts)] ❌ $name (non-fatal)" | tee -a "$REPORT/atlas_health.txt"
+    # Some workers are strict, some are warn-only — still don’t hard-crash the whole pack.
+    echo "[$(ts)] ❌ $name (non-fatal in pack)" | tee -a "$REPORT/atlas_health.txt"
   fi
   echo "" >>"$REPORT/atlas_health.txt"
 }
@@ -32,9 +33,13 @@ case "$cmd" in
 
     run_worker "Syntax Checks" "syntax.sh"
     run_worker "Market Mapping" "market_audit.sh"
+    run_worker "Site Smoke Test" "site_smoke.sh"
     run_worker "Repo Hygiene Scan" "repo_hygiene.sh"
+    run_worker "Heredoc Doctor" "heredoc_doctor.sh"
+    run_worker "Size Budget" "size_budget.sh"
+    run_worker "Link Probe" "link_probe.sh"
 
-    python - <<'PY' > "$REPORT/atlas_health.json"
+    python3 - <<'PY' 2>/dev/null || python - <<'PY'
 import json, pathlib, time
 txt = pathlib.Path("docs/report/atlas_health.txt")
 out = {
@@ -46,6 +51,8 @@ out = {
 }
 print(json.dumps(out, indent=2))
 PY
+    > "$REPORT/atlas_health.json"
+
     echo "Wrote:"
     echo "  docs/report/atlas_health.txt"
     echo "  docs/report/atlas_health.json"

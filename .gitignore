@@ -35,3 +35,10 @@ docs/report/
 docs/modules/**/watchtower*.log
 docs/modules/**/watchtower*_state.tsv
 docs/modules/**/watchtower*_alerts.tsv
+
+# --- sentinel reports (keep only health outputs tracked) ---
+docs/report/*
+!docs/report/
+!docs/report/.gitkeep
+!docs/report/atlas_health.json
+!docs/report/atlas_health.txt
