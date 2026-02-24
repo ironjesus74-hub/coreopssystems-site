@@ -83,7 +83,7 @@ jobs:
 
       - name: Upload artifacts (reports/logs)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: atlas-sentinel-${{ github.run_id }}
           path: |
