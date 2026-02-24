@@ -29,7 +29,6 @@ jobs:
           out="release_out"
           mkdir -p "$out"
 
-          # modules only (skip runtime junk)
           if [ -d "docs/modules" ]; then
             (cd docs/modules && for d in *; do
               [ -d "$d" ] || continue
@@ -38,7 +37,6 @@ jobs:
             done)
           fi
 
-          # optional: site snapshot (skip report/backups)
           (cd docs && zip -r "../$out/atlas_docs_${ts}.zip" . \
             -x "report/*" "backups/*" "*.bak.*" )
 

@@ -3,7 +3,7 @@ name: Auto PR Fixer (Hygiene Bot)
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "17 3 * * *"     # daily (UTC) - adjust if you want
+    - cron: "17 3 * * *"     # daily (UTC)
 
 permissions:
   contents: write
@@ -18,14 +18,7 @@ jobs:
       - name: Repo hygiene (only fixes tracked junk + .gitignore)
         run: |
           set -e
-          # Remove weird tracked colon files + backup junk if they ever get committed
           tracked="$(git ls-files || true)"
-
-          echo "$tracked" | grep -E '.*:.*' || true
-          echo "$tracked" | grep -E '\.bak\.' || true
-          echo "$tracked" | grep -E '^docs/backups/' || true
-          echo "$tracked" | grep -E '^docs/report/' || true
-          echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' || true
 
           # delete only if tracked
           echo "$tracked" | grep -E '.*:.*' | xargs -r git rm -f --
@@ -34,7 +27,7 @@ jobs:
           echo "$tracked" | grep -E '^docs/report/' | xargs -r git rm -f --
           echo "$tracked" | grep -E '^docs/modules/watchtower/.*\.(log|tsv)$' | xargs -r git rm -f --
 
-          # ensure .gitignore contains your noise patterns
+          # ensure ignore rules exist
           touch .gitignore
           add_line() { grep -qxF "$1" .gitignore || echo "$1" >> .gitignore; }
           add_line ""
@@ -45,8 +38,6 @@ jobs:
           add_line "docs/modules/**/watchtower*.log"
           add_line "docs/modules/**/watchtower*_state.tsv"
           add_line "docs/modules/**/watchtower*_alerts.tsv"
-
-          echo "Hygiene pass done."
 
       - name: Create Pull Request if changes exist
         uses: peter-evans/create-pull-request@v6

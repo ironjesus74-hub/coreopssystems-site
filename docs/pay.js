@@ -1,3 +1,35 @@
+/* ATLAS_DONATE_HARDEN_V1 */
+(() => {
+  // Capture-phase shield: prevents ANY other click handlers from hijacking Donate.
+  // This fixes "Donate opens a product" bugs.
+  window.addEventListener("click", (e) => {
+    const btn = e.target && (e.target.closest ? e.target.closest("#donateBtn") : null);
+    if (!btn) return;
+
+    try { btn.setAttribute("type","button"); } catch {}
+
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+    const link = (window.ATLAS_PAY_CONFIG && window.ATLAS_PAY_CONFIG.donateLink) || "";
+    if (!link) {
+      console.warn("[donate] donateLink missing (ATLAS_PAY_CONFIG.donateLink)");
+      return;
+    }
+
+    // Use anchor-click (often more reliable than window.open on mobile)
+    const a = document.createElement("a");
+    a.href = link;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }, true);
+})();
+
+
 /* Project Atlas — Pay UI (MVP) */
 (() => {
   const CFG = (window.ATLAS_PAY_CONFIG || {});

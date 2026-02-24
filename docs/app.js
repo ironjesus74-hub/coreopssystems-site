@@ -821,7 +821,7 @@ renderForum();
       if (window.ATLAS_PAY?.openCheckout) return window.ATLAS_PAY.openCheckout(it);
       // fallback: go to PayPal link if present
       const link = window.ATLAS_PAY?.PAYPAL_LINK;
-      if (link) window.location.href = link;
+      if (link) { console.log("[atlas] suppressed auto-redirect", link); }
     };
 
     $("#atlasInspectOverlay").classList.add("open");
