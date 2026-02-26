@@ -1,8 +1,8 @@
 {
   "email": "ironjesus74@gmail.com",
   "paypal": {
-    "starter":"https://www.paypal.com/ncp/payment/BC2EB35R93U7Q",
-    "growth":"https://www.paypal.com/ncp/payment/EAQTLNRQ2TB72"
-    "elite":"https://www.paypal.com/ncp/payment/X3K9VMJH86MRW"
+    "starter": "https://www.paypal.com/ncp/payment/BC2EB35R93U7Q",
+    "growth": "https://www.paypal.com/ncp/payment/EAQTLNRQ2TB72",
+    "elite": "https://www.paypal.com/ncp/payment/X3K9VMJH86MRW"
   }
 }
