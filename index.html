@@ -1,38 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forge Atlas | Automation Infrastructure</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Automation Infrastructure Packs: CI/CD, bots, supervisors, tooling. Built from Android. Engineered to scale." />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="bg"></div>
+
   <nav class="nav">
-    <div class="logo">Forge Atlas</div>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <div class="brand">
+      <div class="logo">FA</div>
+      <div class="title">
+        <div class="name">Forge Atlas</div>
+        <div class="tag">Automation Infrastructure</div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#packs">Packs</a>
+      <a href="#proof">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
-  <section class="hero">
-    <h1>Automation Built From Day One</h1>
-    <p>DevOps, AI Workflows, Supervisors, Multi-Platform Automation.</p>
-    <a class="cta" href="#contact">Start Building</a>
-  </section>
-  <section id="services" class="section">
-    <h2>What We Build</h2>
-    <ul>
-      <li>CI/CD Infrastructure</li>
-      <li>Automation Bots & Supervisors</li>
-      <li>Dev Toolkits & CLI Wrappers</li>
-      <li>Cross-Platform Scripting</li>
-    </ul>
-  </section>
-  <section id="contact" class="section">
-    <h2>Work With Forge Atlas</h2>
-    <p>Email: ironjesus74@gmail.com</p>
-  </section>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="chip">Built from Android • Termux + PowerShell • Deployed on Cloudflare</div>
+      <h1>Automation Built From Day One</h1>
+      <p class="sub">CI/CD, bots, supervisors, workflows, and toolkits — packaged as fast, clean infrastructure you can ship today.</p>
+      <div class="cta-row">
+        <a class="cta primary" href="#packs">View Packs</a>
+        <a class="cta ghost" href="#contact">Start a Project</a>
+      </div>
+      <div class="badges">
+        <div class="badge">Fast setup</div>
+        <div class="badge">Secure by default</div>
+        <div class="badge">Cross-platform</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="packs" class="section">
+      <div class="section-head">
+        <h2>Automation Packs</h2>
+        <p>Pick a pack. Pay. You get delivery + documentation + handoff.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <h3>Starter</h3>
+            <div class="price">$149</div>
+            <div class="desc">One automation win shipped fast.</div>
+          </div>
+          <ul class="list">
+            <li>1 workflow / bot / script</li>
+            <li>Install + run guide</li>
+            <li>Basic hardening</li>
+          </ul>
+          <a class="buy" data-pack="starter" href="#0">Buy Starter</a>
+          <div class="alt" data-alt="starter">No link yet — use Contact below.</div>
+        </article>
+
+        <article class="card featured">
+          <div class="card-top">
+            <h3>Growth</h3>
+            <div class="price">$399</div>
+            <div class="desc">Your automation baseline + deployment.</div>
+          </div>
+          <ul class="list">
+            <li>3 workflows or a small toolkit</li>
+            <li>Repo structure + scripts</li>
+            <li>Deploy pipeline (Pages / GitHub)</li>
+          </ul>
+          <a class="buy" data-pack="growth" href="#0">Buy Growth</a>
+          <div class="alt" data-alt="growth">No link yet — use Contact below.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>Elite</h3>
+            <div class="price">$999</div>
+            <div class="desc">Supervisor-grade setup + monitoring.</div>
+          </div>
+          <ul class="list">
+            <li>Supervisor + worker layout</li>
+            <li>Logging + alerts blueprint</li>
+            <li>Security boundaries</li>
+          </ul>
+          <a class="buy" data-pack="elite" href="#0">Buy Elite</a>
+          <div class="alt" data-alt="elite">No link yet — use Contact below.</div>
+        </article>
+      </div>
+
+      <p class="fine">Want a custom pack? Use Contact and describe your target platform + outcome.</p>
+    </section>
+
+    <section id="proof" class="section">
+      <div class="section-head">
+        <h2>Why Forge Atlas</h2>
+        <p>Outcome-first automation: clean repo, clear handoff, no chaos.</p>
+      </div>
+      <div class="grid2">
+        <div class="panel"><h4>Automation density</h4><p>Everything scriptable becomes scripted. Repeatable delivery.</p></div>
+        <div class="panel"><h4>Secure-by-default</h4><p>Least privilege, explicit failures, clear boundaries.</p></div>
+        <div class="panel"><h4>Cross-platform</h4><p>Termux + PowerShell + GitHub = ship from anywhere.</p></div>
+        <div class="panel"><h4>Product path</h4><p>Services now, templates + toolkits next, SaaS later.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Fastest: email with your goal, platform, deadline.</p>
+      </div>
+      <div class="contact-box">
+        <div>
+          <div class="contact-line"><span class="k">Email</span> <a id="emailLink" href="#">loading…</a></div>
+          <div class="contact-line"><span class="k">Promise</span> Clear scope. Fixed price. Clean handoff.</div>
+        </div>
+        <a class="cta primary" id="mailtoCta" href="#">Email to Start</a>
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
-    <p>Built from Android. Engineered for Scale.</p>
+    <div>© <span id="year"></span> Forge Atlas • Built from Android • Deployed on Cloudflare</div>
   </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
