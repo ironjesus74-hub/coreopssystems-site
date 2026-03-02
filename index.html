@@ -20,6 +20,7 @@
     </div>
     <div class="links">
       <a href="#packs">Packs</a>
+      <a href="#tools">Tools</a>
       <a href="#proof">Why Us</a>
       <a href="#contact">Contact</a>
     </div>
@@ -109,6 +110,64 @@
         <div class="panel"><h4>Secure-by-default</h4><p>Least privilege, explicit failures, clear boundaries.</p></div>
         <div class="panel"><h4>Cross-platform</h4><p>Termux + PowerShell + GitHub = ship from anywhere.</p></div>
         <div class="panel"><h4>Product path</h4><p>Services now, templates + toolkits next, SaaS later.</p></div>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <div class="section-head">
+        <h2>Free Tool — Windows Permission Reset</h2>
+        <p>Reclaim ownership, reset ACLs, and strip hidden/system attributes in one sweep — so you can rebuild from a clean state.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-badges">
+            <span class="tbadge">takeown</span>
+            <span class="tbadge">icacls /reset</span>
+            <span class="tbadge">attrib -H -S -R</span>
+            <span class="tbadge free">Free</span>
+          </div>
+          <p class="tool-desc">Run elevated PowerShell on any Windows machine — works over a mobile hotspot, no internet dependencies after download.</p>
+          <ol class="tool-steps">
+            <li>Open <strong>PowerShell as Administrator</strong></li>
+            <li>Copy the command below and paste it (or save as <code>win-reset-perms.ps1</code>)</li>
+            <li>Pass <code>-Path D:\</code> to target a specific drive, or leave blank for <code>C:\</code></li>
+            <li>Add <code>-WhatIf</code> to preview without making changes</li>
+          </ol>
+        </div>
+        <div class="code-block-wrap">
+          <div class="code-bar">
+            <span class="code-label">PowerShell · win-reset-perms.ps1</span>
+            <button class="copy-btn" data-copy="tool-snippet" aria-label="Copy script">Copy</button>
+          </div>
+          <pre class="code-block" id="tool-snippet">#Requires -RunAsAdministrator
+param(
+    [string]$Path   = "$env:SystemDrive\",
+    [switch]$WhatIf
+)
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Continue"
+
+function Invoke-Step {
+    param([string]$Label, [scriptblock]$Action)
+    Write-Host "`n[$Label]" -ForegroundColor Cyan
+    if ($WhatIf) {
+        Write-Host "  WhatIf: would run — $($Action.ToString().Trim())" -ForegroundColor DarkYellow
+    } else { &amp; $Action }
+}
+
+# 1. Take ownership
+Invoke-Step "takeown" {
+    &amp; takeown /F $Path /R /D Y 2&gt;&amp;1 |
+        ForEach-Object { if ($_ -match "SUCCESS|ERROR|FAILED") { Write-Host "  $_" } }
+}
+# 2. Reset ACLs
+Invoke-Step "icacls" { &amp; icacls $Path /reset /T /C /Q }
+# 3. Strip hidden / system / read-only attributes
+Invoke-Step "attrib"  { &amp; attrib -H -S -R "$Path*" /S /D }
+
+Write-Host "`n[DONE] Reset complete: $Path" -ForegroundColor Green</pre>
+        </div>
+        <a class="cta ghost tool-dl" href="assets/win-reset-perms.ps1" download="win-reset-perms.ps1">Download .ps1</a>
       </div>
     </section>
 

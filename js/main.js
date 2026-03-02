@@ -44,4 +44,24 @@
       }
     }
   }
+
+  document.querySelectorAll(".copy-btn[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-copy");
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const text = el.textContent || "";
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "Copy";
+          btn.classList.remove("copied");
+        }, 2000);
+      }).catch(() => {
+        btn.textContent = "Copy failed — check browser permissions";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2500);
+      });
+    });
+  });
 })();
