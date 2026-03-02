@@ -20,6 +20,7 @@
     </div>
     <div class="links">
       <a href="#packs">Packs</a>
+      <a href="#scripts">Free Scripts</a>
       <a href="#proof">Why Us</a>
       <a href="#contact">Contact</a>
     </div>
@@ -97,6 +98,46 @@
       </div>
 
       <p class="fine">Want a custom pack? Use Contact and describe your target platform + outcome.</p>
+    </section>
+
+    <section id="scripts" class="section">
+      <div class="section-head">
+        <h2>Free Scripts</h2>
+        <p>No payment required — grab these and run them straight from PowerShell or Bash.</p>
+      </div>
+      <div class="scripts-grid">
+
+        <div class="script-card">
+          <div class="script-icon">🛡️</div>
+          <div class="script-body">
+            <h3 class="script-name">Windows Secure Rebuild</h3>
+            <p class="script-desc">
+              Suspected MITM attack or account compromise on Windows 10/11?
+              Run this once from an elevated PowerShell window.  It resets your
+              network stack, disables LLMNR/NetBIOS, locks down Windows Firewall,
+              re-activates Defender, removes suspicious startup entries, clears
+              injected proxy settings, forces a password change at next logon, and
+              logs everything to <code>C:\ForgeAtlas\secure-rebuild.log</code>.
+            </p>
+            <div class="script-tags">
+              <span class="stag">Windows 10 / 11</span>
+              <span class="stag">PowerShell</span>
+              <span class="stag">MITM defense</span>
+              <span class="stag">Free</span>
+            </div>
+            <div class="script-actions">
+              <a class="cta primary" href="https://github.com/ironjesus74-hub/coreopssystems-site/blob/main/scripts/windows-secure-rebuild.ps1" target="_blank" rel="noopener noreferrer">View Script</a>
+              <a class="cta ghost" href="https://raw.githubusercontent.com/ironjesus74-hub/coreopssystems-site/main/scripts/windows-secure-rebuild.ps1" target="_blank" rel="noopener noreferrer">Raw / Download</a>
+            </div>
+            <div class="script-run">
+              <p class="run-label">One-liner (run as Administrator):</p>
+              <pre class="run-code">Set-ExecutionPolicy Bypass -Scope Process -Force; irm https://raw.githubusercontent.com/ironjesus74-hub/coreopssystems-site/main/scripts/windows-secure-rebuild.ps1 | iex</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="fine">More scripts coming.  Need something specific? <a href="#contact" class="inline-link">Drop us a message.</a></p>
     </section>
 
     <section id="proof" class="section">
