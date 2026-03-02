@@ -22,8 +22,31 @@
       <a href="#packs">Packs</a>
       <a href="#proof">Why Us</a>
       <a href="#contact">Contact</a>
+      <button class="login-btn" id="loginBtn">Log In</button>
+      <button class="login-btn logout-btn" id="logoutBtn" style="display:none">Log Out</button>
     </div>
   </nav>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close login dialog">✕</button>
+      <h2 id="modalTitle">Log In</h2>
+      <p class="modal-sub">Access your Forge Atlas account.</p>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" required />
+        </div>
+        <div class="form-error" id="loginError"></div>
+        <button class="cta primary login-submit" type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
 
   <header class="hero">
     <div class="hero-inner">

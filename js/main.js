@@ -44,4 +44,71 @@
       }
     }
   }
+
+  // — Login feature —
+  const SESSION_KEY = "fa_logged_in";
+  const loginBtn   = document.getElementById("loginBtn");
+  const logoutBtn  = document.getElementById("logoutBtn");
+  const modal      = document.getElementById("loginModal");
+  const modalClose = document.getElementById("modalClose");
+  const loginForm  = document.getElementById("loginForm");
+  const loginError = document.getElementById("loginError");
+
+  function setLoggedIn(state) {
+    if (state) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      loginBtn.style.display  = "none";
+      logoutBtn.style.display = "";
+    } else {
+      sessionStorage.removeItem(SESSION_KEY);
+      loginBtn.style.display  = "";
+      logoutBtn.style.display = "none";
+    }
+  }
+
+  function openModal() {
+    modal.classList.add("open");
+    document.getElementById("loginEmail").focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    loginForm.reset();
+    loginError.textContent = "";
+  }
+
+  // Restore session state on page load
+  setLoggedIn(sessionStorage.getItem(SESSION_KEY) === "1");
+
+  loginBtn.addEventListener("click", openModal);
+
+  logoutBtn.addEventListener("click", () => {
+    setLoggedIn(false);
+  });
+
+  modalClose.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const emailVal = document.getElementById("loginEmail").value.trim();
+    const passVal  = document.getElementById("loginPassword").value.trim();
+
+    if (!emailVal || !passVal) {
+      loginError.textContent = "Please enter your email and password.";
+      return;
+    }
+
+    // Placeholder: accept any non-empty credentials
+    loginError.textContent = "";
+    setLoggedIn(true);
+    closeModal();
+  });
 })();

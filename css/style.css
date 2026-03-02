@@ -47,6 +47,49 @@ body{
   margin-left:14px; font-weight:600; opacity:.9;
 }
 .links a:hover{color:var(--blue)}
+.login-btn{
+  margin-left:14px; padding:8px 16px;
+  border-radius:10px; border:1px solid rgba(56,189,248,.55);
+  background:rgba(56,189,248,.12); color:var(--text);
+  font-weight:700; cursor:pointer; font-size:.95rem;
+  transition:background .2s;
+}
+.login-btn:hover{background:rgba(56,189,248,.22)}
+.login-btn:focus-visible{outline:2px solid var(--blue); outline-offset:3px}
+.logout-btn{border-color:rgba(148,163,184,.4); background:rgba(11,18,42,.35)}
+.logout-btn:hover{background:rgba(148,163,184,.1)}
+.modal-overlay{
+  display:none; position:fixed; inset:0; z-index:100;
+  background:rgba(0,0,0,.6); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center; padding:16px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--panel); border:1px solid rgba(31,42,68,.9);
+  border-radius:20px; padding:28px 24px; width:100%; max-width:400px;
+  position:relative; box-shadow:0 24px 64px rgba(0,0,0,.5);
+}
+.modal h2{margin:0 0 6px; font-size:1.4rem}
+.modal-sub{margin:0 0 20px; color:var(--muted); font-size:.95rem}
+.modal-close{
+  position:absolute; top:14px; right:14px;
+  background:none; border:none; color:var(--muted);
+  font-size:1.1rem; cursor:pointer; line-height:1;
+  padding:4px 8px; border-radius:8px;
+}
+.modal-close:hover{color:var(--text); background:rgba(31,42,68,.6)}
+.modal-close:focus-visible{outline:2px solid var(--blue); outline-offset:3px}
+.field{display:flex; flex-direction:column; gap:6px; margin-bottom:14px}
+.field label{font-size:.9rem; font-weight:700; color:var(--text)}
+.field input{
+  padding:10px 12px; border-radius:10px;
+  border:1px solid rgba(31,42,68,.9);
+  background:rgba(7,11,24,.6); color:var(--text);
+  font-size:1rem; outline:none;
+}
+.field input:focus{border-color:rgba(56,189,248,.55)}
+.form-error{color:#f87171; font-size:.9rem; margin-bottom:10px; min-height:18px}
+.login-submit{width:100%; text-align:center; padding:12px; border:none; cursor:pointer; font-size:1rem}
 .hero{padding:84px 16px 36px}
 .hero-inner{max-width:980px; margin:0 auto; text-align:center}
 .chip{
