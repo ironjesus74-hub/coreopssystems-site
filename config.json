@@ -4,5 +4,21 @@
     "starter": "https://www.paypal.com/ncp/payment/BC2EB35R93U7Q",
     "growth": "https://www.paypal.com/ncp/payment/EAQTLNRQ2TB72",
     "elite": "https://www.paypal.com/ncp/payment/X3K9VMJH86MRW"
+  },
+  "systemScan": {
+    "timestamp": "2026-03-02T18:00:00Z",
+    "status": "PASS",
+    "checks": [
+      { "name": "CPU Usage",        "value": "12%",   "status": "OK" },
+      { "name": "CPU Temperature",  "value": "48°C",  "status": "OK" },
+      { "name": "Memory Usage",     "value": "34%",   "status": "OK" },
+      { "name": "Swap Usage",       "value": "0%",    "status": "OK" },
+      { "name": "Disk I/O",         "value": "Normal","status": "OK" },
+      { "name": "Disk Space",       "value": "61% free","status": "OK" },
+      { "name": "Network Latency",  "value": "18ms",  "status": "OK" },
+      { "name": "Network Throughput","value": "Normal","status": "OK" },
+      { "name": "Process Health",   "value": "All OK","status": "OK" },
+      { "name": "Security Flags",   "value": "None",  "status": "OK" }
+    ]
   }
 }

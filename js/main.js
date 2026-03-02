@@ -44,4 +44,33 @@
       }
     }
   }
+
+  // Render system scan logs
+  const scan = cfg?.systemScan;
+  const scanBadge = document.getElementById("scanBadge");
+  const scanMeta  = document.getElementById("scanMeta");
+  const scanLog   = document.getElementById("scanLog");
+
+  if (scan && scanBadge && scanMeta && scanLog) {
+    const passed = scan.status === "PASS";
+    scanBadge.textContent = passed ? "✔ PASS" : "✘ FAIL";
+    if (!passed) scanBadge.classList.add("fail");
+
+    const ts = scan.timestamp ? new Date(scan.timestamp).toLocaleString() : "unknown";
+    scanMeta.textContent = `scan run: ${ts}  |  checks: ${(scan.checks || []).length}`;
+
+    scanLog.innerHTML = "";
+    for (const c of (scan.checks || [])) {
+      const ok = c.status === "OK";
+      const row = document.createElement("div");
+      row.className = "scan-row";
+      row.innerHTML =
+        `<span class="scan-dot${ok ? "" : " fail"}"></span>` +
+        `<span class="scan-name">${safeText(c.name)}</span>` +
+        `<span class="scan-value">${safeText(c.value)}</span>` +
+        `<span class="scan-status${ok ? "" : " fail"}">${safeText(c.status)}</span>`;
+      scanLog.appendChild(row);
+    }
+  }
+
 })();
