@@ -3,6 +3,11 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   const safeText = (v) => (typeof v === "string" ? v : "");
+  const safeEmail = (v) => (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v) ? v : "");
+  const safeHttpsUrl = (v) => {
+    try { const u = new URL(v); return (u.protocol === "https:") ? v : ""; }
+    catch { return ""; }
+  };
 
   let cfg = null;
   try {
@@ -13,7 +18,7 @@
     console.warn("Config missing or invalid:", e);
   }
 
-  const email = safeText(cfg?.email) || "ironjesus74@gmail.com";
+  const email = safeEmail(safeText(cfg?.email)) || "ironjesus74@gmail.com";
   const emailLink = document.getElementById("emailLink");
   const mailtoCta = document.getElementById("mailtoCta");
   const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent("Forge Atlas — Project Request")}&body=${encodeURIComponent("Goal:\nPlatform (Android/Windows/Linux):\nDeadline:\nBudget range:\nDetails:\n")}`;
@@ -30,10 +35,10 @@
   for (const p of packs) {
     const btn = document.querySelector(`.buy[data-pack="${p}"]`);
     const alt = document.querySelector(`[data-alt="${p}"]`);
-    const link = safeText(paypal[p]);
+    const link = safeHttpsUrl(safeText(paypal[p]));
 
     if (btn && alt) {
-      if (link && (link.startsWith("https://") || link.startsWith("http://"))) {
+      if (link) {
         btn.href = link;
         btn.target = "_blank";
         btn.rel = "noopener noreferrer";

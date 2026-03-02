@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /config.json
+Allow: /
+
+Sitemap: https://forge-atlas.io/sitemap.xml

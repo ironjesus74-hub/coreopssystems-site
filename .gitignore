@@ -1,0 +1,18 @@
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Build / dependency directories
+node_modules/
+dist/
+.cache/
+
+# Environment / secret files
+.env
+.env.*
+!.env.example
