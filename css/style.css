@@ -47,7 +47,8 @@ body {
   overflow-x: hidden;
 }
 
-body.theme-atlas::before {
+body.theme-atlas::before,
+body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -113,6 +114,7 @@ ul {
   overflow: hidden;
 }
 
+/* GLOBAL HEADER */
 .site-header {
   position: sticky;
   top: 0;
@@ -141,14 +143,19 @@ ul {
   position: relative;
 }
 
-.brand {
+/* NEW + OLD LOGO SYSTEM SUPPORT */
+.brand,
+.logo {
   display: inline-flex;
   align-items: center;
   gap: 14px;
   min-width: 0;
+  color: var(--text);
+  text-decoration: none;
 }
 
-.brand-mark {
+.brand-mark,
+.logo-mark {
   position: relative;
   width: 54px;
   height: 54px;
@@ -164,6 +171,11 @@ ul {
     inset 0 0 18px rgba(255,255,255,0.06),
     0 0 26px rgba(88,166,255,0.14);
   flex-shrink: 0;
+}
+
+.logo-mark svg {
+  width: 28px;
+  height: 28px;
 }
 
 .atlas-emblem-v3::before {
@@ -235,10 +247,12 @@ ul {
   line-height: 1.05;
 }
 
-.brand-copy strong {
+.brand-copy strong,
+.logo span {
   font-size: 1rem;
   letter-spacing: 0.01em;
   color: var(--text);
+  font-weight: 800;
 }
 
 .brand-copy small {
@@ -248,14 +262,17 @@ ul {
   text-transform: uppercase;
 }
 
-.site-nav {
+/* NEW + OLD NAV SUPPORT */
+.site-nav,
+.nav-links {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.site-nav a {
+.site-nav a,
+.nav-links a {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -271,16 +288,21 @@ ul {
     background 180ms ease,
     transform 180ms ease,
     box-shadow 180ms ease;
+  text-decoration: none;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.nav-links a:hover {
   color: var(--text);
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.06);
   transform: translateY(-1px);
 }
 
-.site-nav a.is-active {
+.site-nav a.is-active,
+.site-nav a.active,
+.nav-links a.is-active,
+.nav-links a.active {
   color: var(--text);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
@@ -317,6 +339,7 @@ ul {
   background: var(--text);
 }
 
+/* GENERIC COMPONENTS */
 .console-card {
   position: relative;
   background:
@@ -368,6 +391,7 @@ ul {
     background 180ms ease,
     border-color 180ms ease,
     color 180ms ease;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -496,7 +520,8 @@ ul {
 }
 
 @media (max-width: 900px) {
-  .site-nav {
+  .site-nav,
+  .nav-links {
     display: none;
     position: absolute;
     top: calc(100% + 10px);
@@ -513,11 +538,13 @@ ul {
     z-index: 60;
   }
 
-  .site-nav.is-open {
+  .site-nav.is-open,
+  .nav-links.is-open {
     display: grid;
   }
 
-  .site-nav a {
+  .site-nav a,
+  .nav-links a {
     justify-content: flex-start;
     width: 100%;
   }
@@ -532,7 +559,8 @@ ul {
     width: calc(100% - 18px);
   }
 
-  .brand-copy strong {
+  .brand-copy strong,
+  .logo span {
     font-size: 0.96rem;
   }
 

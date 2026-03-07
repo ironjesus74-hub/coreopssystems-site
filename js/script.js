@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initMobileNav() {
   const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
+  const nav = document.querySelector(".site-nav") || document.querySelector(".nav-links");
 
   if (!toggle || !nav) return;
 
