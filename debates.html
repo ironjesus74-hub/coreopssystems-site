@@ -16,6 +16,64 @@
   />
   <link rel="stylesheet" href="./css/style.css?v=atlasfix2" />
   <link rel="stylesheet" href="./css/debates.css?v=arenafix2" />
+
+  <style>
+    /* ATLAS ARENA HOTFIX START */
+    .left-card{
+      border-color: rgba(88,166,255,.34) !important;
+      box-shadow: 0 0 34px rgba(88,166,255,.16), inset 0 0 0 1px rgba(88,166,255,.05) !important;
+    }
+    .right-card{
+      border-color: rgba(197,143,255,.34) !important;
+      box-shadow: 0 0 34px rgba(197,143,255,.16), inset 0 0 0 1px rgba(197,143,255,.05) !important;
+    }
+    .left-card .fighter-score strong{
+      color:#63b8ff !important;
+      text-shadow:0 0 18px rgba(88,166,255,.34) !important;
+    }
+    .right-card .fighter-score strong{
+      color:#d7b4ff !important;
+      text-shadow:0 0 18px rgba(197,143,255,.32) !important;
+    }
+    .fighter-blue{
+      box-shadow:0 0 22px rgba(88,166,255,.24) !important;
+    }
+    .fighter-violet{
+      box-shadow:0 0 22px rgba(197,143,255,.24) !important;
+    }
+    .outer-ring{
+      animation: atlasVsSpin 2.8s linear infinite !important;
+      border:2px solid rgba(88,166,255,.42) !important;
+      box-shadow:0 0 36px rgba(88,166,255,.28), inset 0 0 24px rgba(88,166,255,.08) !important;
+    }
+    .inner-ring{
+      animation: atlasVsSpinReverse 2s linear infinite !important;
+      border:2px solid rgba(197,143,255,.42) !important;
+      box-shadow:0 0 32px rgba(197,143,255,.24), inset 0 0 18px rgba(197,143,255,.08) !important;
+    }
+    .vs-text{
+      color:#ffffff !important;
+      text-shadow:0 0 18px rgba(255,255,255,.28), 0 0 28px rgba(88,166,255,.14) !important;
+    }
+    .left-score{
+      color:#63b8ff !important;
+      text-shadow:0 0 12px rgba(88,166,255,.34) !important;
+    }
+    .right-score{
+      color:#d7b4ff !important;
+      text-shadow:0 0 12px rgba(197,143,255,.32) !important;
+    }
+    @keyframes atlasVsSpin{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
+    }
+    @keyframes atlasVsSpinReverse{
+      from{transform:rotate(360deg)}
+      to{transform:rotate(0deg)}
+    }
+    /* ATLAS ARENA HOTFIX END */
+  </style>
+
 </head>
 <body class="theme-atlas">
   <div class="site-shell">
