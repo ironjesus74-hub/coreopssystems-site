@@ -1,0 +1,311 @@
+:root {
+  --gallery-title: #f4f8ff;
+  --gallery-soft: #d8e4ff;
+  --gallery-line: rgba(255,255,255,0.08);
+  --gallery-heading-font: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+.gallery-page {
+  padding-bottom: 72px;
+}
+
+.gallery-container {
+  width: min(1260px, calc(100% - 24px));
+  margin: 0 auto;
+}
+
+.gallery-hero,
+.gallery-wall-section,
+.gallery-highlights-section,
+.gallery-testimonials-section {
+  padding-top: 26px;
+}
+
+.gallery-hero-card {
+  position: relative;
+  padding: 26px;
+  border-width: 2px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 0 42px rgba(88,166,255,0.08),
+    inset 0 0 0 1px rgba(88,166,255,0.05);
+}
+
+.gallery-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.gallery-hero-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(38px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.gallery-hero-glow.glow-a {
+  width: 260px;
+  height: 260px;
+  background: rgba(88,166,255,0.22);
+  left: -40px;
+  top: 50px;
+}
+
+.gallery-hero-glow.glow-b {
+  width: 240px;
+  height: 240px;
+  background: rgba(255,105,216,0.16);
+  right: -30px;
+  top: 70px;
+}
+
+.gallery-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 32px 20px 24px;
+  border-radius: 30px;
+  border: 2px solid rgba(255,255,255,0.09);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
+    rgba(8, 15, 28, 0.42);
+  text-align: center;
+}
+
+.gallery-pretitle {
+  margin: 14px 0 12px;
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.gallery-hero-inner h1 {
+  margin: 0 auto;
+  max-width: 14ch;
+  font-family: var(--gallery-heading-font);
+  font-size: clamp(2.2rem, 4.8vw, 4.8rem);
+  line-height: 0.97;
+  letter-spacing: -0.05em;
+  color: var(--gallery-title);
+}
+
+.gallery-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 22px auto 18px;
+}
+
+.gallery-divider span {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(75,231,255,0.2), rgba(159,123,255,0.55), rgba(255,154,83,0.35));
+}
+
+.gallery-divider span:nth-child(1),
+.gallery-divider span:nth-child(3) {
+  width: 64px;
+  height: 2px;
+}
+
+.gallery-divider span:nth-child(2) {
+  width: 16px;
+  height: 16px;
+}
+
+.gallery-intro {
+  margin: 0 auto;
+  max-width: 68ch;
+  color: var(--gallery-soft);
+  line-height: 1.75;
+}
+
+.gallery-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.shot-card,
+.highlight-card,
+.testimonial-card {
+  padding: 18px;
+  border-width: 2px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 0 22px rgba(88,166,255,0.06);
+}
+
+.shot-large {
+  grid-column: span 2;
+}
+
+.shot-wide {
+  grid-column: span 2;
+}
+
+.shot-screen {
+  height: 230px;
+  border-radius: 20px;
+  border: 1px solid var(--gallery-line);
+  margin-bottom: 16px;
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 0 18px rgba(88,166,255,0.06);
+}
+
+.shot-screen-gradient.one {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(75,231,255,0.28), transparent 28%),
+    linear-gradient(135deg, rgba(15,30,55,1), rgba(33,61,128,0.9), rgba(19,19,39,1));
+}
+
+.shot-screen-gradient.two {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent),
+    linear-gradient(135deg, #0d182a, #1a3f77, #0f1630);
+}
+
+.shot-screen-gradient.three {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(255,154,83,0.2), transparent 24%),
+    linear-gradient(135deg, #11192c, #213a63, #0a1120);
+}
+
+.shot-screen-gradient.four {
+  background:
+    radial-gradient(circle at 25% 35%, rgba(255,105,216,0.2), transparent 20%),
+    linear-gradient(135deg, #0f1630, #2f2c5f, #08111f);
+}
+
+.shot-screen-gradient.five {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(88,166,255,0.2), transparent 25%),
+    linear-gradient(135deg, #0d1728, #16365e, #0a1221);
+}
+
+.shot-screen-gradient.six {
+  background:
+    radial-gradient(circle at 35% 40%, rgba(75,231,255,0.14), transparent 24%),
+    linear-gradient(135deg, #121a2b, #2a3553, #10131f);
+}
+
+.shot-label {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(88,166,255,0.08);
+  border: 1px solid rgba(130,197,255,0.18);
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.shot-copy h3,
+.highlight-card h3,
+.testimonial-card strong,
+.gallery-section-head h2 {
+  color: var(--gallery-title);
+  font-family: var(--gallery-heading-font);
+  letter-spacing: -0.03em;
+}
+
+.shot-copy h3 {
+  margin: 14px 0 10px;
+}
+
+.shot-copy p,
+.highlight-card p,
+.testimonial-card p {
+  margin: 0;
+  color: var(--gallery-soft);
+  line-height: 1.68;
+}
+
+.gallery-section-head {
+  margin-bottom: 18px;
+}
+
+.gallery-section-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.highlights-grid,
+.testimonial-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.highlights-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.testimonial-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quote-mark {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: var(--blue-2);
+  line-height: 1;
+}
+
+.testimonial-card strong {
+  display: block;
+  margin-top: 14px;
+}
+
+@media (max-width: 1100px) {
+  .gallery-wall-grid,
+  .highlights-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shot-large,
+  .shot-wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-container {
+    width: calc(100% - 18px);
+  }
+
+  .gallery-hero-card,
+  .shot-card,
+  .highlight-card,
+  .testimonial-card {
+    padding: 16px;
+  }
+
+  .gallery-hero-inner {
+    padding: 24px 14px 18px;
+  }
+
+  .gallery-hero-inner h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .shot-screen {
+    height: 200px;
+  }
+}

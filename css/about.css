@@ -1,0 +1,276 @@
+:root {
+  --about-title: #f4f8ff;
+  --about-soft: #d8e4ff;
+  --about-line: rgba(255, 255, 255, 0.09);
+  --about-line-bright: rgba(130, 197, 255, 0.22);
+  --about-glass: rgba(255, 255, 255, 0.04);
+  --about-heading-font: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+.about-page {
+  padding-bottom: 72px;
+}
+
+.about-container {
+  width: min(1260px, calc(100% - 24px));
+  margin: 0 auto;
+}
+
+.about-hero,
+.about-story-section,
+.about-pillars-section,
+.about-philosophy-section,
+.about-roadmap-section {
+  padding-top: 26px;
+}
+
+.about-hero-card {
+  position: relative;
+  padding: 26px;
+  border-width: 2px;
+  overflow: hidden;
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 0 42px rgba(88,166,255,0.08),
+    inset 0 0 0 1px rgba(88,166,255,0.05);
+}
+
+.about-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.about-hero-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(38px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.about-hero-glow.glow-a {
+  width: 260px;
+  height: 260px;
+  background: rgba(88,166,255,0.22);
+  left: -40px;
+  top: 50px;
+}
+
+.about-hero-glow.glow-b {
+  width: 240px;
+  height: 240px;
+  background: rgba(159,123,255,0.18);
+  right: -40px;
+  top: 80px;
+}
+
+.about-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 32px 20px 24px;
+  border-radius: 30px;
+  border: 2px solid rgba(255,255,255,0.09);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
+    rgba(8, 15, 28, 0.42);
+  text-align: center;
+}
+
+.about-pretitle {
+  margin: 14px 0 12px;
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-hero-inner h1 {
+  margin: 0 auto;
+  max-width: 15ch;
+  font-family: var(--about-heading-font);
+  font-size: clamp(2.2rem, 4.8vw, 4.8rem);
+  line-height: 0.97;
+  letter-spacing: -0.05em;
+  color: var(--about-title);
+}
+
+.about-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 22px auto 18px;
+}
+
+.about-divider span {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(75,231,255,0.2), rgba(159,123,255,0.55), rgba(255,154,83,0.35));
+}
+
+.about-divider span:nth-child(1),
+.about-divider span:nth-child(3) {
+  width: 64px;
+  height: 2px;
+}
+
+.about-divider span:nth-child(2) {
+  width: 16px;
+  height: 16px;
+}
+
+.about-intro {
+  margin: 0 auto;
+  max-width: 68ch;
+  color: var(--about-soft);
+  line-height: 1.75;
+}
+
+.about-grid,
+.about-pillars-grid,
+.roadmap-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.about-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.about-panel,
+.about-philosophy-shell,
+.roadmap-card,
+.pillar-card,
+.highlight-card {
+  padding: 20px;
+  border-width: 2px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 0 24px rgba(88,166,255,0.06);
+}
+
+.about-panel h2,
+.about-section-head h2,
+.about-philosophy-copy h2 {
+  color: var(--about-title);
+  font-family: var(--about-heading-font);
+  letter-spacing: -0.03em;
+}
+
+.about-panel h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.about-panel p,
+.about-philosophy-copy p,
+.principle-box p,
+.roadmap-card p,
+.pillar-card p {
+  margin: 0;
+  color: var(--about-soft);
+  line-height: 1.68;
+}
+
+.about-section-head {
+  margin-bottom: 18px;
+}
+
+.about-section-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.about-pillars-grid,
+.roadmap-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.pillar-index,
+.roadmap-phase {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(88,166,255,0.08);
+  border: 1px solid var(--about-line-bright);
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pillar-card h3,
+.roadmap-card h3 {
+  margin: 16px 0 10px;
+  color: var(--about-title);
+  font-family: var(--about-heading-font);
+}
+
+.about-philosophy-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.about-philosophy-copy h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.about-principles {
+  display: grid;
+  gap: 12px;
+}
+
+.principle-box {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid var(--about-line);
+  background: var(--about-glass);
+}
+
+.principle-box strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--about-title);
+}
+
+@media (max-width: 1100px) {
+  .about-grid,
+  .about-pillars-grid,
+  .about-philosophy-shell,
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-container {
+    width: calc(100% - 18px);
+  }
+
+  .about-hero-card,
+  .about-panel,
+  .about-philosophy-shell,
+  .roadmap-card,
+  .pillar-card {
+    padding: 16px;
+  }
+
+  .about-hero-inner {
+    padding: 24px 14px 18px;
+  }
+
+  .about-hero-inner h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+}
