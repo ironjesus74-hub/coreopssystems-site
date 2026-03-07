@@ -247,35 +247,35 @@
 }
 
 .left-card {
-  border-color: rgba(88,166,255,0.2);
+  border-color: rgba(88,166,255,0.34);
   box-shadow:
-    0 0 26px rgba(88,166,255,0.08),
-    inset 0 0 0 1px rgba(88,166,255,0.03);
+    0 0 34px rgba(88,166,255,0.16),
+    inset 0 0 0 1px rgba(88,166,255,0.05);
 }
 
 .right-card {
-  border-color: rgba(210,155,255,0.2);
+  border-color: rgba(210,155,255,0.34);
   box-shadow:
-    0 0 26px rgba(210,155,255,0.08),
-    inset 0 0 0 1px rgba(210,155,255,0.03);
+    0 0 34px rgba(210,155,255,0.16),
+    inset 0 0 0 1px rgba(210,155,255,0.05);
 }
 
 .left-card:hover,
 .left-card.is-leading {
   transform: translateY(-3px);
-  border-color: rgba(88,166,255,0.38);
+  border-color: rgba(88,166,255,0.42);
   box-shadow:
-    0 0 38px rgba(88,166,255,0.18),
-    inset 0 0 0 1px rgba(88,166,255,0.05);
+    0 0 42px rgba(88,166,255,0.2),
+    inset 0 0 0 1px rgba(88,166,255,0.06);
 }
 
 .right-card:hover,
 .right-card.is-leading {
   transform: translateY(-3px);
-  border-color: rgba(210,155,255,0.38);
+  border-color: rgba(210,155,255,0.42);
   box-shadow:
-    0 0 38px rgba(210,155,255,0.18),
-    inset 0 0 0 1px rgba(210,155,255,0.05);
+    0 0 42px rgba(210,155,255,0.2),
+    inset 0 0 0 1px rgba(210,155,255,0.06);
 }
 
 .fighter-card[aria-expanded="true"] {
@@ -430,6 +430,7 @@
   min-height: 260px;
   display: grid;
   place-items: center;
+  filter: drop-shadow(0 0 24px rgba(88,166,255,0.12));
 }
 
 .arena-vs-core::before {
@@ -447,26 +448,25 @@
   position: absolute;
   border-radius: 999px;
   will-change: transform;
+  transform-origin: center center;
 }
 
 .outer-ring {
   width: 172px;
   height: 172px;
-  border: 2px solid rgba(88,166,255,0.38);
+  border: 2px solid rgba(88,166,255,0.46);
   box-shadow:
-    0 0 34px rgba(88,166,255,0.22),
-    inset 0 0 24px rgba(88,166,255,0.08);
-  animation: vsSpin 4.8s linear infinite;
+    0 0 38px rgba(88,166,255,0.30),
+    inset 0 0 24px rgba(88,166,255,0.10);
 }
 
 .inner-ring {
   width: 126px;
   height: 126px;
-  border: 2px solid rgba(210,155,255,0.36);
+  border: 2px solid rgba(210,155,255,0.46);
   box-shadow:
-    0 0 30px rgba(210,155,255,0.18),
-    inset 0 0 18px rgba(210,155,255,0.06);
-  animation: vsSpinReverse 3.4s linear infinite;
+    0 0 34px rgba(210,155,255,0.26),
+    inset 0 0 18px rgba(210,155,255,0.10);
 }
 
 .vs-slice {
@@ -486,9 +486,8 @@
   letter-spacing: -0.04em;
   color: var(--vs-core);
   text-shadow:
-    0 0 18px rgba(255,255,255,0.22),
-    0 0 26px rgba(88,166,255,0.1);
-  animation: textPulse 1.8s ease-in-out infinite;
+    0 0 18px rgba(255,255,255,0.30),
+    0 0 28px rgba(88,166,255,0.14);
 }
 
 .vs-scoreline {
@@ -692,24 +691,9 @@
   line-height: 1.68;
 }
 
-@keyframes vsSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes vsSpinReverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-}
-
 @keyframes corePulse {
   0%, 100% { transform: scale(0.94); opacity: 0.72; }
   50% { transform: scale(1.03); opacity: 1; }
-}
-
-@keyframes textPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
 }
 
 @media (max-width: 1100px) {
