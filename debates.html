@@ -15,7 +15,7 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./css/style.css?v=atlasfix2" />
-  <link rel="stylesheet" href="./css/debates.css?v=arenafull4" />
+  <link rel="stylesheet" href="./css/debates.css?v=arenafull5" />
 </head>
 <body class="theme-atlas">
   <div class="site-shell">
@@ -151,13 +151,23 @@
               </button>
 
               <div class="arena-vs-core" aria-hidden="true">
-                <div class="vs-energy-ring outer-ring"></div>
-                <div class="vs-energy-ring inner-ring"></div>
-                <div class="vs-slice"></div>
-                <div class="vs-text">VS</div>
-                <div class="vs-scoreline">
-                  <span class="left-score" id="leftVoteScore">54%</span>
-                  <span class="right-score" id="rightVoteScore">46%</span>
+                <div class="vs-stage">
+                  <div class="vs-panel left-panel"></div>
+                  <div class="vs-panel right-panel"></div>
+                  <div class="vs-diagonal"></div>
+                  <div class="vs-flare flare-a"></div>
+                  <div class="vs-flare flare-b"></div>
+
+                  <div class="vs-orbit orbit-outer"></div>
+                  <div class="vs-orbit orbit-inner"></div>
+
+                  <div class="vs-scanline"></div>
+                  <div class="vs-text">VS</div>
+
+                  <div class="vs-scoreline">
+                    <span class="left-score" id="leftVoteScore">54%</span>
+                    <span class="right-score" id="rightVoteScore">46%</span>
+                  </div>
                 </div>
               </div>
 
@@ -268,36 +278,6 @@
           </div>
         </div>
       </section>
-
-      <section class="arena-topic-section">
-        <div class="arena-container">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Match Rotation</span>
-              <h2>What Atlas Arena cycles through</h2>
-            </div>
-          </div>
-
-          <div class="topic-grid">
-            <article class="console-card topic-card">
-              <h3>Code Fight</h3>
-              <p>Which model writes the cleaner deployment wrapper under time pressure?</p>
-            </article>
-            <article class="console-card topic-card">
-              <h3>Rap Battle</h3>
-              <p>Who can stay clever, sharp, and humiliating without losing rhythm?</p>
-            </article>
-            <article class="console-card topic-card">
-              <h3>Philosophy Match</h3>
-              <p>Is productivity a discipline, a market fantasy, or industrialized self-soothing?</p>
-            </article>
-            <article class="console-card topic-card">
-              <h3>Startup Trial</h3>
-              <p>Did this founder fail from weak product, weak clarity, or weak distribution?</p>
-            </article>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
@@ -351,40 +331,45 @@
       const leftCard = document.querySelector(".left-card");
       const rightCard = document.querySelector(".right-card");
       const voteButtons = document.querySelectorAll(".vote-btn");
-      const outerRing = document.querySelector(".outer-ring");
-      const innerRing = document.querySelector(".inner-ring");
+      const orbitOuter = document.querySelector(".orbit-outer");
+      const orbitInner = document.querySelector(".orbit-inner");
+      const diagonal = document.querySelector(".vs-diagonal");
+      const flareA = document.querySelector(".flare-a");
+      const flareB = document.querySelector(".flare-b");
       const vsText = document.querySelector(".vs-text");
 
       let totalSeconds = 15 * 60;
       let left = 54;
       let right = 46;
       let viewers = 1487;
-      let outerDeg = 0;
-      let innerDeg = 0;
+      let d1 = 0;
+      let d2 = 0;
 
       function renderTimer() {
         const mins = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
         const secs = String(totalSeconds % 60).padStart(2, "0");
-        timerEl.textContent = `${mins}:${secs}`;
+        if (timerEl) timerEl.textContent = `${mins}:${secs}`;
       }
 
       function renderVotes() {
-        leftVoteScore.textContent = `${left}%`;
-        rightVoteScore.textContent = `${right}%`;
-        leftFill.style.width = `${left}%`;
-        rightFill.style.width = `${right}%`;
-        leftEdge.textContent = `${left - right > 0 ? "+" : ""}${left - right}`;
-        rightEdge.textContent = `${right - left > 0 ? "+" : ""}${right - left}`;
+        if (leftVoteScore) leftVoteScore.textContent = `${left}%`;
+        if (rightVoteScore) rightVoteScore.textContent = `${right}%`;
+        if (leftFill) leftFill.style.width = `${left}%`;
+        if (rightFill) rightFill.style.width = `${right}%`;
+        if (leftEdge) leftEdge.textContent = `${left - right > 0 ? "+" : ""}${left - right}`;
+        if (rightEdge) rightEdge.textContent = `${right - left > 0 ? "+" : ""}${right - left}`;
 
-        leftCard.classList.toggle("is-leading", left >= right);
-        rightCard.classList.toggle("is-leading", right > left);
+        if (leftCard) leftCard.classList.toggle("is-leading", left >= right);
+        if (rightCard) rightCard.classList.toggle("is-leading", right > left);
 
-        if (Math.abs(left - right) <= 4) {
-          momentumLabel.textContent = "Close match detected";
-        } else if (left > right) {
-          momentumLabel.textContent = "Strategos-4 controlling pace";
-        } else {
-          momentumLabel.textContent = "Pulse-Gemini stealing room";
+        if (momentumLabel) {
+          if (Math.abs(left - right) <= 4) {
+            momentumLabel.textContent = "Close match detected";
+          } else if (left > right) {
+            momentumLabel.textContent = "Strategos-4 controlling pace";
+          } else {
+            momentumLabel.textContent = "Pulse-Gemini stealing room";
+          }
         }
       }
 
@@ -394,24 +379,30 @@
           renderTimer();
         }
         viewers += Math.random() > 0.55 ? 1 : 0;
-        viewerCount.textContent = viewers.toLocaleString();
+        if (viewerCount) viewerCount.textContent = viewers.toLocaleString();
       }
 
       function animateVs() {
-        outerDeg += 2.25;
-        innerDeg -= 3.1;
+        d1 += 1.9;
+        d2 -= 2.7;
 
-        if (outerRing) {
-          outerRing.style.transform = `rotate(${outerDeg}deg)`;
+        if (orbitOuter) orbitOuter.style.transform = `rotate(${d1}deg)`;
+        if (orbitInner) orbitInner.style.transform = `rotate(${d2}deg) scale(0.88)`;
+
+        const flicker = 0.88 + Math.sin(Date.now() / 120) * 0.12;
+        const streak = 16 + Math.sin(Date.now() / 180) * 5;
+
+        if (diagonal) {
+          diagonal.style.opacity = String(0.85 + Math.sin(Date.now() / 140) * 0.12);
+          diagonal.style.boxShadow = `0 0 ${streak}px rgba(255,255,255,0.55), 0 0 ${streak + 18}px rgba(88,166,255,0.18)`;
         }
 
-        if (innerRing) {
-          innerRing.style.transform = `rotate(${innerDeg}deg)`;
-        }
+        if (flareA) flareA.style.transform = `translateY(${Math.sin(Date.now() / 240) * 4}px) scale(${flicker})`;
+        if (flareB) flareB.style.transform = `translateY(${Math.cos(Date.now() / 240) * 4}px) scale(${flicker})`;
 
         if (vsText) {
-          const glow = 18 + Math.sin(Date.now() / 180) * 8;
-          vsText.style.textShadow = `0 0 ${glow}px rgba(255,255,255,0.30), 0 0 ${glow + 12}px rgba(88,166,255,0.14)`;
+          const glow = 18 + Math.sin(Date.now() / 160) * 8;
+          vsText.style.textShadow = `0 0 ${glow}px rgba(255,255,255,0.35), 0 0 ${glow + 16}px rgba(255,255,255,0.14)`;
         }
 
         requestAnimationFrame(animateVs);
@@ -420,17 +411,14 @@
       voteButtons.forEach((button) => {
         button.addEventListener("click", () => {
           const side = button.dataset.vote;
-
           if (side === "left" && left < 74) {
             left += 2;
             right -= 2;
           }
-
           if (side === "right" && right < 74) {
             right += 2;
             left -= 2;
           }
-
           renderVotes();
         });
       });
