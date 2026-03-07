@@ -1,0 +1,243 @@
+:root {
+  --services-title: #f4f8ff;
+  --services-soft: #d8e4ff;
+  --services-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+.services-page {
+  padding-bottom: 72px;
+}
+
+.services-container {
+  width: min(1260px, calc(100% - 24px));
+  margin: 0 auto;
+}
+
+.services-hero,
+.services-grid-section,
+.services-process-section,
+.services-cta-section {
+  padding-top: 26px;
+}
+
+.services-hero-card,
+.service-card,
+.process-card,
+.services-cta-card {
+  border-width: 2px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 0 24px rgba(88,166,255,0.06);
+}
+
+.services-hero-card {
+  position: relative;
+  padding: 26px;
+  overflow: hidden;
+}
+
+.services-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.services-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(38px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.services-glow.glow-a {
+  width: 260px;
+  height: 260px;
+  background: rgba(88,166,255,0.22);
+  left: -40px;
+  top: 40px;
+}
+
+.services-glow.glow-b {
+  width: 240px;
+  height: 240px;
+  background: rgba(159,123,255,0.18);
+  right: -30px;
+  top: 80px;
+}
+
+.services-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 32px 20px 24px;
+  border-radius: 30px;
+  border: 2px solid rgba(255,255,255,0.09);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)), rgba(8,15,28,0.42);
+  text-align: center;
+}
+
+.services-pretitle {
+  margin: 14px 0 12px;
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.services-hero-inner h1,
+.section-head h2,
+.service-card h2,
+.process-card h3,
+.services-cta-card h2 {
+  color: var(--services-title);
+  font-family: var(--services-heading);
+  letter-spacing: -0.04em;
+}
+
+.services-hero-inner h1 {
+  margin: 0 auto;
+  max-width: 12ch;
+  font-size: clamp(2.3rem, 5vw, 5rem);
+  line-height: 0.95;
+}
+
+.services-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 22px auto 18px;
+}
+
+.services-divider span {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(75,231,255,0.2), rgba(159,123,255,0.55), rgba(255,154,83,0.35));
+}
+
+.services-divider span:nth-child(1),
+.services-divider span:nth-child(3) {
+  width: 64px;
+  height: 2px;
+}
+
+.services-divider span:nth-child(2) {
+  width: 16px;
+  height: 16px;
+}
+
+.services-intro,
+.service-card p,
+.process-card p,
+.services-cta-card p {
+  color: var(--services-soft);
+  line-height: 1.72;
+}
+
+.services-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.service-grid,
+.process-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.process-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-card,
+.process-card,
+.services-cta-card {
+  padding: 20px;
+}
+
+.service-tag {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: var(--blue-2);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.service-card h2 {
+  margin-top: 14px;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+}
+
+.process-card strong {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: var(--services-title);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--services-heading);
+  font-size: 1.1rem;
+}
+
+.process-card h3 {
+  margin-top: 14px;
+  font-size: 1.4rem;
+}
+
+.services-cta-card {
+  text-align: center;
+}
+
+.section-head {
+  margin-bottom: 18px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+@media (max-width: 1100px) {
+  .service-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-container {
+    width: calc(100% - 18px);
+  }
+
+  .services-hero-card,
+  .service-card,
+  .process-card,
+  .services-cta-card {
+    padding: 16px;
+  }
+
+  .services-hero-inner {
+    padding: 24px 14px 18px;
+  }
+
+  .services-hero-inner h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
