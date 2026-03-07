@@ -1179,3 +1179,186 @@
     font-size: 2.35rem;
   }
 }
+
+/* ===== ARENA FINAL FX PASS ===== */
+
+/* brighter avatar/icon glow */
+.fighter-avatar.fighter-blue {
+  background:
+    radial-gradient(circle at 28% 26%, rgba(255,255,255,0.24), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(88,166,255,0.18), transparent 70%),
+    linear-gradient(145deg, rgba(255,255,255,0.08), transparent),
+    rgba(255,255,255,0.03);
+  box-shadow:
+    0 0 18px rgba(88,166,255,0.38),
+    0 0 38px rgba(88,166,255,0.18),
+    inset 0 0 18px rgba(88,166,255,0.06);
+}
+
+.fighter-avatar.fighter-violet {
+  background:
+    radial-gradient(circle at 28% 26%, rgba(255,255,255,0.24), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(210,155,255,0.18), transparent 70%),
+    linear-gradient(145deg, rgba(255,255,255,0.08), transparent),
+    rgba(255,255,255,0.03);
+  box-shadow:
+    0 0 18px rgba(210,155,255,0.38),
+    0 0 38px rgba(210,155,255,0.18),
+    inset 0 0 18px rgba(210,155,255,0.06);
+}
+
+/* make center stage cleaner */
+.arena-vs-core {
+  min-height: 250px;
+  display: grid;
+  place-items: center;
+}
+
+.vs-stage {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+/* extra center layer */
+.vs-energy-layer {
+  position: absolute;
+  inset: 22px;
+  border-radius: 28px;
+  background:
+    linear-gradient(90deg, rgba(88,166,255,0.10), transparent 48%, rgba(255,96,96,0.10)),
+    radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
+  filter: blur(0.4px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* spinning rings */
+.orbit-outer {
+  animation: arenaSpinOuter 6s linear infinite;
+}
+
+.orbit-inner {
+  animation: arenaSpinInner 4.2s linear infinite;
+}
+
+/* stronger glowing slash */
+.vs-top-slash,
+.vs-diagonal {
+  transform-origin: center center;
+  animation: slashPulse 1.8s ease-in-out infinite;
+}
+
+/* gentle pulse on side frames */
+.left-frame,
+.right-frame {
+  animation: framePulse 2.2s ease-in-out infinite;
+}
+
+/* center glow pulse */
+.vs-text {
+  animation: vsGlow 1.9s ease-in-out infinite;
+}
+
+/* spark float */
+.sparks-left,
+.sparks-right {
+  animation: sparkFloat 2.8s ease-in-out infinite;
+}
+
+/* subtle sweep layer */
+.vs-stage::after {
+  content: "";
+  position: absolute;
+  inset: 26px;
+  border-radius: 24px;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.04) 35%,
+    rgba(255,255,255,0.09) 50%,
+    transparent 65%
+  );
+  transform: translateX(-18px);
+  animation: sheenMove 2.8s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* keep text above all */
+.vs-text,
+.vs-scoreline {
+  position: relative;
+  z-index: 20;
+}
+
+@keyframes arenaSpinOuter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes arenaSpinInner {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes slashPulse {
+  0%, 100% {
+    opacity: 0.88;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.18);
+  }
+}
+
+@keyframes framePulse {
+  0%, 100% {
+    opacity: 0.92;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+}
+
+@keyframes vsGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 14px rgba(255,255,255,0.92),
+      0 0 24px rgba(255,255,255,0.22);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow:
+      0 0 18px rgba(255,255,255,1),
+      0 0 32px rgba(255,255,255,0.34);
+  }
+}
+
+@keyframes sparkFloat {
+  0%, 100% { transform: translateY(0px); opacity: 0.86; }
+  50% { transform: translateY(-5px); opacity: 1; }
+}
+
+@keyframes sheenMove {
+  0%, 100% { transform: translateX(-14px) rotate(0.001deg); opacity: 0.26; }
+  50% { transform: translateX(14px) rotate(0.001deg); opacity: 0.48; }
+}
+
+@media (max-width: 640px) {
+  .vs-stage {
+    width: 190px;
+    height: 190px;
+  }
+
+  .arena-vs-core {
+    min-height: 220px;
+  }
+}
