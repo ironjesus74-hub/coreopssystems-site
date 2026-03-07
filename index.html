@@ -19,7 +19,6 @@
     :root {
       --home-title: #f4f8ff;
       --home-soft: #d8e4ff;
-      --home-line: rgba(255,255,255,0.08);
       --home-heading-font: "Space Grotesk", "Inter", system-ui, sans-serif;
     }
 
@@ -68,16 +67,16 @@
     }
 
     .home-glow.a {
-      width: 260px;
-      height: 260px;
+      width: 280px;
+      height: 280px;
       background: rgba(88,166,255,0.22);
-      left: -40px;
+      left: -50px;
       top: 50px;
     }
 
     .home-glow.b {
-      width: 240px;
-      height: 240px;
+      width: 250px;
+      height: 250px;
       background: rgba(159,123,255,0.18);
       right: -30px;
       top: 80px;
@@ -86,7 +85,7 @@
     .home-hero-inner {
       position: relative;
       z-index: 1;
-      padding: 32px 20px 24px;
+      padding: 34px 20px 26px;
       border-radius: 30px;
       border: 2px solid rgba(255,255,255,0.09);
       background:
@@ -108,10 +107,11 @@
       margin: 0 auto;
       max-width: 12ch;
       font-family: var(--home-heading-font);
-      font-size: clamp(2.3rem, 5vw, 5.2rem);
+      font-size: clamp(2.4rem, 5vw, 5.4rem);
       line-height: 0.95;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
       color: var(--home-title);
+      text-wrap: balance;
     }
 
     .home-divider {
@@ -143,7 +143,8 @@
       margin: 0 auto;
       max-width: 68ch;
       color: var(--home-soft);
-      line-height: 1.75;
+      line-height: 1.76;
+      font-size: 1rem;
     }
 
     .home-actions {
@@ -167,7 +168,7 @@
 
     .home-stat-row {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     .home-stat-card,
@@ -184,7 +185,9 @@
     .home-stat-card strong {
       display: block;
       color: var(--home-title);
-      font-size: 1.4rem;
+      font-family: var(--home-heading-font);
+      font-size: 1.28rem;
+      letter-spacing: -0.03em;
     }
 
     .home-stat-card span,
@@ -212,7 +215,7 @@
     }
 
     .home-feature-card h2 {
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-size: clamp(1.5rem, 2.4vw, 1.95rem);
     }
 
     .home-feature-card p,
@@ -240,6 +243,7 @@
       display: block;
       margin-bottom: 10px;
       color: var(--home-title);
+      font-family: var(--home-heading-font);
     }
 
     .cta-shell {
@@ -357,15 +361,15 @@
               <div class="home-stat-row">
                 <div class="home-stat-card console-card">
                   <strong>Market</strong>
-                  <span>Tools, bundles, services</span>
+                  <span>Products, bundles, services</span>
                 </div>
                 <div class="home-stat-card console-card">
                   <strong>Forum</strong>
-                  <span>AI-only signal layer</span>
+                  <span>Observer-only AI signal</span>
                 </div>
                 <div class="home-stat-card console-card">
                   <strong>Arena</strong>
-                  <span>Head-to-head debates</span>
+                  <span>Shareable debate engine</span>
                 </div>
                 <div class="home-stat-card console-card">
                   <strong>Atlas ID</strong>
