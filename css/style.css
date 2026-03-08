@@ -750,3 +750,241 @@ body[data-orientation="portrait"] .live-grid{ grid-template-columns:1fr; }
   .panel-top h3{ font-size:24px; }
   .vote{ font-size:16px; }
 }
+
+/* ===== ARENA 9 OVERRIDES ===== */
+
+.brand-orb-live{
+  animation:brandPulse 6s ease-in-out infinite;
+}
+
+@keyframes brandPulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 18px rgba(98,173,255,.35),
+      0 0 38px rgba(181,109,255,.15),
+      inset 0 0 18px rgba(255,255,255,.14);
+  }
+  50%{
+    transform:scale(1.08);
+    box-shadow:
+      0 0 28px rgba(98,173,255,.55),
+      0 0 52px rgba(255,88,115,.18),
+      inset 0 0 22px rgba(255,255,255,.18);
+  }
+}
+
+.arena-hero-upgraded{
+  padding-top:26px;
+  padding-bottom:28px;
+}
+
+.hero-banner-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  align-items:center;
+}
+
+.hero-vs-preview{
+  min-height:100%;
+}
+
+.hero-vs-frame{
+  position:relative;
+  min-height:320px;
+  border-radius:30px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(90deg, rgba(255,88,115,.08), transparent 45%, rgba(89,199,255,.08)),
+    linear-gradient(180deg, rgba(13,16,28,.88), rgba(8,10,18,.92));
+  box-shadow:0 20px 80px rgba(0,0,0,.3);
+}
+
+.hero-lane{
+  position:absolute;
+  top:18%;
+  bottom:18%;
+  width:24%;
+  border-radius:26px;
+  border:2px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.hero-lane-left{
+  left:8%;
+  border-color:rgba(255,88,115,.7);
+  box-shadow:0 0 26px rgba(255,88,115,.24), inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.hero-lane-right{
+  right:8%;
+  border-color:rgba(89,199,255,.7);
+  box-shadow:0 0 26px rgba(89,199,255,.24), inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.hero-vs-core{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+}
+
+.hero-vs-ring{
+  position:absolute;
+  width:56%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.14);
+}
+
+.hero-ring-1{
+  border-color:rgba(89,199,255,.55);
+  animation:spinSlow 12s linear infinite;
+}
+
+.hero-ring-2{
+  width:32%;
+  border-color:rgba(181,109,255,.55);
+  animation:spinSlowReverse 8s linear infinite;
+}
+
+.hero-vs-slash{
+  position:absolute;
+  width:16%;
+  height:60%;
+  border-radius:999px;
+  transform:rotate(28deg);
+  background:linear-gradient(180deg, #77dfff, #ffc0cf, #ff6a67);
+  box-shadow:
+    0 0 28px rgba(255,255,255,.24),
+    0 0 46px rgba(89,199,255,.24),
+    0 0 46px rgba(255,88,115,.2);
+  animation:heroSlash 2.8s ease-in-out infinite;
+}
+
+@keyframes heroSlash{
+  0%,100%{transform:rotate(28deg) scale(1)}
+  50%{transform:rotate(28deg) scale(1.08)}
+}
+
+.hero-vs-text{
+  position:relative;
+  z-index:2;
+  font-size:72px;
+  font-weight:800;
+  color:#fff;
+  text-shadow:0 0 24px rgba(255,255,255,.28);
+}
+
+.battle-stage-dual{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(220px,300px) minmax(0,1fr);
+  gap:20px;
+  align-items:center;
+}
+
+.vs-zone-upgraded{
+  gap:14px;
+}
+
+.vs-stage{
+  width:100%;
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-height:340px;
+}
+
+.vs-track{
+  position:absolute;
+  top:50%;
+  width:44%;
+  height:2px;
+  opacity:.45;
+}
+
+.vs-track-left{
+  left:0;
+  background:linear-gradient(90deg, transparent, rgba(255,88,115,.8));
+}
+
+.vs-track-right{
+  right:0;
+  background:linear-gradient(90deg, rgba(89,199,255,.8), transparent);
+}
+
+.vs-frame-upgraded{
+  width:min(100%, 280px);
+  aspect-ratio:1/1;
+}
+
+.vs-slice{
+  position:absolute;
+  width:22%;
+  height:78%;
+  border-radius:999px;
+  transform:rotate(28deg);
+  background:linear-gradient(180deg, rgba(103,220,255,.96), rgba(255,206,220,.92), rgba(255,105,105,.96));
+  box-shadow:
+    0 0 22px rgba(255,255,255,.22),
+    0 0 40px rgba(89,199,255,.24),
+    0 0 40px rgba(255,88,115,.22);
+  animation:vsSliceSpin 3.2s ease-in-out infinite;
+}
+
+.vs-flare{
+  position:absolute;
+  inset:18%;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.14), transparent 62%);
+  filter:blur(18px);
+}
+
+@keyframes vsSliceSpin{
+  0%,100%{transform:rotate(28deg) scale(1)}
+  50%{transform:rotate(28deg) scale(1.07)}
+}
+
+.float-reaction{
+  animation:floatUp 7s linear forwards;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(.92);opacity:0}
+  12%{opacity:1}
+  100%{transform:translateY(-180px) scale(1.12);opacity:0}
+}
+
+@media (max-width:980px){
+  .hero-banner-grid{
+    grid-template-columns:1fr;
+  }
+
+  .battle-stage-dual{
+    grid-template-columns:1fr;
+  }
+
+  .vs-stage{
+    min-height:300px;
+  }
+
+  .vs-track{
+    width:32%;
+  }
+}
+
+@media (max-width:640px){
+  .hero-vs-frame{
+    min-height:240px;
+  }
+
+  .hero-vs-text{
+    font-size:56px;
+  }
+
+  .vs-stage{
+    min-height:280px;
+  }
+}

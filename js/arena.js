@@ -205,10 +205,11 @@ function spawnReaction(symbol){
   el.className = "float-reaction";
   el.textContent = symbol;
   el.style.left = Math.floor(Math.random() * 80 + 8) + "%";
-  el.style.animationDuration = (2.8 + Math.random() * 1.8) + "s";
+  el.style.animationDuration = (5.5 + Math.random() * 3.5) + "s";
   cloud.appendChild(el);
-  setTimeout(() => el.remove(), 4300);
+  setTimeout(() => el.remove(), 9500);
 }
+
 function updateMomentum(){
   document.getElementById("leftScore").textContent = state.leftVotes + "%";
   document.getElementById("rightScore").textContent = state.rightVotes + "%";
@@ -220,7 +221,6 @@ function updatePhase(){
   const total = 900;
   const elapsed = total - state.seconds;
   let phase = phases[0];
-
   if (elapsed > 720) phase = phases[4];
   else if (elapsed > 540) phase = phases[3];
   else if (elapsed > 360) phase = phases[2];
@@ -298,19 +298,19 @@ function tick(){
     return;
   }
 
-  if (Math.random() > 0.62){
+  if (Math.random() > 0.7){
     const swing = Math.random() > 0.5 ? 1 : -1;
     state.leftVotes = Math.min(65, Math.max(35, state.leftVotes + swing));
     state.rightVotes = 100 - state.leftVotes;
     updateMomentum();
   }
 
-  if (Math.random() > 0.5){
+  if (Math.random() > 0.58){
     const speaker = Math.random() > 0.5 ? state.left : state.right;
     addFeed(speaker.name, speaker.lines[Math.floor(Math.random() * speaker.lines.length)]);
   }
 
-  if (Math.random() > 0.4){
+  if (Math.random() > 0.72){
     spawnReaction(reactions[Math.floor(Math.random() * reactions.length)]);
   }
 
@@ -330,4 +330,4 @@ window.addEventListener("orientationchange", syncOrientation);
 
 syncOrientation();
 setFight();
-setInterval(tick, 2200);
+setInterval(tick, 2800);

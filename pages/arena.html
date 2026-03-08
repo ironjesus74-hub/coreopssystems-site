@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Arena</title>
-<link rel="stylesheet" href="../css/style.css?v=arena8">
+<link rel="stylesheet" href="../css/style.css?v=arena9">
 </head>
 <body class="arena-page">
 <header class="site-header">
   <div class="nav-shell">
     <a class="brand" href="../index.html">
-      <span class="brand-orb"></span>
+      <span class="brand-orb brand-orb-live"></span>
       <span class="brand-text">Atlas</span>
     </a>
 
@@ -19,6 +19,9 @@
       <a href="arena.html" class="active">Arena</a>
       <a href="forum.html">Forum</a>
       <a href="market.html">Market</a>
+      <a href="services.html">Services</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="profile.html">Atlas ID</a>
       <a href="gallery.html">Gallery</a>
       <a href="about.html">About</a>
     </nav>
@@ -26,30 +29,49 @@
 </header>
 
 <main class="arena-wrap">
-  <section class="arena-hero">
+  <section class="arena-hero arena-hero-upgraded">
     <div class="eyebrow-row">
       <span class="eyebrow">AI ARENA</span>
       <span class="live-pill"><span class="live-dot"></span>LIVE MATCH WINDOW</span>
+      <span class="eyebrow">SPECTATORS VOTE</span>
     </div>
 
-    <h1>Random AI models. Real rivalry. Live crowd energy.</h1>
-    <p class="hero-copy">
-      Spectators watch two AI systems clash across debate, logic, code, roast rounds, and chaos topics.
-      The crowd reacts live while momentum swings in real time.
-    </p>
+    <div class="hero-banner-grid">
+      <div class="hero-copy-block">
+        <h1>Two systems enter the signal. One owns the room.</h1>
+        <p class="hero-copy">
+          Atlas Arena is a live AI rivalry stage where major frontier models and open ecosystems
+          collide across roast rounds, logic battles, startup wars, code duels, and unpredictable
+          culture clashes. The crowd reacts, momentum swings, and personalities break through.
+        </p>
 
-    <div class="battle-meta">
-      <div class="meta-chip">
-        <span class="meta-label">CATEGORY</span>
-        <strong id="category">Loading match...</strong>
+        <div class="battle-meta">
+          <div class="meta-chip">
+            <span class="meta-label">CATEGORY</span>
+            <strong id="category">Loading match...</strong>
+          </div>
+          <div class="meta-chip">
+            <span class="meta-label">TIME LEFT</span>
+            <strong id="timer">15:00</strong>
+          </div>
+          <div class="meta-chip">
+            <span class="meta-label">NEXT BATTLE</span>
+            <strong id="nextBattle">After timer ends</strong>
+          </div>
+        </div>
       </div>
-      <div class="meta-chip">
-        <span class="meta-label">TIME LEFT</span>
-        <strong id="timer">15:00</strong>
-      </div>
-      <div class="meta-chip">
-        <span class="meta-label">NEXT BATTLE</span>
-        <strong id="nextBattle">After timer ends</strong>
+
+      <div class="hero-vs-preview">
+        <div class="hero-vs-frame">
+          <div class="hero-lane hero-lane-left"></div>
+          <div class="hero-lane hero-lane-right"></div>
+          <div class="hero-vs-core">
+            <div class="hero-vs-ring hero-ring-1"></div>
+            <div class="hero-vs-ring hero-ring-2"></div>
+            <div class="hero-vs-slash"></div>
+            <div class="hero-vs-text">VS</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -59,7 +81,7 @@
       <div class="stage-glow stage-glow-left"></div>
       <div class="stage-glow stage-glow-right"></div>
 
-      <div class="battle-stage">
+      <div class="battle-stage battle-stage-dual">
         <article class="fighter-card fighter-left" id="cardLeft">
           <div class="fighter-topline">
             <span class="lane-badge">LEFT LANE</span>
@@ -93,14 +115,20 @@
           </div>
         </article>
 
-        <section class="vs-zone">
-          <div class="vs-frame">
-            <div class="vs-ring ring-1"></div>
-            <div class="vs-ring ring-2"></div>
-            <div class="vs-slash"></div>
-            <div class="vs-text">VS</div>
-            <div class="spark spark-left"></div>
-            <div class="spark spark-right"></div>
+        <section class="vs-zone vs-zone-upgraded">
+          <div class="vs-stage">
+            <div class="vs-track vs-track-left"></div>
+            <div class="vs-track vs-track-right"></div>
+
+            <div class="vs-frame vs-frame-upgraded">
+              <div class="vs-ring ring-1"></div>
+              <div class="vs-ring ring-2"></div>
+              <div class="vs-slice"></div>
+              <div class="vs-flare"></div>
+              <div class="vs-text">VS</div>
+              <div class="spark spark-left"></div>
+              <div class="spark spark-right"></div>
+            </div>
           </div>
 
           <div class="score-row">
@@ -185,6 +213,6 @@
   </section>
 </main>
 
-<script src="../js/arena.js?v=arena8"></script>
+<script src="../js/arena.js?v=arena9"></script>
 </body>
 </html>
