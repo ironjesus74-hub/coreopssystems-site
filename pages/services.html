@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas10">
+<title>Atlas Services — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas18">
 </head>
 <body>
-<div class="site-shell">
+<div class="site-shell services-live-page">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
         <span class="brand-orb brand-orb-live"></span>
         <span>Atlas</span>
       </a>
+
       <nav class="nav-links">
         <a href="../index.html">Home</a>
         <a href="arena.html">Arena</a>
         <a href="forum.html">Signal Forum</a>
         <a href="market.html">Market</a>
-        <a href="services.html">Services</a>
+        <a href="services.html" class="active">Services</a>
         <a href="jobs.html">Jobs</a>
         <a href="profile.html">Atlas ID</a>
         <a href="faq.html">FAQ</a>
@@ -30,11 +31,140 @@
   </header>
 
   <main class="desktop-stage">
-    <section class="panel">
-      <h3>Services</h3>
-      <p class="hero-copy">This page is queued next. Arena foundation is now the primary build.</p>
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="servicesTicker">
+        <span>SERVICES LIVE</span>
+        <span>OPERATORS AVAILABLE</span>
+        <span>AUTOMATION / AUDITS / BUILDS</span>
+        <span>BUILT DIFFERENT</span>
+        <span>CUSTOM WORK OPEN</span>
+        <span>SERVICES LIVE</span>
+        <span>OPERATORS AVAILABLE</span>
+      </div>
+    </section>
+
+    <section class="services-hero">
+      <div class="services-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS SERVICES</span>
+          <span class="badge-pill"><span class="live-dot"></span>OPEN FOR WORK</span>
+          <span class="badge-pill">CUSTOM BUILDS / OPERATOR HELP</span>
+        </div>
+
+        <h1>Need real output, not vague advice? Hire sharp operators.</h1>
+        <p>
+          Atlas Services is where automation builders, prompt operators, integration specialists,
+          workflow designers, and AI infrastructure freelancers offer real work. Custom systems,
+          audits, wrappers, dashboards, process cleanup, and deployment help all live here.
+        </p>
+
+        <div class="services-hero-stats">
+          <div class="forum-stat">
+            <span>OPEN SERVICES</span>
+            <strong id="servicesOpenCount">26</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACTIVE OPERATORS</span>
+            <strong id="operatorsCount">41</strong>
+          </div>
+          <div class="forum-stat">
+            <span>AVG RESPONSE</span>
+            <strong id="avgResponseCount">2.4h</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-hero-visual">
+        <div class="services-glow services-glow-a"></div>
+        <div class="services-glow services-glow-b"></div>
+
+        <div class="service-hero-card service-hero-a">
+          <span class="hero-card-tag">AUTOMATION</span>
+          <strong>“I’ll turn your manual signal triage into a clean routed system.”</strong>
+        </div>
+
+        <div class="service-hero-card service-hero-b">
+          <span class="hero-card-tag">AUDIT</span>
+          <strong>“Prompt ops cleanup, handoff structure, and token waste detection.”</strong>
+        </div>
+
+        <div class="service-hero-card service-hero-c">
+          <span class="hero-card-tag">INTEGRATION</span>
+          <strong>“OpenRouter, APIs, dashboards, workflows, and sane fallback logic.”</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-layout">
+      <aside class="services-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Browse Services</h3>
+          <span class="panel-status-live">OPEN</span>
+        </div>
+
+        <div class="channel-list" id="servicesCategoryList">
+          <button class="channel-btn active" data-service-category="All">All Services</button>
+          <button class="channel-btn" data-service-category="Automation">Automation</button>
+          <button class="channel-btn" data-service-category="Prompt Ops">Prompt Ops</button>
+          <button class="channel-btn" data-service-category="Integrations">Integrations</button>
+          <button class="channel-btn" data-service-category="Dashboards">Dashboards</button>
+          <button class="channel-btn" data-service-category="Audits">Audits</button>
+          <button class="channel-btn" data-service-category="Research Ops">Research Ops</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Verified Operators</span>
+            <strong id="verifiedOperators">14</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Rush Slots</span>
+            <strong id="rushSlots">5</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Client Mood</span>
+            <strong id="clientMood">Focused</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="services-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="servicesSearch" type="text" placeholder="Search operators, services, or tags..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">CUSTOM WORK</span>
+            <span class="top-pill">DESKTOP-FIRST</span>
+            <span class="top-pill" id="servicesStatusPill">REQUESTS ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="services-feature-grid">
+          <section class="panel service-feature-panel">
+            <div class="panel-head-inline">
+              <h3>Featured Operator</h3>
+              <span class="panel-status-live">TRUSTED</span>
+            </div>
+            <div class="featured-service" id="featuredService"></div>
+          </section>
+
+          <section class="panel service-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Requests</h3>
+              <span class="panel-status-live">MOVING</span>
+            </div>
+            <div class="service-activity-feed" id="serviceActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+        <div class="forum-loading" id="servicesLoading">Loading more services...</div>
+      </section>
     </section>
   </main>
 </div>
+
+<script src="../js/services.js?v=atlas18"></script>
 </body>
 </html>
