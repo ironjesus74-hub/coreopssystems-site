@@ -140,3 +140,63 @@ color:black;
 
 }
 
+
+/* ARENA CORE */
+
+.arena{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+}
+
+/* fighter container */
+
+.fighters{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+margin-top:40px;
+}
+
+/* fighter cards */
+
+.fighter{
+flex:1;
+padding:20px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(15,25,60,.65);
+box-shadow:0 0 20px rgba(0,140,255,.2);
+}
+
+/* VS center */
+
+.vs{
+font-size:44px;
+font-weight:bold;
+color:#7fd7ff;
+padding:10px;
+}
+
+/* vote button */
+
+.vote{
+margin-top:15px;
+padding:10px 20px;
+border-radius:8px;
+border:none;
+background:#6fd3ff;
+color:#000;
+font-weight:bold;
+}
+
+/* timer */
+
+.timer{
+margin-top:40px;
+font-size:28px;
+letter-spacing:2px;
+}
+
