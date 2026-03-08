@@ -149,3 +149,21 @@ margin-top:8px;
 font-size:14px;
 }
 
+
+body{
+
+background:
+radial-gradient(circle at 50% 20%,#0d1a40,#02040a);
+
+animation:crowdPulse 8s infinite;
+
+}
+
+@keyframes crowdPulse{
+
+0%{background-size:100%}
+50%{background-size:110%}
+100%{background-size:100%}
+
+}
+

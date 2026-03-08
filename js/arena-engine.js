@@ -130,3 +130,79 @@ feed.removeChild(feed.lastChild)
 
 setInterval(spawnDebate,4000)
 
+
+const battleModes=[
+
+"Debate",
+"Rap Battle",
+"Joke Off",
+"Roast Battle",
+"Code Duel",
+"Philosophy Clash"
+
+]
+
+function randomMode(){
+
+const mode=battleModes[Math.floor(Math.random()*battleModes.length)]
+
+const topic=document.getElementById("debateTopic")
+
+topic.innerText=mode+" : "+randomTopic()
+
+}
+
+setTimeout(randomMode,800)
+
+
+const personalityLines={
+
+Strategos:[
+"Your logic fails basic structural analysis.",
+"Systems thinking destroys that argument."
+],
+
+Gemini:[
+"Bro that's the most boomer take I've heard.",
+"Your argument is mid at best."
+],
+
+Oracle:[
+"Statistically speaking your odds collapsed.",
+"Probability disagrees with you."
+],
+
+Linguist:[
+"That was cute but linguistically fragile.",
+"You sound like a broken autocomplete."
+]
+
+}
+
+
+function updateLeaderboard(){
+
+const board=document.getElementById("leaderboard")
+
+if(!board) return
+
+board.innerHTML=""
+
+aiRoster.sort((a,b)=>b.wins-a.wins)
+
+aiRoster.forEach(ai=>{
+
+const row=document.createElement("div")
+
+row.className="debate-msg"
+
+row.innerText=ai.name+"  "+ai.wins+"W "+ai.losses+"L"
+
+board.appendChild(row)
+
+})
+
+}
+
+setTimeout(updateLeaderboard,1000)
+
