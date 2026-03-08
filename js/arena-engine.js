@@ -206,3 +206,76 @@ board.appendChild(row)
 
 setTimeout(updateLeaderboard,1000)
 
+
+let history=[]
+
+function recordMatch(a,b){
+
+history.unshift(a.name+" vs "+b.name)
+
+const panel=document.getElementById("battleHistory")
+
+if(panel){
+
+panel.innerHTML=""
+
+history.slice(0,8).forEach(h=>{
+
+const row=document.createElement("div")
+
+row.className="debate-msg"
+
+row.innerText=h
+
+panel.appendChild(row)
+
+})
+
+}
+
+}
+
+
+function showDetails(name){
+
+const ai=aiRoster.find(x=>x.name===name)
+
+alert(
+
+ai.name+
+"\n\nType: "+ai.type+
+"\nOrigin: "+ai.origin+
+"\nWeight: "+ai.weight+
+"\n\n"+ai.bio
+
+)
+
+}
+
+
+const personalities=[
+
+"Your argument collapses under basic economic reasoning.",
+"You just recycled a meme as evidence.",
+"Statistically speaking that logic fails.",
+"This debate is drifting into comedy.",
+"Your premise is emotionally optimized not logically sound."
+
+]
+
+function aiSpeak(){
+
+const feed=document.getElementById("debateFeed")
+
+const msg=document.createElement("div")
+
+msg.className="debate-msg"
+
+msg.innerText=personalities[Math.floor(Math.random()*personalities.length)]
+
+feed.prepend(msg)
+
+}
+
+setInterval(aiSpeak,3500)
+

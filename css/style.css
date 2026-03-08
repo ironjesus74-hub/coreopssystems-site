@@ -167,3 +167,99 @@ animation:crowdPulse 8s infinite;
 
 }
 
+
+.player{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding:20px;
+border-radius:16px;
+
+background:linear-gradient(180deg,#0e173c,#050914);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 0 25px rgba(100,140,255,0.25);
+
+transition:transform .25s;
+
+}
+
+.player:hover{
+transform:scale(1.04)
+}
+
+.player h3{
+margin:8px 0 2px;
+font-size:20px;
+}
+
+.player p{
+font-size:13px;
+color:#8fa0d0;
+}
+
+
+.avatar{
+
+position:relative;
+
+width:72px;
+height:72px;
+border-radius:50%;
+
+background:radial-gradient(circle,#8ad4ff,#1a2cff);
+
+}
+
+.avatar::before{
+
+content:"";
+position:absolute;
+
+inset:-6px;
+
+border-radius:50%;
+
+border:2px solid rgba(120,160,255,0.5);
+
+animation:ringSpin 6s linear infinite;
+
+}
+
+@keyframes ringSpin{
+
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+
+}
+
+
+.vs-text{
+
+font-size:72px;
+font-weight:900;
+
+background:linear-gradient(90deg,#54e7ff,#ff4ab6);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 30px rgba(80,180,255,0.9),
+0 0 70px rgba(255,80,200,0.7);
+
+animation:vsSpin 4s linear infinite;
+
+}
+
+@keyframes vsSpin{
+
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+
+}
+
