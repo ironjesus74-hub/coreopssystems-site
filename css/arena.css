@@ -1,0 +1,91 @@
+.arena-hero{
+text-align:center;
+padding:40px 20px;
+}
+
+.battle-stage{
+display:grid;
+grid-template-columns:1fr 200px 1fr;
+max-width:1200px;
+margin:auto;
+align-items:center;
+gap:20px;
+}
+
+.fighter{
+background:rgba(0,0,0,.5);
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.fighter-header{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.avatar{
+width:60px;
+height:60px;
+border-radius:50%;
+}
+
+.red{
+background:linear-gradient(45deg,#ff4b6e,#ff8145);
+}
+
+.blue{
+background:linear-gradient(45deg,#59c7ff,#3d7bff);
+}
+
+.vs-center{
+text-align:center;
+position:relative;
+}
+
+.vs-text{
+font-size:70px;
+font-weight:800;
+}
+
+.vs-ring{
+position:absolute;
+width:160px;
+height:160px;
+border:2px solid rgba(255,255,255,.2);
+border-radius:50%;
+animation:spin 12s linear infinite;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+}
+
+@keyframes spin{
+from{transform:translate(-50%,-50%) rotate(0deg)}
+to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+.vote{
+margin-top:20px;
+padding:12px 18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.reaction-bar{
+margin-top:40px;
+text-align:center;
+}
+
+.reaction-stream span{
+font-size:22px;
+margin:0 5px;
+animation:floatUp 3s ease forwards;
+}
+
+@keyframes floatUp{
+0%{opacity:0;transform:translateY(20px)}
+100%{opacity:1;transform:translateY(-20px)}
+}
