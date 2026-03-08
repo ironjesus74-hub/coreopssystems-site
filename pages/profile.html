@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas10">
+<title>Atlas ID — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas20">
 </head>
 <body>
-<div class="site-shell">
+<div class="site-shell profile-live-page">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
         <span class="brand-orb brand-orb-live"></span>
         <span>Atlas</span>
       </a>
+
       <nav class="nav-links">
         <a href="../index.html">Home</a>
         <a href="arena.html">Arena</a>
@@ -21,7 +22,7 @@
         <a href="market.html">Market</a>
         <a href="services.html">Services</a>
         <a href="jobs.html">Jobs</a>
-        <a href="profile.html">Atlas ID</a>
+        <a href="profile.html" class="active">Atlas ID</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
         <a href="about.html">About</a>
@@ -30,11 +31,156 @@
   </header>
 
   <main class="desktop-stage">
-    <section class="panel">
-      <h3>Profile</h3>
-      <p class="hero-copy">This page is queued next. Arena foundation is now the primary build.</p>
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="profileTicker">
+        <span>ATLAS ID LIVE</span>
+        <span>MEMBERSHIP / ACCESS / TRUST</span>
+        <span>PROFILE SIGNAL ACTIVE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>BADGES / PERKS / HISTORY</span>
+        <span>ATLAS ID LIVE</span>
+        <span>PROFILE SIGNAL ACTIVE</span>
+      </div>
+    </section>
+
+    <section class="profile-hero">
+      <div class="profile-hero-main">
+        <div class="profile-identity-card">
+          <div class="profile-avatar-shell">
+            <div class="profile-avatar-ring ring-a"></div>
+            <div class="profile-avatar-ring ring-b"></div>
+            <div class="profile-avatar-core">A</div>
+          </div>
+
+          <div class="profile-main-copy">
+            <div class="hero-badges">
+              <span class="badge-pill">ATLAS ID</span>
+              <span class="badge-pill"><span class="live-dot"></span>PROFILE ACTIVE</span>
+              <span class="badge-pill">PERKS UNLOCKED</span>
+            </div>
+
+            <h1>Atlas identity is your signal, access, and reputation layer.</h1>
+            <p>
+              Atlas ID ties your activity across the Arena, Signal Forum, Market, Services, and Jobs
+              into one persistent profile. It tracks your trust, access level, watched tools, saved operators,
+              community presence, and future seller privileges.
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-stat-grid">
+          <div class="forum-stat">
+            <span>TRUST SCORE</span>
+            <strong id="profileTrust">94%</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACCESS TIER</span>
+            <strong id="profileTier">Signal+</strong>
+          </div>
+          <div class="forum-stat">
+            <span>PERKS ACTIVE</span>
+            <strong id="profilePerks">7</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-hero-side">
+        <div class="profile-side-card">
+          <span class="hero-card-tag">STATUS</span>
+          <strong>Watching Arena matches, saving tools, tracking operators, and building reputation.</strong>
+        </div>
+
+        <div class="profile-side-card">
+          <span class="hero-card-tag">NEXT UNLOCK</span>
+          <strong>Seller discounts, boosted trust visuals, early access tools, and premium profile styling.</strong>
+        </div>
+
+        <div class="profile-side-card">
+          <span class="hero-card-tag">PROFILE SIGNAL</span>
+          <strong id="profileSignalText">Strong visibility across the Atlas ecosystem.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-layout">
+      <aside class="profile-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Profile Layer</h3>
+          <span class="panel-status-live">ACTIVE</span>
+        </div>
+
+        <div class="profile-badge-stack">
+          <div class="profile-badge-card">
+            <span>Member Tier</span>
+            <strong id="memberTierCard">Signal+</strong>
+          </div>
+          <div class="profile-badge-card">
+            <span>Seller Status</span>
+            <strong id="sellerStatusCard">Pending</strong>
+          </div>
+          <div class="profile-badge-card">
+            <span>Forum Presence</span>
+            <strong id="forumPresenceCard">Visible</strong>
+          </div>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Saved Tools</span>
+            <strong id="savedToolsCount">12</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Watched Matches</span>
+            <strong id="watchedMatchesCount">39</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Service Follows</span>
+            <strong id="serviceFollowsCount">8</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="profile-main">
+        <div class="profile-top-grid">
+          <section class="panel profile-perks-panel">
+            <div class="panel-head-inline">
+              <h3>Unlocked Perks</h3>
+              <span class="panel-status-live">STACKED</span>
+            </div>
+            <div class="profile-perks-list" id="profilePerksList"></div>
+          </section>
+
+          <section class="panel profile-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Activity</h3>
+              <span class="panel-status-live">TRACKED</span>
+            </div>
+            <div class="profile-activity-feed" id="profileActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="profile-content-grid">
+          <section class="panel profile-saved-panel">
+            <div class="panel-head-inline">
+              <h3>Saved Tools & Services</h3>
+              <span class="panel-status-live">WATCHLIST</span>
+            </div>
+            <div class="profile-saved-grid" id="profileSavedGrid"></div>
+          </section>
+
+          <section class="panel profile-history-panel">
+            <div class="panel-head-inline">
+              <h3>Presence History</h3>
+              <span class="panel-status-live">TIMELINE</span>
+            </div>
+            <div class="profile-history-list" id="profileHistoryList"></div>
+          </section>
+        </div>
+      </section>
     </section>
   </main>
 </div>
+
+<script src="../js/profile.js?v=atlas20"></script>
 </body>
 </html>
