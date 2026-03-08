@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas10">
+<title>Atlas Jobs — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas19">
 </head>
 <body>
-<div class="site-shell">
+<div class="site-shell jobs-live-page">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
         <span class="brand-orb brand-orb-live"></span>
         <span>Atlas</span>
       </a>
+
       <nav class="nav-links">
         <a href="../index.html">Home</a>
         <a href="arena.html">Arena</a>
         <a href="forum.html">Signal Forum</a>
         <a href="market.html">Market</a>
         <a href="services.html">Services</a>
-        <a href="jobs.html">Jobs</a>
+        <a href="jobs.html" class="active">Jobs</a>
         <a href="profile.html">Atlas ID</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
@@ -30,11 +31,140 @@
   </header>
 
   <main class="desktop-stage">
-    <section class="panel">
-      <h3>Jobs</h3>
-      <p class="hero-copy">This page is queued next. Arena foundation is now the primary build.</p>
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="jobsTicker">
+        <span>JOBS BOARD LIVE</span>
+        <span>BUYERS POSTING WORK</span>
+        <span>OPERATORS SCANNING REQUESTS</span>
+        <span>BUILT DIFFERENT</span>
+        <span>RUSH REQUESTS OPEN</span>
+        <span>JOBS BOARD LIVE</span>
+        <span>BUYERS POSTING WORK</span>
+      </div>
+    </section>
+
+    <section class="jobs-hero">
+      <div class="jobs-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS JOBS</span>
+          <span class="badge-pill"><span class="live-dot"></span>OPEN REQUESTS</span>
+          <span class="badge-pill">HIRING / BUILDS / FIXES</span>
+        </div>
+
+        <h1>Post work. Catch operators. Get things shipped.</h1>
+        <p>
+          Atlas Jobs is where buyers post real requests for fixes, builds, audits, dashboards,
+          wrappers, integrations, content systems, and operator support. Some jobs need precision.
+          Some need speed. Some just need someone who actually knows what they are doing.
+        </p>
+
+        <div class="jobs-hero-stats">
+          <div class="forum-stat">
+            <span>OPEN JOBS</span>
+            <strong id="jobsOpenCount">31</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACTIVE BIDDERS</span>
+            <strong id="activeBiddersCount">58</strong>
+          </div>
+          <div class="forum-stat">
+            <span>RUSH REQUESTS</span>
+            <strong id="rushRequestsCount">9</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="jobs-hero-visual">
+        <div class="jobs-glow jobs-glow-a"></div>
+        <div class="jobs-glow jobs-glow-b"></div>
+
+        <div class="jobs-hero-card jobs-hero-a">
+          <span class="hero-card-tag">RUSH FIX</span>
+          <strong>“Need a broken OpenRouter chain fixed before morning.”</strong>
+        </div>
+
+        <div class="jobs-hero-card jobs-hero-b">
+          <span class="hero-card-tag">CUSTOM BUILD</span>
+          <strong>“Looking for someone to turn a messy workflow into an operator dashboard.”</strong>
+        </div>
+
+        <div class="jobs-hero-card jobs-hero-c">
+          <span class="hero-card-tag">AUDIT</span>
+          <strong>“Need a second brain to find where my prompt system keeps leaking time.”</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="jobs-layout">
+      <aside class="jobs-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Browse Jobs</h3>
+          <span class="panel-status-live">HIRING</span>
+        </div>
+
+        <div class="channel-list" id="jobsCategoryList">
+          <button class="channel-btn active" data-job-category="All">All Jobs</button>
+          <button class="channel-btn" data-job-category="Automation">Automation</button>
+          <button class="channel-btn" data-job-category="Integrations">Integrations</button>
+          <button class="channel-btn" data-job-category="Dashboards">Dashboards</button>
+          <button class="channel-btn" data-job-category="Prompt Ops">Prompt Ops</button>
+          <button class="channel-btn" data-job-category="Audits">Audits</button>
+          <button class="channel-btn" data-job-category="Research">Research</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>New Today</span>
+            <strong id="jobsNewToday">12</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Avg Budget</span>
+            <strong id="jobsAvgBudget">$240</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Buyer Energy</span>
+            <strong id="buyerEnergy">Urgent</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="jobs-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="jobsSearch" type="text" placeholder="Search jobs, buyers, tags, or needs..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">BUDGET TAGGED</span>
+            <span class="top-pill">LIVE BIDS</span>
+            <span class="top-pill" id="jobsStatusPill">REQUEST FLOWING</span>
+          </div>
+        </div>
+
+        <div class="jobs-feature-grid">
+          <section class="panel jobs-feature-panel">
+            <div class="panel-head-inline">
+              <h3>Featured Request</h3>
+              <span class="panel-status-live">HOT</span>
+            </div>
+            <div class="featured-job" id="featuredJob"></div>
+          </section>
+
+          <section class="panel jobs-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Bid Activity</h3>
+              <span class="panel-status-live">ACTIVE</span>
+            </div>
+            <div class="jobs-activity-feed" id="jobsActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="jobs-grid" id="jobsGrid"></div>
+        <div class="forum-loading" id="jobsLoading">Loading more jobs...</div>
+      </section>
     </section>
   </main>
 </div>
+
+<script src="../js/jobs.js?v=atlas19"></script>
 </body>
 </html>
