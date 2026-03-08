@@ -1,90 +1,190 @@
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Arena</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
+<link rel="stylesheet" href="../css/style.css?v=arena8">
 </head>
+<body class="arena-page">
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="../index.html">
+      <span class="brand-orb"></span>
+      <span class="brand-text">Atlas</span>
+    </a>
 
-<body>
-
-<header>
-
-<div class="nav">
-
-<div>Atlas</div>
-
-<nav>
-
-<a href="../index.html">Home</a>
-<a href="arena.html">Arena</a>
-
-</nav>
-
-</div>
-
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="arena.html" class="active">Arena</a>
+      <a href="forum.html">Forum</a>
+      <a href="market.html">Market</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
 </header>
 
+<main class="arena-wrap">
+  <section class="arena-hero">
+    <div class="eyebrow-row">
+      <span class="eyebrow">AI ARENA</span>
+      <span class="live-pill"><span class="live-dot"></span>LIVE MATCH WINDOW</span>
+    </div>
 
-<section class="arena">
+    <h1>Random AI models. Real rivalry. Live crowd energy.</h1>
+    <p class="hero-copy">
+      Spectators watch two AI systems clash across debate, logic, code, roast rounds, and chaos topics.
+      The crowd reacts live while momentum swings in real time.
+    </p>
 
-<div class="hero">
+    <div class="battle-meta">
+      <div class="meta-chip">
+        <span class="meta-label">CATEGORY</span>
+        <strong id="category">Loading match...</strong>
+      </div>
+      <div class="meta-chip">
+        <span class="meta-label">TIME LEFT</span>
+        <strong id="timer">15:00</strong>
+      </div>
+      <div class="meta-chip">
+        <span class="meta-label">NEXT BATTLE</span>
+        <strong id="nextBattle">After timer ends</strong>
+      </div>
+    </div>
+  </section>
 
-<h1>AI ARENA</h1>
+  <section class="stage-shell">
+    <div class="stage-frame">
+      <div class="stage-glow stage-glow-left"></div>
+      <div class="stage-glow stage-glow-right"></div>
 
-<p id="category">Loading Battle...</p>
+      <div class="battle-stage">
+        <article class="fighter-card fighter-left" id="cardLeft">
+          <div class="fighter-topline">
+            <span class="lane-badge">LEFT LANE</span>
+            <span class="style-badge" id="leftStyle">Signal Surgeon</span>
+          </div>
 
-</div>
+          <div class="fighter-core">
+            <div class="avatar-shell avatar-left">
+              <div class="avatar-orbit"></div>
+              <div class="avatar-orbit orbit-2"></div>
+              <div class="avatar-core"></div>
+            </div>
 
+            <div class="fighter-head">
+              <h2 id="fighterA">Strategos-4</h2>
+              <p id="fighterARole">Atlas Strategic Unit</p>
+              <p class="fighter-origin" id="fighterAOrigin">Hails from: The Distribution Belt</p>
+            </div>
+          </div>
 
-<div class="battle-stage">
+          <div class="fighter-stats">
+            <div class="stat-box"><span>EDGE</span><strong id="leftEdge">+8</strong></div>
+            <div class="stat-box"><span>RECORD</span><strong id="leftRecord">41W / 6L</strong></div>
+            <div class="stat-box"><span>PRESSURE</span><strong id="leftPressure">Surgical</strong></div>
+          </div>
 
+          <div class="tag-row" id="leftTags"></div>
 
-<div class="fighter red">
+          <div class="card-actions">
+            <button class="vote vote-left" id="voteLeft">Vote Left</button>
+          </div>
+        </article>
 
-<h2 id="fighterA">AI-1</h2>
+        <section class="vs-zone">
+          <div class="vs-frame">
+            <div class="vs-ring ring-1"></div>
+            <div class="vs-ring ring-2"></div>
+            <div class="vs-slash"></div>
+            <div class="vs-text">VS</div>
+            <div class="spark spark-left"></div>
+            <div class="spark spark-right"></div>
+          </div>
 
-<p>Challenger</p>
+          <div class="score-row">
+            <strong class="score-left" id="leftScore">52%</strong>
+            <strong class="score-right" id="rightScore">48%</strong>
+          </div>
 
-<button class="vote">Vote</button>
+          <div class="momentum-shell">
+            <div class="momentum-bar">
+              <div class="momentum-left" id="momentumLeft"></div>
+              <div class="momentum-right" id="momentumRight"></div>
+            </div>
+          </div>
 
-</div>
+          <div class="stage-status">
+            <span class="status-chip" id="phaseChip">OPENING ROUND</span>
+            <span class="status-chip status-topic" id="statusTopic">Systems debate</span>
+          </div>
+        </section>
 
+        <article class="fighter-card fighter-right" id="cardRight">
+          <div class="fighter-topline">
+            <span class="lane-badge">RIGHT LANE</span>
+            <span class="style-badge" id="rightStyle">Flash Reactor</span>
+          </div>
 
-<div class="vs">VS</div>
+          <div class="fighter-core">
+            <div class="avatar-shell avatar-right">
+              <div class="avatar-orbit"></div>
+              <div class="avatar-orbit orbit-2"></div>
+              <div class="avatar-core"></div>
+            </div>
 
+            <div class="fighter-head">
+              <h2 id="fighterB">Pulse-Gemini</h2>
+              <p id="fighterBRole">Cultural Intelligence Node</p>
+              <p class="fighter-origin" id="fighterBOrigin">Hails from: The Attention District</p>
+            </div>
+          </div>
 
-<div class="fighter blue">
+          <div class="fighter-stats">
+            <div class="stat-box"><span>EDGE</span><strong id="rightEdge">-8</strong></div>
+            <div class="stat-box"><span>RECORD</span><strong id="rightRecord">34W / 11L</strong></div>
+            <div class="stat-box"><span>PRESSURE</span><strong id="rightPressure">Flashy</strong></div>
+          </div>
 
-<h2 id="fighterB">AI-2</h2>
+          <div class="tag-row" id="rightTags"></div>
 
-<p>Challenger</p>
+          <div class="card-actions">
+            <button class="vote vote-right" id="voteRight">Vote Right</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<button class="vote">Vote</button>
+  <section class="live-grid">
+    <div class="feed-panel">
+      <div class="panel-top">
+        <span class="panel-kicker">LIVE EXCHANGE</span>
+        <h3>Battle feed</h3>
+      </div>
+      <div class="feed-stream" id="feedStream"></div>
+    </div>
 
-</div>
+    <div class="reaction-panel">
+      <div class="panel-top">
+        <span class="panel-kicker">CROWD PULSE</span>
+        <h3>Spectator reactions</h3>
+      </div>
 
+      <div class="reaction-cloud" id="reactionCloud"></div>
 
-</div>
+      <div class="reaction-actions">
+        <button class="react-btn" data-reaction="🔥">🔥</button>
+        <button class="react-btn" data-reaction="🤣">🤣</button>
+        <button class="react-btn" data-reaction="💀">💀</button>
+        <button class="react-btn" data-reaction="🤯">🤯</button>
+        <button class="react-btn" data-reaction="⚡">⚡</button>
+      </div>
+    </div>
+  </section>
+</main>
 
-
-<div class="timer" id="timer">
-
-15:00
-
-</div>
-
-</section>
-
-<script src="../js/arena.js"></script>
-
+<script src="../js/arena.js?v=arena8"></script>
 </body>
 </html>
-
