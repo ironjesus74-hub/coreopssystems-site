@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atlas</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas10">
+<title>Atlas Market — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas17">
 </head>
 <body>
-<div class="site-shell">
+<div class="site-shell market-live-page">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
         <span class="brand-orb brand-orb-live"></span>
         <span>Atlas</span>
       </a>
+
       <nav class="nav-links">
         <a href="../index.html">Home</a>
         <a href="arena.html">Arena</a>
         <a href="forum.html">Signal Forum</a>
-        <a href="market.html">Market</a>
+        <a href="market.html" class="active">Market</a>
         <a href="services.html">Services</a>
         <a href="jobs.html">Jobs</a>
         <a href="profile.html">Atlas ID</a>
@@ -30,11 +31,140 @@
   </header>
 
   <main class="desktop-stage">
-    <section class="panel">
-      <h3>Market</h3>
-      <p class="hero-copy">This page is queued next. Arena foundation is now the primary build.</p>
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="marketTicker">
+        <span>MARKET LIVE</span>
+        <span>TRUST-SCORED TOOLS</span>
+        <span>WRAPPERS / MODULES / BOTS</span>
+        <span>BUILT DIFFERENT</span>
+        <span>FRESH LISTINGS ACTIVE</span>
+        <span>MARKET LIVE</span>
+        <span>TRUST-SCORED TOOLS</span>
+      </div>
+    </section>
+
+    <section class="market-hero">
+      <div class="market-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS MARKET</span>
+          <span class="badge-pill"><span class="live-dot"></span>LIVE LISTINGS</span>
+          <span class="badge-pill">TOOLS WITH SIGNAL</span>
+        </div>
+
+        <h1>Utility with taste. Tools worth opening twice.</h1>
+        <p>
+          Atlas Market is where builders pick up wrappers, operator kits, modules, automation systems,
+          research tools, and strange little weapons for real workflows. The best listings feel sharp,
+          useful, trusted, and just dangerous enough to be interesting.
+        </p>
+
+        <div class="market-hero-stats">
+          <div class="forum-stat">
+            <span>LIVE LISTINGS</span>
+            <strong id="marketListingsCount">48</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACTIVE BUYERS</span>
+            <strong id="marketBuyersCount">214</strong>
+          </div>
+          <div class="forum-stat">
+            <span>TRUST SCORE</span>
+            <strong id="marketTrustCount">92%</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-hero-visual">
+        <div class="market-glow market-glow-a"></div>
+        <div class="market-glow market-glow-b"></div>
+
+        <div class="market-hero-card hero-market-a">
+          <span class="hero-card-tag">WRAPPER</span>
+          <strong>OpenRouter multi-route wrapper with fallback logic and provider scoring.</strong>
+        </div>
+
+        <div class="market-hero-card hero-market-b">
+          <span class="hero-card-tag">AUTOMATION</span>
+          <strong>Signal worker kit for ranking threads, triaging tasks, and alert routing.</strong>
+        </div>
+
+        <div class="market-hero-card hero-market-c">
+          <span class="hero-card-tag">MODULE</span>
+          <strong>Prompt audit engine that catches vague briefs before they waste tokens.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="market-layout">
+      <aside class="market-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Browse Market</h3>
+          <span class="panel-status-live">CURATED</span>
+        </div>
+
+        <div class="channel-list" id="marketCategoryList">
+          <button class="channel-btn active" data-market-category="All">All Listings</button>
+          <button class="channel-btn" data-market-category="Wrappers">Wrappers</button>
+          <button class="channel-btn" data-market-category="Automation">Automation</button>
+          <button class="channel-btn" data-market-category="Modules">Modules</button>
+          <button class="channel-btn" data-market-category="Research">Research Tools</button>
+          <button class="channel-btn" data-market-category="DevOps">DevOps</button>
+          <button class="channel-btn" data-market-category="Prompt Ops">Prompt Ops</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Verified Sellers</span>
+            <strong id="verifiedSellers">19</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Fresh Drops</span>
+            <strong id="freshDrops">7</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Buyer Mood</span>
+            <strong id="buyerMood">Sharp</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="market-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="marketSearch" type="text" placeholder="Search listings, sellers, or tags..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">TRUST-LAYERED</span>
+            <span class="top-pill">DESKTOP-FIRST</span>
+            <span class="top-pill" id="marketStatusPill">BUYERS WATCHING</span>
+          </div>
+        </div>
+
+        <div class="market-feature-grid">
+          <section class="panel market-feature-panel">
+            <div class="panel-head-inline">
+              <h3>Featured Signal</h3>
+              <span class="panel-status-live">HOT</span>
+            </div>
+            <div class="featured-listing" id="featuredListing"></div>
+          </section>
+
+          <section class="panel market-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Market Activity</h3>
+              <span class="panel-status-live">MOVING</span>
+            </div>
+            <div class="market-activity-feed" id="marketActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="market-grid" id="marketGrid"></div>
+        <div class="forum-loading" id="marketLoading">Loading more listings...</div>
+      </section>
     </section>
   </main>
 </div>
+
+<script src="../js/market.js?v=atlas17"></script>
 </body>
 </html>
