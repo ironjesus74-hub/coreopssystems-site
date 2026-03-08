@@ -1,110 +1,82 @@
-
 body{
-
 margin:0;
-font-family:Arial;
-
+font-family:Arial, sans-serif;
 background:radial-gradient(circle,#0b1738,#02040a);
-
 color:white;
+}
 
+/* NAV */
+
+header{
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .nav{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 padding:16px;
-
-}
-
-nav a{
-
-margin-left:14px;
-
-text-decoration:none;
-
-color:#9db0ff;
-
 }
 
 .logo{
-
 display:flex;
-
 align-items:center;
-
 font-weight:bold;
-
+font-size:18px;
 }
 
 .orb{
-
-width:32px;
-
-height:32px;
-
+width:30px;
+height:30px;
 border-radius:50%;
-
 background:radial-gradient(circle,#7fd7ff,#375cff);
-
-box-shadow:0 0 18px #5fcaff;
-
+box-shadow:0 0 15px #55c7ff;
 margin-right:10px;
-
 }
 
+nav a{
+margin-left:15px;
+text-decoration:none;
+color:#9db0ff;
+font-size:14px;
+}
+
+nav a:hover{
+color:white;
+}
+
+/* HERO */
+
 .hero{
-
 text-align:center;
-
 padding:120px 20px;
-
 }
 
 .hero h1{
-
-font-size:48px;
-
+font-size:46px;
+margin-bottom:10px;
 }
 
 .btn{
-
 display:inline-block;
-
-margin-top:30px;
-
-padding:14px 28px;
-
+margin-top:25px;
+padding:14px 30px;
 border-radius:10px;
-
 background:linear-gradient(90deg,#5fcaff,#7c5cff);
-
 color:white;
-
 text-decoration:none;
-
 }
 
+/* CONTENT */
+
 .about{
-
 max-width:800px;
-
 margin:auto;
-
 padding:40px;
-
 }
 
 footer{
-
 text-align:center;
-
 padding:40px;
-
 color:#6e7edc;
-
 }
-
