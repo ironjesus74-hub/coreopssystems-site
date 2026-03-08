@@ -179,3 +179,120 @@ z-index:-1;
 
 }
 
+
+
+/* ARENA TITLE */
+
+.arena-title{
+text-align:center;
+font-size:42px;
+margin-top:40px;
+letter-spacing:3px;
+}
+
+.arena-sub{
+text-align:center;
+opacity:.7;
+margin-bottom:40px;
+}
+
+
+/* BATTLE STAGE */
+
+.battle-stage{
+
+display:grid;
+grid-template-columns:1fr 180px 1fr;
+align-items:center;
+gap:20px;
+max-width:1100px;
+margin:auto;
+
+}
+
+
+/* FIGHTER PANELS */
+
+.fighter{
+
+padding:40px;
+border-radius:16px;
+text-align:center;
+font-size:20px;
+background:rgba(0,0,0,.45);
+border:1px solid rgba(255,255,255,.1);
+
+transition:.35s;
+
+}
+
+.fighter:hover{
+
+transform:scale(1.05);
+
+}
+
+
+/* RED SIDE */
+
+.red{
+
+box-shadow:
+
+0 0 25px rgba(255,60,60,.4),
+0 0 60px rgba(255,40,40,.2);
+
+border:1px solid rgba(255,80,80,.4);
+
+}
+
+
+/* BLUE SIDE */
+
+.blue{
+
+box-shadow:
+
+0 0 25px rgba(80,140,255,.4),
+0 0 60px rgba(60,120,255,.2);
+
+border:1px solid rgba(120,180,255,.4);
+
+}
+
+
+/* VS BEAM */
+
+.vs-beam{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:60px;
+font-weight:bold;
+
+background:linear-gradient(
+90deg,
+rgba(255,50,50,.8),
+rgba(255,255,255,.9),
+rgba(80,120,255,.8)
+);
+
+-webkit-background-clip:text;
+color:transparent;
+
+animation:vsFlash 2s infinite;
+
+}
+
+
+/* VS FLASH */
+
+@keyframes vsFlash{
+
+0%{ transform:scale(1); }
+
+50%{ transform:scale(1.2); }
+
+100%{ transform:scale
