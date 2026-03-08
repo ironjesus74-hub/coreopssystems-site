@@ -95,3 +95,87 @@ margin-top:40px;
 font-size:28px;
 }
 
+
+/* VS ANIMATION */
+
+.vs{
+font-size:60px;
+font-weight:bold;
+color:#66e0ff;
+animation:vsPulse 2s infinite ease-in-out;
+text-shadow:
+0 0 10px #66e0ff,
+0 0 20px #33bbff,
+0 0 40px #0099ff;
+}
+
+/* VS glow pulse */
+
+@keyframes vsPulse{
+
+0%{
+transform:scale(1);
+opacity:.9;
+}
+
+50%{
+transform:scale(1.15);
+opacity:1;
+}
+
+100%{
+transform:scale(1);
+opacity:.9;
+}
+
+}
+
+/* fighter glow */
+
+.fighter{
+transition:all .35s ease;
+}
+
+.fighter:hover{
+
+transform:translateY(-6px) scale(1.03);
+
+box-shadow:
+0 0 20px rgba(0,140,255,.4),
+0 0 40px rgba(0,140,255,.3),
+0 0 60px rgba(0,140,255,.2);
+
+border:1px solid rgba(100,200,255,.5);
+
+}
+
+/* arena ambient glow */
+
+.arena{
+position:relative;
+}
+
+.arena::before{
+
+content:"";
+position:absolute;
+left:50%;
+top:50%;
+
+width:600px;
+height:600px;
+
+transform:translate(-50%,-50%);
+
+background:radial-gradient(
+circle,
+rgba(0,160,255,.25),
+rgba(0,0,0,0)
+);
+
+filter:blur(80px);
+
+z-index:-1;
+
+}
+
