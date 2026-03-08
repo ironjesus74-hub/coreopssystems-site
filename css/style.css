@@ -4578,3 +4578,170 @@ a{
     grid-template-columns:1fr;
   }
 }
+
+/* ===== ATLAS 25 ARENA RESTORE / KEEP OLD LAYOUT ===== */
+
+.arena-hero-panel-restore{
+  display:grid !important;
+  grid-template-columns:1.1fr .9fr !important;
+  gap:22px !important;
+}
+
+.arena-stage-grid-restore{
+  display:grid !important;
+  grid-template-columns:minmax(320px,1fr) 340px minmax(320px,1fr) !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+
+.arena-lower-grid-restore{
+  display:grid !important;
+  grid-template-columns:1.25fr .75fr !important;
+  gap:18px !important;
+}
+
+.arena-center-column-restore{
+  min-width:0;
+}
+
+.restore-vs-hero{
+  width:320px !important;
+  height:320px !important;
+  transform:none !important;
+}
+
+.restore-vs-main{
+  width:300px !important;
+  height:300px !important;
+  margin:0 auto 10px !important;
+  animation:restoreVsFloat 4.8s ease-in-out infinite !important;
+}
+
+.restore-vs-main .vs-word{
+  font-size:74px !important;
+}
+
+.restore-vs-main .vs-side{
+  width:62px !important;
+  height:132px !important;
+  margin-top:-66px !important;
+}
+
+.restore-vs-main .vs-side-left{
+  left:34px !important;
+}
+
+.restore-vs-main .vs-side-right{
+  right:34px !important;
+}
+
+.restore-vs-main .vs-ring-outer{
+  inset:20px !important;
+}
+
+.restore-vs-main .vs-ring-inner{
+  inset:64px !important;
+}
+
+.restore-vs-main .vs-core-bar{
+  width:78px !important;
+  height:184px !important;
+  transform:rotate(24deg) !important;
+}
+
+.restore-vs-main .vs-orb-left{
+  left:38px !important;
+  bottom:60px !important;
+}
+
+.restore-vs-main .vs-orb-right{
+  right:42px !important;
+  top:66px !important;
+}
+
+@keyframes restoreVsFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+.arena-hero-mark-restore{
+  min-height:360px !important;
+}
+
+.brand-orb-arena{
+  position:relative;
+  animation:arenaBrandGlow 6s ease-in-out infinite !important;
+}
+
+.brand-orb-arena::before,
+.brand-orb-arena::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.brand-orb-arena::before{
+  inset:-7px;
+  animation:arenaBrandSpin 12s linear infinite;
+}
+
+.brand-orb-arena::after{
+  inset:7px;
+  animation:arenaBrandSpinReverse 8s linear infinite;
+}
+
+@keyframes arenaBrandGlow{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 20px rgba(117,164,255,.50),
+      0 0 44px rgba(117,164,255,.20),
+      0 0 72px rgba(193,110,255,.10);
+  }
+  50%{
+    transform:scale(1.045);
+    box-shadow:
+      0 0 28px rgba(132,184,255,.72),
+      0 0 60px rgba(132,184,255,.26),
+      0 0 88px rgba(193,110,255,.18);
+  }
+}
+
+@keyframes arenaBrandSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes arenaBrandSpinReverse{
+  from{transform:rotate(360deg)}
+  to{transform:rotate(0deg)}
+}
+
+.arena-reaction-stage{
+  min-height:150px !important;
+}
+
+.arena-float-reaction{
+  animation:arenaReactionRise linear forwards !important;
+}
+
+@keyframes arenaReactionRise{
+  0%{transform:translateY(0) scale(.88);opacity:0}
+  12%{opacity:1}
+  100%{transform:translateY(-118px) scale(1.08);opacity:0}
+}
+
+@media (max-width:1380px){
+  .arena-hero-panel-restore{
+    grid-template-columns:1fr !important;
+  }
+
+  .arena-stage-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+
+  .arena-lower-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+}

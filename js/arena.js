@@ -27,12 +27,14 @@ function rand(list){
 
 function addFeedLine(){
   const wrap = document.getElementById("arenaFeed");
+  if (!wrap) return;
+
   const line = arenaLines[feedIndex % arenaLines.length];
   feedIndex++;
 
-  const time = new Date();
-  const hh = String(time.getHours()).padStart(2,"0");
-  const mm = String(time.getMinutes()).padStart(2,"0");
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
 
   const card = document.createElement("article");
   card.className = "forum-thread-card";
@@ -43,6 +45,7 @@ function addFeedLine(){
     </div>
     <p>${line.text}</p>
   `;
+
   wrap.prepend(card);
 
   while (wrap.children.length > 6) {
@@ -51,53 +54,72 @@ function addFeedLine(){
 }
 
 function tickClock(){
+  const clock = document.getElementById("arenaTimeTop");
+  if (!clock) return;
+
   timeLeft--;
-  if(timeLeft < 0) timeLeft = 14 * 60 + 59;
+  if (timeLeft < 0) timeLeft = 14 * 60 + 59;
+
   const min = Math.floor(timeLeft / 60);
   const sec = timeLeft % 60;
-  const text = `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
-  document.getElementById("arenaTimeTop").textContent = text;
+  clock.textContent = `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 }
 
 function updateScore(){
   const left = 46 + Math.floor(Math.random() * 8);
   const right = 100 - left;
-  document.getElementById("scoreLeft").textContent = `${left}%`;
-  document.getElementById("scoreRight").textContent = `${right}%`;
-  document.getElementById("arenaMomentumFill").style.width = `${left}%`;
-
   const heat = 58 + Math.floor(Math.random() * 19);
-  document.getElementById("crowdHeatValue").textContent = `${heat}%`;
-  document.getElementById("arenaHeatFill").style.width = `${heat}%`;
+
+  const scoreLeft = document.getElementById("scoreLeft");
+  const scoreRight = document.getElementById("scoreRight");
+  const momentum = document.getElementById("arenaMomentumFill");
+  const heatValue = document.getElementById("crowdHeatValue");
+  const heatFill = document.getElementById("arenaHeatFill");
+
+  if (scoreLeft) scoreLeft.textContent = `${left}%`;
+  if (scoreRight) scoreRight.textContent = `${right}%`;
+  if (momentum) momentum.style.width = `${left}%`;
+  if (heatValue) heatValue.textContent = `${heat}%`;
+  if (heatFill) heatFill.style.width = `${heat}%`;
 }
 
 function updateStats(){
-  document.getElementById("leftEdge").textContent = `+${2 + Math.floor(Math.random() * 3)}`;
-  document.getElementById("rightEdge").textContent = `+${1 + Math.floor(Math.random() * 4)}`;
-  document.getElementById("leftPressure").textContent = rand(pressuresLeft);
-  document.getElementById("rightPressure").textContent = rand(pressuresRight);
-  document.getElementById("arenaCategoryTop").textContent = rand(categories);
-  document.getElementById("arenaRoundLabel").textContent = rand(categories);
-  document.getElementById("arenaNextTop").textContent = `${12 + Math.floor(Math.random() * 4)} min`;
+  const leftEdge = document.getElementById("leftEdge");
+  const rightEdge = document.getElementById("rightEdge");
+  const leftPressure = document.getElementById("leftPressure");
+  const rightPressure = document.getElementById("rightPressure");
+  const arenaCategoryTop = document.getElementById("arenaCategoryTop");
+  const arenaRoundLabel = document.getElementById("arenaRoundLabel");
+  const arenaNextTop = document.getElementById("arenaNextTop");
+
+  if (leftEdge) leftEdge.textContent = `+${2 + Math.floor(Math.random() * 3)}`;
+  if (rightEdge) rightEdge.textContent = `+${1 + Math.floor(Math.random() * 4)}`;
+  if (leftPressure) leftPressure.textContent = rand(pressuresLeft);
+  if (rightPressure) rightPressure.textContent = rand(pressuresRight);
+  if (arenaCategoryTop) arenaCategoryTop.textContent = rand(categories);
+  if (arenaRoundLabel) arenaRoundLabel.textContent = rand(categories);
+  if (arenaNextTop) arenaNextTop.textContent = `${12 + Math.floor(Math.random() * 4)} min remaining`;
 }
 
 function spawnReaction(){
   const stage = document.getElementById("arenaReactionStage");
+  if (!stage) return;
+
   const emoji = rand(["🔥","🤣","💀","🤯","⚡"]);
   const node = document.createElement("span");
   node.className = "arena-float-reaction";
   node.textContent = emoji;
   node.style.left = `${10 + Math.random() * 76}%`;
-  node.style.animationDuration = `${5 + Math.random() * 4}s`;
-  node.style.fontSize = `${20 + Math.random() * 14}px`;
+  node.style.animationDuration = `${5.6 + Math.random() * 2.8}s`;
+  node.style.fontSize = `${20 + Math.random() * 12}px`;
   stage.appendChild(node);
 
   setTimeout(() => {
-    if(node.parentNode) node.parentNode.removeChild(node);
+    if (node.parentNode) node.parentNode.removeChild(node);
   }, 8500);
 }
 
-for(let i = 0; i < 4; i++) addFeedLine();
+for (let i = 0; i < 4; i++) addFeedLine();
 updateScore();
 updateStats();
 
