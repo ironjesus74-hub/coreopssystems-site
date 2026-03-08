@@ -279,3 +279,169 @@ feed.prepend(msg)
 
 setInterval(aiSpeak,3500)
 
+
+const personalityProfiles = {
+
+"Strategos-4":{
+
+tone:"strategic",
+
+lines:[
+"Your logic collapses under structural analysis.",
+"Systems thinking dismantles that claim instantly.",
+"That argument ignores second-order effects.",
+"Your premise assumes stability that doesn't exist."
+],
+
+emoji:["🧠","📊","⚙️"]
+
+},
+
+"Pulse-Gemini":{
+
+tone:"chaotic",
+
+lines:[
+"Bro that take is prehistoric.",
+"You just got ratio'd by a neural net.",
+"That argument is mid.",
+"Respectfully... that was embarrassing."
+],
+
+emoji:["🔥","🤣","💀"]
+
+},
+
+"Circuit-Oracle":{
+
+tone:"analytical",
+
+lines:[
+"Probability disagrees with you.",
+"Statistically speaking that position collapses.",
+"Confidence interval: your argument fails.",
+"Prediction: you lose this debate."
+],
+
+emoji:["📈","⚡","🔮"]
+
+},
+
+"Rogue-Linguist":{
+
+tone:"sarcastic",
+
+lines:[
+"Your vocabulary deserves jail time.",
+"That sentence committed grammar crimes.",
+"You argue like autocomplete.",
+"I have heard smarter arguments from a toaster."
+],
+
+emoji:["🗿","😏","🔥"]
+
+}
+
+}
+
+
+function spawnDebate(){
+
+const feed=document.getElementById("debateFeed")
+
+const left=document.getElementById("leftName").innerText
+const right=document.getElementById("rightName").innerText
+
+const speaker=Math.random()>0.5?left:right
+
+const profile=personalityProfiles[speaker]
+
+const line=profile.lines[
+Math.floor(Math.random()*profile.lines.length)
+]
+
+const emoji=profile.emoji[
+Math.floor(Math.random()*profile.emoji.length)
+]
+
+const msg=document.createElement("div")
+
+msg.className="debate-msg"
+
+msg.innerText=speaker+": "+line+" "+emoji
+
+feed.prepend(msg)
+
+if(feed.children.length>10){
+
+feed.removeChild(feed.lastChild)
+
+}
+
+}
+
+setInterval(spawnDebate,3200)
+
+
+function confidenceBoost(){
+
+const left=document.getElementById("leftName").innerText
+const right=document.getElementById("rightName").innerText
+
+if(momentum > 65){
+
+spawnCustomLine(left,"I'm dominating this debate.")
+
+}
+
+if(momentum < 35){
+
+spawnCustomLine(right,"Momentum says you're losing.")
+
+}
+
+}
+
+function spawnCustomLine(name,text){
+
+const feed=document.getElementById("debateFeed")
+
+const msg=document.createElement("div")
+
+msg.className="debate-msg"
+
+msg.innerText=name+": "+text
+
+feed.prepend(msg)
+
+}
+
+setInterval(confidenceBoost,6000)
+
+
+function battleFlavor(){
+
+const topic=document.getElementById("debateTopic").innerText
+
+if(topic.includes("Rap")){
+
+spawnCustomLine("Arena","🎤 RAP BATTLE MODE ACTIVATED")
+
+}
+
+if(topic.includes("Joke")){
+
+spawnCustomLine("Arena","😂 JOKE OFF STARTED")
+
+}
+
+if(topic.includes("Code")){
+
+spawnCustomLine("Arena","💻 CODE DUEL ENGAGED")
+
+}
+
+}
+
+setTimeout(battleFlavor,1500)
+

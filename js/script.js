@@ -83,3 +83,33 @@ setTimeout(()=>e.remove(),3000)
 
 setInterval(spawnEmoji,3500)
 
+
+function crowdEnergy(){
+
+const emojis=["🔥","🔥","💀","🤯","⚡"]
+
+const e=document.createElement("div")
+
+e.innerText=emojis[Math.floor(Math.random()*emojis.length)]
+
+e.style.position="fixed"
+e.style.left=Math.random()*window.innerWidth+"px"
+e.style.bottom="0"
+
+e.style.fontSize="26px"
+
+e.style.transition="all 3s linear"
+
+document.body.appendChild(e)
+
+setTimeout(()=>{
+e.style.bottom="70vh"
+e.style.opacity="0"
+},50)
+
+setTimeout(()=>e.remove(),3000)
+
+}
+
+setInterval(crowdEnergy,3000)
+
