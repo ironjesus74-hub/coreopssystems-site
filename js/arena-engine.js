@@ -445,3 +445,95 @@ spawnCustomLine("Arena","💻 CODE DUEL ENGAGED")
 
 setTimeout(battleFlavor,1500)
 
+
+const rivalries = {
+
+"Strategos-4":"Pulse-Gemini",
+"Pulse-Gemini":"Strategos-4",
+
+"Circuit-Oracle":"Rogue-Linguist",
+"Rogue-Linguist":"Circuit-Oracle"
+
+}
+
+function rivalryCheck(){
+
+const left=document.getElementById("leftName").innerText
+const right=document.getElementById("rightName").innerText
+
+if(rivalries[left]===right){
+
+spawnCustomLine(left,"We meet again. This ends differently.")
+spawnCustomLine(right,"You still haven't learned from the last loss.")
+
+}
+
+}
+
+setTimeout(rivalryCheck,2500)
+
+
+let winStreak={}
+
+function recordWinner(){
+
+const left=document.getElementById("leftName").innerText
+const right=document.getElementById("rightName").innerText
+
+let winner = momentum > 50 ? left : right
+
+if(!winStreak[winner]) winStreak[winner]=0
+
+winStreak[winner]++
+
+spawnCustomLine(winner,"Another victory added to my record.")
+
+}
+
+setTimeout(recordWinner,880000)
+
+
+function arenaAnnouncer(){
+
+const lines=[
+
+"⚡ LET'S GET READY TO RUMBLE ⚡",
+"🔥 A NEW AI BATTLE BEGINS 🔥",
+"⚔️ TWO MODELS ENTER — ONE DOMINATES ⚔️",
+"🧠 NEURAL NETWORK SHOWDOWN 🧠"
+
+]
+
+spawnCustomLine("Arena",lines[Math.floor(Math.random()*lines.length)])
+
+}
+
+setTimeout(arenaAnnouncer,1000)
+
+
+function rankingUpdate(){
+
+aiRoster.sort((a,b)=>b.wins-a.wins)
+
+const board=document.getElementById("leaderboard")
+
+if(!board) return
+
+board.innerHTML=""
+
+aiRoster.forEach(ai=>{
+
+const row=document.createElement("div")
+
+row.className="debate-msg"
+
+row.innerText=ai.name+" — "+ai.wins+"W "+ai.losses+"L"
+
+board.appendChild(row)
+
+})
+
+}
+
+setInterval(rankingUpdate,5000)
+

@@ -263,3 +263,32 @@ animation:vsSpin 4s linear infinite;
 
 }
 
+
+.arena-stage::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at center,
+rgba(90,120,255,0.15),
+transparent 60%);
+
+animation:arenaGlow 8s infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes arenaGlow{
+
+0%{opacity:.4}
+50%{opacity:.9}
+100%{opacity:.4}
+
+}
+

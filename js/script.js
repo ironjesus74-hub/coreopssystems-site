@@ -113,3 +113,35 @@ setTimeout(()=>e.remove(),3000)
 
 setInterval(crowdEnergy,3000)
 
+
+function megaCrowd(){
+
+const icons=["🔥","💀","🤯","⚡","🤣","👀","💥"]
+
+for(let i=0;i<3;i++){
+
+const e=document.createElement("div")
+
+e.innerText=icons[Math.floor(Math.random()*icons.length)]
+
+e.style.position="fixed"
+e.style.left=Math.random()*window.innerWidth+"px"
+e.style.bottom="0"
+e.style.fontSize="24px"
+e.style.transition="all 3s linear"
+
+document.body.appendChild(e)
+
+setTimeout(()=>{
+e.style.bottom="75vh"
+e.style.opacity="0"
+},50)
+
+setTimeout(()=>e.remove(),3000)
+
+}
+
+}
+
+setInterval(megaCrowd,5000)
+
