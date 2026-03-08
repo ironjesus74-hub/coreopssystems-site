@@ -6,289 +6,64 @@ font-family:Inter,system-ui;
 margin:0;
 }
 
-.site-header{
-background:#050914;
-border-bottom:1px solid rgba(255,255,255,0.05);
-}
-
-.nav-wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px 20px;
-}
-
-nav a{
-margin-left:18px;
-color:#a7b6ff;
-text-decoration:none;
-}
-
-nav a:hover{
-color:white;
-}
-
-.logo{
-display:flex;
-align-items:center;
-font-weight:700;
-font-size:18px;
-}
-
-.logo-mark{
-width:34px;
-height:34px;
-border-radius:50%;
-margin-right:10px;
-
-background:
-radial-gradient(circle,#8ad4ff,#3b4bff);
-
-box-shadow:
-0 0 16px #4fc3ff,
-0 0 30px #6a3cff;
-
-animation:logoSpin 10s linear infinite;
-}
-
-@keyframes logoSpin{
-0%{transform:rotate(0deg)}
-100%{transform:rotate(360deg)}
-}
-
 .container{
 max-width:1100px;
 margin:auto;
 padding:20px;
 }
 
-.arena-stage{
-padding:25px;
-border-radius:20px;
-background:#0a1130;
-
-border:1px solid rgba(120,160,255,0.2);
-
-box-shadow:
-0 0 30px rgba(80,140,255,0.2),
-0 0 90px rgba(255,70,180,0.1);
+.site-header{
+border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.player{
-width:45%;
-text-align:center;
-padding:15px;
-border-radius:12px;
-
-background:#0d1538;
-
-border:1px solid rgba(255,255,255,0.08);
-}
-
-.avatar{
-width:70px;
-height:70px;
-border-radius:50%;
-margin:auto;
-
-background:radial-gradient(circle,#8ad4ff,#1d2cff);
-
-box-shadow:
-0 0 18px #4fc3ff,
-0 0 40px #6a3cff;
-}
-
-.arena-vs{
-text-align:center;
-margin:20px 0;
-}
-
-.vs-text{
-font-size:64px;
-font-weight:900;
-
-background:linear-gradient(90deg,#4fc3ff,#ff4ab6);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-text-shadow:
-0 0 30px rgba(80,180,255,0.9),
-0 0 70px rgba(255,80,200,0.7);
-
-animation:vsPulse 2s infinite;
-}
-
-@keyframes vsPulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.15)}
-100%{transform:scale(1)}
-}
-
-.momentum{
-width:100%;
-height:12px;
-border-radius:8px;
-background:#0e1b48;
-margin-top:18px;
-overflow:hidden;
-}
-
-.momentum-bar{
-height:100%;
-background:linear-gradient(90deg,#4fc3ff,#ff4ab6);
-width:50%;
-transition:width 1s;
-}
-
-.debate-msg{
-background:#0d163a;
-border-radius:10px;
-padding:10px;
-margin-top:8px;
-font-size:14px;
-}
-
-
-body{
-
-background:
-radial-gradient(circle at 50% 20%,#0d1a40,#02040a);
-
-animation:crowdPulse 8s infinite;
-
-}
-
-@keyframes crowdPulse{
-
-0%{background-size:100%}
-50%{background-size:110%}
-100%{background-size:100%}
-
-}
-
-
-.player{
-
+.nav{
 display:flex;
-flex-direction:column;
+justify-content:space-between;
 align-items:center;
-
-padding:20px;
-border-radius:16px;
-
-background:linear-gradient(180deg,#0e173c,#050914);
-
-border:1px solid rgba(255,255,255,0.08);
-
-box-shadow:
-0 0 25px rgba(100,140,255,0.25);
-
-transition:transform .25s;
-
 }
 
-.player:hover{
-transform:scale(1.04)
+nav a{
+margin-left:18px;
+color:#9db0ff;
+text-decoration:none;
 }
 
-.player h3{
-margin:8px 0 2px;
-font-size:20px;
+.logo{
+display:flex;
+align-items:center;
+font-weight:700;
 }
 
-.player p{
-font-size:13px;
-color:#8fa0d0;
-}
-
-
-.avatar{
-
-position:relative;
-
-width:72px;
-height:72px;
+.logo-icon{
+width:30px;
+height:30px;
 border-radius:50%;
 
-background:radial-gradient(circle,#8ad4ff,#1a2cff);
+background:radial-gradient(circle,#8ad4ff,#2e4cff);
 
+box-shadow:0 0 16px #4fc3ff;
+
+margin-right:10px;
 }
 
-.avatar::before{
-
-content:"";
-position:absolute;
-
-inset:-6px;
-
-border-radius:50%;
-
-border:2px solid rgba(120,160,255,0.5);
-
-animation:ringSpin 6s linear infinite;
-
+.hero{
+text-align:center;
+padding:100px 20px;
 }
 
-@keyframes ringSpin{
-
-0%{transform:rotate(0)}
-100%{transform:rotate(360deg)}
-
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 24px;
+background:#2e4cff;
+color:white;
+border-radius:8px;
+text-decoration:none;
 }
 
-
-.vs-text{
-
-font-size:72px;
-font-weight:900;
-
-background:linear-gradient(90deg,#54e7ff,#ff4ab6);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-text-shadow:
-0 0 30px rgba(80,180,255,0.9),
-0 0 70px rgba(255,80,200,0.7);
-
-animation:vsSpin 4s linear infinite;
-
-}
-
-@keyframes vsSpin{
-
-0%{transform:rotate(0)}
-100%{transform:rotate(360deg)}
-
-}
-
-
-.arena-stage::after{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-radial-gradient(circle at center,
-rgba(90,120,255,0.15),
-transparent 60%);
-
-animation:arenaGlow 8s infinite;
-
-pointer-events:none;
-
-}
-
-@keyframes arenaGlow{
-
-0%{opacity:.4}
-50%{opacity:.9}
-100%{opacity:.4}
-
+.footer{
+text-align:center;
+padding:40px;
+color:#7a8be6;
 }
 
