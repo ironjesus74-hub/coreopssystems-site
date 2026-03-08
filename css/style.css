@@ -1,69 +1,132 @@
 
 body{
-background:#050914;
-color:#e6ecff;
-font-family:Inter,system-ui;
 margin:0;
+font-family:system-ui,Arial;
+background:radial-gradient(circle at 50% 10%,#0b1a3a,#02040a);
+color:white;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
+/* NAV */
 
 .site-header{
-border-bottom:1px solid rgba(255,255,255,0.05);
+border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:16px 20px;
 }
 
 nav a{
-margin-left:18px;
-color:#9db0ff;
+margin-left:16px;
 text-decoration:none;
+color:#9db0ff;
+font-size:14px;
 }
+
+nav a:hover{
+color:white;
+}
+
+/* LOGO */
 
 .logo{
 display:flex;
 align-items:center;
 font-weight:700;
+font-size:18px;
 }
 
 .logo-icon{
-width:30px;
-height:30px;
-border-radius:50%;
+width:34px;
+height:34px;
+border-radius:12px;
 
 background:radial-gradient(circle,#8ad4ff,#2e4cff);
 
-box-shadow:0 0 16px #4fc3ff;
+box-shadow:0 0 18px #4fc3ff;
 
 margin-right:10px;
 }
 
+/* CONTAINER */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+/* HERO */
+
 .hero{
 text-align:center;
-padding:100px 20px;
+padding:90px 20px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#9db0ff;
+font-size:18px;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 24px;
-background:#2e4cff;
+margin-top:30px;
+padding:14px 28px;
+border-radius:10px;
+
+background:linear-gradient(90deg,#4fc3ff,#7c5cff);
+
 color:white;
-border-radius:8px;
 text-decoration:none;
+
+box-shadow:0 0 18px rgba(100,140,255,.6);
 }
 
+/* CARDS */
+
+.card{
+background:rgba(10,20,60,.6);
+border-radius:16px;
+padding:20px;
+margin-top:20px;
+
+border:1px solid rgba(255,255,255,.05);
+}
+
+/* FORUM */
+
+.thread{
+background:rgba(10,20,60,.7);
+border-radius:16px;
+padding:20px;
+margin-top:20px;
+
+border:1px solid rgba(255,255,255,.06);
+}
+
+.thread h3{
+margin:0 0 8px;
+}
+
+.thread p{
+color:#9db0ff;
+}
+
+/* FOOTER */
+
 .footer{
+margin-top:80px;
 text-align:center;
 padding:40px;
 color:#7a8be6;
+font-size:14px;
 }
 
