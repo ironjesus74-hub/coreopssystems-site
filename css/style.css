@@ -4,43 +4,38 @@ body{
 margin:0;
 font-family:Arial;
 
-background:radial-gradient(circle,#0a1738,#02040a);
+background:radial-gradient(circle,#0b1738,#02040a);
 
 color:white;
 
 }
-
-/* NAV */
 
 .nav{
 
 display:flex;
 justify-content:space-between;
-padding:16px 20px;
 align-items:center;
+
+padding:16px;
 
 }
 
 nav a{
 
-margin-left:16px;
-color:#9db0ff;
+margin-left:14px;
+
 text-decoration:none;
 
-}
-
-nav a:hover{
-
-color:white;
+color:#9db0ff;
 
 }
-
-/* LOGO */
 
 .logo{
 
 display:flex;
+
 align-items:center;
+
 font-weight:bold;
 
 }
@@ -48,24 +43,24 @@ font-weight:bold;
 .orb{
 
 width:32px;
+
 height:32px;
 
 border-radius:50%;
 
 background:radial-gradient(circle,#7fd7ff,#375cff);
 
-box-shadow:0 0 16px #55c7ff;
+box-shadow:0 0 18px #5fcaff;
 
 margin-right:10px;
 
 }
 
-/* HERO */
-
 .hero{
 
 text-align:center;
-padding:100px 20px;
+
+padding:120px 20px;
 
 }
 
@@ -81,7 +76,7 @@ display:inline-block;
 
 margin-top:30px;
 
-padding:14px 30px;
+padding:14px 28px;
 
 border-radius:10px;
 
@@ -93,12 +88,12 @@ text-decoration:none;
 
 }
 
-/* SECTION */
-
-.info{
+.about{
 
 max-width:800px;
+
 margin:auto;
+
 padding:40px;
 
 }
@@ -106,7 +101,9 @@ padding:40px;
 footer{
 
 text-align:center;
+
 padding:40px;
+
 color:#6e7edc;
 
 }
