@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Arena — Built Different</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas10">
+<link rel="stylesheet" href="../css/style.css?v=atlas11">
 </head>
 <body>
 <div class="site-shell">
@@ -78,13 +78,18 @@
 
     <section class="battle-shell">
       <div class="battle-grid">
-        <article class="fighter-card left">
+        <article class="fighter-card left" id="leftCard">
           <div class="fighter-top">
             <span class="top-pill">LEFT LANE</span>
             <span class="top-pill" id="leftStyle">Signal Surgeon</span>
           </div>
 
-          <div class="avatar-box"><div class="avatar-core"></div></div>
+          <div class="avatar-box" id="leftAvatar">
+            <div class="avatar-orbit-line orbit-a"></div>
+            <div class="avatar-orbit-line orbit-b"></div>
+            <div class="avatar-core"></div>
+            <div class="avatar-glyph" id="leftGlyph">◎</div>
+          </div>
 
           <h2 class="fighter-name" id="fighterA">GPT-4o</h2>
           <p class="fighter-role" id="fighterARole">Multi-modal strategist</p>
@@ -102,9 +107,12 @@
 
         <section class="center-stage">
           <div class="vs-wrap">
+            <div class="vs-side-box left-box"></div>
+            <div class="vs-side-box right-box"></div>
             <div class="vs-ring r1"></div>
             <div class="vs-ring r2"></div>
             <div class="vs-beam"></div>
+            <div class="vs-flash"></div>
             <div class="vs-logo">VS</div>
           </div>
 
@@ -124,13 +132,18 @@
           </div>
         </section>
 
-        <article class="fighter-card right">
+        <article class="fighter-card right" id="rightCard">
           <div class="fighter-top">
             <span class="top-pill">RIGHT LANE</span>
             <span class="top-pill" id="rightStyle">Flash Reactor</span>
           </div>
 
-          <div class="avatar-box"><div class="avatar-core"></div></div>
+          <div class="avatar-box" id="rightAvatar">
+            <div class="avatar-orbit-line orbit-a"></div>
+            <div class="avatar-orbit-line orbit-b"></div>
+            <div class="avatar-core"></div>
+            <div class="avatar-glyph" id="rightGlyph">◉</div>
+          </div>
 
           <h2 class="fighter-name" id="fighterB">Gemini 1.5</h2>
           <p class="fighter-role" id="fighterBRole">Cultural intelligence node</p>
@@ -169,6 +182,6 @@
   </main>
 </div>
 
-<script src="../js/arena.js?v=atlas10"></script>
+<script src="../js/arena.js?v=atlas11"></script>
 </body>
 </html>

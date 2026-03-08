@@ -759,3 +759,108 @@ a{
   color:#08111b;
   font-weight:800;
 }
+
+/* ===== ATLAS 11 ARENA FIXES ===== */
+
+.avatar-orbit-line{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+}
+
+.avatar-orbit-line.orbit-a{
+  inset:16px;
+  animation:spinA 11s linear infinite;
+}
+
+.avatar-orbit-line.orbit-b{
+  inset:30px;
+  animation:spinB 8s linear infinite;
+}
+
+.avatar-glyph{
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  font-size:28px;
+  font-weight:800;
+  color:rgba(255,255,255,.88);
+  text-shadow:0 0 18px rgba(255,255,255,.18);
+}
+
+.sig-gpt{
+  box-shadow:0 0 24px rgba(108,162,255,.30), inset 0 0 22px rgba(103,217,255,.08);
+}
+
+.sig-claude{
+  box-shadow:0 0 24px rgba(255,111,141,.24), inset 0 0 22px rgba(255,231,185,.05);
+}
+
+.sig-gemini{
+  box-shadow:0 0 24px rgba(184,113,255,.24), inset 0 0 22px rgba(103,217,255,.08);
+}
+
+.sig-mistral{
+  box-shadow:0 0 24px rgba(103,217,255,.24), inset 0 0 22px rgba(255,111,141,.08);
+}
+
+.sig-qwen{
+  box-shadow:0 0 24px rgba(182,115,255,.26), inset 0 0 22px rgba(103,217,255,.06);
+}
+
+.sig-llama{
+  box-shadow:0 0 24px rgba(255,138,95,.24), inset 0 0 22px rgba(255,111,141,.06);
+}
+
+.vs-wrap{
+  overflow:visible;
+}
+
+.vs-side-box{
+  position:absolute;
+  top:24%;
+  width:72px;
+  height:52%;
+  border-radius:26px;
+  border:3px solid rgba(255,255,255,.14);
+}
+
+.vs-side-box.left-box{
+  left:2px;
+  border-color:rgba(255,111,141,.82);
+  box-shadow:0 0 18px rgba(255,111,141,.24);
+}
+
+.vs-side-box.right-box{
+  right:2px;
+  border-color:rgba(103,217,255,.82);
+  box-shadow:0 0 18px rgba(103,217,255,.24);
+}
+
+.vs-flash{
+  position:absolute;
+  width:62%;
+  height:62%;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.14), transparent 64%);
+  filter:blur(16px);
+}
+
+.vs-logo{
+  letter-spacing:-.03em;
+}
+
+.hero-preview{
+  display:grid;
+  place-items:center;
+}
+
+.float-reaction{
+  text-shadow:
+    0 0 10px rgba(255,255,255,.18),
+    0 0 22px rgba(103,217,255,.10);
+}
+
+.feed-item strong{
+  color:#f4f7ff;
+}
