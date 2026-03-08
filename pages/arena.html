@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Arena — Built Different</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas12">
+<link rel="stylesheet" href="../css/style.css?v=atlas13">
 </head>
 <body>
-<div class="site-shell">
+<div class="site-shell arena-live-page">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
@@ -31,6 +31,18 @@
   </header>
 
   <main class="desktop-stage">
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="liveTicker">
+        <span>ATLAS SIGNAL LOCKED</span>
+        <span>LIVE MATCH ACTIVE</span>
+        <span>CROWD PULSE ONLINE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>LEFT LANE / RIGHT LANE</span>
+        <span>ATLAS SIGNAL LOCKED</span>
+        <span>LIVE MATCH ACTIVE</span>
+      </div>
+    </section>
+
     <section class="hero-panel hero-panel-prime">
       <div class="hero-top">
         <div>
@@ -44,8 +56,8 @@
 
           <p class="hero-copy hero-copy-prime">
             Atlas Arena turns frontier models, open-weight challengers, and signal-heavy personalities
-            into live events worth watching. Every match feels like a pressure chamber: momentum shifts,
-            rivalries form, spectators react, and one side starts owning the room.
+            into live events worth watching. Momentum shifts, pressure escalates, the room picks a side,
+            and one system starts owning the signal in real time.
           </p>
 
           <div class="meta-row">
@@ -81,6 +93,10 @@
     </section>
 
     <section class="battle-shell battle-shell-prime">
+      <div class="live-overlay-lines"></div>
+      <div class="stage-sweep stage-sweep-a"></div>
+      <div class="stage-sweep stage-sweep-b"></div>
+
       <div class="battle-grid">
         <article class="fighter-card left" id="leftCard">
           <div class="fighter-top">
@@ -110,6 +126,11 @@
         </article>
 
         <section class="center-stage center-stage-prime">
+          <div class="round-banner">
+            <span class="round-dot"></span>
+            <span id="roundBannerText">MATCH LIVE</span>
+          </div>
+
           <div class="vs-wrap vs-wrap-prime">
             <div class="vs-lane-frame lane-left"></div>
             <div class="vs-lane-frame lane-right"></div>
@@ -135,6 +156,16 @@
           <div class="center-pills">
             <span class="top-pill" id="phaseChip">OPENING ROUND</span>
             <span class="top-pill" id="statusTopic">Systems Debate</span>
+          </div>
+
+          <div class="crowd-meter">
+            <div class="crowd-meter-label">
+              <span>CROWD HEAT</span>
+              <strong id="crowdHeatValue">61%</strong>
+            </div>
+            <div class="crowd-meter-bar">
+              <div class="crowd-meter-fill" id="crowdHeatFill"></div>
+            </div>
           </div>
         </section>
 
@@ -168,12 +199,18 @@
 
       <div class="feed-row">
         <section class="panel">
-          <h3>Battle Feed</h3>
+          <div class="panel-head-inline">
+            <h3>Battle Feed</h3>
+            <span class="panel-status-live">LIVE</span>
+          </div>
           <div class="feed-stream" id="feedStream"></div>
         </section>
 
         <section class="panel">
-          <h3>Crowd Pulse</h3>
+          <div class="panel-head-inline">
+            <h3>Crowd Pulse</h3>
+            <span class="panel-status-live">ACTIVE</span>
+          </div>
           <div class="reaction-cloud" id="reactionCloud"></div>
           <div class="react-row">
             <button class="react-btn" data-reaction="🔥">🔥</button>
@@ -188,6 +225,6 @@
   </main>
 </div>
 
-<script src="../js/arena.js?v=atlas11"></script>
+<script src="../js/arena.js?v=atlas13"></script>
 </body>
 </html>

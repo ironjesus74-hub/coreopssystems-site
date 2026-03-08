@@ -134,13 +134,23 @@ const phases = [
 ];
 
 const reactions = ["🔥","🤣","💀","🤯","⚡"];
+const tickerPhrases = [
+  "SIGNAL INTENSITY RISING",
+  "CROWD SHIFT DETECTED",
+  "MOMENTUM SWING INCOMING",
+  "ROOM HEAT CLIMBING",
+  "LIVE ARENA LOCKED",
+  "PRESSURE BUILDING",
+  "ONE SIDE STARTING TO BREAK"
+];
 
 const state = {
   left:null,
   right:null,
   leftVotes:50,
   rightVotes:50,
-  seconds:900
+  seconds:900,
+  crowdHeat:61
 };
 
 function pickTwo(){
@@ -165,7 +175,6 @@ function renderTags(id, tags){
 
 function applyAvatar(side, fighter){
   const avatar = document.getElementById(side + "Avatar");
-  const glyph = document.getElementById(side + "Glyph");
   avatar.className = "avatar-box " + fighter.avatarClass;
   avatar.innerHTML = `
     <div class="avatar-orbit-line orbit-a"></div>
@@ -215,6 +224,22 @@ function updateMomentum(){
   document.getElementById("momentumRight").style.width = state.rightVotes + "%";
 }
 
+function updateCrowdHeat(){
+  state.crowdHeat = Math.max(38, Math.min(94, state.crowdHeat));
+  document.getElementById("crowdHeatValue").textContent = state.crowdHeat + "%";
+  document.getElementById("crowdHeatFill").style.width = state.crowdHeat + "%";
+}
+
+function updateRoundBanner(){
+  const elapsed = 900 - state.seconds;
+  let text = "MATCH LIVE";
+  if (elapsed > 720) text = "FINAL PRESSURE";
+  else if (elapsed > 540) text = "ROOM GETTING LOUD";
+  else if (elapsed > 360) text = "MOMENTUM SWING";
+  else if (elapsed > 180) text = "CLASH PHASE";
+  document.getElementById("roundBannerText").textContent = text;
+}
+
 function updateTimer(){
   const min = Math.floor(state.seconds / 60);
   const sec = state.seconds % 60;
@@ -228,6 +253,33 @@ function updateTimer(){
   else if(elapsed > 360) phase = phases[2];
   else if(elapsed > 180) phase = phases[1];
   document.getElementById("phaseChip").textContent = phase;
+  updateRoundBanner();
+}
+
+function setTickerText(text){
+  const ticker = document.getElementById("liveTicker");
+  ticker.innerHTML = `
+    <span>${text}</span>
+    <span>ATLAS SIGNAL LOCKED</span>
+    <span>LIVE MATCH ACTIVE</span>
+    <span>CROWD PULSE ONLINE</span>
+    <span>BUILT DIFFERENT</span>
+    <span>${text}</span>
+    <span>ROOM HEAT ACTIVE</span>
+  `;
+}
+
+function pulseStage(side){
+  const leftCard = document.getElementById("leftCard");
+  const rightCard = document.getElementById("rightCard");
+  leftCard.classList.remove("card-hot");
+  rightCard.classList.remove("card-hot");
+  if(side === "left") leftCard.classList.add("card-hot");
+  if(side === "right") rightCard.classList.add("card-hot");
+  setTimeout(() => {
+    leftCard.classList.remove("card-hot");
+    rightCard.classList.remove("card-hot");
+  }, 1200);
 }
 
 function setFight(){
@@ -237,6 +289,7 @@ function setFight(){
   state.leftVotes = 46 + Math.floor(Math.random() * 10);
   state.rightVotes = 100 - state.leftVotes;
   state.seconds = 900;
+  state.crowdHeat = 58 + Math.floor(Math.random() * 18);
 
   document.getElementById("fighterA").textContent = left.name;
   document.getElementById("fighterARole").textContent = left.role;
@@ -268,7 +321,9 @@ function setFight(){
   addFeed(left.name, left.lines[Math.floor(Math.random() * left.lines.length)]);
   addFeed(right.name, right.lines[Math.floor(Math.random() * right.lines.length)]);
 
+  setTickerText("NEW MATCH SIGNAL");
   updateMomentum();
+  updateCrowdHeat();
   updateTimer();
 }
 
@@ -276,13 +331,20 @@ function vote(side){
   if(side === "left"){
     state.leftVotes = Math.min(82, state.leftVotes + 2);
     state.rightVotes = 100 - state.leftVotes;
+    state.crowdHeat += 2;
     spawnReaction("🔥");
+    pulseStage("left");
+    setTickerText("LEFT LANE SURGE");
   } else {
     state.rightVotes = Math.min(82, state.rightVotes + 2);
     state.leftVotes = 100 - state.rightVotes;
+    state.crowdHeat += 2;
     spawnReaction("⚡");
+    pulseStage("right");
+    setTickerText("RIGHT LANE SURGE");
   }
   updateMomentum();
+  updateCrowdHeat();
 }
 
 function tick(){
@@ -296,6 +358,8 @@ function tick(){
     const swing = Math.random() > 0.5 ? 1 : -1;
     state.leftVotes = Math.max(35, Math.min(65, state.leftVotes + swing));
     state.rightVotes = 100 - state.leftVotes;
+    pulseStage(swing > 0 ? "left" : "right");
+    setTickerText(tickerPhrases[Math.floor(Math.random() * tickerPhrases.length)]);
     updateMomentum();
   }
 
@@ -304,10 +368,14 @@ function tick(){
     addFeed(speaker.name, speaker.lines[Math.floor(Math.random() * speaker.lines.length)]);
   }
 
-  if(Math.random() > 0.68){
+  if(Math.random() > 0.66){
     spawnReaction(reactions[Math.floor(Math.random() * reactions.length)]);
+    state.crowdHeat += 1;
+  } else {
+    state.crowdHeat -= 1;
   }
 
+  updateCrowdHeat();
   updateTimer();
 }
 
@@ -319,3 +387,6 @@ document.querySelectorAll(".react-btn").forEach(btn => {
 
 setFight();
 setInterval(tick, 2600);
+setInterval(() => {
+  setTickerText(tickerPhrases[Math.floor(Math.random() * tickerPhrases.length)]);
+}, 7200);
