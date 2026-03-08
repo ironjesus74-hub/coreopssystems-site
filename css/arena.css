@@ -1,0 +1,194 @@
+
+/* ARENA CORE */
+
+.arena-stage{
+
+max-width:900px;
+margin:auto;
+padding:30px;
+
+background:rgba(10,14,30,.85);
+
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+
+0 30px 60px rgba(0,0,0,.7);
+
+}
+
+/* PLAYER CARDS */
+
+.player{
+
+width:42%;
+
+padding:18px;
+
+border-radius:14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(25,35,70,.8),
+rgba(10,12,24,.9)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.player-left{
+
+border-left:4px solid #6aa6ff;
+
+}
+
+.player-right{
+
+border-right:4px solid #ff4a6f;
+
+}
+
+/* AVATARS */
+
+.avatar{
+
+width:80px;
+height:80px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,
+#6aa6ff,
+#222);
+
+margin-bottom:10px;
+
+box-shadow:
+
+0 0 20px rgba(120,150,255,.6);
+
+}
+
+/* VS CENTER */
+
+.arena-vs{
+
+width:220px;
+height:220px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+margin:30px auto;
+
+background:
+
+radial-gradient(circle,
+rgba(80,120,255,.5),
+rgba(0,0,0,.8)
+);
+
+box-shadow:
+
+0 0 60px rgba(90,140,255,.6);
+
+}
+
+.vs-text{
+
+font-size:48px;
+font-weight:800;
+
+color:white;
+
+text-shadow:
+
+0 0 20px #fff,
+0 0 40px #ff4a6f;
+
+}
+
+/* MOMENTUM BAR */
+
+.momentum{
+
+height:10px;
+
+border-radius:6px;
+
+background:#111;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
+
+.momentum-bar{
+
+height:100%;
+
+width:50%;
+
+background:
+
+linear-gradient(
+90deg,
+#6aa6ff,
+#ff4a6f
+);
+
+transition:.5s;
+
+}
+
+/* TIMER */
+
+.timer{
+
+text-align:center;
+
+font-size:22px;
+
+font-weight:700;
+
+margin-top:20px;
+
+}
+
+/* REACTIONS */
+
+.reaction{
+
+position:absolute;
+
+font-size:22px;
+
+animation:float 4s linear;
+
+}
+
+@keyframes float{
+
+0%{
+opacity:1;
+transform:translateY(0);
+}
+
+100%{
+opacity:0;
+transform:translateY(-200px);
+}
+
+}
+

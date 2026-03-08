@@ -1432,3 +1432,214 @@ body.theme-atlas::before {
     animation: none !important;
   }
 }
+
+/* ======================
+   VS CENTER SYSTEM
+   ====================== */
+
+.vs-core{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.vs-symbol{
+  font-size:42px;
+  font-weight:800;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:
+    0 0 20px rgba(88,173,255,.35),
+    0 0 40px rgba(215,141,255,.28);
+}
+
+/* diagonal slash */
+
+.vs-symbol::after{
+  content:"";
+  position:absolute;
+  width:4px;
+  height:90px;
+  background:linear-gradient(#58adff,#d78dff);
+  transform:rotate(30deg);
+  filter:blur(.3px);
+}
+
+/* timer */
+
+.debate-timer{
+  font-family:monospace;
+  font-size:18px;
+  color:#67e7ff;
+  text-shadow:0 0 12px rgba(103,231,255,.35);
+}
+
+/* win meter */
+
+.win-meter{
+  width:100%;
+  max-width:340px;
+  height:10px;
+  border-radius:10px;
+  overflow:hidden;
+  background:rgba(255,255,255,.05);
+  box-shadow:0 0 10px rgba(0,0,0,.4) inset;
+}
+
+.win-meter-bar{
+  height:100%;
+  width:50%;
+  background:linear-gradient(90deg,#58adff,#b07cff);
+  transition:width .6s ease;
+}
+
+/* debate chat border highlight */
+
+.feed-shell{
+  border:1px solid rgba(140,180,255,.22);
+  box-shadow:
+    0 0 40px rgba(88,173,255,.1),
+    inset 0 0 20px rgba(88,173,255,.05);
+}
+
+
+.msg-time{
+  font-size:11px;
+  opacity:.6;
+  margin-top:4px;
+  font-family:monospace;
+}
+
+
+/* ===== MAIN EVENT FRAME ===== */
+
+.arena-main-event{
+position:relative;
+padding:30px 18px;
+border-radius:26px;
+border:1px solid rgba(120,160,255,.25);
+background:linear-gradient(180deg,
+rgba(10,22,50,.92),
+rgba(8,18,42,.85));
+box-shadow:
+0 0 60px rgba(90,140,255,.18),
+inset 0 0 30px rgba(90,140,255,.08);
+}
+
+/* ===== VS CENTER ===== */
+
+.vs-arena{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+margin:20px 0;
+position:relative;
+}
+
+/* fighter frames */
+
+.fighter-frame{
+width:72px;
+height:90px;
+border-radius:18px;
+border:2px solid rgba(120,160,255,.5);
+box-shadow:
+0 0 22px rgba(120,160,255,.35),
+inset 0 0 12px rgba(120,160,255,.2);
+}
+
+/* VS TEXT */
+
+.vs-core{
+font-size:36px;
+font-weight:800;
+letter-spacing:.08em;
+color:#fff;
+text-shadow:
+0 0 14px rgba(100,160,255,.6),
+0 0 30px rgba(255,90,200,.4);
+}
+
+/* slash animation */
+
+.vs-core::after{
+content:"";
+position:absolute;
+width:4px;
+height:110px;
+background:linear-gradient(#5fa7ff,#ff7bc7);
+transform:rotate(35deg);
+animation:vsSlash 3s linear infinite;
+}
+
+@keyframes vsSlash{
+
+0%{opacity:.4}
+50%{opacity:1}
+100%{opacity:.4}
+
+}
+
+/* topic panel */
+
+.debate-topic{
+text-align:center;
+margin-top:14px;
+font-size:15px;
+letter-spacing:.08em;
+color:#9fd2ff;
+}
+
+/* next battle timer */
+
+.next-battle{
+text-align:center;
+font-size:13px;
+opacity:.7;
+margin-top:6px;
+}
+
+
+/* ===== PLAYER CARDS ===== */
+
+.player-card{
+border-radius:22px;
+padding:20px;
+border:1px solid rgba(120,160,255,.22);
+background:linear-gradient(
+180deg,
+rgba(15,30,65,.85),
+rgba(12,24,54,.8)
+);
+box-shadow:
+0 0 35px rgba(80,120,255,.15),
+inset 0 0 20px rgba(80,120,255,.05);
+transition:.25s;
+}
+
+.player-card:hover{
+
+transform:translateY(-4px);
+box-shadow:
+0 0 45px rgba(90,140,255,.3);
+
+}
+
+/* edge highlight */
+
+.edge-pos{
+color:#6cc3ff;
+font-weight:700;
+font-size:30px;
+}
+
+.edge-neg{
+color:#c07cff;
+font-weight:700;
+font-size:30px;
+}
+

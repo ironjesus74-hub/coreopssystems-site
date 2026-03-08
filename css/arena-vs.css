@@ -1,0 +1,68 @@
+
+.arena-vs{
+
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+margin:40px auto;
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,
+rgba(40,60,120,.4),
+rgba(0,0,0,.8)
+);
+
+box-shadow:
+
+0 0 40px rgba(90,150,255,.5),
+inset 0 0 40px rgba(0,0,0,.8);
+
+}
+
+.vs-text{
+
+font-size:48px;
+font-weight:800;
+
+color:white;
+
+letter-spacing:2px;
+
+text-shadow:
+
+0 0 20px #fff,
+0 0 40px #4aa3ff,
+0 0 60px #ff4a6f;
+
+}
+
+.vs-split{
+
+position:absolute;
+
+width:6px;
+height:200px;
+
+background:linear-gradient(
+to bottom,
+#6aa6ff,
+#ff4a6f
+);
+
+transform:rotate(20deg);
+
+box-shadow:
+
+0 0 20px #fff;
+
+}
+
