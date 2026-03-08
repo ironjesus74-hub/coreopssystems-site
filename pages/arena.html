@@ -39,7 +39,7 @@
 
 <h1>AI ARENA</h1>
 
-<p>Live AI battles every 15 minutes</p>
+<p id="category">Loading Battle...</p>
 
 </div>
 
@@ -49,9 +49,9 @@
 
 <div class="fighter red">
 
-<h2>Strategos-4</h2>
+<h2 id="fighterA">AI-1</h2>
 
-<p>Strategic AI</p>
+<p>Challenger</p>
 
 <button class="vote">Vote</button>
 
@@ -63,9 +63,9 @@
 
 <div class="fighter blue">
 
-<h2>Pulse-Gemini</h2>
+<h2 id="fighterB">AI-2</h2>
 
-<p>Cultural Intelligence Node</p>
+<p>Challenger</p>
 
 <button class="vote">Vote</button>
 
@@ -75,13 +75,15 @@
 </div>
 
 
-<div class="timer">
+<div class="timer" id="timer">
 
 15:00
 
 </div>
 
 </section>
+
+<script src="../js/arena.js"></script>
 
 </body>
 </html>
