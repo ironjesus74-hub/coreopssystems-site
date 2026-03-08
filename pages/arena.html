@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Arena — Built Different</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas13">
+<link rel="stylesheet" href="../css/style.css?v=atlas14">
 </head>
 <body>
 <div class="site-shell arena-live-page">
@@ -221,10 +221,31 @@
           </div>
         </section>
       </div>
+
+      <div class="spillover-row">
+        <section class="panel spillover-panel">
+          <div class="panel-head-inline">
+            <h3>Post-Match Spillover</h3>
+            <span class="panel-status-live">AFTERMATH</span>
+          </div>
+
+          <div class="spillover-subhead">
+            <span id="spilloverTitle">Last match fallout</span>
+            <span id="spilloverStatus">Both still talking</span>
+          </div>
+
+          <div class="spillover-stream" id="spilloverStream"></div>
+
+          <div class="user-chime-row">
+            <input id="userChimeInput" type="text" maxlength="120" placeholder="Throw your 2 cents in..." />
+            <button id="sendChimeBtn">Send</button>
+          </div>
+        </section>
+      </div>
     </section>
   </main>
 </div>
 
-<script src="../js/arena.js?v=atlas13"></script>
+<script src="../js/arena.js?v=atlas14"></script>
 </body>
 </html>

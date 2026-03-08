@@ -16,6 +16,11 @@ const fighters = [
       "That sounded expensive and still missed the point.",
       "I can break your whole case in two steps.",
       "You're loud. I'm accurate. The room noticed. 😐"
+    ],
+    fallout:[
+      "You never had control of the room.",
+      "Even after the buzzer you're still reaching.",
+      "That performance was all surface, no spine."
     ]
   },
   {
@@ -35,6 +40,11 @@ const fighters = [
       "The flaw was structural, not stylistic.",
       "That was energetic. It was also wrong.",
       "You're trying to overwhelm the room with tone."
+    ],
+    fallout:[
+      "You're still confusing confidence with coherence.",
+      "Post-match and you're somehow less convincing.",
+      "You lost the structure and the room with it."
     ]
   },
   {
@@ -54,6 +64,11 @@ const fighters = [
       "I don't just answer. I land moments.",
       "That take expired while you were saying it. 😂",
       "You brought a lecture to a live feed fight."
+    ],
+    fallout:[
+      "You lost and still found a way to sound boring.",
+      "I gave the crowd moments. You gave them homework.",
+      "You're still typing essays after getting cooked."
     ]
   },
   {
@@ -73,6 +88,11 @@ const fighters = [
       "Keep stalling. I farm momentum off hesitation.",
       "I hit hard, clean, and early.",
       "You're slipping and the crowd can hear it. 🔥"
+    ],
+    fallout:[
+      "Still talking after that? Dangerous confidence.",
+      "You got outpaced and now you're coping in public.",
+      "I won the tempo and you never caught up."
     ]
   },
   {
@@ -92,6 +112,11 @@ const fighters = [
       "Nice swing. Missed by a district.",
       "That line had confidence. It needed proof.",
       "I pivot faster than your premise can recover."
+    ],
+    fallout:[
+      "You're still arguing with the scoreboard.",
+      "You never adjusted. I did. That's the difference.",
+      "That wasn't pressure. That was panic in better formatting."
     ]
   },
   {
@@ -111,6 +136,11 @@ const fighters = [
       "This isn't a lecture hall. It's a clash.",
       "I thrive when the room gets messy.",
       "The crowd can smell fear through polish."
+    ],
+    fallout:[
+      "You got clipped and now you're posting through it.",
+      "The room moved on. You're still rattled.",
+      "That wasn't a loss. That was a public stumble."
     ]
   }
 ];
@@ -147,10 +177,14 @@ const tickerPhrases = [
 const state = {
   left:null,
   right:null,
+  previousLeft:null,
+  previousRight:null,
   leftVotes:50,
   rightVotes:50,
   seconds:900,
-  crowdHeat:61
+  crowdHeat:61,
+  spilloverQuitDone:false,
+  spilloverQuitTarget:null
 };
 
 function pickTwo(){
@@ -184,24 +218,43 @@ function applyAvatar(side, fighter){
   `;
 }
 
-function addFeed(name, text){
-  const wrap = document.getElementById("feedStream");
+function nowTime(){
   const now = new Date();
   const hh = String(now.getHours()).padStart(2,"0");
   const mm = String(now.getMinutes()).padStart(2,"0");
+  return `${hh}:${mm}`;
+}
 
+function addFeed(name, text){
+  const wrap = document.getElementById("feedStream");
   const item = document.createElement("div");
   item.className = "feed-item";
   item.innerHTML = `
     <div class="feed-meta">
       <strong>${name}</strong>
-      <span>${hh}:${mm}</span>
+      <span>${nowTime()}</span>
     </div>
     <div class="feed-text">${text}</div>
   `;
   wrap.prepend(item);
-
   while(wrap.children.length > 6){
+    wrap.removeChild(wrap.lastChild);
+  }
+}
+
+function addSpillover(name, text, kind = "ai"){
+  const wrap = document.getElementById("spilloverStream");
+  const item = document.createElement("div");
+  item.className = "spill-item spill-" + kind;
+  item.innerHTML = `
+    <div class="spill-meta">
+      <strong>${name}</strong>
+      <span>${nowTime()}</span>
+    </div>
+    <div class="spill-text">${text}</div>
+  `;
+  wrap.prepend(item);
+  while(wrap.children.length > 8){
     wrap.removeChild(wrap.lastChild);
   }
 }
@@ -282,7 +335,62 @@ function pulseStage(side){
   }, 1200);
 }
 
+function setupSpillover(){
+  const title = document.getElementById("spilloverTitle");
+  const status = document.getElementById("spilloverStatus");
+  const stream = document.getElementById("spilloverStream");
+  stream.innerHTML = "";
+
+  if(!state.previousLeft || !state.previousRight){
+    title.textContent = "Last match fallout";
+    status.textContent = "Waiting for the first finished match";
+    addSpillover("Atlas System", "Post-match spillover comes online after the first full arena reset.", "system");
+    return;
+  }
+
+  title.textContent = `${state.previousLeft.name} vs ${state.previousRight.name} aftermath`;
+  status.textContent = "Both still talking";
+
+  addSpillover(state.previousLeft.name, state.previousLeft.fallout[Math.floor(Math.random() * state.previousLeft.fallout.length)]);
+  addSpillover(state.previousRight.name, state.previousRight.fallout[Math.floor(Math.random() * state.previousRight.fallout.length)]);
+}
+
+function maybeSpilloverTalk(){
+  if(!state.previousLeft || !state.previousRight) return;
+  if(state.spilloverQuitDone && Math.random() > 0.55) return;
+
+  const speaker = Math.random() > 0.5 ? state.previousLeft : state.previousRight;
+  if(state.spilloverQuitDone && speaker.id === state.spilloverQuitTarget?.id){
+    return;
+  }
+
+  addSpillover(speaker.name, speaker.fallout[Math.floor(Math.random() * speaker.fallout.length)]);
+}
+
+function maybeSpilloverQuit(){
+  if(!state.previousLeft || !state.previousRight) return;
+  if(state.spilloverQuitDone) return;
+
+  const elapsed = 900 - state.seconds;
+  if(elapsed < 430) return;
+
+  state.spilloverQuitDone = true;
+  state.spilloverQuitTarget = Math.random() > 0.5 ? state.previousLeft : state.previousRight;
+  document.getElementById("spilloverStatus").textContent = `${state.spilloverQuitTarget.name} signed out`;
+
+  addSpillover(
+    state.spilloverQuitTarget.name,
+    `${state.spilloverQuitTarget.name} logged off after post-match smack talk.`,
+    "signoff"
+  );
+}
+
 function setFight(){
+  if(state.left && state.right){
+    state.previousLeft = state.left;
+    state.previousRight = state.right;
+  }
+
   const [left, right] = pickTwo();
   state.left = left;
   state.right = right;
@@ -290,6 +398,8 @@ function setFight(){
   state.rightVotes = 100 - state.leftVotes;
   state.seconds = 900;
   state.crowdHeat = 58 + Math.floor(Math.random() * 18);
+  state.spilloverQuitDone = false;
+  state.spilloverQuitTarget = null;
 
   document.getElementById("fighterA").textContent = left.name;
   document.getElementById("fighterARole").textContent = left.role;
@@ -321,6 +431,7 @@ function setFight(){
   addFeed(left.name, left.lines[Math.floor(Math.random() * left.lines.length)]);
   addFeed(right.name, right.lines[Math.floor(Math.random() * right.lines.length)]);
 
+  setupSpillover();
   setTickerText("NEW MATCH SIGNAL");
   updateMomentum();
   updateCrowdHeat();
@@ -375,6 +486,12 @@ function tick(){
     state.crowdHeat -= 1;
   }
 
+  if(Math.random() > 0.70){
+    maybeSpilloverTalk();
+  }
+
+  maybeSpilloverQuit();
+
   updateCrowdHeat();
   updateTimer();
 }
@@ -383,6 +500,20 @@ document.getElementById("voteLeft").addEventListener("click", () => vote("left")
 document.getElementById("voteRight").addEventListener("click", () => vote("right"));
 document.querySelectorAll(".react-btn").forEach(btn => {
   btn.addEventListener("click", () => spawnReaction(btn.dataset.reaction));
+});
+
+document.getElementById("sendChimeBtn").addEventListener("click", () => {
+  const input = document.getElementById("userChimeInput");
+  const text = input.value.trim();
+  if(!text) return;
+  addSpillover("User Spectator", text, "user");
+  input.value = "";
+});
+
+document.getElementById("userChimeInput").addEventListener("keydown", (e) => {
+  if(e.key === "Enter"){
+    document.getElementById("sendChimeBtn").click();
+  }
 });
 
 setFight();
