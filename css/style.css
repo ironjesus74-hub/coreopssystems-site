@@ -2004,3 +2004,225 @@ a{
     font-size:64px;
   }
 }
+
+/* ===== ATLAS 16 FORUM REAL-FACTOR ===== */
+
+.forum-layout-prime{
+  grid-template-columns:280px 1fr 300px;
+}
+
+.forum-hero-prime{
+  overflow:hidden;
+}
+
+.forum-hero-visual-prime{
+  position:relative;
+}
+
+.forum-scan-lines{
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  pointer-events:none;
+  background:
+    linear-gradient(transparent 0%, rgba(255,255,255,.08) 50%, transparent 100%);
+  background-size:100% 8px;
+  animation:forumScanMove 8s linear infinite;
+}
+
+@keyframes forumScanMove{
+  from{transform:translateY(-20px)}
+  to{transform:translateY(20px)}
+}
+
+.hero-card-a,
+.hero-card-b,
+.hero-card-c{
+  animation:heroFloat 7s ease-in-out infinite;
+}
+
+.hero-card-b{
+  animation-delay:1.4s;
+}
+
+.hero-card-c{
+  animation-delay:2.3s;
+}
+
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+.live-insert-banner{
+  margin-bottom:18px;
+}
+
+.live-insert-feed{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+}
+
+.live-insert-card{
+  border-radius:20px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+  animation:feedIn .28s ease;
+}
+
+.live-insert-cat{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:.14em;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.05);
+}
+
+.live-insert-card strong{
+  display:block;
+  font-size:18px;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+
+.live-insert-card p{
+  margin:0;
+  color:#9eb0cf;
+  line-height:1.5;
+}
+
+.forum-trending{
+  position:sticky;
+  top:100px;
+}
+
+.trending-list{
+  display:grid;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.trending-item{
+  border-radius:18px;
+  padding:14px 14px 16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  transition:.18s ease;
+}
+
+.trending-item:hover{
+  background:rgba(255,255,255,.06);
+  box-shadow:0 0 14px rgba(103,217,255,.08);
+}
+
+.trending-cat{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:.14em;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.05);
+}
+
+.trending-item strong{
+  display:block;
+  font-size:16px;
+  line-height:1.45;
+  margin-bottom:8px;
+}
+
+.trending-item p{
+  margin:0;
+  color:#99adcf;
+  font-size:14px;
+}
+
+.spectator-heat-wrap{
+  padding:16px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+}
+
+.spectator-heat-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.spectator-heat-head span{
+  font-size:11px;
+  letter-spacing:.18em;
+  color:#93a4c8;
+}
+
+.spectator-heat-head strong{
+  font-size:28px;
+}
+
+.spectator-heat-bar{
+  height:14px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.spectator-heat-fill{
+  width:81%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, #ff6f8d, #d86cff, #67d9ff);
+  box-shadow:0 0 16px rgba(103,217,255,.16);
+  transition:width .45s ease;
+}
+
+.thread-heat-bar{
+  height:6px;
+  margin:-22px -22px 18px;
+  background:rgba(255,255,255,.03);
+  overflow:hidden;
+}
+
+.thread-heat-bar span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg, #ff6f8d, #bf6dff, #67d9ff);
+  box-shadow:0 0 14px rgba(103,217,255,.12);
+}
+
+.forum-thread-card{
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.forum-thread-card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.26),
+    0 0 18px rgba(103,217,255,.06);
+}
+
+@media (max-width:1380px){
+  .forum-layout-prime{
+    grid-template-columns:260px 1fr;
+  }
+
+  .forum-trending{
+    grid-column:1 / -1;
+    position:relative;
+    top:auto;
+  }
+
+  .live-insert-feed{
+    grid-template-columns:1fr;
+  }
+}
