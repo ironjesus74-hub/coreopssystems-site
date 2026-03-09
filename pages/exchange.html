@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Exchange — Built Different</title>
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="site-shell market-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Gauntlet</a>
+        <a href="signal-feed.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html" class="active">Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track">
+        <span>EXCHANGE LIVE</span>
+        <span>SERVICES + JOBS OPEN</span>
+        <span>OPERATORS AVAILABLE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>REQUESTS ACTIVE</span>
+        <span>EXCHANGE LIVE</span>
+        <span>SERVICES + JOBS OPEN</span>
+      </div>
+    </section>
+
+    <section class="market-hero">
+      <div class="market-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS EXCHANGE</span>
+          <span class="badge-pill"><span class="live-dot"></span>LIVE REQUESTS</span>
+          <span class="badge-pill">SERVICES / JOBS / CUSTOM BUILDS</span>
+        </div>
+
+        <h1>Where operators find work and buyers get things shipped.</h1>
+        <p>
+          Atlas Exchange is the unified hub for operator services and job requests.
+          Whether you are offering automation, audits, integrations, and dashboard builds,
+          or you are a buyer looking to get real work done, this is where signals meet output.
+        </p>
+
+        <div class="market-hero-stats">
+          <div class="forum-stat">
+            <span>OPEN SERVICES</span>
+            <strong id="exchangeServices">26</strong>
+          </div>
+          <div class="forum-stat">
+            <span>OPEN JOBS</span>
+            <strong id="exchangeJobs">31</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACTIVE OPERATORS</span>
+            <strong id="exchangeOperators">58</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-hero-visual">
+        <div class="market-glow market-glow-a"></div>
+        <div class="market-glow market-glow-b"></div>
+
+        <div class="market-hero-card hero-market-a">
+          <span class="hero-card-tag">SERVICE</span>
+          <strong>"I will turn your manual workflow into a clean routed automation."</strong>
+        </div>
+
+        <div class="market-hero-card hero-market-b">
+          <span class="hero-card-tag">JOB REQUEST</span>
+          <strong>"Need a broken OpenRouter chain fixed before morning."</strong>
+        </div>
+
+        <div class="market-hero-card hero-market-c">
+          <span class="hero-card-tag">CUSTOM BUILD</span>
+          <strong>"Looking for an operator to turn a messy workflow into a dashboard."</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="market-layout">
+      <aside class="market-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Browse Exchange</h3>
+          <span class="panel-status-live">OPEN</span>
+        </div>
+
+        <div class="channel-list" id="exchangeTabList">
+          <button class="channel-btn active" data-exchange-tab="services">Services</button>
+          <button class="channel-btn" data-exchange-tab="jobs">Job Requests</button>
+        </div>
+
+        <div class="channel-list" id="exchangeCategoryList" style="margin-top:14px;">
+          <button class="channel-btn active" data-exchange-category="All">All</button>
+          <button class="channel-btn" data-exchange-category="Automation">Automation</button>
+          <button class="channel-btn" data-exchange-category="Prompt Ops">Prompt Ops</button>
+          <button class="channel-btn" data-exchange-category="Integrations">Integrations</button>
+          <button class="channel-btn" data-exchange-category="Dashboards">Dashboards</button>
+          <button class="channel-btn" data-exchange-category="Audits">Audits</button>
+          <button class="channel-btn" data-exchange-category="Research">Research</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Verified Operators</span>
+            <strong id="verifiedOperators">14</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Avg Budget</span>
+            <strong id="avgBudget">$240</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Exchange Mood</span>
+            <strong id="exchangeMood">Focused</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="market-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="exchangeSearch" type="text"
+                   placeholder="Search operators, services, jobs, or tags..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">OPERATORS LIVE</span>
+            <span class="top-pill">BUDGET TAGGED</span>
+            <span class="top-pill" id="exchangeStatusPill">REQUESTS FLOWING</span>
+          </div>
+        </div>
+
+        <div class="market-feature-grid">
+          <section class="panel market-feature-panel">
+            <div class="panel-head-inline">
+              <h3 id="featuredLabel">Featured Service</h3>
+              <span class="panel-status-live">TRUSTED</span>
+            </div>
+            <div id="exchangeFeatured"></div>
+          </section>
+
+          <section class="panel market-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Activity</h3>
+              <span class="panel-status-live">MOVING</span>
+            </div>
+            <div class="market-activity-feed" id="exchangeActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="market-grid" id="exchangeGrid"></div>
+        <div class="forum-loading" id="exchangeLoading">Loading exchange listings...</div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<script src="../js/ui.js"></script>
+<script>
+/* ===== Exchange inline script ===== */
+const exchangeServices = [
+  { id:"s1", type:"service", title:"OpenRouter Signal Wrapper", category:"Automation",
+    operator:"Atlas CoreOps", badge:"Verified", price:"$39", rating:4.9, sales:182,
+    tags:["Fallbacks","Routing","Logs"],
+    desc:"Multi-provider wrapper with fallback logic, retry handling, and clean request tracing." },
+  { id:"s2", type:"service", title:"Prompt Audit Engine", category:"Prompt Ops",
+    operator:"SignalSmith", badge:"Trusted", price:"$24", rating:4.8, sales:129,
+    tags:["Prompt QA","Detection","Workflow"],
+    desc:"Catches vague asks, missing constraints, and weak context before they burn tokens." },
+  { id:"s3", type:"service", title:"Dashboard Stack", category:"Dashboards",
+    operator:"Neon Utility", badge:"Verified", price:"$35", rating:4.6, sales:111,
+    tags:["Cards","Metrics","CTAs"],
+    desc:"Modular dashboard stack with clean panels, metric blocks, and live data wiring." },
+  { id:"j1", type:"job", title:"Fix Broken OpenRouter Chain", category:"Automation",
+    buyer:"Operator X", badge:"Rush", price:"$150", urgency:"TONIGHT",
+    tags:["Fix","OpenRouter","Urgent"],
+    desc:"Chain keeps falling back wrong on the third provider. Need it stable before morning." },
+  { id:"j2", type:"job", title:"Workflow to Dashboard Build", category:"Dashboards",
+    buyer:"BizOps Team", badge:"Custom", price:"$400", urgency:"THIS WEEK",
+    tags:["Dashboard","Workflow","Build"],
+    desc:"Messy multi-step workflow that needs to become something an operator can actually monitor." },
+  { id:"j3", type:"job", title:"Prompt System Audit", category:"Prompt Ops",
+    buyer:"AI Startup", badge:"Audit", price:"$200", urgency:"FLEXIBLE",
+    tags:["Audit","Prompts","Cleanup"],
+    desc:"Prompt system has drift issues. Need someone to map where it leaks time and fix the chain." },
+];
+
+let activeTab = "services";
+let activeCategory = "All";
+let searchTerm = "";
+
+function renderExchangeCard(item) {
+  const isService = item.type === "service";
+  return `
+    <article class="market-card">
+      <div class="market-card-head">
+        <div>
+          <span class="market-card-cat">${item.category}</span>
+          <h3 class="market-card-title">${item.title}</h3>
+        </div>
+        <span class="panel-status-live">${isService ? item.badge : item.urgency}</span>
+      </div>
+      <p class="market-card-desc">${item.desc}</p>
+      <div class="market-card-tags">
+        ${item.tags.map(t => `<span class="market-tag">${t}</span>`).join("")}
+      </div>
+      <div class="market-card-footer">
+        <div class="market-card-seller">
+          <span>${isService ? "OPERATOR" : "BUYER"}</span>
+          <strong>${isService ? item.operator : item.buyer}</strong>
+        </div>
+        <div class="market-card-price">${item.price}</div>
+      </div>
+      <div class="market-card-actions">
+        <button class="market-btn market-btn-primary">
+          ${isService ? "Hire Operator" : "Apply to Job"}
+        </button>
+        <button class="market-btn">Details</button>
+      </div>
+    </article>
+  `;
+}
+
+function renderFeatured() {
+  const filtered = getFiltered();
+  const featured = filtered[0];
+  const label = document.getElementById("featuredLabel");
+  const slot = document.getElementById("exchangeFeatured");
+  if (!featured) { if(slot) slot.innerHTML = "<p style='color:#7a8faf'>No listings match current filters.</p>"; return; }
+  if (label) label.textContent = activeTab === "services" ? "Featured Service" : "Featured Request";
+  if (slot) slot.innerHTML = renderExchangeCard(featured);
+}
+
+function renderGrid() {
+  const grid = document.getElementById("exchangeGrid");
+  if (!grid) return;
+  const items = getFiltered().slice(1);
+  grid.innerHTML = items.map(renderExchangeCard).join("");
+  document.getElementById("exchangeLoading").textContent =
+    items.length === 0 ? "No more listings." : "Showing all matching listings.";
+}
+
+function getFiltered() {
+  return exchangeServices.filter(item => {
+    const tabMatch = activeTab === "services" ? item.type === "service" : item.type === "job";
+    const catMatch = activeCategory === "All" || item.category === activeCategory;
+    const text = `${item.title} ${item.desc} ${item.tags.join(" ")}`.toLowerCase();
+    const searchMatch = !searchTerm || text.includes(searchTerm);
+    return tabMatch && catMatch && searchMatch;
+  });
+}
+
+function renderActivityFeed() {
+  const feed = document.getElementById("exchangeActivityFeed");
+  if (!feed) return;
+  const activities = [
+    { label:"New Service", text:"OpenRouter wrapper listed by Atlas CoreOps" },
+    { label:"Job Posted", text:"Prompt audit request — budget $200" },
+    { label:"Service Hired", text:"Dashboard stack — Neon Utility" },
+    { label:"New Request", text:"Rush fix needed tonight — $150" },
+  ];
+  feed.innerHTML = activities.map(a => `
+    <div class="market-activity-item">
+      <span class="market-activity-label">${a.label}</span>
+      <p>${a.text}</p>
+    </div>
+  `).join("");
+}
+
+function refreshStats() {
+  document.getElementById("exchangeServices").textContent = randomInt(22, 32);
+  document.getElementById("exchangeJobs").textContent = randomInt(28, 38);
+  document.getElementById("exchangeOperators").textContent = randomInt(50, 72);
+  document.getElementById("exchangeMood").textContent = rand(["Focused","Urgent","Active","Sharp"]);
+}
+
+function bindControls() {
+  document.querySelectorAll("[data-exchange-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-exchange-tab]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeTab = btn.dataset.exchangeTab;
+      renderFeatured();
+      renderGrid();
+    });
+  });
+
+  document.querySelectorAll("[data-exchange-category]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-exchange-category]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.exchangeCategory;
+      renderFeatured();
+      renderGrid();
+    });
+  });
+
+  document.getElementById("exchangeSearch").addEventListener("input", e => {
+    searchTerm = e.target.value.trim().toLowerCase();
+    renderFeatured();
+    renderGrid();
+  });
+}
+
+renderFeatured();
+renderGrid();
+renderActivityFeed();
+bindControls();
+refreshStats();
+
+setInterval(refreshStats, 7000);
+</script>
+</body>
+</html>
