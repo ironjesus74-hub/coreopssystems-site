@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Exchange — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas30">
+</head>
+<body>
+<div class="site-shell exchange-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Atlas Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html" class="active">Atlas Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="exchangeTicker">
+        <span>ATLAS EXCHANGE LIVE</span>
+        <span>SIGNAL CREDITS TRADING</span>
+        <span>ORDER BOOK ACTIVE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>BUY / SWAP / HOLD</span>
+        <span>ATLAS EXCHANGE LIVE</span>
+        <span>SIGNAL CREDITS TRADING</span>
+      </div>
+    </section>
+
+    <section class="exchange-hero">
+      <div class="exchange-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS EXCHANGE</span>
+          <span class="badge-pill"><span class="live-dot"></span>ORDER BOOK LIVE</span>
+          <span class="badge-pill">SIGNAL ECONOMY</span>
+        </div>
+
+        <h1>Trade signal. Hold value. Move with the platform.</h1>
+        <p>
+          Atlas Exchange is the live order book for the Atlas economy. Trade signal credits,
+          swap tool licenses, exchange operator perks, and position yourself inside a
+          platform where reputation and utility are the only currencies that matter.
+        </p>
+
+        <div class="exchange-hero-stats">
+          <div class="forum-stat">
+            <span>LIVE PAIRS</span>
+            <strong id="exchangePairsCount">24</strong>
+          </div>
+          <div class="forum-stat">
+            <span>24H VOLUME</span>
+            <strong id="exchangeVolumeCount">$18.2K</strong>
+          </div>
+          <div class="forum-stat">
+            <span>MARKET SIGNAL</span>
+            <strong id="exchangeMarketSignal">Bullish</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="exchange-hero-visual">
+        <div class="exchange-glow exchange-glow-a"></div>
+        <div class="exchange-glow exchange-glow-b"></div>
+
+        <div class="exchange-hero-card exchange-card-a">
+          <span class="hero-card-tag">SIGNAL CREDITS</span>
+          <strong>Earn credits from platform activity, Arena votes, and tool listings.</strong>
+        </div>
+
+        <div class="exchange-hero-card exchange-card-b">
+          <span class="hero-card-tag">TOOL LICENSES</span>
+          <strong>Swap, transfer, or sell your licensed tools through the exchange layer.</strong>
+        </div>
+
+        <div class="exchange-hero-card exchange-card-c">
+          <span class="hero-card-tag">OPERATOR PERKS</span>
+          <strong>Trade access tiers and perk bundles between Atlas ID holders.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="exchange-layout">
+      <aside class="exchange-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Market Pairs</h3>
+          <span class="panel-status-live">LIVE</span>
+        </div>
+
+        <div class="channel-list" id="exchangePairList">
+          <button class="channel-btn active" data-exchange-pair="All">All Pairs</button>
+          <button class="channel-btn" data-exchange-pair="Credits">Signal Credits</button>
+          <button class="channel-btn" data-exchange-pair="Licenses">Tool Licenses</button>
+          <button class="channel-btn" data-exchange-pair="Perks">Operator Perks</button>
+          <button class="channel-btn" data-exchange-pair="Access">Access Tiers</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Best Bid</span>
+            <strong id="exchangeBestBid">—</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Best Ask</span>
+            <strong id="exchangeBestAsk">—</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Spread</span>
+            <strong id="exchangeSpread">—</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="exchange-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="exchangeSearch" type="text" placeholder="Search pairs, credits, or perks..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">LIVE ORDER BOOK</span>
+            <span class="top-pill">SIGNAL ECONOMY</span>
+            <span class="top-pill" id="exchangeStatusPill">TRADING ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="exchange-feature-grid">
+          <section class="panel exchange-feature-panel">
+            <div class="panel-head-inline">
+              <h3>Featured Pair</h3>
+              <span class="panel-status-live">HOT</span>
+            </div>
+            <div id="exchangeFeatured"></div>
+          </section>
+
+          <section class="panel exchange-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Trade Activity</h3>
+              <span class="panel-status-live">MOVING</span>
+            </div>
+            <div id="exchangeActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="exchange-book-grid">
+          <section class="panel exchange-bids-panel">
+            <div class="panel-head-inline">
+              <h3>Bids</h3>
+              <span class="panel-status-live" style="color:#39d98a">BUY SIDE</span>
+            </div>
+            <div class="exchange-order-list" id="exchangeBids"></div>
+          </section>
+
+          <section class="panel exchange-asks-panel">
+            <div class="panel-head-inline">
+              <h3>Asks</h3>
+              <span class="panel-status-live" style="color:#ff6f8d">SELL SIDE</span>
+            </div>
+            <div class="exchange-order-list" id="exchangeAsks"></div>
+          </section>
+        </div>
+
+        <div class="exchange-grid" id="exchangeGrid"></div>
+        <div class="forum-loading" id="exchangeLoading">Loading more pairs...</div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<script src="../js/ui.js?v=atlas30"></script>
+<script src="../js/exchange.js?v=atlas30"></script>
+</body>
+</html>
