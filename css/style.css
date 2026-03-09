@@ -760,6 +760,50 @@ a{
   font-weight:800;
 }
 
+/* ===== PHILOSOPHICAL QUOTE ===== */
+
+.quote-block{
+  margin-top:32px;
+  padding-top:28px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .9s ease, transform .9s ease;
+}
+
+.quote-block.quote-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.quote-line{
+  display:block;
+  width:40px;
+  height:2px;
+  background:linear-gradient(90deg, var(--blue), var(--violet));
+  border-radius:2px;
+  margin-bottom:18px;
+  opacity:.6;
+}
+
+.quote-text{
+  margin:0 0 10px;
+  font-size:17px;
+  line-height:1.75;
+  color:var(--text);
+  font-style:italic;
+  letter-spacing:.01em;
+}
+
+.quote-author{
+  margin:0;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--blue);
+  opacity:.75;
+}
+
 /* ===== ATLAS 11 ARENA FIXES ===== */
 
 .avatar-orbit-line{
