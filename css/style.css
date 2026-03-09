@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
+
 :root{
   --bg:#04060c;
   --bg2:#091120;
@@ -25,14 +27,14 @@ html,body{
 }
 
 body{
-  font-family:Arial,sans-serif;
+  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 15% 20%, rgba(255,111,141,.10), transparent 24%),
     radial-gradient(circle at 85% 16%, rgba(103,217,255,.12), transparent 24%),
     radial-gradient(circle at 50% 55%, rgba(184,113,255,.07), transparent 30%),
     linear-gradient(180deg, #03050a 0%, #07101b 38%, #04070d 100%);
-  overflow-x:auto;
+  overflow-x:hidden;
 }
 
 body::before{
@@ -140,22 +142,28 @@ a{
   display:flex;
   flex-wrap:wrap;
   justify-content:flex-end;
-  gap:10px;
+  gap:6px;
   max-width:860px;
 }
 
 .nav-links a{
-  padding:10px 14px;
-  border-radius:14px;
-  color:#dde7fb;
-  opacity:.88;
+  padding:9px 13px;
+  border-radius:12px;
+  color:#cdd8f0;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.01em;
   transition:.18s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active{
-  opacity:1;
+  color:#eef3ff;
   background:rgba(255,255,255,.07);
+}
+
+.nav-links a.active{
+  color:#89daff;
 }
 .desktop-stage{
   min-width:1220px;
@@ -1218,7 +1226,7 @@ a{
 
 @keyframes tickerMove{
   from{transform:translateX(0)}
-  to{transform:translateX(-28%)}
+  to{transform:translateX(-50%)}
 }
 
 .hero-panel-prime,
@@ -4898,3 +4906,566 @@ justify-content:center;
 min-height:420px;
 }
 
+
+/* ===== ATLAS SHARED — FORM POLISH ===== */
+
+.forum-search-wrap input:focus,
+.user-chime-row input:focus,
+.contact-form-grid input:focus,
+.contact-form-grid select:focus,
+.contact-form-grid textarea:focus{
+  outline:none;
+  border-color:rgba(103,217,255,.38);
+  box-shadow:0 0 0 3px rgba(103,217,255,.10);
+}
+
+.contact-form-grid select{
+  -webkit-appearance:none;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%2367d9ff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:44px;
+  cursor:pointer;
+}
+
+.contact-form-grid select option{
+  background:#0c1322;
+  color:#eef3ff;
+}
+
+/* ===== ATLAS SHARED — FOOTER ===== */
+
+.site-footer{
+  margin-top:60px;
+  border-top:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg, rgba(5,8,15,.0), rgba(3,5,10,.92));
+}
+
+.site-footer-inner{
+  width:1200px;
+  margin:0 auto;
+  padding:48px 20px 36px;
+  display:grid;
+  grid-template-columns:240px 1fr auto;
+  gap:48px;
+  align-items:start;
+}
+
+.footer-brand{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.footer-brand-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+  font-size:20px;
+}
+
+.footer-brand-row .brand-orb{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+}
+
+.footer-tagline{
+  color:#6a80a8;
+  font-size:14px;
+  line-height:1.6;
+  max-width:200px;
+}
+
+.footer-nav{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+
+.footer-nav-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.footer-nav-group h4{
+  margin:0 0 6px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.16em;
+  color:#4a6088;
+}
+
+.footer-nav-group a{
+  font-size:14px;
+  color:#6a80a8;
+  transition:.18s ease;
+}
+
+.footer-nav-group a:hover{
+  color:#c0ceea;
+}
+
+.footer-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:16px;
+}
+
+.footer-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+  font-size:12px;
+  letter-spacing:.14em;
+  color:#7d93b8;
+}
+
+.footer-copy{
+  width:1200px;
+  margin:0 auto;
+  padding:18px 20px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.05);
+  color:#415168;
+  font-size:13px;
+}
+
+.footer-copy-links{
+  display:flex;
+  gap:20px;
+}
+
+.footer-copy-links a{
+  color:#415168;
+  transition:.18s ease;
+}
+
+.footer-copy-links a:hover{
+  color:#8a9dc0;
+}
+
+/* ===== ATLAS HOME PAGE ===== */
+
+.home-live-page{
+  position:relative;
+}
+
+.home-hero{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:24px;
+  margin-bottom:24px;
+  border-radius:34px;
+  padding:34px;
+  background:
+    linear-gradient(180deg, rgba(14,20,34,.97), rgba(7,10,18,.98)),
+    radial-gradient(circle at 16% 18%, rgba(255,111,141,.09), transparent 28%),
+    radial-gradient(circle at 86% 14%, rgba(103,217,255,.10), transparent 28%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 28px 100px rgba(0,0,0,.36);
+  position:relative;
+  overflow:hidden;
+}
+
+.home-hero::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.05);
+  pointer-events:none;
+}
+
+.home-hero-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:0;
+}
+
+.home-hero-copy h1{
+  margin:14px 0 18px;
+  font-size:82px;
+  line-height:.94;
+  letter-spacing:-.04em;
+  max-width:680px;
+}
+
+.home-hero-copy p{
+  margin:0;
+  max-width:660px;
+  color:#aab7d2;
+  font-size:21px;
+  line-height:1.7;
+}
+
+.home-hero-actions{
+  display:flex;
+  gap:12px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+
+.home-btn-primary{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:16px 26px;
+  border-radius:18px;
+  background:linear-gradient(135deg, #7ae5ff, #6a95ff);
+  color:#07111a;
+  font-size:17px;
+  font-weight:800;
+  transition:.18s ease;
+}
+
+.home-btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(103,217,255,.28);
+}
+
+.home-btn-secondary{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:16px 26px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:#cdd8f0;
+  font-size:17px;
+  font-weight:700;
+  transition:.18s ease;
+}
+
+.home-btn-secondary:hover{
+  background:rgba(255,255,255,.09);
+  color:#eef3ff;
+}
+
+.home-hero-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:28px;
+}
+
+.home-stat{
+  padding:16px 18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+}
+
+.home-stat span{
+  display:block;
+  margin-bottom:6px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.18em;
+  color:#5a7099;
+}
+
+.home-stat strong{
+  font-size:26px;
+  font-weight:800;
+}
+
+.home-hero-visual{
+  position:relative;
+  min-height:400px;
+  border-radius:30px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(9,13,23,.97), rgba(5,8,15,.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 20px 80px rgba(0,0,0,.34);
+  display:grid;
+  place-items:center;
+}
+
+.home-section-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.home-section-card{
+  border-radius:28px;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(13,17,29,.94), rgba(8,10,18,.97));
+  box-shadow:0 18px 60px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03);
+  position:relative;
+  overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease;
+  text-decoration:none;
+  color:inherit;
+}
+
+.home-section-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 24px 70px rgba(0,0,0,.28), 0 0 20px rgba(103,217,255,.07);
+}
+
+.home-section-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:28px;
+  padding:1px;
+  background:linear-gradient(145deg,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,.02) 24%,
+    rgba(255,111,141,.08) 48%,
+    rgba(103,217,255,.08) 78%,
+    rgba(255,255,255,.04));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+.home-section-card-icon{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  margin-bottom:16px;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+}
+
+.home-section-card h3{
+  margin:0 0 10px;
+  font-size:26px;
+  font-weight:800;
+}
+
+.home-section-card p{
+  margin:0;
+  color:#8ba0c2;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.home-section-card-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:18px;
+  font-size:14px;
+  font-weight:700;
+  color:#67d9ff;
+  letter-spacing:.02em;
+}
+
+.home-bottom-row{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.home-signal-panel{
+  padding:26px;
+}
+
+.home-signal-panel h2{
+  margin:0 0 6px;
+  font-size:38px;
+  font-weight:900;
+}
+
+.home-signal-panel p{
+  margin:0 0 22px;
+  color:#8ba0c2;
+  font-size:18px;
+  line-height:1.65;
+}
+
+.home-live-feed{
+  display:grid;
+  gap:12px;
+}
+
+.home-live-item{
+  border-radius:18px;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.04);
+  animation:feedIn .28s ease;
+}
+
+.home-live-item strong{
+  display:block;
+  font-size:17px;
+  margin-bottom:5px;
+}
+
+.home-live-item span{
+  color:#7d93b8;
+  font-size:14px;
+}
+
+.home-cta-panel{
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:20px;
+  background:
+    linear-gradient(180deg, rgba(20,14,38,.96), rgba(10,8,22,.98)),
+    radial-gradient(circle at 30% 40%, rgba(184,113,255,.12), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(103,217,255,.08), transparent 40%);
+}
+
+.home-cta-panel h2{
+  margin:0;
+  font-size:40px;
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:-.02em;
+}
+
+.home-cta-panel p{
+  margin:0;
+  color:#8ba0c2;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.home-cta-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.home-cta-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:#cdd8f0;
+  font-size:15px;
+  font-weight:700;
+  transition:.18s ease;
+}
+
+.home-cta-link:hover{
+  background:rgba(255,255,255,.07);
+  color:#eef3ff;
+}
+
+.home-cta-link-arrow{
+  color:#67d9ff;
+}
+
+/* ===== ATLAS ARENA PLACEHOLDER ===== */
+
+.arena-coming-page{
+  position:relative;
+}
+
+.arena-coming-hero{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+  margin-bottom:22px;
+  border-radius:34px;
+  padding:34px;
+  background:
+    linear-gradient(180deg, rgba(14,20,34,.97), rgba(7,10,18,.98)),
+    radial-gradient(circle at 16% 18%, rgba(255,111,141,.09), transparent 28%),
+    radial-gradient(circle at 86% 14%, rgba(103,217,255,.10), transparent 28%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 28px 100px rgba(0,0,0,.36);
+  position:relative;
+  overflow:hidden;
+  align-items:center;
+}
+
+.arena-coming-hero::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.05);
+  pointer-events:none;
+}
+
+.arena-coming-copy h1{
+  margin:14px 0 18px;
+  font-size:82px;
+  line-height:.94;
+  letter-spacing:-.04em;
+  max-width:680px;
+}
+
+.arena-coming-copy p{
+  margin:0;
+  max-width:640px;
+  color:#aab7d2;
+  font-size:21px;
+  line-height:1.7;
+}
+
+.arena-coming-actions{
+  display:flex;
+  gap:12px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+
+.arena-coming-visual{
+  display:grid;
+  place-items:center;
+  min-height:360px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg, rgba(8,12,22,.96), rgba(5,8,15,.98));
+}
+
+.arena-coming-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+@keyframes vsRingSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes vsRingSpinReverse{
+  from{transform:rotate(360deg)}
+  to{transform:rotate(0deg)}
+}
+
+@keyframes vsCoreShift{
+  0%,100%{transform:rotate(25deg) scale(1)}
+  50%{transform:rotate(25deg) scale(1.07)}
+}
+
+@keyframes vsMainFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
