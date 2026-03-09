@@ -5882,3 +5882,292 @@ min-height:420px;
     0 18px 60px rgba(0,0,0,.22),
     inset 0 1px 0 rgba(255,255,255,.03);
 }
+
+/* ===== ATLAS 31 – GAUNTLET FLAGSHIP ===== */
+
+/* ── Hero headline ── */
+
+.gauntlet-live-page .arena-hero-copy h1{
+  font-size:68px;
+  line-height:.96;
+  letter-spacing:-.038em;
+  max-width:680px;
+}
+
+.gauntlet-hero-accent{
+  color:#67d9ff;
+  text-shadow:
+    0 0 18px rgba(103,217,255,.38),
+    0 0 40px rgba(103,217,255,.16);
+}
+
+/* ── Live match info strip ── */
+
+.gauntlet-match-strip{
+  display:flex;
+  align-items:stretch;
+  margin-bottom:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(90deg, rgba(9,13,24,.97), rgba(7,10,20,.97));
+  overflow:hidden;
+  box-shadow:0 10px 32px rgba(0,0,0,.24);
+}
+
+.gauntlet-match-item{
+  flex:1;
+  padding:14px 18px;
+  border-right:1px solid rgba(255,255,255,.05);
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.gauntlet-match-item:last-child{
+  border-right:none;
+}
+
+.gauntlet-match-item span{
+  font-size:10px;
+  letter-spacing:.18em;
+  color:#6a80a4;
+  text-transform:uppercase;
+}
+
+.gauntlet-match-item strong{
+  font-size:17px;
+  font-weight:800;
+  color:#d8e5ff;
+  letter-spacing:.01em;
+}
+
+.gauntlet-match-live{
+  flex-direction:row;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(90deg, rgba(69,227,142,.06), rgba(69,227,142,.02));
+  border-left:1px solid rgba(69,227,142,.18);
+}
+
+.gauntlet-match-live .live-dot{
+  flex-shrink:0;
+}
+
+.gauntlet-match-live strong{
+  font-size:12px;
+  letter-spacing:.18em;
+  color:#45e38e;
+}
+
+/* ── Fighter card accent bars ── */
+
+.fighter-left-card::after{
+  content:"";
+  position:absolute;
+  top:14px;
+  bottom:14px;
+  left:-1px;
+  width:4px;
+  border-radius:0 4px 4px 0;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,111,141,.86) 40%,
+    rgba(184,113,255,.60) 72%,
+    transparent 100%
+  );
+  box-shadow:0 0 18px rgba(255,111,141,.28);
+}
+
+.fighter-right-card::after{
+  content:"";
+  position:absolute;
+  top:14px;
+  bottom:14px;
+  right:-1px;
+  width:4px;
+  border-radius:4px 0 0 4px;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(103,217,255,.86) 40%,
+    rgba(74,136,255,.60) 72%,
+    transparent 100%
+  );
+  box-shadow:0 0 18px rgba(103,217,255,.28);
+}
+
+/* ── Center battle emblem corner marks ── */
+
+.conflict-corner{
+  position:absolute;
+  width:18px;
+  height:18px;
+  z-index:4;
+}
+
+.conflict-corner-tl{
+  top:10px;
+  left:10px;
+  border-top:2px solid rgba(255,111,141,.70);
+  border-left:2px solid rgba(255,111,141,.70);
+  border-radius:3px 0 0 0;
+  box-shadow:-2px -2px 8px rgba(255,111,141,.14);
+}
+
+.conflict-corner-tr{
+  top:10px;
+  right:10px;
+  border-top:2px solid rgba(103,217,255,.70);
+  border-right:2px solid rgba(103,217,255,.70);
+  border-radius:0 3px 0 0;
+  box-shadow:2px -2px 8px rgba(103,217,255,.14);
+}
+
+.conflict-corner-bl{
+  bottom:10px;
+  left:10px;
+  border-bottom:2px solid rgba(255,111,141,.70);
+  border-left:2px solid rgba(255,111,141,.70);
+  border-radius:0 0 0 3px;
+  box-shadow:-2px 2px 8px rgba(255,111,141,.14);
+}
+
+.conflict-corner-br{
+  bottom:10px;
+  right:10px;
+  border-bottom:2px solid rgba(103,217,255,.70);
+  border-right:2px solid rgba(103,217,255,.70);
+  border-radius:0 0 3px 0;
+  box-shadow:2px 2px 8px rgba(103,217,255,.14);
+}
+
+/* ── Conflict label glyph ── */
+
+.conflict-label{
+  font-size:28px !important;
+  letter-spacing:normal !important;
+  color:rgba(255,255,255,.88);
+  text-shadow:
+    0 0 12px rgba(255,255,255,.38),
+    0 0 28px rgba(103,217,255,.22),
+    0 0 28px rgba(255,111,141,.18);
+  animation:conflictLabelPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes conflictLabelPulse{
+  0%,100%{
+    opacity:.88;
+    text-shadow:
+      0 0 12px rgba(255,255,255,.38),
+      0 0 28px rgba(103,217,255,.22),
+      0 0 28px rgba(255,111,141,.18);
+  }
+  50%{
+    opacity:1;
+    text-shadow:
+      0 0 16px rgba(255,255,255,.52),
+      0 0 36px rgba(103,217,255,.32),
+      0 0 36px rgba(255,111,141,.26);
+  }
+}
+
+/* ── Signal chatter feed polish ── */
+
+.spill-spectator{
+  border-color:rgba(184,113,255,.16);
+  background:rgba(184,113,255,.04);
+}
+
+.spill-spectator .spill-meta span{
+  color:#a680e8;
+}
+
+.spill-ai .spill-meta strong{
+  color:#67d9ff;
+}
+
+.spill-system .spill-meta span{
+  color:#ff6f8d;
+  letter-spacing:.12em;
+  font-size:11px;
+}
+
+/* ── Gauntlet arena hero depth ── */
+
+.gauntlet-live-page .arena-hero-panel{
+  background:
+    linear-gradient(180deg, rgba(10,16,28,.98), rgba(6,9,18,.99)),
+    radial-gradient(circle at 12% 18%, rgba(255,111,141,.10), transparent 30%),
+    radial-gradient(circle at 88% 12%, rgba(103,217,255,.11), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(184,113,255,.06), transparent 28%);
+}
+
+/* ── Gauntlet fighter card depth ── */
+
+.gauntlet-live-page .arena-fighter-card{
+  background:
+    linear-gradient(180deg, rgba(11,16,30,.98), rgba(7,9,17,.99)),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.03), transparent 50%);
+}
+
+.fighter-left-card{
+  background:
+    linear-gradient(180deg, rgba(11,16,30,.98), rgba(7,9,17,.99)),
+    radial-gradient(circle at 0% 30%, rgba(255,111,141,.05), transparent 40%) !important;
+}
+
+.fighter-right-card{
+  background:
+    linear-gradient(180deg, rgba(11,16,30,.98), rgba(7,9,17,.99)),
+    radial-gradient(circle at 100% 30%, rgba(103,217,255,.05), transparent 40%) !important;
+}
+
+/* ── Arena center column depth ── */
+
+.gauntlet-live-page .arena-center-column{
+  background:
+    linear-gradient(180deg, rgba(9,13,24,.98), rgba(6,9,18,.99)),
+    radial-gradient(circle at 50% 28%, rgba(184,113,255,.06), transparent 40%);
+}
+
+/* ── Vote button hover polish ── */
+
+.arena-vote-left:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 26px rgba(255,111,141,.30);
+  filter:brightness(1.06);
+}
+
+.arena-vote-right:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 26px rgba(103,217,255,.30);
+  filter:brightness(1.06);
+}
+
+.arena-vote-btn{
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+/* ── Forum stat polish for gauntlet page ── */
+
+.gauntlet-live-page .forum-stat{
+  padding:16px 18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.04);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.gauntlet-live-page .forum-stat span{
+  display:block;
+  font-size:10px;
+  letter-spacing:.18em;
+  color:#6e85aa;
+  margin-bottom:6px;
+}
+
+.gauntlet-live-page .forum-stat strong{
+  font-size:26px;
+  font-weight:800;
+  color:#eef3ff;
+}
+
