@@ -25,7 +25,7 @@ html,body{
 }
 
 body{
-  font-family:Arial,sans-serif;
+  font-family:'Inter',Arial,sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 15% 20%, rgba(255,111,141,.10), transparent 24%),
@@ -5881,4 +5881,374 @@ min-height:420px;
   box-shadow:
     0 18px 60px rgba(0,0,0,.22),
     inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+/* ===== ATLAS 31 – GAUNTLET FLAGSHIP PASS ===== */
+
+/* ── Gauntlet Hero Emblem ─────────────────────────────────────────────── */
+
+.gauntlet-hero-emblem{
+  position:relative;
+  width:340px;
+  height:340px;
+  border-radius:30px;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  overflow:hidden;
+}
+
+.ghe-atmo{
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  filter:blur(56px);
+  opacity:.22;
+  pointer-events:none;
+}
+
+.ghe-atmo-left{
+  left:-30px;
+  top:50%;
+  transform:translateY(-50%);
+  background:radial-gradient(circle,rgba(255,111,141,.9),transparent 62%);
+}
+
+.ghe-atmo-right{
+  right:-30px;
+  top:50%;
+  transform:translateY(-50%);
+  background:radial-gradient(circle,rgba(103,217,255,.9),transparent 62%);
+}
+
+.ghe-ring{
+  position:absolute;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.12);
+}
+
+.ghe-ring-a{
+  inset:6px;
+  border-color:rgba(103,217,255,.58);
+  box-shadow:0 0 22px rgba(103,217,255,.14);
+  animation:spinA 16s linear infinite;
+}
+
+.ghe-ring-b{
+  inset:52px;
+  border-color:rgba(184,113,255,.48);
+  animation:spinB 11s linear infinite;
+}
+
+.ghe-ring-c{
+  inset:98px;
+  border-color:rgba(255,255,255,.14);
+  animation:spinA 7s linear infinite;
+}
+
+.ghe-tower{
+  position:absolute;
+  top:50%;
+  width:52px;
+  height:118px;
+  margin-top:-59px;
+  border-radius:24px;
+}
+
+.ghe-tower-left{
+  left:14px;
+  border:2px solid rgba(255,111,141,.88);
+  box-shadow:0 0 18px rgba(255,111,141,.30),inset 0 0 10px rgba(255,111,141,.06);
+  animation:gheTowerPulse 3.4s ease-in-out infinite;
+}
+
+.ghe-tower-right{
+  right:14px;
+  border:2px solid rgba(103,217,255,.88);
+  box-shadow:0 0 18px rgba(103,217,255,.30),inset 0 0 10px rgba(103,217,255,.06);
+  animation:gheTowerPulse 3.4s ease-in-out infinite 1.4s;
+}
+
+.ghe-beam{
+  position:absolute;
+  width:56px;
+  height:174px;
+  border-radius:999px;
+  transform:rotate(26deg);
+  background:linear-gradient(180deg,#8ae6ff,#ffd8e6,#ff8080);
+  box-shadow:
+    0 0 22px rgba(255,255,255,.16),
+    0 0 44px rgba(103,217,255,.18),
+    0 0 44px rgba(255,111,141,.16);
+  animation:beamPulse 3.6s ease-in-out infinite;
+}
+
+.ghe-beam-soft{
+  position:absolute;
+  width:56px;
+  height:174px;
+  border-radius:999px;
+  transform:rotate(26deg) scale(.72);
+  filter:blur(16px);
+  background:linear-gradient(180deg,rgba(138,230,255,.52),rgba(255,216,230,.52),rgba(255,128,128,.52));
+}
+
+.ghe-core-glow{
+  position:absolute;
+  inset:30%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 62%);
+  filter:blur(12px);
+  animation:gheCoreBreath 4.2s ease-in-out infinite;
+}
+
+.ghe-center-mark{
+  position:relative;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+}
+
+.ghe-atlas-a{
+  font-size:90px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:1;
+  color:#f7fbff;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.38),
+    0 0 28px rgba(255,255,255,.18),
+    0 0 54px rgba(103,217,255,.12);
+}
+
+.ghe-label{
+  font-size:10px;
+  letter-spacing:.24em;
+  color:rgba(255,255,255,.40);
+  font-weight:700;
+}
+
+.ghe-node{
+  position:absolute;
+  border-radius:50%;
+}
+
+.ghe-node-a{
+  width:12px;
+  height:12px;
+  left:44px;
+  bottom:52px;
+  background:#71d8ff;
+  box-shadow:0 0 12px #71d8ff;
+  animation:vsOrbLeft 6s linear infinite;
+}
+
+.ghe-node-b{
+  width:12px;
+  height:12px;
+  right:48px;
+  top:58px;
+  background:#ff7b98;
+  box-shadow:0 0 12px #ff7b98;
+  animation:vsOrbRight 6s linear infinite;
+}
+
+.ghe-node-c{
+  width:8px;
+  height:8px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  box-shadow:0 0 18px rgba(255,255,255,.8);
+  animation:gheCoreNodePulse 2.2s ease-in-out infinite;
+}
+
+.ghe-scan{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.5;
+  background:
+    linear-gradient(180deg,transparent 0%,rgba(103,217,255,.04) 50%,transparent 100%);
+  background-size:100% 14px;
+  animation:gheScanMove 7s linear infinite;
+}
+
+@keyframes gheTowerPulse{
+  0%,100%{opacity:.88;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.03)}
+}
+
+@keyframes gheCoreBreath{
+  0%,100%{opacity:.75;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.14)}
+}
+
+@keyframes gheCoreNodePulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+  50%{transform:translate(-50%,-50%) scale(1.9);opacity:.5}
+}
+
+@keyframes gheScanMove{
+  from{background-position:0 0}
+  to{background-position:0 100%}
+}
+
+/* ── Live Match Info Strip ────────────────────────────────────────────── */
+
+.gauntlet-match-strip{
+  display:flex;
+  align-items:center;
+  margin-bottom:18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(90deg,rgba(10,15,26,.96),rgba(8,12,20,.96));
+  box-shadow:0 10px 30px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.03);
+  overflow:hidden;
+}
+
+.gms-item{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  padding:18px 12px;
+}
+
+.gms-item span{
+  font-size:10px;
+  letter-spacing:.20em;
+  color:#6e85ad;
+  font-weight:600;
+}
+
+.gms-item strong{
+  font-size:15px;
+  font-weight:700;
+  color:#dde7fb;
+  white-space:nowrap;
+}
+
+.gms-divider{
+  width:1px;
+  height:38px;
+  background:rgba(255,255,255,.07);
+  flex-shrink:0;
+}
+
+.gms-live{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:7px;
+  padding:18px 12px;
+}
+
+.gms-live-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#45e38e;
+  box-shadow:0 0 12px #45e38e;
+  animation:livePulse 1.5s infinite;
+}
+
+.gms-live span{
+  font-size:10px;
+  letter-spacing:.20em;
+  color:#45e38e;
+  font-weight:700;
+}
+
+/* ── Gauntlet page-level typography ─────────────────────────────────── */
+
+.gauntlet-live-page .arena-hero-copy h1{
+  font-size:72px;
+}
+
+/* ── Arena hero mark: add overflow clipping ─────────────────────────── */
+
+.arena-hero-mark{
+  overflow:hidden;
+  position:relative;
+}
+
+/* ── Improved vote buttons ───────────────────────────────────────────── */
+
+.arena-vote-btn{
+  font-weight:800;
+  letter-spacing:.01em;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+}
+
+.arena-vote-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+}
+
+.arena-vote-left:hover{
+  box-shadow:0 0 26px rgba(255,111,141,.28);
+}
+
+.arena-vote-right:hover{
+  box-shadow:0 0 26px rgba(103,217,255,.28);
+}
+
+/* ── Feed items: spectator vs AI visual distinction ─────────────────── */
+
+.spill-spectator{
+  border-color:rgba(255,255,255,.06);
+}
+
+.spill-ai strong{
+  color:#8fe0ff;
+}
+
+.spill-system{
+  font-size:14px;
+  letter-spacing:.08em;
+}
+
+/* ── Panel h3 size normalization ─────────────────────────────────────── */
+
+.panel h3{
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+
+/* ── Ticker: add separator dots ─────────────────────────────────────── */
+
+.live-ticker-track span::after{
+  content:"·";
+  margin-left:38px;
+  opacity:.4;
+}
+
+.live-ticker-track span:last-child::after{
+  display:none;
+}
+
+/* ── Responsive: match strip wraps gracefully ───────────────────────── */
+
+@media (max-width:1380px){
+  .gauntlet-match-strip{
+    flex-wrap:wrap;
+  }
+  .gms-divider{
+    display:none;
+  }
+  .gms-item,
+  .gms-live{
+    flex:0 0 33.33%;
+    border-top:1px solid rgba(255,255,255,.05);
+  }
 }
