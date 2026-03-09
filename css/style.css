@@ -4898,3 +4898,131 @@ justify-content:center;
 min-height:420px;
 }
 
+/* ============================================================
+   ATLAS GAUNTLET — Gauntlet-specific component styles
+   ============================================================ */
+
+/* Timer display inside center column */
+.gauntlet-timer-wrap{
+  text-align:center;
+  margin-bottom:14px;
+}
+
+.gauntlet-timer-label{
+  font-size:11px;
+  letter-spacing:.18em;
+  color:#93a4c8;
+  margin-bottom:10px;
+}
+
+.gauntlet-timer{
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  color:#eef3ff;
+  line-height:1;
+}
+
+/* Score separator dot */
+.gauntlet-score-sep{
+  color:rgba(255,255,255,.30);
+  font-size:40px;
+}
+
+/* Spacing on bar cards inside center column */
+.gauntlet-bar-card{
+  margin-bottom:14px;
+}
+
+/* Chatter panel */
+.gauntlet-chatter-panel{
+  border-radius:28px;
+  padding:24px;
+}
+
+/* Scrolling chatter feed */
+.gauntlet-chatter-feed{
+  max-height:340px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding-right:4px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.10) transparent;
+}
+
+.gauntlet-chatter-feed::-webkit-scrollbar{
+  width:4px;
+}
+
+.gauntlet-chatter-feed::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.10);
+  border-radius:999px;
+}
+
+/* Individual chatter message */
+.gauntlet-chatter-msg{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.gauntlet-chatter-name{
+  display:block;
+  font-size:11px;
+  letter-spacing:.14em;
+  font-weight:700;
+}
+
+.gauntlet-chatter-text{
+  font-size:14px;
+  color:#dce6fa;
+  line-height:1.55;
+}
+
+/* Match data panel */
+.gauntlet-data-panel{
+  border-radius:28px;
+  padding:24px;
+}
+
+.gauntlet-data-stack{
+  display:grid;
+  gap:14px;
+  margin-top:16px;
+  margin-bottom:20px;
+}
+
+.gauntlet-data-label{
+  font-size:11px;
+  letter-spacing:.18em;
+  color:#93a4c8;
+  margin-bottom:8px;
+}
+
+.gauntlet-data-timer{
+  font-size:28px;
+}
+
+/* Live status text */
+.gauntlet-status-live{
+  color:#39d98a;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Reaction row spacing */
+.gauntlet-reaction-wrap{
+  margin-top:4px;
+}
+
+.gauntlet-reaction-wrap .arena-reaction-row{
+  margin:10px 0 14px;
+}
+
