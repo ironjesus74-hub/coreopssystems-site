@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Exchange — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas22">
+</head>
+<body>
+<div class="site-shell exchange-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Gauntlet</a>
+        <a href="signal-feed.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html" class="active">Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="exchangeTicker">
+        <span>EXCHANGE LIVE</span>
+        <span>WORK / SERVICES / HIRING</span>
+        <span>OPERATORS AVAILABLE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>EXCHANGE LIVE</span>
+        <span>WORK / SERVICES / HIRING</span>
+        <span>OPERATORS AVAILABLE</span>
+      </div>
+    </section>
+
+    <section class="exchange-hero">
+      <div class="exchange-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS EXCHANGE</span>
+          <span class="badge-pill"><span class="live-dot"></span>EXCHANGE LIVE</span>
+          <span class="badge-pill">SERVICES / CONTRACTS / HIRING</span>
+        </div>
+
+        <h1>Work that moves. Operators who deliver.</h1>
+        <p>
+          Atlas Exchange is where premium service offerings, operator contracts, freelance builds,
+          and hiring opportunities converge. One platform. Verified operators. Real work.
+          No noise, no vague deliverables — just signal-level output from people who know what they are doing.
+        </p>
+
+        <div class="exchange-hero-stats">
+          <div class="forum-stat">
+            <span>OPEN LISTINGS</span>
+            <strong id="exchangeOpenCount">34</strong>
+          </div>
+          <div class="forum-stat">
+            <span>ACTIVE OPERATORS</span>
+            <strong id="exchangeOperatorsCount">28</strong>
+          </div>
+          <div class="forum-stat">
+            <span>AVG DELIVERY</span>
+            <strong id="exchangeAvgDelivery">2.8d</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="exchange-hero-visual">
+        <div class="exchange-glow exchange-glow-a"></div>
+        <div class="exchange-glow exchange-glow-b"></div>
+
+        <div class="exchange-hero-card exchange-card-a">
+          <span class="hero-card-tag">SERVICE</span>
+          <strong>"Precision automation. Clean routing. Real output every time."</strong>
+        </div>
+
+        <div class="exchange-hero-card exchange-card-b">
+          <span class="hero-card-tag">CONTRACT</span>
+          <strong>"End-to-end prompt architecture review with full chain rewrite."</strong>
+        </div>
+
+        <div class="exchange-hero-card exchange-card-c">
+          <span class="hero-card-tag">HIRING</span>
+          <strong>"AI workflow engineers. Prompt ops managers. Atlas-grade operators."</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="exchange-layout">
+      <aside class="exchange-sidebar panel">
+        <div class="panel-head-inline">
+          <h3>Browse Exchange</h3>
+          <span class="panel-status-live">OPEN</span>
+        </div>
+
+        <div class="channel-list" id="exchangeCategoryList">
+          <button class="channel-btn active" data-exchange-category="All">All Listings</button>
+          <button class="channel-btn" data-exchange-category="Services">Services</button>
+          <button class="channel-btn" data-exchange-category="Contracts">Contracts</button>
+          <button class="channel-btn" data-exchange-category="Freelance">Freelance</button>
+          <button class="channel-btn" data-exchange-category="Hiring">Hiring</button>
+          <button class="channel-btn" data-exchange-category="Audits">Audits</button>
+          <button class="channel-btn" data-exchange-category="Research">Research</button>
+        </div>
+
+        <div class="sidebar-mini-metrics">
+          <div class="mini-metric">
+            <span>Verified Operators</span>
+            <strong id="verifiedExchangeOps">18</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Rush Slots</span>
+            <strong id="exchangeRushSlots">4</strong>
+          </div>
+          <div class="mini-metric">
+            <span>Client Mood</span>
+            <strong id="exchangeClientMood">Focused</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="exchange-main">
+        <div class="forum-controls panel">
+          <div class="forum-search-wrap">
+            <input id="exchangeSearch" type="text" placeholder="Search operators, listings, or tags..." />
+          </div>
+          <div class="forum-control-pills">
+            <span class="top-pill">TRUST-VERIFIED</span>
+            <span class="top-pill">DESKTOP-FIRST</span>
+            <span class="top-pill" id="exchangeStatusPill">REQUESTS ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="exchange-feature-grid">
+          <section class="panel exchange-feature-panel">
+            <div class="panel-head-inline">
+              <h3>Featured Operator</h3>
+              <span class="panel-status-live">TRUSTED</span>
+            </div>
+            <div class="featured-exchange-op" id="featuredExchangeOp"></div>
+          </section>
+
+          <section class="panel exchange-activity-panel">
+            <div class="panel-head-inline">
+              <h3>Live Activity</h3>
+              <span class="panel-status-live">MOVING</span>
+            </div>
+            <div class="exchange-activity-feed" id="exchangeActivityFeed"></div>
+          </section>
+        </div>
+
+        <div class="exchange-grid" id="exchangeGrid"></div>
+        <div class="forum-loading" id="exchangeLoading">Loading more listings...</div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<script src="../js/exchange.js?v=atlas22"></script>
+</body>
+</html>
