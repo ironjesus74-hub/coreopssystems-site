@@ -314,6 +314,7 @@ a{
   text-shadow:0 0 24px rgba(255,255,255,.22);
 }
 
+/* spinA = clockwise, spinB = counter-clockwise */
 @keyframes spinA{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
@@ -3949,11 +3950,6 @@ a{
   }
 }
 
-to{transform:rotate(360deg)}
-}
-
-to{transform:rotate(0deg)}
-}
 
 .arena-hero-panel{
   display:grid;
@@ -4152,11 +4148,6 @@ to{transform:rotate(0deg)}
   50%{transform:translateY(-6px)}
 }
 
-to{transform:rotate(360deg)}
-}
-
-to{transform:rotate(0deg)}
-}
 
 @keyframes vsCoreShift{
   0%,100%{transform:rotate(25deg) scale(1)}
@@ -4688,11 +4679,6 @@ to{transform:rotate(0deg)}
   }
 }
 
-to{transform:rotate(360deg)}
-}
-
-to{transform:rotate(0deg)}
-}
 
 .arena-reaction-stage{
   min-height:150px !important;
@@ -4825,11 +4811,6 @@ to{transform:rotate(0deg)}
   box-shadow:0 0 12px #ff7999;
 }
 
-to{transform:rotate(360deg);}
-}
-
-to{transform:rotate(0deg);}
-}
 
 
 /* =========================
