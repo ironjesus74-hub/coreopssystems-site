@@ -1,0 +1,150 @@
+/* ===== ATLAS LAYOUT — Structural layout, navigation, and shell ===== */
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,111,141,.10), transparent 24%),
+    radial-gradient(circle at 85% 16%, rgba(103,217,255,.12), transparent 24%),
+    radial-gradient(circle at 50% 55%, rgba(184,113,255,.07), transparent 30%),
+    linear-gradient(180deg, #03050a 0%, #07101b 38%, #04070d 100%);
+  overflow-x:auto;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size:36px 36px;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.site-shell{
+  min-width:1220px;
+}
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(5,9,17,.78);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav-shell{
+  width:1200px;
+  margin:0 auto;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-weight:800;
+  font-size:22px;
+  letter-spacing:.01em;
+}
+
+.brand-orb{
+  width:52px;
+  height:52px;
+  border-radius:18px;
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(208,237,255,.95), rgba(124,138,255,.88) 32%, rgba(24,31,60,.95) 66%),
+    linear-gradient(135deg, rgba(255,111,141,.35), rgba(103,217,255,.35));
+  box-shadow:
+    0 0 22px rgba(108,162,255,.45),
+    0 0 52px rgba(125,92,255,.18),
+    inset 0 0 24px rgba(255,255,255,.10);
+}
+
+.brand-orb::before,
+.brand-orb::after{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;
+}
+
+.brand-orb::before{
+  transform:rotate(28deg);
+}
+
+.brand-orb::after{
+  transform:rotate(-28deg);
+}
+
+.brand-orb-live{
+  animation:orbPulse 6s ease-in-out infinite;
+}
+
+@keyframes orbPulse{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 22px rgba(108,162,255,.45),
+      0 0 52px rgba(125,92,255,.18),
+      inset 0 0 24px rgba(255,255,255,.10);
+  }
+  50%{
+    transform:scale(1.08);
+    box-shadow:
+      0 0 30px rgba(108,162,255,.62),
+      0 0 70px rgba(255,111,141,.18),
+      inset 0 0 28px rgba(255,255,255,.16);
+  }
+}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:10px;
+  max-width:860px;
+}
+
+.nav-links a{
+  padding:10px 14px;
+  border-radius:14px;
+  color:#dde7fb;
+  opacity:.88;
+  transition:.18s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  opacity:1;
+  background:rgba(255,255,255,.07);
+}
+
+.desktop-stage{
+  min-width:1220px;
+  width:1220px;
+  margin:0 auto;
+  padding:28px 20px 60px;
+}
