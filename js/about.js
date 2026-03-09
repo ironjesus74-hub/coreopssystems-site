@@ -6,10 +6,6 @@ const notes = [
   "The long-term goal is a stronger culture layer plus a stronger utility layer."
 ];
 
-function rand(list){
-  return list[Math.floor(Math.random() * list.length)];
-}
-
 function addNote(){
   const feed = document.getElementById("aboutNotesFeed");
   const row = document.createElement("div");

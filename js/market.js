@@ -144,14 +144,6 @@ let activeCategory = "All";
 let searchTerm = "";
 let renderedListings = 0;
 
-function rand(list){
-  return list[Math.floor(Math.random() * list.length)];
-}
-
-function randomInt(min, max){
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function filteredListings(){
   return listings.filter(item => {
     const categoryMatch = activeCategory === "All" || item.category === activeCategory;

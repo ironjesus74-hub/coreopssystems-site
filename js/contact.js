@@ -6,10 +6,6 @@ const notes = [
   "The current phase is foundation first, polish second, expansion third."
 ];
 
-function rand(list){
-  return list[Math.floor(Math.random() * list.length)];
-}
-
 function addNote(){
   const feed = document.getElementById("contactActivityFeed");
   const row = document.createElement("div");

@@ -117,6 +117,7 @@ a{
 
 .brand-orb-live{
   animation:orbPulse 6s ease-in-out infinite;
+  will-change:transform;
 }
 
 @keyframes orbPulse{
@@ -208,6 +209,7 @@ a{
   background:var(--green);
   box-shadow:0 0 12px var(--green);
   animation:livePulse 1.5s infinite;
+  will-change:transform;
 }
 
 @keyframes livePulse{
@@ -239,6 +241,8 @@ a{
   background:
     linear-gradient(90deg, rgba(255,111,141,.07), transparent 46%, rgba(103,217,255,.08)),
     linear-gradient(180deg, rgba(10,14,24,.96), rgba(6,9,18,.96));
+  display:grid;
+  place-items:center;
 }
 
 .hero-lane{
@@ -533,6 +537,7 @@ a{
   height:280px;
   display:grid;
   place-items:center;
+  overflow:visible;
 }
 
 .vs-wrap::before,
@@ -652,6 +657,9 @@ a{
   padding:22px;
   border:1px solid rgba(255,255,255,.08);
   background:linear-gradient(180deg, rgba(13,17,29,.92), rgba(8,10,18,.95));
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(10px);
 }
 
 .panel h3{
@@ -698,6 +706,9 @@ a{
   bottom:-20px;
   font-size:34px;
   animation:floatUp 7s linear forwards;
+  text-shadow:
+    0 0 12px rgba(255,255,255,.18),
+    0 0 24px rgba(103,217,255,.10);
 }
 
 @keyframes floatUp{
@@ -812,9 +823,6 @@ a{
   box-shadow:0 0 24px rgba(255,138,95,.24), inset 0 0 22px rgba(255,111,141,.06);
 }
 
-.vs-wrap{
-  overflow:visible;
-}
 
 .vs-side-box{
   position:absolute;
@@ -850,16 +858,7 @@ a{
   letter-spacing:-.03em;
 }
 
-.hero-preview{
-  display:grid;
-  place-items:center;
-}
 
-.float-reaction{
-  text-shadow:
-    0 0 10px rgba(255,255,255,.18),
-    0 0 22px rgba(103,217,255,.10);
-}
 
 .feed-item strong{
   color:#f4f7ff;
@@ -1147,10 +1146,6 @@ a{
     0 0 10px rgba(255,255,255,.03);
 }
 
-.panel{
-  position:relative;
-  overflow:hidden;
-}
 
 .panel::before{
   content:"";
@@ -1214,6 +1209,7 @@ a{
   letter-spacing:.22em;
   color:#d8e5ff;
   animation:tickerMove 22s linear infinite;
+  will-change:transform;
 }
 
 @keyframes tickerMove{
@@ -1223,9 +1219,6 @@ a{
 
 .hero-panel-prime,
 .battle-shell-prime,
-.panel{
-  backdrop-filter:blur(10px);
-}
 
 .battle-shell-prime{
   position:relative;
@@ -1423,11 +1416,6 @@ a{
     radial-gradient(circle at 52% 76%, rgba(184,113,255,.06), transparent 20%);
 }
 
-.float-reaction{
-  text-shadow:
-    0 0 12px rgba(255,255,255,.18),
-    0 0 24px rgba(103,217,255,.10);
-}
 
 .meta-box,
 .stat-card,
@@ -3935,13 +3923,13 @@ a{
 }
 
 .brand-orb-arena::before{
-  animation:brandSpin 14s linear infinite;
+  animation:spinA 14s linear infinite;
 }
 
 .brand-orb-arena::after{
   inset:4px;
   border-radius:50%;
-  animation:brandSpinReverse 10s linear infinite;
+  animation:spinB 10s linear infinite;
 }
 
 @keyframes brandPulse{
@@ -3961,14 +3949,10 @@ a{
   }
 }
 
-@keyframes brandSpin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
 }
 
-@keyframes brandSpinReverse{
-  from{transform:rotate(360deg)}
-  to{transform:rotate(0deg)}
+to{transform:rotate(0deg)}
 }
 
 .arena-hero-panel{
@@ -4120,11 +4104,11 @@ a{
 }
 
 .vs-emblem-main .vs-ring-outer{
-  animation:vsRingSpin 12s linear infinite;
+  animation:spinA 12s linear infinite;
 }
 
 .vs-emblem-main .vs-ring-inner{
-  animation:vsRingSpinReverse 9s linear infinite;
+  animation:spinB 9s linear infinite;
 }
 
 .vs-emblem-main .vs-core-bar{
@@ -4168,14 +4152,10 @@ a{
   50%{transform:translateY(-6px)}
 }
 
-@keyframes vsRingSpin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
 }
 
-@keyframes vsRingSpinReverse{
-  from{transform:rotate(360deg)}
-  to{transform:rotate(0deg)}
+to{transform:rotate(0deg)}
 }
 
 @keyframes vsCoreShift{
@@ -4296,12 +4276,12 @@ a{
 
 .fighter-avatar-ring-a{
   inset:16px;
-  animation:brandSpin 10s linear infinite;
+  animation:spinA 10s linear infinite;
 }
 
 .fighter-avatar-ring-b{
   inset:30px;
-  animation:brandSpinReverse 7s linear infinite;
+  animation:spinB 7s linear infinite;
 }
 
 .fighter-avatar-core{
@@ -4683,12 +4663,12 @@ a{
 
 .brand-orb-arena::before{
   inset:-7px;
-  animation:arenaBrandSpin 12s linear infinite;
+  animation:spinA 12s linear infinite;
 }
 
 .brand-orb-arena::after{
   inset:7px;
-  animation:arenaBrandSpinReverse 8s linear infinite;
+  animation:spinB 8s linear infinite;
 }
 
 @keyframes arenaBrandGlow{
@@ -4708,14 +4688,10 @@ a{
   }
 }
 
-@keyframes arenaBrandSpin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
 }
 
-@keyframes arenaBrandSpinReverse{
-  from{transform:rotate(360deg)}
-  to{transform:rotate(0deg)}
+to{transform:rotate(0deg)}
 }
 
 .arena-reaction-stage{
@@ -4780,14 +4756,14 @@ a{
   width:220px;
   height:220px;
   border:3px solid rgba(100,210,255,0.7);
-  animation:atlasVsSpin 16s linear infinite;
+  animation:spinA 16s linear infinite;
 }
 
 .vs-ring-inner{
   width:150px;
   height:150px;
   border:3px solid rgba(180,110,255,0.6);
-  animation:atlasVsSpinReverse 12s linear infinite;
+  animation:spinB 12s linear infinite;
 }
 
 .vs-core-bar{
@@ -4849,14 +4825,10 @@ a{
   box-shadow:0 0 12px #ff7999;
 }
 
-@keyframes atlasVsSpin{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
+to{transform:rotate(360deg);}
 }
 
-@keyframes atlasVsSpinReverse{
-  from{transform:rotate(360deg);}
-  to{transform:rotate(0deg);}
+to{transform:rotate(0deg);}
 }
 
 
