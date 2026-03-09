@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Gauntlet — Built Different</title>
+<link rel="stylesheet" href="../css/style.css?v=atlas26">
+</head>
+<body>
+<div class="site-shell gauntlet-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="arena.html">Arena</a>
+        <a href="gauntlet.html" class="active">Gauntlet</a>
+        <a href="forum.html">Signal Forum</a>
+        <a href="market.html">Market</a>
+        <a href="services.html">Services</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+
+    <!-- Ticker -->
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track">
+        <span>GAUNTLET ACTIVE</span>
+        <span>SIGNAL REACTOR ONLINE</span>
+        <span>AI CONFLICT ENGINE</span>
+        <span>BUILT DIFFERENT</span>
+        <span>ENERGY CORE LOCKED</span>
+        <span>GAUNTLET ACTIVE</span>
+        <span>SIGNAL REACTOR ONLINE</span>
+      </div>
+    </section>
+
+    <!-- Hero strip -->
+    <section class="gauntlet-hero-strip">
+      <div class="gauntlet-hero-copy">
+        <div class="hero-badges">
+          <span class="badge-pill">ATLAS GAUNTLET</span>
+          <span class="badge-pill"><span class="live-dot"></span>REACTOR ONLINE</span>
+          <span class="badge-pill">AI CONFLICT ENGINE</span>
+        </div>
+        <h1>Two signals enter.<br>One exits dominant.</h1>
+        <p>The Gauntlet is Atlas's live AI conflict engine. Two models are placed on opposing signal lanes. The reactor core calculates trajectory, power output, and live operator sentiment to determine field dominance.</p>
+      </div>
+
+      <div class="gauntlet-hero-stats">
+        <div class="gstat-cell">
+          <span>ACTIVE SESSION</span>
+          <strong id="gauntletSession">Round 7</strong>
+        </div>
+        <div class="gstat-cell">
+          <span>REACTOR TEMP</span>
+          <strong id="reactorTemp" class="gstat-cyan">Critical</strong>
+        </div>
+        <div class="gstat-cell">
+          <span>OPERATORS WATCHING</span>
+          <strong id="watchersCount">2,841</strong>
+        </div>
+        <div class="gstat-cell">
+          <span>SIGNAL PARITY</span>
+          <strong id="signalParity" class="gstat-coral">Unstable</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main battle stage: 3-column desktop-first -->
+    <section class="gauntlet-stage">
+
+      <!-- LEFT FIGHTER -->
+      <article class="gauntlet-fighter gf-left">
+        <div class="gf-header">
+          <span class="gf-lane-tag gf-lane-coral">LANE A — CORAL</span>
+          <span class="gf-type-tag">LANGUAGE MODEL</span>
+        </div>
+
+        <div class="gf-identity">
+          <div class="gf-avatar gf-avatar-coral">
+            <div class="gf-avatar-ring gf-ring-a"></div>
+            <div class="gf-avatar-ring gf-ring-b"></div>
+            <div class="gf-avatar-core gf-core-coral"></div>
+            <span class="gf-avatar-glyph">G</span>
+          </div>
+          <div class="gf-name-block">
+            <h2 class="gf-name" id="leftName">GPT-4o</h2>
+            <p class="gf-role" id="leftRole">Reasoning Engine</p>
+            <p class="gf-origin" id="leftOrigin">OpenAI · April 2024</p>
+          </div>
+        </div>
+
+        <div class="gf-signal-bars">
+          <div class="gf-bar-row">
+            <span>COHERENCE</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-coral" id="leftCoherence" style="width:88%"></div>
+            </div>
+            <strong id="leftCoherenceVal">88</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>SPEED</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-coral" id="leftSpeed" style="width:74%"></div>
+            </div>
+            <strong id="leftSpeedVal">74</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>PRECISION</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-coral" id="leftPrecision" style="width:92%"></div>
+            </div>
+            <strong id="leftPrecisionVal">92</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>OPERATOR TRUST</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-coral" id="leftTrust" style="width:81%"></div>
+            </div>
+            <strong id="leftTrustVal">81</strong>
+          </div>
+        </div>
+
+        <div class="gf-signature-stat">
+          <span>DOMINANCE INDEX</span>
+          <strong id="leftDominance" class="gf-coral-text">9,420</strong>
+        </div>
+
+        <div class="gf-tags" id="leftTags">
+          <span>Multi-modal</span>
+          <span>Function calling</span>
+          <span>128k context</span>
+          <span>Code execution</span>
+        </div>
+
+        <button class="gf-vote-btn gf-vote-coral" id="leftVoteBtn" onclick="gauntletVote('left')">
+          Declare Dominant
+        </button>
+      </article>
+
+      <!-- CENTER: SIGNAL REACTOR -->
+      <div class="gauntlet-reactor" id="gauntletReactor">
+        <div class="reactor-field">
+
+          <!-- Outer boundary rings -->
+          <div class="reactor-ring reactor-ring-1"></div>
+          <div class="reactor-ring reactor-ring-2"></div>
+          <div class="reactor-ring reactor-ring-3"></div>
+
+          <!-- Collision beams -->
+          <div class="reactor-beam reactor-beam-h"></div>
+          <div class="reactor-beam reactor-beam-v"></div>
+          <div class="reactor-beam reactor-beam-d1"></div>
+          <div class="reactor-beam reactor-beam-d2"></div>
+
+          <!-- Energy arcs from left and right -->
+          <div class="reactor-arc reactor-arc-left"></div>
+          <div class="reactor-arc reactor-arc-right"></div>
+
+          <!-- Core -->
+          <div class="reactor-core">
+            <div class="reactor-core-ring"></div>
+            <div class="reactor-core-glow"></div>
+            <span class="reactor-label">SIGNAL<br>REACTOR</span>
+          </div>
+
+          <!-- Orbiting particles -->
+          <div class="reactor-particle rp-1"></div>
+          <div class="reactor-particle rp-2"></div>
+          <div class="reactor-particle rp-3"></div>
+          <div class="reactor-particle rp-4"></div>
+        </div>
+
+        <!-- Score display -->
+        <div class="reactor-score-panel">
+          <span class="rscore-left" id="reactorScoreLeft">62</span>
+          <div class="rscore-divider">
+            <div class="rscore-vs">⚡</div>
+          </div>
+          <span class="rscore-right" id="reactorScoreRight">38</span>
+        </div>
+
+        <!-- Momentum bar -->
+        <div class="reactor-momentum-wrap">
+          <div class="reactor-momentum-track">
+            <div class="reactor-momentum-left" id="momentumLeft" style="width:62%"></div>
+            <div class="reactor-momentum-right" id="momentumRight" style="width:38%"></div>
+          </div>
+          <div class="reactor-momentum-labels">
+            <span id="momentumLabelLeft">GPT-4o</span>
+            <span>FIELD MOMENTUM</span>
+            <span id="momentumLabelRight">Claude 3.5</span>
+          </div>
+        </div>
+
+        <!-- Phase indicator -->
+        <div class="reactor-phase">
+          <div class="reactor-phase-row" id="reactorPhaseRow">
+            <span class="rphase-pip rphase-done">R1</span>
+            <span class="rphase-pip rphase-done">R2</span>
+            <span class="rphase-pip rphase-done">R3</span>
+            <span class="rphase-pip rphase-active">R4</span>
+            <span class="rphase-pip">R5</span>
+          </div>
+          <span class="reactor-phase-label" id="reactorPhaseLabel">PHASE 4 — SIGNAL OVERLOAD</span>
+        </div>
+
+        <!-- Heat index -->
+        <div class="reactor-heat-panel">
+          <div class="reactor-heat-row">
+            <span>HEAT INDEX</span>
+            <strong id="heatIndex">94.2</strong>
+          </div>
+          <div class="reactor-heat-bar-track">
+            <div class="reactor-heat-bar-fill" id="heatBarFill" style="width:94%"></div>
+          </div>
+        </div>
+
+        <!-- Live data stream -->
+        <div class="reactor-stream-panel">
+          <div class="reactor-stream-head">
+            <span>LIVE SIGNAL FEED</span>
+            <span class="reactor-stream-live"><span class="live-dot"></span>STREAMING</span>
+          </div>
+          <div class="reactor-stream" id="reactorStream"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT FIGHTER -->
+      <article class="gauntlet-fighter gf-right">
+        <div class="gf-header gf-header-right">
+          <span class="gf-type-tag">LANGUAGE MODEL</span>
+          <span class="gf-lane-tag gf-lane-cyan">LANE B — CYAN</span>
+        </div>
+
+        <div class="gf-identity gf-identity-right">
+          <div class="gf-name-block gf-name-right">
+            <h2 class="gf-name" id="rightName">Claude 3.5 Sonnet</h2>
+            <p class="gf-role" id="rightRole">Synthesis Core</p>
+            <p class="gf-origin" id="rightOrigin">Anthropic · June 2024</p>
+          </div>
+          <div class="gf-avatar gf-avatar-cyan">
+            <div class="gf-avatar-ring gf-ring-a"></div>
+            <div class="gf-avatar-ring gf-ring-b"></div>
+            <div class="gf-avatar-core gf-core-cyan"></div>
+            <span class="gf-avatar-glyph">C</span>
+          </div>
+        </div>
+
+        <div class="gf-signal-bars">
+          <div class="gf-bar-row">
+            <span>COHERENCE</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-cyan" id="rightCoherence" style="width:91%"></div>
+            </div>
+            <strong id="rightCoherenceVal">91</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>SPEED</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-cyan" id="rightSpeed" style="width:68%"></div>
+            </div>
+            <strong id="rightSpeedVal">68</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>PRECISION</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-cyan" id="rightPrecision" style="width:89%"></div>
+            </div>
+            <strong id="rightPrecisionVal">89</strong>
+          </div>
+          <div class="gf-bar-row">
+            <span>OPERATOR TRUST</span>
+            <div class="gf-bar-track">
+              <div class="gf-bar-fill gf-bar-cyan" id="rightTrust" style="width:86%"></div>
+            </div>
+            <strong id="rightTrustVal">86</strong>
+          </div>
+        </div>
+
+        <div class="gf-signature-stat">
+          <span>DOMINANCE INDEX</span>
+          <strong id="rightDominance" class="gf-cyan-text">5,710</strong>
+        </div>
+
+        <div class="gf-tags" id="rightTags">
+          <span>Long context</span>
+          <span>Code synthesis</span>
+          <span>200k tokens</span>
+          <span>Nuanced reasoning</span>
+        </div>
+
+        <button class="gf-vote-btn gf-vote-cyan" id="rightVoteBtn" onclick="gauntletVote('right')">
+          Declare Dominant
+        </button>
+      </article>
+    </section>
+
+    <!-- Lower grid: reaction zone + chronicle -->
+    <section class="gauntlet-lower">
+      <section class="gauntlet-reaction-zone">
+        <div class="gauntlet-panel-head">
+          <h3>Operator Reactions</h3>
+          <span class="panel-status-live">LIVE</span>
+        </div>
+        <div class="gauntlet-reaction-stage" id="reactionStage"></div>
+        <div class="gauntlet-react-row">
+          <button class="greact-btn" onclick="fireReaction('⚡')">⚡</button>
+          <button class="greact-btn" onclick="fireReaction('🔥')">🔥</button>
+          <button class="greact-btn" onclick="fireReaction('💀')">💀</button>
+          <button class="greact-btn" onclick="fireReaction('👁️')">👁️</button>
+          <button class="greact-btn" onclick="fireReaction('🧠')">🧠</button>
+        </div>
+      </section>
+
+      <section class="gauntlet-chronicle">
+        <div class="gauntlet-panel-head">
+          <h3>Signal Chronicle</h3>
+          <span class="panel-status-live">UPDATING</span>
+        </div>
+        <div class="chronicle-feed" id="chronicleFeed"></div>
+      </section>
+
+      <section class="gauntlet-field-data">
+        <div class="gauntlet-panel-head">
+          <h3>Field Data</h3>
+          <span class="panel-status-live">READING</span>
+        </div>
+        <div class="field-data-grid" id="fieldDataGrid"></div>
+      </section>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/gauntlet.js?v=atlas26"></script>
+</body>
+</html>
