@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 :root{
   --bg:#04060c;
   --bg2:#091120;
@@ -14,6 +16,7 @@
   --green:#39d98a;
   --shadow-blue:0 0 26px rgba(86,178,255,.22), 0 0 80px rgba(86,178,255,.10);
   --shadow-red:0 0 26px rgba(255,111,141,.22), 0 0 80px rgba(255,111,141,.10);
+  --select-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2367d9ff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 *{box-sizing:border-box}
@@ -25,7 +28,7 @@ html,body{
 }
 
 body{
-  font-family:Arial,sans-serif;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 15% 20%, rgba(255,111,141,.10), transparent 24%),
@@ -4898,3 +4901,596 @@ justify-content:center;
 min-height:420px;
 }
 
+
+
+/* ===================================================
+   ATLAS DETAIL PASS — PREMIUM UI POLISH
+   =================================================== */
+
+/* ── 1. NAVIGATION ─────────────────────────────── */
+
+.nav-shell{
+  padding:14px 20px;
+}
+
+.nav-links{
+  gap:4px;
+}
+
+.nav-links a{
+  position:relative;
+  padding:9px 14px;
+  border-radius:10px;
+  font-size:13.5px;
+  font-weight:500;
+  letter-spacing:.03em;
+  color:#c8d8f2;
+  transition:color .18s ease, background .18s ease;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:3px;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:2px;
+  border-radius:999px;
+  background:var(--blue);
+  box-shadow:0 0 8px rgba(103,217,255,.7);
+  transition:width .22s cubic-bezier(.34,1.56,.64,1);
+}
+
+.nav-links a:hover{
+  color:#eef3ff;
+  background:rgba(103,217,255,.06);
+}
+
+.nav-links a:hover::after{
+  width:calc(100% - 20px);
+}
+
+.nav-links a.active{
+  color:#fff;
+  background:rgba(103,217,255,.07);
+}
+
+.nav-links a.active::after{
+  width:calc(100% - 20px);
+  background:var(--blue);
+  box-shadow:0 0 10px rgba(103,217,255,.8);
+}
+
+/* ── 2. BRAND ──────────────────────────────────── */
+
+.brand{
+  letter-spacing:-.01em;
+}
+
+/* ── 3. BADGE PILLS ────────────────────────────── */
+/* .badge-pill uses .2em — slightly more than inline tags (.17em) because
+   hero-section pills are larger and benefit from extra breathing room. */
+
+.badge-pill{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  border-color:rgba(255,255,255,.10);
+  transition:border-color .18s ease, background .18s ease;
+}
+
+.badge-pill:hover{
+  border-color:rgba(103,217,255,.22);
+  background:rgba(103,217,255,.05);
+}
+
+/* ── 4. LIVE DOT ─────────────────────────────── */
+
+.live-dot{
+  position:relative;
+  display:inline-block;
+  flex-shrink:0;
+}
+
+.live-dot::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  background:var(--green);
+  opacity:.35;
+  animation:livePing 1.6s ease-out infinite;
+}
+
+@keyframes livePing{
+  0%{transform:scale(.55);opacity:.45}
+  100%{transform:scale(2);opacity:0}
+}
+
+/* ── 5. HERO HEADINGS ─────────────────────────── */
+
+.arena-hero-copy h1,
+.forum-hero-copy h1,
+.market-hero-copy h1,
+.services-hero-copy h1,
+.jobs-hero-copy h1,
+.faq-hero-copy h1,
+.contact-hero-copy h1,
+.about-hero-copy h1,
+.profile-main-copy h1{
+  line-height:.96;
+  letter-spacing:-.045em;
+}
+
+/* ── 6. CATEGORY / SYSTEM TAGS ────────────────── */
+
+.hero-card-tag,
+.panel-status-live,
+.market-category-pill,
+.forum-badge,
+.forum-channel,
+.badge-pill,
+.round-banner,
+.faq-category-pill,
+.live-insert-cat,
+.trending-cat,
+.profile-saved-type,
+.job-urgency,
+.market-seller-badge,
+.top-pill,
+.lane-pill,
+.style-pill{
+  font-weight:600;
+  letter-spacing:.17em;
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+/* ── 7. CARD HOVER GLOW ───────────────────────── */
+
+.market-card,
+.service-card,
+.job-card,
+.forum-thread-card{
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease;
+}
+
+.market-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.32),
+    0 0 0 1px rgba(103,217,255,.10),
+    0 0 28px rgba(103,217,255,.10);
+}
+
+.service-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.32),
+    0 0 0 1px rgba(103,217,255,.10),
+    0 0 28px rgba(103,217,255,.10);
+}
+
+.job-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.32),
+    0 0 0 1px rgba(103,217,255,.10),
+    0 0 28px rgba(103,217,255,.10);
+}
+
+.forum-thread-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 26px 74px rgba(0,0,0,.3),
+    0 0 0 1px rgba(103,217,255,.09),
+    0 0 24px rgba(103,217,255,.08);
+}
+
+.about-bullet-card,
+.about-map-card,
+.about-future-card,
+.profile-perk-card,
+.profile-saved-card,
+.contact-route-card,
+.contact-info-card{
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.about-bullet-card:hover,
+.about-map-card:hover,
+.about-future-card:hover,
+.profile-perk-card:hover,
+.profile-saved-card:hover,
+.contact-route-card:hover,
+.contact-info-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(103,217,255,.14);
+  box-shadow:0 0 20px rgba(103,217,255,.06);
+}
+
+/* ── 8. HERO SIDE CARDS ───────────────────────── */
+
+.about-side-card,
+.contact-side-card,
+.profile-side-card{
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.about-side-card:hover,
+.contact-side-card:hover,
+.profile-side-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(103,217,255,.18);
+  box-shadow:0 0 24px rgba(103,217,255,.07), 0 24px 60px rgba(0,0,0,.22);
+}
+
+/* ── 9. BUTTONS ──────────────────────────────── */
+
+.market-btn{
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease, background .18s ease;
+}
+
+.market-btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.10);
+}
+
+.market-btn-primary{
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease;
+}
+
+.market-btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(103,217,255,.32), 0 8px 20px rgba(103,217,255,.14);
+}
+
+.vote-btn,
+.arena-vote-btn{
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease, filter .18s ease;
+}
+
+.vote-btn:hover,
+.arena-vote-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+}
+
+.arena-vote-left:hover{
+  box-shadow:0 0 28px rgba(255,111,141,.28);
+}
+
+.arena-vote-right:hover{
+  box-shadow:0 0 28px rgba(103,217,255,.28);
+}
+
+.user-chime-row button{
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.user-chime-row button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 0 22px rgba(103,217,255,.3);
+}
+
+.enter-btn{
+  display:inline-block;
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
+  letter-spacing:.06em;
+  font-size:16px;
+}
+
+.enter-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 32px rgba(103,217,255,.36), 0 12px 32px rgba(103,217,255,.14);
+}
+
+/* ── 10. REACT / THREAD BUTTONS ──────────────── */
+
+.react-btn{
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.react-btn:hover{
+  transform:translateY(-3px) scale(1.04);
+  background:rgba(255,255,255,.10);
+  box-shadow:0 0 16px rgba(103,217,255,.14);
+}
+
+.thread-react-btn{
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.thread-react-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 14px rgba(103,217,255,.10);
+}
+
+.arena-react-btn{
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1), background .18s ease, box-shadow .18s ease;
+}
+
+.arena-react-btn:hover{
+  transform:translateY(-3px) scale(1.06);
+  background:rgba(255,255,255,.12);
+  box-shadow:0 0 18px rgba(103,217,255,.14);
+}
+
+/* ── 11. CHANNEL BUTTONS ─────────────────────── */
+
+.channel-btn{
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.channel-btn:hover,
+.channel-btn.active{
+  transform:translateX(4px);
+  background:rgba(255,255,255,.08);
+  box-shadow:
+    0 0 16px rgba(103,217,255,.07),
+    inset 3px 0 0 rgba(103,217,255,.6);
+}
+
+/* ── 12. PROGRESS BAR SHIMMER ────────────────── */
+
+.crowd-meter-fill,
+.arena-momentum-fill,
+.arena-heat-fill,
+.spectator-heat-fill,
+.momentum-left,
+.momentum-right,
+.thread-heat-bar span{
+  position:relative;
+  overflow:hidden;
+}
+
+.crowd-meter-fill::after,
+.arena-momentum-fill::after,
+.arena-heat-fill::after,
+.spectator-heat-fill::after,
+.momentum-left::after,
+.momentum-right::after,
+.thread-heat-bar span::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.22) 50%,
+    transparent 100%
+  );
+  animation:barShimmer 2.4s linear infinite;
+}
+
+@keyframes barShimmer{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(200%)}
+}
+
+/* ── 13. VS / ENGINE ELEMENT ─────────────────── */
+
+.vs-core-bar{
+  animation:vsCorePulse 3.2s ease-in-out infinite;
+}
+
+@keyframes vsCorePulse{
+  0%,100%{
+    box-shadow:
+      0 0 20px rgba(255,255,255,.32),
+      0 0 42px rgba(103,217,255,.28),
+      0 0 42px rgba(255,111,141,.24);
+  }
+  50%{
+    box-shadow:
+      0 0 36px rgba(255,255,255,.52),
+      0 0 70px rgba(103,217,255,.40),
+      0 0 70px rgba(255,111,141,.32);
+  }
+}
+
+.vs-emblem{
+  filter:drop-shadow(0 0 18px rgba(103,217,255,.10));
+}
+
+/* Add subtle ambient glow behind VS wrap */
+.vs-wrap-prime{
+  filter:drop-shadow(0 0 24px rgba(103,217,255,.08));
+}
+
+/* ── 14. TICKER COLOR ACCENTS ────────────────── */
+
+.live-ticker-track span{
+  color:#d8e5ff;
+}
+
+.live-ticker-track span:nth-child(odd){
+  color:rgba(103,217,255,.85);
+}
+
+/* ── 15. HOLDING PAGE ────────────────────────── */
+
+.holding-card{
+  border:1px solid rgba(103,217,255,.10);
+  box-shadow:
+    0 0 80px rgba(103,217,255,.05),
+    0 50px 120px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.holding-card h1{
+  letter-spacing:-.045em;
+  line-height:.92;
+  background:linear-gradient(135deg, #f0f8ff 20%, #b8e0ff 55%, #9eceff 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.holding-card .brand-home{
+  letter-spacing:-.01em;
+}
+
+/* ── 16. FORM INPUT FOCUS ────────────────────── */
+
+.contact-form-grid input:focus,
+.contact-form-grid select:focus,
+.contact-form-grid textarea:focus,
+.forum-search-wrap input:focus,
+.user-chime-row input:focus{
+  outline:none;
+  border-color:rgba(103,217,255,.35);
+  background:rgba(103,217,255,.04);
+  box-shadow:0 0 0 3px rgba(103,217,255,.08);
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+
+.contact-form-grid select{
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:var(--select-arrow);
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:42px;
+}
+
+/* ── 17. STAT / META CARDS HOVER ─────────────── */
+
+.forum-stat,
+.meta-box,
+.mini-metric,
+.profile-badge-card{
+  transition:border-color .18s ease, background .18s ease;
+}
+
+.forum-stat:hover,
+.meta-box:hover,
+.mini-metric:hover,
+.profile-badge-card:hover{
+  border-color:rgba(255,255,255,.13);
+  background:rgba(255,255,255,.06);
+}
+
+/* ── 18. PANEL SUBTLE DEPTH ──────────────────── */
+
+.panel{
+  transition:box-shadow .22s ease;
+}
+
+/* ── 19. TRENDING / LIVE INSERT CARDS ──────────── */
+
+.trending-item{
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.trending-item:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.07);
+  box-shadow:0 0 16px rgba(103,217,255,.07);
+}
+
+.live-insert-card{
+  transition:transform .18s ease, border-color .18s ease;
+}
+
+.live-insert-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(103,217,255,.14);
+}
+
+/* ── 20. FIGHTER CARD GLOW HOT STATE ──────────── */
+
+.fighter-left-card.card-hot{
+  box-shadow:
+    0 0 40px rgba(255,111,141,.28),
+    0 0 100px rgba(255,111,141,.12),
+    0 22px 72px rgba(0,0,0,.24);
+}
+
+.fighter-right-card.card-hot{
+  box-shadow:
+    0 0 40px rgba(103,217,255,.28),
+    0 0 100px rgba(103,217,255,.12),
+    0 22px 72px rgba(0,0,0,.24);
+}
+
+/* ── 21. SECTION SPACING ─────────────────────── */
+
+.desktop-stage{
+  padding-top:36px;
+  padding-bottom:84px;
+}
+
+/* ── 22. SCORE NUMBERS ───────────────────────── */
+
+.score-left,
+.score-right{
+  text-shadow:0 0 20px currentColor;
+}
+
+/* ── 23. PANEL HEAD H3 ──────────────────────── */
+
+.panel h3,
+.panel-head-inline h3{
+  letter-spacing:-.025em;
+}
+
+/* ── 24. FAQ ITEM OPEN ACCENT ────────────────── */
+
+.faq-item{
+  transition:box-shadow .2s ease;
+}
+
+.faq-item.open{
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.24),
+    0 0 0 1px rgba(103,217,255,.08),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* ── 25. PROFILE ACTIVITY ITEMS ──────────────── */
+
+.profile-activity-item{
+  transition:border-color .18s ease;
+}
+
+.profile-activity-item:hover{
+  border-color:rgba(103,217,255,.14);
+}
+
+/* ── 26. MARKET / SERVICE ACTIVITY ITEMS ─────── */
+
+.market-activity-item,
+.featured-market-card,
+.featured-market-stats div{
+  transition:border-color .18s ease, background .18s ease;
+}
+
+.market-activity-item:hover{
+  border-color:rgba(103,217,255,.12);
+  background:rgba(103,217,255,.04);
+}
+
+/* ── 27. GRID DEPTH REFINEMENTS ─────────────── */
+
+.arena-center-column{
+  box-shadow:
+    0 22px 72px rgba(0,0,0,.24),
+    0 0 60px rgba(103,217,255,.06);
+}
+
+/* ── 28. SPILLOVER ITEMS ─────────────────────── */
+
+.spill-item{
+  transition:border-color .18s ease;
+}
+
+.spill-item:hover{
+  border-color:rgba(255,255,255,.10);
+}
+
+/* ── END ATLAS DETAIL PASS ───────────────────── */
