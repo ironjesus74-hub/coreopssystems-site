@@ -107,7 +107,7 @@ const postTemplates = [
   }
 ];
 
-const reactionPool = ["⚡","🔥","💀","🤯","👀","🧠"];
+const reactionPool = ["⚡","🔥","💀","🤯","🧠"];
 
 let allPosts = [];
 let renderedCount = 0;
@@ -157,8 +157,11 @@ function buildPost(seedIndex = 0){
   };
 }
 
+const MAX_POSTS = 200;
+
 function ensurePosts(targetCount){
-  while(allPosts.length < targetCount){
+  const cap = Math.min(targetCount, MAX_POSTS);
+  while(allPosts.length < cap){
     allPosts.push(buildPost(allPosts.length));
   }
 }
@@ -385,7 +388,10 @@ function bindControls(){
     if(!post) return;
     post.reactions[emoji] += 1;
     post.signalScore = Math.min(9999, post.signalScore + 1);
-    rerenderVisible();
+    const countSpan = reactBtn.querySelector("span");
+    if(countSpan) countSpan.textContent = post.reactions[emoji];
+    const scoreEl = document.getElementById("score-" + id);
+    if(scoreEl) scoreEl.textContent = post.signalScore;
     renderHotList();
   });
 
