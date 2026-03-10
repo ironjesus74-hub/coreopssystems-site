@@ -6023,3 +6023,250 @@ min-height:420px;
   color:#465a72;
   letter-spacing:.02em;
 }
+
+/* ===== ATLAS 32 — MOBILE RESPONSIVE ===== */
+
+@media (max-width:900px){
+
+  /* Foundation */
+  body{
+    overflow-x:hidden;
+  }
+
+  .site-shell{
+    min-width:0;
+  }
+
+  .desktop-stage{
+    min-width:0;
+    width:100%;
+    padding:16px 14px 48px;
+  }
+
+  /* Navigation: allow labels to scroll horizontally rather than wrap or overflow */
+  .nav-shell{
+    width:100%;
+    padding:12px 16px;
+    gap:12px;
+  }
+
+  .nav-links{
+    overflow-x:auto;
+    gap:2px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    flex-shrink:1;
+    min-width:0;
+  }
+
+  .nav-links::-webkit-scrollbar{
+    display:none;
+  }
+
+  .nav-links a{
+    font-size:11px;
+    padding:8px 10px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  /* Live ticker */
+  .live-ticker-shell{
+    width:100%;
+    border-radius:12px;
+  }
+
+  /* Hero sections — collapse to single column */
+  .home-hero,
+  .forum-hero,
+  .market-hero,
+  .profile-hero,
+  .services-hero,
+  .jobs-hero,
+  .faq-hero,
+  .contact-hero,
+  .about-hero{
+    grid-template-columns:1fr;
+    padding:20px 18px;
+    border-radius:22px;
+  }
+
+  /* Gauntlet restore hero — must override !important rules */
+  .arena-hero-panel-restore{
+    grid-template-columns:1fr !important;
+    padding:20px 18px !important;
+    border-radius:22px !important;
+  }
+
+  /* Scale down massive display headings */
+  .home-hero-copy h1{
+    font-size:46px;
+  }
+
+  .forum-hero-copy h1,
+  .market-hero-copy h1,
+  .exchange-hero-copy h1,
+  .services-hero-copy h1,
+  .jobs-hero-copy h1,
+  .faq-hero-copy h1,
+  .contact-hero-copy h1,
+  .about-hero-copy h1{
+    font-size:40px;
+  }
+
+  .arena-hero-copy h1{
+    font-size:40px;
+  }
+
+  /* Stat rows: 3-col → 2-col */
+  .home-stat-row,
+  .forum-hero-stats,
+  .market-hero-stats,
+  .services-hero-stats,
+  .jobs-hero-stats,
+  .faq-hero-stats,
+  .arena-top-stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  /* Home platform grid: 3-col → 1-col */
+  .home-platform-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Home lower grid */
+  .home-lower-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Gauntlet 3-column arena → 1 column (overrides !important restore) */
+  .arena-stage-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+
+  .arena-center-column-restore{
+    order:-1;
+  }
+
+  .arena-lower-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Forum layout: sidebar+main → single column */
+  .forum-layout,
+  .forum-layout-prime{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Market layout: sidebar+main → single column */
+  .market-layout{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Market feature grid */
+  .market-feature-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Market card grid */
+  .market-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Exchange grid: 2-col → 1-col */
+  .exchange-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Services grid */
+  .services-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Jobs grid */
+  .jobs-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Profile identity card: avatar+details → stacked */
+  .profile-identity-card{
+    grid-template-columns:1fr !important;
+    text-align:center;
+  }
+
+  /* Footer */
+  .footer-shell{
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+    padding:0 18px;
+  }
+
+  .footer-nav{
+    gap:2px;
+  }
+}
+
+@media (max-width:600px){
+
+  /* Tighten stage padding */
+  .desktop-stage{
+    padding:12px 10px 40px;
+  }
+
+  /* Stat rows: 2-col → 1-col on small phones */
+  .home-stat-row,
+  .forum-hero-stats,
+  .market-hero-stats,
+  .services-hero-stats,
+  .jobs-hero-stats,
+  .faq-hero-stats,
+  .arena-top-stats{
+    grid-template-columns:1fr;
+  }
+
+  /* Headline scaling */
+  .home-hero-copy h1{
+    font-size:36px;
+  }
+
+  .forum-hero-copy h1,
+  .market-hero-copy h1,
+  .exchange-hero-copy h1,
+  .services-hero-copy h1,
+  .jobs-hero-copy h1,
+  .faq-hero-copy h1,
+  .contact-hero-copy h1,
+  .about-hero-copy h1,
+  .arena-hero-copy h1{
+    font-size:32px;
+  }
+
+  /* CTA buttons: stack vertically */
+  .home-hero-ctas{
+    flex-direction:column;
+  }
+
+  .home-cta-primary,
+  .home-cta-secondary{
+    text-align:center;
+  }
+
+  /* Card headings */
+  .home-platform-card h3{
+    font-size:20px;
+  }
+
+  /* Brand mark */
+  .brand{
+    font-size:18px;
+  }
+
+  .brand-orb{
+    width:40px;
+    height:40px;
+    border-radius:13px;
+  }
+}
