@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../css/style.css?v=atlas31">
 </head>
 <body>
-<div class="site-shell gauntlet-live-page">
+<div class="site-shell gauntlet-live-page gauntlet-forge">
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
@@ -31,6 +31,7 @@
   </header>
 
   <main class="desktop-stage">
+    <div class="gauntlet-arena-mesh" aria-hidden="true"></div>
     <section class="live-ticker-shell gauntlet-ticker-live">
       <div class="live-ticker-track" id="gauntletTicker">
         <span>GAUNTLET LIVE</span>
@@ -39,12 +40,18 @@
         <span>BUILT DIFFERENT</span>
         <span>CROWD HEAT RISING</span>
         <span>ROUND 3 IN SESSION</span>
+        <span>ENGINE ONLINE</span>
+        <span>MODEL CONFLICT ACTIVE</span>
+        <span>SPECTATORS: 300+</span>
+        <span>NEXT ROUND LOADING</span>
         <span>GAUNTLET LIVE</span>
         <span>AI CONFLICT ENGINE ACTIVE</span>
       </div>
     </section>
 
     <section class="arena-hero-panel arena-hero-panel-restore">
+      <div class="gauntlet-hero-glow gauntlet-hero-glow-left" aria-hidden="true"></div>
+      <div class="gauntlet-hero-glow gauntlet-hero-glow-right" aria-hidden="true"></div>
       <div class="arena-hero-copy">
         <div class="hero-badges">
           <span class="badge-pill">ATLAS GAUNTLET</span>
@@ -93,6 +100,7 @@
 
       <!-- LEFT COMPETITOR -->
       <div class="arena-fighter-card fighter-left-card" id="leftFighter">
+        <div class="fighter-accent-bar" aria-hidden="true"></div>
         <div class="fighter-card-top">
           <span class="lane-pill" id="leftLane">LEFT SIGNAL</span>
           <span class="style-pill" id="leftStyle">PRECISION</span>
@@ -133,6 +141,7 @@
 
       <!-- CENTER CONFLICT ENGINE -->
       <div class="arena-center-column arena-center-column-restore">
+        <div class="engine-scan-lines" aria-hidden="true"></div>
         <div class="gauntlet-center-engine">
 
           <div class="gauntlet-round-tag">
@@ -152,6 +161,17 @@
             <div class="conflict-core-glow"></div>
             <div class="conflict-beam"></div>
             <div class="conflict-beam-blur"></div>
+            <div class="conflict-scan-ring conflict-scan-ring-a" aria-hidden="true"></div>
+            <div class="conflict-scan-ring conflict-scan-ring-b" aria-hidden="true"></div>
+            <div class="conflict-pulse-ring" aria-hidden="true"></div>
+            <div class="conflict-orbit conflict-orbit-a" aria-hidden="true">
+              <span class="conflict-orbit-dot conflict-orbit-dot-a"></span>
+              <span class="conflict-orbit-dot conflict-orbit-dot-b"></span>
+            </div>
+            <div class="conflict-orbit conflict-orbit-b" aria-hidden="true">
+              <span class="conflict-orbit-dot conflict-orbit-dot-c"></span>
+              <span class="conflict-orbit-dot conflict-orbit-dot-d"></span>
+            </div>
             <div class="conflict-side-indicator conflict-side-left"></div>
             <div class="conflict-side-indicator conflict-side-right"></div>
             <span class="conflict-label">SIGNAL<br>CORE</span>
@@ -169,6 +189,11 @@
           </div>
 
           <div class="gauntlet-momentum-wrap">
+            <div class="gauntlet-momentum-labels">
+              <span>LEFT</span>
+              <span>MOMENTUM</span>
+              <span>RIGHT</span>
+            </div>
             <div class="arena-momentum-bar">
               <span class="arena-momentum-fill" id="gauntletMomentumFill" style="width:50%"></span>
             </div>
@@ -192,11 +217,18 @@
             <button class="gauntlet-react-btn" data-emoji="◎">◎</button>
             <button class="gauntlet-react-btn" data-emoji="✦">✦</button>
           </div>
+
+          <div class="gauntlet-engine-status">
+            <span class="gauntlet-status-dot">SYSTEM ONLINE</span>
+            <span>CONFLICT PROTOCOL v3.1</span>
+            <span>LOAD: 87%</span>
+          </div>
         </div>
       </div>
 
       <!-- RIGHT COMPETITOR -->
       <div class="arena-fighter-card fighter-right-card" id="rightFighter">
+        <div class="fighter-accent-bar" aria-hidden="true"></div>
         <div class="fighter-card-top">
           <span class="style-pill" id="rightStyle">FRONTIER</span>
           <span class="lane-pill" id="rightLane">RIGHT SIGNAL</span>

@@ -6023,3 +6023,596 @@ min-height:420px;
   color:#465a72;
   letter-spacing:.02em;
 }
+
+/* ===== ATLAS 32 — GAUNTLET FORGE ===== */
+
+/* Narrower min-width for gauntlet allows mid-size desktops;
+   overrides the site-shell 1220px baseline via higher specificity */
+.gauntlet-live-page.gauntlet-forge{
+  min-width:960px;
+}
+
+/* === Background mesh depth layer === */
+.gauntlet-arena-mesh{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(103,217,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103,217,255,.03) 1px, transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 100% 80% at 50% 40%, black 10%, transparent 78%);
+  mask-image:radial-gradient(ellipse 100% 80% at 50% 40%, black 10%, transparent 78%);
+  opacity:.55;
+}
+
+/* === Hero glow beacons === */
+.gauntlet-hero-glow{
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+  filter:blur(72px);
+  z-index:0;
+}
+
+.gauntlet-hero-glow-left{
+  width:380px;
+  height:300px;
+  left:-70px;
+  top:-24px;
+  background:radial-gradient(circle, rgba(255,111,141,.88), transparent 66%);
+  opacity:.20;
+  animation:heroBlobLeft 9s ease-in-out infinite;
+}
+
+.gauntlet-hero-glow-right{
+  width:320px;
+  height:260px;
+  right:-50px;
+  top:0;
+  background:radial-gradient(circle, rgba(103,217,255,.88), transparent 66%);
+  opacity:.18;
+  animation:heroBlobRight 11s ease-in-out infinite 1.5s;
+}
+
+@keyframes heroBlobLeft{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(22px,16px) scale(1.09);}
+}
+
+@keyframes heroBlobRight{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-18px,14px) scale(1.08);}
+}
+
+/* === Hero panel enhanced === */
+.gauntlet-forge .arena-hero-panel{
+  background:
+    linear-gradient(160deg, rgba(10,14,27,.98) 0%, rgba(6,9,16,.99) 100%),
+    radial-gradient(circle at 8% 22%, rgba(255,111,141,.14), transparent 34%),
+    radial-gradient(circle at 94% 16%, rgba(103,217,255,.14), transparent 34%),
+    radial-gradient(circle at 50% 88%, rgba(184,113,255,.06), transparent 42%);
+  border-color:rgba(255,255,255,.10);
+  box-shadow:
+    0 32px 100px rgba(0,0,0,.44),
+    0 0 0 1px rgba(103,217,255,.05),
+    inset 0 0 50px rgba(0,0,0,.22);
+  padding:36px;
+  overflow:hidden;
+}
+
+/* Hero h1 gradient */
+.gauntlet-forge .arena-hero-copy h1{
+  background:linear-gradient(135deg, #ffffff 0%, #c8e0ff 38%, #9de8ff 68%, #ffb3c6 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Hero mark enhanced */
+.gauntlet-forge .arena-hero-mark{
+  border-color:rgba(103,217,255,.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 22px 80px rgba(0,0,0,.34),
+    0 0 48px rgba(103,217,255,.07);
+  background:
+    linear-gradient(180deg, rgba(5,8,17,.98), rgba(3,5,12,.99)),
+    radial-gradient(circle at 50% 60%, rgba(103,217,255,.04), transparent 58%);
+}
+
+/* === Conflict Core Upgrade === */
+.gauntlet-forge .conflict-core{
+  width:300px;
+  height:300px;
+}
+
+/* Scan rings (dashed overlay circles) */
+.conflict-scan-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,.10);
+  pointer-events:none;
+}
+
+.conflict-scan-ring-a{
+  inset:14px;
+  border-color:rgba(103,217,255,.14);
+  animation:spinA 22s linear infinite reverse;
+}
+
+.conflict-scan-ring-b{
+  inset:54px;
+  border-color:rgba(184,113,255,.14);
+  animation:spinB 17s linear infinite;
+}
+
+/* Pulse ring — expands outward from center and fades */
+.conflict-pulse-ring{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:64px;
+  height:64px;
+  margin-left:-32px;
+  margin-top:-32px;
+  border-radius:50%;
+  border:2px solid rgba(103,217,255,.55);
+  pointer-events:none;
+  animation:conflictPulseExpand 3.2s ease-out infinite;
+}
+
+.conflict-pulse-ring::after{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,111,141,.42);
+  animation:conflictPulseExpand 3.2s ease-out infinite 1.6s;
+}
+
+@keyframes conflictPulseExpand{
+  0%{transform:scale(.55);opacity:.9;}
+  100%{transform:scale(2.8);opacity:0;}
+}
+
+/* Orbit particle system */
+.conflict-orbit{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.conflict-orbit-a{
+  animation:spinA 7s linear infinite;
+}
+
+.conflict-orbit-b{
+  animation:spinA 12s linear infinite reverse;
+}
+
+.conflict-orbit-dot{
+  position:absolute;
+  border-radius:50%;
+}
+
+.conflict-orbit-dot-a{
+  width:8px;
+  height:8px;
+  top:4px;
+  left:50%;
+  margin-left:-4px;
+  background:#67d9ff;
+  box-shadow:0 0 10px #67d9ff, 0 0 20px rgba(103,217,255,.42);
+}
+
+.conflict-orbit-dot-b{
+  width:8px;
+  height:8px;
+  bottom:4px;
+  left:50%;
+  margin-left:-4px;
+  background:#ff6f8d;
+  box-shadow:0 0 10px #ff6f8d, 0 0 20px rgba(255,111,141,.42);
+}
+
+.conflict-orbit-dot-c{
+  width:6px;
+  height:6px;
+  top:50%;
+  left:4px;
+  margin-top:-3px;
+  background:rgba(255,255,255,.80);
+  box-shadow:0 0 8px rgba(255,255,255,.55);
+}
+
+.conflict-orbit-dot-d{
+  width:6px;
+  height:6px;
+  top:50%;
+  right:4px;
+  margin-top:-3px;
+  background:rgba(184,113,255,.92);
+  box-shadow:0 0 8px rgba(184,113,255,.65);
+}
+
+/* Upgraded beam */
+.gauntlet-forge .conflict-beam{
+  width:72px;
+  height:200px;
+  box-shadow:
+    0 0 24px rgba(255,255,255,.22),
+    0 0 52px rgba(103,217,255,.22),
+    0 0 80px rgba(255,111,141,.18);
+}
+
+.gauntlet-forge .conflict-beam-blur{
+  width:72px;
+  height:200px;
+  filter:blur(18px);
+  opacity:.72;
+}
+
+.gauntlet-forge .conflict-core-glow{
+  background:radial-gradient(circle, rgba(255,255,255,.22), transparent 58%);
+  filter:blur(12px);
+}
+
+/* === Center engine scan line overlay === */
+.engine-scan-lines{
+  position:absolute;
+  inset:0;
+  border-radius:30px;
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,.05) 3px,
+    rgba(0,0,0,.05) 4px
+  );
+  z-index:0;
+}
+
+/* Center column enhanced */
+.gauntlet-forge .arena-center-column{
+  background:
+    linear-gradient(180deg, rgba(8,11,22,.98), rgba(5,8,16,.99));
+  border-color:rgba(255,255,255,.10);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255,255,255,.05),
+    0 0 60px rgba(103,217,255,.07),
+    0 0 60px rgba(255,111,141,.04),
+    inset 0 0 40px rgba(0,0,0,.34);
+}
+
+/* Score glow */
+.gauntlet-forge .gauntlet-score-display{
+  font-size:70px;
+}
+
+.gauntlet-forge .gauntlet-score-left{
+  text-shadow:
+    0 0 28px rgba(255,111,141,.58),
+    0 0 56px rgba(255,111,141,.26);
+}
+
+.gauntlet-forge .gauntlet-score-right{
+  text-shadow:
+    0 0 28px rgba(103,217,255,.58),
+    0 0 56px rgba(103,217,255,.26);
+}
+
+/* Timer upgrade */
+.gauntlet-forge .gauntlet-timer{
+  border-color:rgba(103,217,255,.22);
+  background:
+    linear-gradient(180deg, rgba(103,217,255,.07), rgba(103,217,255,.03));
+  box-shadow:
+    0 0 42px rgba(103,217,255,.14),
+    inset 0 1px 0 rgba(103,217,255,.12);
+  padding:16px 28px;
+}
+
+.gauntlet-forge .gauntlet-timer-val{
+  font-size:54px;
+  text-shadow:
+    0 0 22px rgba(103,217,255,.58),
+    0 0 50px rgba(103,217,255,.26),
+    0 0 80px rgba(103,217,255,.12);
+}
+
+/* Momentum bar labels */
+.gauntlet-momentum-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  letter-spacing:.14em;
+  color:#586f8e;
+  margin-bottom:7px;
+  padding:0 2px;
+}
+
+/* Upgraded momentum/heat fills */
+.gauntlet-forge .arena-momentum-fill{
+  background:linear-gradient(90deg, #ff6f8d, #c068ff 48%, #6bbfff);
+  box-shadow:0 0 20px rgba(192,104,255,.22);
+  transition:width .65s ease;
+}
+
+.gauntlet-forge .arena-heat-fill{
+  background:linear-gradient(90deg, #ff9230, #ff597a 52%, #e560ff);
+  box-shadow:0 0 20px rgba(255,90,120,.22);
+  transition:width .65s ease;
+}
+
+/* System status row */
+.gauntlet-engine-status{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:9px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.025);
+  width:100%;
+  font-size:10px;
+  letter-spacing:.15em;
+  color:#5e7898;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.gauntlet-status-dot{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.gauntlet-status-dot::before{
+  content:"";
+  display:inline-block;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#45e38e;
+  box-shadow:0 0 8px #45e38e;
+  flex-shrink:0;
+  animation:livePulse 2s ease-in-out infinite;
+}
+
+/* === Fighter Card Upgrades === */
+
+/* Accent bar at top of card (color-coded per side) */
+.fighter-accent-bar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  border-radius:30px 30px 0 0;
+  pointer-events:none;
+}
+
+.fighter-left-card .fighter-accent-bar{
+  background:linear-gradient(90deg, #ff6f8d, #ff97b1 56%, transparent);
+  box-shadow:0 0 18px rgba(255,111,141,.40);
+}
+
+.fighter-right-card .fighter-accent-bar{
+  background:linear-gradient(90deg, transparent, #67d9ff 44%, #8fe0ff);
+  box-shadow:0 0 18px rgba(103,217,255,.40);
+}
+
+/* Card border and glow by side */
+.gauntlet-forge .fighter-left-card{
+  border-color:rgba(255,111,141,.16);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.30),
+    0 0 50px rgba(255,111,141,.10),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.gauntlet-forge .fighter-right-card{
+  border-color:rgba(103,217,255,.16);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.30),
+    0 0 50px rgba(103,217,255,.10),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* Fighter name gradient text */
+.gauntlet-forge .fighter-left-card h2{
+  background:linear-gradient(135deg, #fff 0%, #ffd8e4 65%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.gauntlet-forge .fighter-right-card h2{
+  background:linear-gradient(135deg, #fff 0%, #c6efff 65%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Avatar size and glow upgrade */
+.gauntlet-forge .fighter-avatar{
+  width:120px;
+  height:120px;
+}
+
+.gauntlet-forge .fighter-avatar-core-left{
+  box-shadow:0 0 32px rgba(255,111,141,.50), 0 0 64px rgba(255,111,141,.20);
+}
+
+.gauntlet-forge .fighter-avatar-core-right{
+  box-shadow:0 0 32px rgba(103,217,255,.50), 0 0 64px rgba(103,217,255,.20);
+}
+
+/* Fighter stat card subtle hover */
+.gauntlet-forge .fighter-stat-card{
+  background:rgba(255,255,255,.03);
+  border-color:rgba(255,255,255,.06);
+  transition:background .18s ease, border-color .18s ease;
+}
+
+.gauntlet-forge .fighter-left-card .fighter-stat-card:hover{
+  background:rgba(255,111,141,.05);
+  border-color:rgba(255,111,141,.12);
+}
+
+.gauntlet-forge .fighter-right-card .fighter-stat-card:hover{
+  background:rgba(103,217,255,.05);
+  border-color:rgba(103,217,255,.12);
+}
+
+/* Vote buttons upgraded */
+.gauntlet-forge .arena-vote-left{
+  background:linear-gradient(135deg, #ff7296, #e8597c);
+  box-shadow:
+    0 0 0 1px rgba(255,114,150,.28),
+    0 0 24px rgba(255,111,141,.22);
+  font-weight:800;
+  letter-spacing:.02em;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.gauntlet-forge .arena-vote-left:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255,114,150,.42),
+    0 0 38px rgba(255,111,141,.40);
+}
+
+.gauntlet-forge .arena-vote-right{
+  background:linear-gradient(135deg, #52d0ff, #5880ff);
+  box-shadow:
+    0 0 0 1px rgba(82,208,255,.28),
+    0 0 24px rgba(103,217,255,.22);
+  font-weight:800;
+  letter-spacing:.02em;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.gauntlet-forge .arena-vote-right:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(82,208,255,.42),
+    0 0 38px rgba(103,217,255,.40);
+}
+
+/* React zone upgrade */
+.gauntlet-forge .gauntlet-react-zone{
+  background:rgba(255,255,255,.022);
+  border-color:rgba(255,255,255,.07);
+  min-height:130px;
+}
+
+/* React button upgrades */
+.gauntlet-forge .gauntlet-react-btn{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.10);
+  transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+.gauntlet-forge .gauntlet-react-btn:hover{
+  transform:translateY(-3px) scale(1.06);
+  background:rgba(255,255,255,.10);
+  box-shadow:0 0 20px rgba(103,217,255,.20);
+}
+
+/* === Ticker upgrade === */
+.gauntlet-forge .live-ticker-shell{
+  border-color:rgba(103,217,255,.10);
+  background:
+    linear-gradient(90deg,
+      rgba(255,111,141,.06) 0%,
+      rgba(8,11,21,.96) 8%,
+      rgba(8,11,21,.96) 92%,
+      rgba(103,217,255,.06) 100%);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.gauntlet-forge .live-ticker-track{
+  color:#b0c8e8;
+}
+
+/* === Lower panels upgrade === */
+.gauntlet-forge .panel{
+  background:
+    linear-gradient(180deg, rgba(10,13,25,.97), rgba(7,10,18,.99));
+  border-color:rgba(255,255,255,.08);
+}
+
+/* === Responsive breakpoints (progressive, not collapsing) ===
+   !important is required here to override the pre-existing
+   .arena-stage-grid-restore / .arena-hero-panel-restore classes
+   which already declare their own !important rules. */
+@media (max-width:1280px){
+  .gauntlet-forge .arena-stage-grid-restore{
+    grid-template-columns:1fr 300px 1fr !important;
+    gap:14px !important;
+  }
+  .gauntlet-forge .arena-hero-panel-restore{
+    grid-template-columns:1.2fr .8fr !important;
+  }
+  .gauntlet-forge .arena-hero-copy h1{
+    font-size:64px;
+  }
+}
+
+@media (max-width:1024px){
+  .gauntlet-forge .arena-stage-grid-restore{
+    grid-template-columns:1fr 260px 1fr !important;
+    gap:10px !important;
+  }
+  .gauntlet-forge .arena-hero-panel-restore{
+    grid-template-columns:1fr !important;
+  }
+  .gauntlet-forge .arena-hero-mark-restore{
+    min-height:260px !important;
+  }
+  .gauntlet-forge .restore-vs-main{
+    width:240px !important;
+    height:240px !important;
+  }
+  .gauntlet-forge .arena-hero-copy h1{
+    font-size:54px;
+  }
+  .gauntlet-forge .conflict-core{
+    width:240px !important;
+    height:240px !important;
+  }
+  .gauntlet-forge .gauntlet-timer-val{
+    font-size:40px;
+  }
+  .gauntlet-forge .gauntlet-score-display{
+    font-size:52px;
+  }
+  .gauntlet-forge .arena-fighter-card h2{
+    font-size:42px;
+  }
+}
+
+@media (max-width:760px){
+  .gauntlet-forge .arena-stage-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+  .gauntlet-forge .arena-center-column{
+    order:-1;
+  }
+  .gauntlet-forge .arena-lower-grid-restore{
+    grid-template-columns:1fr !important;
+  }
+  .gauntlet-forge .arena-hero-copy h1{
+    font-size:44px;
+  }
+  .gauntlet-forge .gauntlet-score-display{
+    font-size:58px;
+  }
+}
