@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Gauntlet — Built Different</title>
-<link rel="stylesheet" href="../css/style.css?v=atlas30">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=atlas31">
 </head>
 <body>
 <div class="site-shell gauntlet-live-page">
@@ -137,6 +140,11 @@
             <span id="gauntletRoundTag">ROUND 3 — LIVE</span>
           </div>
 
+          <div class="gauntlet-category-tag" id="gauntletCategoryTag">
+            <span class="gauntlet-cat-icon" id="gauntletCatIcon">⚔</span>
+            <span id="gauntletCategory">LOGIC BATTLE</span>
+          </div>
+
           <div class="conflict-core">
             <div class="conflict-outer-ring"></div>
             <div class="conflict-mid-ring"></div>
@@ -147,6 +155,11 @@
             <div class="conflict-side-indicator conflict-side-left"></div>
             <div class="conflict-side-indicator conflict-side-right"></div>
             <span class="conflict-label">SIGNAL<br>CORE</span>
+          </div>
+
+          <div class="gauntlet-timer" id="gauntletTimerBlock">
+            <span class="gauntlet-timer-val" id="gauntletTimerVal">04:22</span>
+            <span class="gauntlet-timer-label">ROUND TIME</span>
           </div>
 
           <div class="gauntlet-score-display">
@@ -257,9 +270,29 @@
       </section>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-brand">
+        <span class="footer-brand-orb"></span>
+        <span class="footer-brand-name">Atlas</span>
+        <span class="footer-tagline">BUILT DIFFERENT</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html">Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <p class="footer-copy">© 2025 Atlas Platform · Built on Cloudflare Pages</p>
+    </div>
+  </footer>
 </div>
 
-<script src="../js/ui.js?v=atlas30"></script>
-<script src="../js/gauntlet.js?v=atlas30"></script>
+<script src="../js/ui.js?v=atlas31"></script>
+<script src="../js/gauntlet.js?v=atlas31"></script>
 </body>
 </html>
