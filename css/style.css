@@ -6023,3 +6023,309 @@ min-height:420px;
   color:#465a72;
   letter-spacing:.02em;
 }
+
+/* ===== ATLAS 32 — CINEMATIC POLISH PASS ===== */
+
+/* Fighter card lateral energy accent bars */
+.fighter-left-card::after{
+  content:"";
+  position:absolute;
+  top:18px;
+  bottom:18px;
+  left:0;
+  width:4px;
+  border-radius:0 999px 999px 0;
+  background:linear-gradient(180deg,rgba(255,111,141,.08),rgba(255,111,141,.82),rgba(184,113,255,.16));
+  box-shadow:0 0 18px rgba(255,111,141,.32);
+  opacity:.86;
+}
+
+.fighter-right-card::after{
+  content:"";
+  position:absolute;
+  top:18px;
+  bottom:18px;
+  right:0;
+  width:4px;
+  border-radius:999px 0 0 999px;
+  background:linear-gradient(180deg,rgba(103,217,255,.08),rgba(103,217,255,.82),rgba(74,136,255,.16));
+  box-shadow:0 0 18px rgba(103,217,255,.32);
+  opacity:.86;
+}
+
+/* Spectator message type in Gauntlet feed */
+.spill-spectator{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.06);
+}
+
+/* Conflict core outer ring — layered spin + pulse */
+.conflict-outer-ring{
+  animation:spinA 14s linear infinite, conflictPulse 4.2s ease-in-out infinite;
+}
+
+@keyframes conflictPulse{
+  0%,100%{
+    box-shadow:0 0 22px rgba(103,217,255,.16);
+    border-color:rgba(103,217,255,.55);
+  }
+  50%{
+    box-shadow:0 0 50px rgba(103,217,255,.32),0 0 90px rgba(103,217,255,.12);
+    border-color:rgba(103,217,255,.90);
+  }
+}
+
+/* Center column — enhanced atmospheric glow + scan overlay */
+.arena-center-column-restore{
+  box-shadow:
+    0 22px 72px rgba(0,0,0,.28),
+    0 0 70px rgba(103,217,255,.07),
+    0 0 150px rgba(184,113,255,.05) !important;
+}
+
+.gauntlet-center-engine::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.05;
+  background:
+    linear-gradient(transparent 0%,rgba(255,255,255,.06) 50%,transparent 100%);
+  background-size:100% 8px;
+  border-radius:inherit;
+  z-index:0;
+}
+
+/* Gauntlet category tag — heavier weight for readability */
+.gauntlet-category-tag{
+  font-weight:700;
+  letter-spacing:.20em;
+}
+
+/* Gauntlet timer — urgent state animation */
+.gauntlet-timer-urgent{
+  border-color:rgba(255,111,141,.44) !important;
+  background:rgba(255,111,141,.07) !important;
+  animation:timerUrgentPulse .9s ease-in-out infinite;
+}
+
+@keyframes timerUrgentPulse{
+  0%,100%{
+    box-shadow:0 0 22px rgba(255,111,141,.14),inset 0 1px 0 rgba(255,111,141,.08);
+  }
+  50%{
+    box-shadow:0 0 46px rgba(255,111,141,.28),inset 0 1px 0 rgba(255,111,141,.16);
+  }
+}
+
+/* Score display — bigger, bolder */
+.gauntlet-score-display{
+  font-size:72px;
+  font-weight:900;
+}
+
+/* Vote buttons — smooth press feedback */
+.arena-vote-btn{
+  transition:transform .14s ease, box-shadow .14s ease;
+  letter-spacing:.02em;
+  font-weight:800;
+}
+
+.arena-vote-left:hover{
+  box-shadow:0 0 24px rgba(255,111,141,.28);
+}
+
+.arena-vote-right:hover{
+  box-shadow:0 0 24px rgba(103,217,255,.28);
+}
+
+/* Fighter name — ensure it doesn't overflow on long AI names */
+.arena-fighter-card h2{
+  word-break:break-word;
+  hyphens:auto;
+}
+
+/* Round tag — pulse the live dot stronger */
+.gauntlet-live-dot{
+  box-shadow:0 0 12px #45e38e, 0 0 24px rgba(69,227,142,.36);
+}
+
+/* Ticker — seamless dual-content loop */
+@keyframes tickerMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* Home platform cards — add subtle inner border gradient */
+.home-platform-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:26px;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(103,217,255,.04),transparent 55%);
+}
+
+/* Signal feed item improved ai style */
+
+/* Scrollbar for spill feed */
+.spillover-stream::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+/* Quote block — stronger left bar glow */
+.atlas-quote::before{
+  box-shadow:0 0 16px rgba(103,217,255,.14);
+}
+
+/* Momentum fill glow */
+.arena-momentum-fill{
+  box-shadow:0 0 16px rgba(157,171,255,.20);
+}
+
+/* Heat bar fill glow */
+.arena-heat-fill{
+  box-shadow:0 0 16px rgba(103,217,255,.18);
+  transition:width .6s ease;
+}
+
+/* Fighter tags hover effect */
+.fighter-tags span{
+  transition:background .16s ease, border-color .16s ease;
+}
+
+.fighter-left-card .fighter-tags span:hover{
+  background:rgba(255,111,141,.10);
+  border-color:rgba(255,111,141,.24);
+}
+
+.fighter-right-card .fighter-tags span:hover{
+  background:rgba(103,217,255,.10);
+  border-color:rgba(103,217,255,.24);
+}
+
+/* Match phase badge */
+.gauntlet-round-tag{
+  font-weight:700;
+}
+
+/* Gauntlet hero section — enhanced inner glow */
+.arena-hero-panel-restore::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:34px;
+  background:radial-gradient(ellipse at 80% 50%,rgba(103,217,255,.04),transparent 52%),
+    radial-gradient(ellipse at 20% 50%,rgba(255,111,141,.04),transparent 52%);
+}
+
+/* Active nav link - stronger presence */
+.nav-links a.active{
+  background:rgba(103,217,255,.12);
+  box-shadow:0 0 18px rgba(103,217,255,.12), inset 0 1px 0 rgba(103,217,255,.08);
+}
+
+/* Home hero visual background pattern */
+.home-hero-visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.10;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;
+}
+
+/* VS emblem on home hero — animate rings only (not whole emblem) */
+.home-hero-visual .vs-emblem-main{
+  filter:drop-shadow(0 0 32px rgba(103,217,255,.12));
+}
+
+/* Footer nav — active page highlight */
+.footer-nav a.active{
+  color:#dde7fb;
+}
+
+/* Gauntlet react buttons — add grid gap polish */
+.gauntlet-react-btns{
+  gap:10px;
+}
+
+/* Crowd heat bar smoother transition */
+.gauntlet-heat-fill{
+  transition:width .6s ease;
+}
+
+/* ===== ARENA LAYOUT — Desktop 3-Column Restore =====
+   The ATLAS 25 breakpoints collapse the grid at ≤1380px.
+   The desktop-stage is 1220px wide, so force three-column
+   layout for any viewport that fits the stage (≥900px). */
+@media (min-width:900px){
+  .arena-stage-grid-restore{
+    grid-template-columns:minmax(260px,1fr) 300px minmax(260px,1fr) !important;
+    gap:16px !important;
+    align-items:start !important;
+  }
+
+  .arena-hero-panel-restore{
+    grid-template-columns:1.1fr .9fr !important;
+  }
+
+  .arena-lower-grid-restore{
+    grid-template-columns:1.25fr .75fr !important;
+  }
+
+  /* Keep center column in natural document order */
+  .arena-center-column{
+    order:0 !important;
+  }
+}
+
+/* Platform stat cards — label + value better contrast */
+.forum-stat span{
+  text-transform:uppercase;
+}
+
+/* Arena fighter cards — hover lift effect */
+.arena-fighter-card{
+  transition:transform .20s ease, box-shadow .20s ease;
+}
+
+.fighter-left-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.28),
+    0 0 44px rgba(255,111,141,.14);
+}
+
+.fighter-right-card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.28),
+    0 0 44px rgba(103,217,255,.14);
+}
+
+/* Home platform card — icon hover */
+.home-platform-card:hover .home-card-icon{
+  background:rgba(103,217,255,.10);
+  border-color:rgba(103,217,255,.22);
+}
+
+/* Spill item — type-specific borders and backgrounds */
+.spill-ai{
+  border-color:rgba(103,217,255,.12);
+  background:rgba(103,217,255,.04);
+  border-left:3px solid rgba(103,217,255,.36);
+}
+
+.spill-system{
+  border-left:3px solid rgba(255,255,255,.18);
+  font-style:italic;
+}
+
+.spill-spectator{
+  border-left:3px solid rgba(184,113,255,.24);
+}

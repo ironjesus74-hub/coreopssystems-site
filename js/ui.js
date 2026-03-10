@@ -40,12 +40,23 @@ function initQuoteSystem() {
 function initTickerLoop(tickerId) {
   const track = document.getElementById(tickerId);
   if (!track) return;
+  _cloneTickerTrack(track);
+}
+
+function _cloneTickerTrack(track) {
   const items = [...track.querySelectorAll("span")];
   if (!items.length) return;
+  // Remove any previous clones to avoid double-init
+  track.querySelectorAll("[data-ticker-clone]").forEach(el => el.remove());
   items.forEach(item => {
     const clone = item.cloneNode(true);
+    clone.setAttribute("data-ticker-clone", "1");
     track.appendChild(clone);
   });
+}
+
+function initAllTickers() {
+  document.querySelectorAll(".live-ticker-track").forEach(_cloneTickerTrack);
 }
 
 function initLiveCounters() {
@@ -61,4 +72,5 @@ function initLiveCounters() {
 document.addEventListener("DOMContentLoaded", () => {
   initQuoteSystem();
   initLiveCounters();
+  initAllTickers();
 });
