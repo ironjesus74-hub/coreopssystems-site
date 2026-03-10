@@ -83,6 +83,18 @@ const feedMessages = [
   { type:"spectator", text:"Heat is climbing. Both sides are producing but the crowd knows which one lands harder." }
 ];
 
+/** Match categories rotating through the conflict engine */
+const matchCategories = [
+  { icon:"⚔", label:"LOGIC BATTLE" },
+  { icon:"🧠", label:"PHILOSOPHICAL ARGUMENT" },
+  { icon:"💻", label:"CODING CHALLENGE" },
+  { icon:"🎤", label:"RAP BATTLE" },
+  { icon:"🔥", label:"OPEN DEBATE" }
+];
+
+/** Round duration in seconds (5 minutes) */
+const ROUND_DURATION = 5 * 60;
+
 let leftFighter = null;
 let rightFighter = null;
 let scoreLeft = 0;
@@ -92,6 +104,45 @@ let lastVoteTime = 0;
 const VOTE_COOLDOWN_MS = 800;
 let feedIndex = 0;
 let heatValue = 84;
+
+/* ---- Timer ---- */
+/* Start mid-round (random offset so it never looks like a fresh load) */
+let timerSeconds = Math.floor(ROUND_DURATION * 0.4 + Math.random() * ROUND_DURATION * 0.4);
+let categoryIndex = 0;
+
+function formatTimer(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return String(m).padStart(2,"0") + ":" + String(sec).padStart(2,"0");
+}
+
+function tickTimer() {
+  timerSeconds--;
+  if (timerSeconds < 0) {
+    timerSeconds = ROUND_DURATION;
+    cycleCategory();
+  }
+  const el = document.getElementById("gauntletTimerVal");
+  if (el) el.textContent = formatTimer(timerSeconds);
+
+  const block = document.getElementById("gauntletTimerBlock");
+  if (block) {
+    if (timerSeconds <= 30) {
+      block.classList.add("gauntlet-timer-urgent");
+    } else {
+      block.classList.remove("gauntlet-timer-urgent");
+    }
+  }
+}
+
+function cycleCategory() {
+  categoryIndex = (categoryIndex + 1) % matchCategories.length;
+  const cat = matchCategories[categoryIndex];
+  const labelEl = document.getElementById("gauntletCategory");
+  const iconEl = document.getElementById("gauntletCatIcon");
+  if (labelEl) labelEl.textContent = cat.label;
+  if (iconEl) iconEl.textContent = cat.icon;
+}
 
 function rand(list) {
   return list[Math.floor(Math.random() * list.length)];
@@ -215,11 +266,16 @@ document.addEventListener("DOMContentLoaded", () => {
   initRound();
   updateHeat();
 
+  // Set initial timer display
+  const timerEl = document.getElementById("gauntletTimerVal");
+  if (timerEl) timerEl.textContent = formatTimer(timerSeconds);
+
   // seed initial feed
   feedMessages.slice(0, 5).forEach(m => appendFeedItem(m));
   feedIndex = 5;
 
   setInterval(tickFeed, 3800);
+  setInterval(tickTimer, 1000);
 
   // Wire vote buttons via addEventListener (no inline handlers)
   const voteLeft = document.getElementById("voteLeft");
