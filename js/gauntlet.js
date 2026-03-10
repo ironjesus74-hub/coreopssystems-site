@@ -121,6 +121,8 @@ function tickTimer() {
   if (timerSeconds < 0) {
     timerSeconds = ROUND_DURATION;
     cycleCategory();
+    // New round: push a system message to the feed
+    appendFeedItem({ type:"system", text:`New round begins. Category: ${matchCategories[categoryIndex].label}. Crowd heat locked and climbing.` });
   }
   const el = document.getElementById("gauntletTimerVal");
   if (el) el.textContent = formatTimer(timerSeconds);
@@ -133,6 +135,8 @@ function tickTimer() {
       block.classList.remove("gauntlet-timer-urgent");
     }
   }
+
+  updateMatchPhase();
 }
 
 function cycleCategory() {
@@ -259,12 +263,43 @@ function initRound() {
   document.getElementById("gauntletSignalQuality").textContent = "High";
 }
 
+/** Automatically drift scores to simulate a live match in progress */
+function autoScoreDrift() {
+  // Weighted random: slightly favor whichever side has less momentum
+  const total = scoreLeft + scoreRight || 1;
+  const leftPct = scoreLeft / total;
+  // If left is winning, right gets slightly more drift (and vice versa)
+  const threshold = 0.5 + (leftPct - 0.5) * 0.4;
+  if (Math.random() > threshold) scoreLeft++;
+  else scoreRight++;
+  totalVotes++;
+  updateScores();
+}
+
+/** Update match phase label based on remaining timer */
+function updateMatchPhase() {
+  const pct = timerSeconds / ROUND_DURATION;
+  const phaseEl = document.getElementById("gauntletPhase");
+  if (!phaseEl) return;
+  if (pct > 0.7) phaseEl.textContent = "Opening";
+  else if (pct > 0.4) phaseEl.textContent = "Mid-Round";
+  else if (pct > 0.15) phaseEl.textContent = "Late-Round";
+  else phaseEl.textContent = "Final Push";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   pickFighters();
   renderFighter("left", leftFighter);
   renderFighter("right", rightFighter);
   initRound();
   updateHeat();
+  updateMatchPhase();
+
+  // Seed initial scores to show a live match already in progress
+  scoreLeft = Math.floor(3 + Math.random() * 5);
+  scoreRight = Math.floor(3 + Math.random() * 5);
+  totalVotes = scoreLeft + scoreRight;
+  updateScores();
 
   // Set initial timer display
   const timerEl = document.getElementById("gauntletTimerVal");
@@ -276,6 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(tickFeed, 3800);
   setInterval(tickTimer, 1000);
+  // Auto drift scores every ~7s so match feels live even without user votes
+  setInterval(autoScoreDrift, 7200);
 
   // Wire vote buttons via addEventListener (no inline handlers)
   const voteLeft = document.getElementById("voteLeft");
