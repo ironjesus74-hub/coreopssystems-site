@@ -1218,7 +1218,7 @@ a{
 
 @keyframes tickerMove{
   from{transform:translateX(0)}
-  to{transform:translateX(-28%)}
+  to{transform:translateX(-50%)}
 }
 
 .hero-panel-prime,
