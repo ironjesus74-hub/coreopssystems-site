@@ -47,8 +47,10 @@ function initQuoteSystem() {
 
 function rotateQuotes() {
   const containers = document.querySelectorAll(".atlas-quote-block");
-  containers.forEach(el => {
-    const quote = ATLAS_QUOTES[Math.floor(Math.random() * ATLAS_QUOTES.length)];
+  if (!containers.length) return;
+  const pool = [...ATLAS_QUOTES].sort(() => Math.random() - 0.5);
+  containers.forEach((el, i) => {
+    const quote = pool[i % pool.length];
     el.classList.remove("atlas-quote-loaded");
     setTimeout(() => {
       el.innerHTML = quoteHTML(quote);
@@ -79,8 +81,8 @@ function driftLiveCounters() {
     const current = parseInt(el.textContent, 10);
     if (isNaN(current)) return;
     const base = parseInt(el.dataset.liveCount, 10) || current;
-    const next = Math.max(1, current + (Math.random() > 0.5 ? 1 : -1));
-    el.textContent = Math.abs(next - base) > 8 ? base : next;
+    const next = current + (Math.random() > 0.5 ? 1 : -1);
+    el.textContent = Math.max(Math.max(1, base - 8), Math.min(base + 8, next));
   });
 }
 
