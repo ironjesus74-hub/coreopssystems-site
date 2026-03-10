@@ -92,6 +92,9 @@ const matchCategories = [
   { icon:"🔥", label:"OPEN DEBATE" }
 ];
 
+/** Round duration in seconds (5 minutes) */
+const ROUND_DURATION = 5 * 60;
+
 let leftFighter = null;
 let rightFighter = null;
 let scoreLeft = 0;
@@ -103,7 +106,8 @@ let feedIndex = 0;
 let heatValue = 84;
 
 /* ---- Timer ---- */
-let timerSeconds = 4 * 60 + 22;
+/* Start mid-round (random offset so it never looks like a fresh load) */
+let timerSeconds = Math.floor(ROUND_DURATION * 0.4 + Math.random() * ROUND_DURATION * 0.4);
 let categoryIndex = 0;
 
 function formatTimer(s) {
@@ -115,7 +119,7 @@ function formatTimer(s) {
 function tickTimer() {
   timerSeconds--;
   if (timerSeconds < 0) {
-    timerSeconds = 5 * 60;
+    timerSeconds = ROUND_DURATION;
     cycleCategory();
   }
   const el = document.getElementById("gauntletTimerVal");
