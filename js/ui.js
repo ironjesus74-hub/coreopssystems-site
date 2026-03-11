@@ -86,10 +86,26 @@ function driftLiveCounters() {
   });
 }
 
+/** Reveal elements with .reveal-on-scroll as they enter the viewport. */
+function initScrollReveal() {
+  const els = document.querySelectorAll(".reveal-on-scroll");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTickerLoops();
   initQuoteSystem();
   initLiveCounters();
+  initScrollReveal();
   setInterval(driftLiveCounters, 4800);
   setInterval(rotateQuotes, 45000);
 });
