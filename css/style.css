@@ -5003,6 +5003,12 @@ min-height:420px;
   animation:livePing 1.6s ease-out infinite;
 }
 
+@media (prefers-reduced-motion: reduce){
+  .live-dot::after{
+    animation:none;
+    opacity:.6;
+  }
+}
 @keyframes livePing{
   0%{transform:scale(.55);opacity:.45}
   100%{transform:scale(2);opacity:0}
