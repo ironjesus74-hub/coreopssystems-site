@@ -5966,7 +5966,7 @@ min-height:420px;
   position:absolute;
   top:14px;
   bottom:14px;
-  left:-1px;
+  left:0;
   width:4px;
   border-radius:0 4px 4px 0;
   background:linear-gradient(180deg,
@@ -5983,7 +5983,7 @@ min-height:420px;
   position:absolute;
   top:14px;
   bottom:14px;
-  right:-1px;
+  right:0;
   width:4px;
   border-radius:4px 0 0 4px;
   background:linear-gradient(180deg,
