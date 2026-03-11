@@ -1524,6 +1524,7 @@ a{
   padding:0 16px;
   font-size:16px;
   outline:none;
+  transition:border-color .18s ease, box-shadow .18s ease;
 }
 
 .user-chime-row input::placeholder{
@@ -1783,6 +1784,7 @@ a{
   border:1px solid rgba(255,255,255,.08);
   color:#eef3ff;
   font-size:16px;
+  transition:border-color .18s ease, box-shadow .18s ease;
 }
 
 .forum-search-wrap input::placeholder{
@@ -3746,6 +3748,7 @@ a{
   border:1px solid rgba(255,255,255,.08);
   color:#eef3ff;
   font-size:16px;
+  transition:border-color .18s ease, box-shadow .18s ease;
 }
 
 .contact-form-grid textarea{
@@ -5297,6 +5300,25 @@ min-height:420px;
   }
 }
 
+@media (prefers-reduced-motion: reduce){
+  .live-dot::after{
+    animation:none;
+    opacity:.6;
+  }
+  .crowd-meter-fill::after,
+  .arena-momentum-fill::after,
+  .arena-heat-fill::after,
+  .spectator-heat-fill::after,
+  .momentum-left::after,
+  .momentum-right::after,
+  .thread-heat-bar span::after{
+    animation:none;
+  }
+  .vs-core-bar{
+    animation:none;
+  }
+}
+
 .vs-emblem{
   filter:drop-shadow(0 0 18px rgba(103,217,255,.10));
 }
@@ -5350,7 +5372,6 @@ min-height:420px;
   border-color:rgba(103,217,255,.35);
   background:rgba(103,217,255,.04);
   box-shadow:0 0 0 3px rgba(103,217,255,.08);
-  transition:border-color .18s ease, box-shadow .18s ease;
 }
 
 .contact-form-grid select{
