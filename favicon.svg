@@ -1,15 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#07111e"/>
-  <!-- Atlas A lettermark — neon cyan glow -->
-  <path d="M16 4L5.5 27h4.5l2.5-6h7l2.5 6h4.5L16 4zm-2 16L16 12.5 18 20h-4z"
-        fill="#67d9ff" fill-rule="evenodd"/>
-  <!-- Subtle inner glow layer -->
-  <path d="M16 4L5.5 27h4.5l2.5-6h7l2.5 6h4.5L16 4zm-2 16L16 12.5 18 20h-4z"
-        fill="rgba(103,217,255,0.3)" fill-rule="evenodd" filter="url(#glow)"/>
   <defs>
-    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <!-- Clip: left half of canvas (red side) -->
+    <clipPath id="cl"><rect x="0" y="0" width="16" height="32"/></clipPath>
+    <!-- Clip: right half of canvas (cyan side) -->
+    <clipPath id="cr"><rect x="16" y="0" width="16" height="32"/></clipPath>
   </defs>
+
+  <!-- Background: deep navy -->
+  <rect width="32" height="32" rx="7" fill="#030810"/>
+
+  <!-- ── GLOW HALOS (wide semi-transparent strokes beneath) ── -->
+  <g clip-path="url(#cl)" opacity="0.42">
+    <line x1="16" y1="3" x2="4"    y2="29" stroke="#ff6f8d" stroke-width="11" stroke-linecap="round"/>
+    <line x1="10.5" y1="19" x2="16" y2="19" stroke="#ff6f8d" stroke-width="8"  stroke-linecap="round"/>
+  </g>
+  <g clip-path="url(#cr)" opacity="0.42">
+    <line x1="16" y1="3" x2="28"   y2="29" stroke="#67d9ff" stroke-width="11" stroke-linecap="round"/>
+    <line x1="16" y1="19" x2="21.5" y2="19" stroke="#67d9ff" stroke-width="8"  stroke-linecap="round"/>
+  </g>
+
+  <!-- ── CRISP A STROKES ── -->
+  <!-- Left leg + left crossbar — hot pink/red -->
+  <g clip-path="url(#cl)">
+    <line x1="16" y1="3" x2="4"    y2="29" stroke="#ff8fab" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="10.5" y1="19" x2="16" y2="19" stroke="#ff8fab" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <!-- Right leg + right crossbar — electric cyan -->
+  <g clip-path="url(#cr)">
+    <line x1="16" y1="3" x2="28"   y2="29" stroke="#7de0ff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="16" y1="19" x2="21.5" y2="19" stroke="#7de0ff" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- ── APEX COLLISION SPARK (where red meets cyan) ── -->
+  <circle cx="16" cy="4.5" r="5"   fill="#ffffff" opacity="0.12"/>
+  <circle cx="16" cy="4.5" r="3"   fill="#ffffff" opacity="0.38"/>
+  <circle cx="16" cy="4.5" r="1.6" fill="#ffffff" opacity="1.00"/>
 </svg>
