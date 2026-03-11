@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
-
 :root{
   --bg:#04060c;
   --bg2:#091120;
@@ -4907,7 +4905,7 @@ min-height:420px;
 }
 
 
-/* ===== ATLAS SHARED — FORM POLISH ===== */
+/* ===== ATLAS 26 SHARED — FORM POLISH ===== */
 
 .forum-search-wrap input:focus,
 .user-chime-row input:focus,
@@ -4934,7 +4932,7 @@ min-height:420px;
   color:#eef3ff;
 }
 
-/* ===== ATLAS SHARED — FOOTER ===== */
+/* ===== ATLAS 27 SHARED — FOOTER ===== */
 
 .site-footer{
   margin-top:60px;
@@ -5055,7 +5053,7 @@ min-height:420px;
   color:#8a9dc0;
 }
 
-/* ===== ATLAS HOME PAGE ===== */
+/* ===== ATLAS 28 HOME PAGE ===== */
 
 .home-live-page{
   position:relative;
@@ -5379,7 +5377,7 @@ min-height:420px;
   color:#67d9ff;
 }
 
-/* ===== ATLAS ARENA PLACEHOLDER ===== */
+/* ===== ATLAS 29 ARENA PLACEHOLDER ===== */
 
 .arena-coming-page{
   position:relative;
