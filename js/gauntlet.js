@@ -150,10 +150,6 @@ function cycleCategory() {
   if (iconEl) iconEl.textContent = cat.icon;
 }
 
-function rand(list) {
-  return list[Math.floor(Math.random() * list.length)];
-}
-
 function pickFighters() {
   const shuffled = [...gauntletFighters].sort(() => Math.random() - 0.5);
   leftFighter = shuffled[0];
