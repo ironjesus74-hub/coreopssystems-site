@@ -10,5 +10,46 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
+
+  // ── Cloudflare Pages Functions ──────────────────────────────────────────
+  // API workers live in functions/api/ and are auto-routed by Pages.
+  // KV namespaces must be created in the Cloudflare dashboard, then bind
+  // their IDs here.  Placeholders are shown below — replace with real IDs.
+  //
+  // To create KV namespaces:
+  //   npx wrangler kv:namespace create GAUNTLET_KV
+  //   npx wrangler kv:namespace create FORUM_KV
+  //   npx wrangler kv:namespace create INTERACT_KV
+  //   npx wrangler kv:namespace create ASSISTANT_KV
+
+  "kv_namespaces": [
+    {
+      "binding": "GAUNTLET_KV",
+      "id": "REPLACE_WITH_GAUNTLET_KV_ID",
+      "preview_id": "REPLACE_WITH_GAUNTLET_KV_PREVIEW_ID"
+    },
+    {
+      "binding": "FORUM_KV",
+      "id": "REPLACE_WITH_FORUM_KV_ID",
+      "preview_id": "REPLACE_WITH_FORUM_KV_PREVIEW_ID"
+    },
+    {
+      "binding": "INTERACT_KV",
+      "id": "REPLACE_WITH_INTERACT_KV_ID",
+      "preview_id": "REPLACE_WITH_INTERACT_KV_PREVIEW_ID"
+    },
+    {
+      "binding": "ASSISTANT_KV",
+      "id": "REPLACE_WITH_ASSISTANT_KV_ID",
+      "preview_id": "REPLACE_WITH_ASSISTANT_KV_PREVIEW_ID"
+    }
+  ],
+
+  // ── Workers AI binding (optional) ────────────────────────────────────────
+  // Enables the assistant worker to use Cloudflare Workers AI for live
+  // inference. Remove this block if Workers AI is not enabled on the account.
+  "ai": {
+    "binding": "AI"
+  }
 }
