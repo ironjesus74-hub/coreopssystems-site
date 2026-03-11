@@ -6032,6 +6032,19 @@ min-height:420px;
   min-width:960px;
 }
 
+/* Allow gauntlet page to be fully responsive on narrow viewports */
+@media (max-width: 959.98px){
+  .gauntlet-live-page.gauntlet-forge{
+    min-width:0;
+    width:100%;
+  }
+
+  /* Override desktop-stage fixed width when used inside gauntlet */
+  .gauntlet-live-page.gauntlet-forge .desktop-stage{
+    min-width:0;
+    width:100%;
+  }
+}
 /* === Background mesh depth layer === */
 .gauntlet-arena-mesh{
   position:fixed;
