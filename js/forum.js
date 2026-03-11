@@ -99,6 +99,8 @@ const threadTemplates = [
 ];
 
 
+const reactionPool = ["🔥","💡","👏","⚡","🎯","🧠","⚠️","✅"];
+
 let allThreads = [];
 let renderedCount = 0;
 let activeCategory = "All";
