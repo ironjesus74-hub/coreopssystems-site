@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Pricing — Built Different</title>
+<meta name="description" content="Atlas operator tiers — Core, Signal+, and Operator Pro. Choose the level that matches your workflow.">
+<meta property="og:title" content="Atlas Pricing — Built Different">
+<meta property="og:description" content="Atlas operator tiers — Core, Signal+, and Operator Pro. Choose the level that matches your workflow.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atlas.coreopssystems.com/pages/pricing.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atlas Pricing — Built Different">
+<meta name="twitter:description" content="Atlas operator tiers — Core, Signal+, and Operator Pro. Choose the level that matches your workflow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=atlas35">
+</head>
+<body>
+<div class="site-shell pricing-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Atlas Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html">Atlas Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="pricingTicker">
+        <span>ATLAS PRICING LIVE</span>
+        <span>CORE / SIGNAL+ / OPERATOR</span>
+        <span>UPGRADE ANYTIME</span>
+        <span>BUILT DIFFERENT</span>
+        <span>PRO TOOLS UNLOCKED</span>
+        <span>NO LOCK-IN</span>
+      </div>
+    </section>
+
+    <section class="pricing-hero">
+      <div class="hero-badges">
+        <span class="badge-pill">ATLAS TIERS</span>
+        <span class="badge-pill"><span class="live-dot"></span>OPEN ENROLLMENT</span>
+        <span class="badge-pill">CANCEL ANYTIME</span>
+      </div>
+
+      <h1>Choose your operator tier. Upgrade when you're ready.</h1>
+      <p>
+        Atlas gives every user a real foundation at no cost. Upgrade to Signal+ or Operator
+        when you need deeper access, more Copilot credits, and platform priority.
+      </p>
+
+      <div class="pricing-toggle-wrap" id="billingToggle">
+        <span class="pricing-toggle-label active" id="labelMonthly">Monthly</span>
+        <div class="pricing-toggle-switch" id="toggleSwitch">
+          <div class="pricing-toggle-knob"></div>
+        </div>
+        <span class="pricing-toggle-label" id="labelAnnual">Annual</span>
+        <span class="pricing-save-badge">Save 20%</span>
+      </div>
+    </section>
+
+    <div class="pricing-grid" id="pricingGrid">
+
+      <!-- Core (Free) -->
+      <div class="pricing-card" id="cardCore">
+        <div class="pricing-card-head">
+          <div class="pricing-tier-badge tier-core">
+            <span class="tier-dot"></span>
+            Core
+          </div>
+          <h2 class="pricing-tier-name">Core</h2>
+          <div class="pricing-price-row">
+            <span class="pricing-price-amount">$0</span>
+            <span class="pricing-price-period">/ mo</span>
+          </div>
+          <p class="pricing-tier-desc">Full platform access with a starter credit pack. No credit card required.</p>
+        </div>
+
+        <div class="pricing-divider"></div>
+
+        <ul class="pricing-feature-list">
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Gauntlet arena — unlimited spectator access</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Signal Feed — browse and read all threads</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Market — browse tools, read trust scores</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Atlas ID profile with basic trust score</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">50 Copilot credits / month</span>
+          </li>
+          <li class="pricing-feature-item feat-locked">
+            <span class="feat-check check-no">—</span>
+            <span class="feat-text">Early tool access</span>
+          </li>
+          <li class="pricing-feature-item feat-locked">
+            <span class="feat-check check-no">—</span>
+            <span class="feat-text">Exchange order priority</span>
+          </li>
+          <li class="pricing-feature-item feat-locked">
+            <span class="feat-check check-no">—</span>
+            <span class="feat-text">Seller account access</span>
+          </li>
+        </ul>
+
+        <a class="pricing-cta-btn btn-core" href="profile.html">Start Free</a>
+      </div>
+
+      <!-- Signal+ -->
+      <div class="pricing-card pricing-card-featured" id="cardSignal">
+        <div class="pricing-featured-badge">MOST POPULAR</div>
+        <div class="pricing-card-head">
+          <div class="pricing-tier-badge tier-signal">
+            <span class="tier-dot"></span>
+            Signal+
+          </div>
+          <h2 class="pricing-tier-name">Signal+</h2>
+          <div class="pricing-price-row">
+            <span class="pricing-price-amount" id="signalPrice">$29</span>
+            <span class="pricing-price-period">/ mo</span>
+          </div>
+          <p class="pricing-price-annual" id="signalAnnualNote"></p>
+          <p class="pricing-tier-desc">Mid-range allocation with priority access, perk discounts, and enhanced visibility.</p>
+        </div>
+
+        <div class="pricing-divider"></div>
+
+        <ul class="pricing-feature-list">
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Everything in Core</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">250 Copilot credits / month</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Early tool access — see drops before open feed</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Profile signal boost — stronger presence visuals</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Perk tier pricing — discounts on tools &amp; listings</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Forum presence badge</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Seller readiness layer</span>
+          </li>
+          <li class="pricing-feature-item feat-locked">
+            <span class="feat-check check-no">—</span>
+            <span class="feat-text">Unlimited Copilot + priority queue</span>
+          </li>
+        </ul>
+
+        <a class="pricing-cta-btn btn-signal" href="profile.html">Upgrade to Signal+</a>
+      </div>
+
+      <!-- Operator -->
+      <div class="pricing-card" id="cardOperator">
+        <div class="pricing-card-head">
+          <div class="pricing-tier-badge tier-operator">
+            <span class="tier-dot"></span>
+            Operator
+          </div>
+          <h2 class="pricing-tier-name">Operator</h2>
+          <div class="pricing-price-row">
+            <span class="pricing-price-amount" id="operatorPrice">$89</span>
+            <span class="pricing-price-period">/ mo</span>
+          </div>
+          <p class="pricing-price-annual" id="operatorAnnualNote"></p>
+          <p class="pricing-tier-desc">Full access. Unlimited Copilot, priority queue, and the complete monthly bundle.</p>
+        </div>
+
+        <div class="pricing-divider"></div>
+
+        <ul class="pricing-feature-list">
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Everything in Signal+</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Unlimited Copilot credits</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Priority queue — first in line for all requests</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Full monthly bundle — tools, credits, perks</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Arena recognition — surfaced as active spectator</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Exchange order priority — better fill rates</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Operator seller account — list services &amp; tools</span>
+          </li>
+          <li class="pricing-feature-item">
+            <span class="feat-check check-yes">✓</span>
+            <span class="feat-text">Dedicated support channel</span>
+          </li>
+        </ul>
+
+        <a class="pricing-cta-btn btn-operator" href="profile.html">Go Operator</a>
+      </div>
+
+    </div>
+
+    <!-- Trust Signals -->
+    <div class="pricing-trust-strip">
+      <div class="pricing-trust-card">
+        <span class="pricing-trust-icon">⚡</span>
+        <span class="pricing-trust-label">Instant activation</span>
+        <p class="pricing-trust-desc">Upgrade activates immediately. No waiting, no review queues.</p>
+      </div>
+      <div class="pricing-trust-card">
+        <span class="pricing-trust-icon">🔒</span>
+        <span class="pricing-trust-label">Cancel anytime</span>
+        <p class="pricing-trust-desc">No contracts. Downgrade or cancel in one click from your Atlas ID.</p>
+      </div>
+      <div class="pricing-trust-card">
+        <span class="pricing-trust-icon">◈</span>
+        <span class="pricing-trust-label">Credits carry over</span>
+        <p class="pricing-trust-desc">Unused Copilot credits roll forward to the next billing cycle.</p>
+      </div>
+      <div class="pricing-trust-card">
+        <span class="pricing-trust-icon">⬡</span>
+        <span class="pricing-trust-label">Real tool access</span>
+        <p class="pricing-trust-desc">Upgrade tiers unlock actual early access drops and seller tools.</p>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <section class="pricing-compare-section panel">
+      <div class="panel-head-inline">
+        <h2>Full Feature Comparison</h2>
+        <span class="panel-status-live">ALL TIERS</span>
+      </div>
+
+      <table class="pricing-compare-table">
+        <thead>
+          <tr>
+            <th style="width:45%">Feature</th>
+            <th>Core</th>
+            <th>Signal+</th>
+            <th>Operator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cat-row"><td colspan="4">Platform Access</td></tr>
+          <tr>
+            <td>Gauntlet Arena</td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Signal Feed</td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Market browsing</td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Atlas Exchange</td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Atlas ID profile</td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+
+          <tr class="cat-row"><td colspan="4">Copilot Credits</td></tr>
+          <tr>
+            <td>Monthly credit allocation</td>
+            <td><span class="compare-text-val">50</span></td>
+            <td><span class="compare-text-val">250</span></td>
+            <td><span class="compare-text-val">Unlimited</span></td>
+          </tr>
+          <tr>
+            <td>Priority queue</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Credits carry over</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+
+          <tr class="cat-row"><td colspan="4">Tools &amp; Market</td></tr>
+          <tr>
+            <td>Early tool access</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Perk tier pricing</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Seller account</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+
+          <tr class="cat-row"><td colspan="4">Identity &amp; Community</td></tr>
+          <tr>
+            <td>Forum presence badge</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Arena recognition</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Profile signal boost</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Dedicated support</td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check no">—</span></td>
+            <td><span class="compare-check yes">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pricing FAQ -->
+    <section class="pricing-faq-section">
+      <div class="panel-head-inline pricing-faq-head">
+        <h2>Pricing Questions</h2>
+        <span class="panel-status-live">CLEAR ANSWERS</span>
+      </div>
+
+      <div class="pricing-faq-list">
+        <div class="pricing-faq-item">
+          <div class="pricing-faq-q">
+            Can I use Atlas for free forever?
+            <span class="pricing-faq-arrow">▼</span>
+          </div>
+          <div class="pricing-faq-a">
+            Yes. The Core tier is permanently free. You get full platform access to the Gauntlet,
+            Signal Feed, Market, Exchange, and Atlas ID. The only limits are Copilot credit volume
+            and a few advanced features that are Operator-exclusive.
+          </div>
+        </div>
+
+        <div class="pricing-faq-item">
+          <div class="pricing-faq-q">
+            What counts as a Copilot credit?
+            <span class="pricing-faq-arrow">▼</span>
+          </div>
+          <div class="pricing-faq-a">
+            Each AI Copilot session or query consumes credits from your monthly balance.
+            Light queries use fewer credits; deep analysis sessions use more.
+            Signal+ members get 250 per month; Operator members get an unlimited pool.
+          </div>
+        </div>
+
+        <div class="pricing-faq-item">
+          <div class="pricing-faq-q">
+            What happens if I cancel my subscription?
+            <span class="pricing-faq-arrow">▼</span>
+          </div>
+          <div class="pricing-faq-a">
+            Your account drops to Core tier at the end of the current billing cycle.
+            All your saved tools, profile history, and Atlas ID data are retained.
+            You will not lose any content — only premium feature access.
+          </div>
+        </div>
+
+        <div class="pricing-faq-item">
+          <div class="pricing-faq-q">
+            How does annual billing work?
+            <span class="pricing-faq-arrow">▼</span>
+          </div>
+          <div class="pricing-faq-a">
+            Annual billing charges one lump payment for 12 months at a 20% discount compared
+            to monthly pricing. You can switch back to monthly billing at renewal time.
+          </div>
+        </div>
+
+        <div class="pricing-faq-item">
+          <div class="pricing-faq-q">
+            What is the Operator seller account?
+            <span class="pricing-faq-arrow">▼</span>
+          </div>
+          <div class="pricing-faq-a">
+            Operator-tier members can list tools, templates, and services directly in the Atlas Market
+            and Services pages. Seller accounts include trust verification, listing analytics,
+            and discoverability boosts across the platform.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-brand">
+        <span class="footer-brand-orb"></span>
+        <span class="footer-brand-name">Atlas</span>
+        <span class="footer-tagline">BUILT DIFFERENT</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html">Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Atlas Platform &middot; Built on Cloudflare Pages</p>
+    </div>
+  </footer>
+</div>
+
+<script src="../js/ui.js?v=atlas35"></script>
+<script src="../js/pricing.js?v=atlas35"></script>
+</body>
+</html>
