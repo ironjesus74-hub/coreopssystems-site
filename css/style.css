@@ -6227,16 +6227,11 @@ min-height:420px;
 
 /* ── Ticker: add separator dots ─────────────────────────────────────── */
 
-.live-ticker-track span::after{
+.live-ticker-track span + span::before{
   content:"·";
-  margin-left:38px;
+  margin:0 19px;
   opacity:.4;
 }
-
-.live-ticker-track span:last-child::after{
-  display:none;
-}
-
 /* ── Responsive: match strip wraps gracefully ───────────────────────── */
 
 @media (max-width:1380px){
