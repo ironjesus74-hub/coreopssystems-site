@@ -48,8 +48,8 @@ function startLiveSignalRefresh() {
         <p>${item.text}</p>
       </div>
     `;
-    el.insertBefore(div, el.firstChild);
-    if (el.children.length > 6) el.lastChild.remove();
+    el.prepend(div);
+    if (el.children.length > 6 && el.lastElementChild) el.lastElementChild.remove();
   }, 14000);
 }
 

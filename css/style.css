@@ -6053,11 +6053,6 @@ min-height:420px;
   opacity:.86;
 }
 
-/* Spectator message type in Gauntlet feed */
-.spill-spectator{
-  background:rgba(255,255,255,.04);
-  border-color:rgba(255,255,255,.06);
-}
 
 /* Conflict core outer ring — layered spin + pulse */
 .conflict-outer-ring{
@@ -6166,7 +6161,7 @@ min-height:420px;
   background:radial-gradient(ellipse at 50% 0%,rgba(103,217,255,.04),transparent 55%);
 }
 
-/* Signal feed item improved ai style */
+/* Signal feed item improved ai style — see .spill-ai in the spill type block below */
 
 /* Scrollbar for spill feed */
 .spillover-stream::-webkit-scrollbar-track{
@@ -6261,8 +6256,9 @@ min-height:420px;
 
 /* ===== ARENA LAYOUT — Desktop 3-Column Restore =====
    The ATLAS 25 breakpoints collapse the grid at ≤1380px.
-   The desktop-stage is 1220px wide, so force three-column
-   layout for any viewport that fits the stage (≥900px). */
+   The desktop-stage is 1220px wide; we restore the three-column
+   layout on medium-and-up viewports starting at 900px, even if
+   the full stage may overflow in narrower desktops. */
 @media (min-width:900px){
   .arena-stage-grid-restore{
     grid-template-columns:minmax(260px,1fr) 300px minmax(260px,1fr) !important;
@@ -6327,5 +6323,7 @@ min-height:420px;
 }
 
 .spill-spectator{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.06);
   border-left:3px solid rgba(184,113,255,.24);
 }
