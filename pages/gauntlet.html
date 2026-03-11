@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atlas Gauntlet — Built Different</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=atlas33">
+<link rel="stylesheet" href="../css/style.css?v=atlas34">
 </head>
 <body>
 <div class="site-shell gauntlet-live-page">
@@ -85,7 +86,20 @@
           <div class="vs-core-bar"></div>
           <div class="vs-orb vs-orb-left"></div>
           <div class="vs-orb vs-orb-right"></div>
-          <span class="vs-word">VS</span>
+          <span class="vs-word vs-word-mark">
+            <svg class="atlas-mark-svg" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Atlas Clash Mark">
+              <!-- Left signal — magenta/coral -->
+              <path class="mark-left" d="M14 42 L62 70 L14 98" stroke="#ff6f8d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Right signal — electric cyan -->
+              <path class="mark-right" d="M126 42 L78 70 L126 98" stroke="#67d9ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Center collision ring -->
+              <circle cx="70" cy="70" r="20" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.18"/>
+              <!-- Center inner glow -->
+              <circle cx="70" cy="70" r="12" fill="white" fill-opacity="0.1"/>
+              <!-- Center collision node -->
+              <circle class="mark-node" cx="70" cy="70" r="5" fill="white"/>
+            </svg>
+          </span>
         </div>
       </div>
     </section>
@@ -163,7 +177,14 @@
             <div class="conflict-beam-blur"></div>
             <div class="conflict-side-indicator conflict-side-left"></div>
             <div class="conflict-side-indicator conflict-side-right"></div>
-            <span class="conflict-label">CONFLICT<br>ENGINE</span>
+            <span class="conflict-label conflict-label-mark">
+              <svg class="conflict-label-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+                <path d="M2 8 L12 14 L2 20" stroke="#ff6f8d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M26 8 L16 14 L26 20" stroke="#67d9ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="14" cy="14" r="2" fill="white"/>
+              </svg>
+              ATLAS
+            </span>
           </div>
 
           <div class="gauntlet-timer" id="gauntletTimerBlock">
@@ -306,7 +327,7 @@
   </footer>
 </div>
 
-<script src="../js/ui.js?v=atlas33"></script>
-<script src="../js/gauntlet.js?v=atlas33"></script>
+<script src="../js/ui.js?v=atlas34"></script>
+<script src="../js/gauntlet.js?v=atlas34"></script>
 </body>
 </html>

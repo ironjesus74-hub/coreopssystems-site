@@ -6541,3 +6541,115 @@ min-height:420px;
     grid-template-columns:minmax(280px,1fr) 310px minmax(280px,1fr) !important;
   }
 }
+
+/* ===== ATLAS 34 — ATLAS ICON SYSTEM ===== */
+
+/* Atlas Mark SVG — used inside vs-word-mark wrapper in hero emblem */
+.vs-word-mark{
+  font-size:0; /* suppress text fallback */
+  display:grid;
+  place-items:center;
+  width:150px;
+  height:150px;
+  position:relative;
+  z-index:2;
+}
+
+.atlas-mark-svg{
+  width:150px;
+  height:150px;
+  overflow:visible;
+  filter:
+    drop-shadow(0 0 12px rgba(255,255,255,.18))
+    drop-shadow(0 0 24px rgba(103,217,255,.22))
+    drop-shadow(0 0 24px rgba(255,111,141,.14));
+  animation:atlasMarkPulse 4.2s ease-in-out infinite;
+}
+
+@keyframes atlasMarkPulse{
+  0%,100%{
+    filter:
+      drop-shadow(0 0 10px rgba(255,255,255,.14))
+      drop-shadow(0 0 22px rgba(103,217,255,.18))
+      drop-shadow(0 0 22px rgba(255,111,141,.12));
+  }
+  50%{
+    filter:
+      drop-shadow(0 0 22px rgba(255,255,255,.30))
+      drop-shadow(0 0 42px rgba(103,217,255,.38))
+      drop-shadow(0 0 42px rgba(255,111,141,.26));
+  }
+}
+
+/* Atlas mark left signal path animation */
+.atlas-mark-svg .mark-left{
+  animation:markLeftPulse 4.2s ease-in-out infinite;
+}
+.atlas-mark-svg .mark-right{
+  animation:markRightPulse 4.2s ease-in-out infinite 0.6s;
+}
+.atlas-mark-svg .mark-node{
+  animation:markNodeGlow 3s ease-in-out infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+
+@keyframes markLeftPulse{
+  0%,100%{ stroke-opacity:0.82; }
+  50%{ stroke-opacity:1; }
+}
+@keyframes markRightPulse{
+  0%,100%{ stroke-opacity:0.82; }
+  50%{ stroke-opacity:1; }
+}
+@keyframes markNodeGlow{
+  0%,100%{ transform:scale(1); opacity:1; }
+  50%{ transform:scale(1.4); opacity:0.85; }
+}
+
+/* Home hero mark — same system, slightly smaller */
+.vs-emblem-main .vs-word-mark{
+  width:130px;
+  height:130px;
+}
+.vs-emblem-main .atlas-mark-svg{
+  width:130px;
+  height:130px;
+}
+
+/* Brand orb — arena variant upgraded */
+.brand-orb-arena{
+  background:conic-gradient(from 200deg, #ff6f8d 0%, #b06dff 35%, #67d9ff 65%, #ff6f8d 100%);
+  animation:brandOrbArenaSpin 6s linear infinite;
+}
+
+@keyframes brandOrbArenaSpin{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
+}
+
+/* Conflict label — upgraded to Atlas mark style */
+.conflict-label-mark{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px;
+  letter-spacing:.26em;
+  color:rgba(255,255,255,.7);
+}
+.conflict-label-icon{
+  flex-shrink:0;
+}
+
+/* Favicon brand consistency: site-header brand-orb on gauntlet page */
+.gauntlet-live-page .brand-orb-live{
+  box-shadow:0 0 0 2px rgba(103,217,255,.25),0 0 12px rgba(103,217,255,.20);
+}
+
+/* Specificity override: restore-vs-main .vs-word-mark must suppress text */
+.restore-vs-main .vs-word-mark,
+.vs-emblem-main .vs-word-mark{
+  font-size:0 !important;
+  display:grid !important;
+  place-items:center;
+}
