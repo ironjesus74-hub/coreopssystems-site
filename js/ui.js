@@ -90,6 +90,13 @@ function driftLiveCounters() {
 function initScrollReveal() {
   const els = document.querySelectorAll(".sr");
   if (!els.length) return;
+  /* Gate the hidden state — makes .js-enabled .sr rules in CSS take effect */
+  document.documentElement.classList.add("js-enabled");
+  /* Fallback: if IntersectionObserver unsupported, show all elements immediately */
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("sr-visible"));
+    return;
+  }
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {

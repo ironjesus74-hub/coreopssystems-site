@@ -6562,13 +6562,14 @@ a{
 /* ===== ATLAS 35 — SCROLL REVEAL + HOME MESH BACKGROUND ===== */
 
 /* --- Scroll Reveal System --- */
-.sr {
+/* Hidden state only applies when JS has confirmed support */
+.js-enabled .sr {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity .52s cubic-bezier(.22,1,.36,1), transform .52s cubic-bezier(.22,1,.36,1);
 }
 
-.sr.sr-visible {
+.js-enabled .sr.sr-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -6626,10 +6627,14 @@ a{
 
 /* Ensure main content sits above the mesh */
 .home-live-page .desktop-stage,
-.home-live-page .site-header,
 .home-live-page .site-footer {
   position: relative;
   z-index: 1;
+}
+
+/* Keep header sticky; only raise its z-index above the mesh */
+.home-live-page .site-header {
+  z-index: 2;
 }
 
 /* --- Hero glow accent (home page) --- */
