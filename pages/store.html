@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Store — Forge Atlas</title>
+<meta name="description" content="Atlas Store — acquire operator-grade tools, passes, and intelligence packs with fixed, fair pricing.">
+<meta property="og:title" content="Atlas Store — Forge Atlas">
+<meta property="og:description" content="Atlas Store — acquire operator-grade tools, passes, and intelligence packs with fixed, fair pricing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atlas.coreopssystems.com/pages/store.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atlas Store — Forge Atlas">
+<meta name="twitter:description" content="Atlas Store — acquire operator-grade tools, passes, and intelligence packs with fixed, fair pricing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=atlas36">
+<!-- PayPal JS SDK — hosted-buttons component.
+     IMPORTANT: Replace "test" with your real PayPal client-id before going live.
+     Get your client ID at: https://developer.paypal.com/dashboard/applications/live
+     Example: src="https://www.paypal.com/sdk/js?client-id=YOUR_REAL_CLIENT_ID&components=hosted-buttons"
+-->
+<script
+  id="paypal-sdk"
+  src="https://www.paypal.com/sdk/js?client-id=test&components=hosted-buttons"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="site-shell store-live-page">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html">
+        <span class="brand-orb brand-orb-live"></span>
+        <span>Atlas</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Atlas Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html">Atlas Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="store.html" class="active">Store</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="desktop-stage">
+
+    <section class="live-ticker-shell">
+      <div class="live-ticker-track" id="storeTicker">
+        <span>ATLAS STORE LIVE</span>
+        <span>FIXED PRICING</span>
+        <span>OPERATOR-GRADE TOOLS</span>
+        <span>BUILT DIFFERENT</span>
+        <span>SECURE CHECKOUT</span>
+        <span>PAYPAL PROTECTED</span>
+      </div>
+    </section>
+
+    <section class="store-hero">
+      <div class="hero-badges">
+        <span class="badge-pill">FORGE ATLAS STORE</span>
+        <span class="badge-pill"><span class="live-dot"></span>LIVE PRODUCTS</span>
+        <span class="badge-pill">PAYPAL SECURED</span>
+      </div>
+      <h1>Tools, passes &amp; intelligence packs — fixed price, instant access.</h1>
+      <p>
+        Every item in the Atlas Store is priced clearly and checked out securely via PayPal.
+        No subscriptions unless stated. No negotiating price. Add a product, owner updates the list —
+        the store updates automatically.
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--  STORE GRID — populated by js/store.js                       -->
+    <!-- ============================================================ -->
+    <section class="store-section">
+      <div class="store-grid" id="storeGrid">
+        <!-- Cards are injected here by store.js -->
+      </div>
+    </section>
+
+    <!-- HOW TO ADD PRODUCTS (visible only in source code as a comment) -->
+    <!--
+      To add a new product:
+        1. Open js/store.js
+        2. Add an entry to the storeItems array:
+           {
+             name: "Product Name",
+             description: "What it does.",
+             price: 49.00,
+             hostedButtonId: "YOUR_PAYPAL_HOSTED_BUTTON_ID"
+           }
+        3. Save the file — the store updates automatically on next page load.
+
+      To get a PayPal Hosted Button ID:
+        1. Log in to your PayPal Business account.
+        2. Go to Tools → PayPal Buttons (or paypal.com/buttons/).
+        3. Create a "Buy Now" button with your item name and fixed price.
+        4. Copy the Hosted Button ID from the generated code.
+        5. Paste it as hostedButtonId in store.js.
+    -->
+
+    <section class="store-trust-strip">
+      <div class="store-trust-item">
+        <span class="store-trust-icon">🔒</span>
+        <span>Secured by PayPal</span>
+      </div>
+      <div class="store-trust-item">
+        <span class="store-trust-icon">⚡</span>
+        <span>Instant delivery</span>
+      </div>
+      <div class="store-trust-item">
+        <span class="store-trust-icon">💳</span>
+        <span>Card &amp; PayPal accepted</span>
+      </div>
+      <div class="store-trust-item">
+        <span class="store-trust-icon">🛡️</span>
+        <span>Buyer protection</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-brand">
+        <span class="footer-brand-orb"></span>
+        <span class="footer-brand-name">Atlas</span>
+        <span class="footer-tagline">BUILT DIFFERENT</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="gauntlet.html">Gauntlet</a>
+        <a href="forum.html">Signal Feed</a>
+        <a href="market.html">Market</a>
+        <a href="exchange.html">Exchange</a>
+        <a href="profile.html">Atlas ID</a>
+        <a href="store.html">Store</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Atlas Platform &middot; Built on Cloudflare Pages</p>
+    </div>
+  </footer>
+</div>
+
+<script src="../js/ui.js?v=atlas36"></script>
+<script src="../js/store.js?v=atlas36"></script>
+</body>
+</html>

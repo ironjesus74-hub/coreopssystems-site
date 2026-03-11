@@ -7175,3 +7175,164 @@ a{
     font-size:12px;
   }
 }
+
+
+/* ===== ATLAS 36 — FORGE ATLAS STORE ===== */
+
+/* Hero */
+.store-hero{
+  padding:56px 0 32px;
+  max-width:700px;
+}
+.store-hero h1{
+  font-size:clamp(26px,4vw,38px);
+  font-weight:800;
+  color:var(--text);
+  line-height:1.2;
+  margin:16px 0 14px;
+  letter-spacing:-.02em;
+}
+.store-hero p{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.75;
+}
+
+/* Store section wrapper */
+.store-section{
+  padding:8px 0 48px;
+}
+
+/* Grid */
+.store-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+/* Card */
+.store-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:28px 24px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+  position:relative;
+  overflow:hidden;
+}
+.store-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(66,153,225,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.store-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 32px rgba(66,153,225,.12);
+  border-color:rgba(66,153,225,.22);
+}
+
+/* Card header — name + price row */
+.store-card-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.store-card-name{
+  font-size:18px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-.01em;
+  line-height:1.25;
+}
+.store-card-price{
+  font-size:22px;
+  font-weight:900;
+  color:var(--blue);
+  letter-spacing:-.02em;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+/* Description */
+.store-card-desc{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.7;
+  flex:1;
+}
+
+/* PayPal container */
+.store-card-footer{
+  margin-top:auto;
+  padding-top:4px;
+}
+.store-paypal-container{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.store-paypal-container iframe{
+  border-radius:8px !important;
+  overflow:hidden;
+}
+
+/* Error state */
+.store-pp-error{
+  font-size:12px;
+  color:var(--red);
+  text-align:center;
+  padding:8px;
+}
+
+/* Trust strip */
+.store-trust-strip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:32px;
+  padding:28px 0 48px;
+  border-top:1px solid var(--line);
+  flex-wrap:wrap;
+}
+.store-trust-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--muted);
+  font-weight:500;
+}
+.store-trust-icon{
+  font-size:18px;
+  line-height:1;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .store-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .store-trust-strip{
+    gap:20px;
+  }
+}
+@media (max-width:600px){
+  .store-grid{
+    grid-template-columns:1fr;
+  }
+  .store-hero h1{
+    font-size:24px;
+  }
+  .store-trust-strip{
+    flex-direction:column;
+    align-items:flex-start;
+    padding-left:4px;
+  }
+}
