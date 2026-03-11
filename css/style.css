@@ -1784,7 +1784,7 @@ a{
   border:1px solid rgba(255,255,255,.08);
   color:#eef3ff;
   font-size:16px;
-  transition:border-color .18s ease, box-shadow .18s ease;
+  transition:background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .forum-search-wrap input::placeholder{
