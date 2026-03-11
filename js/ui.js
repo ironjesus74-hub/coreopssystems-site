@@ -44,10 +44,10 @@ function initTickerLoop(tickerId) {
 }
 
 function _cloneTickerTrack(track) {
-  const items = [...track.querySelectorAll("span")];
-  if (!items.length) return;
   // Remove any previous clones to avoid double-init
   track.querySelectorAll("[data-ticker-clone]").forEach(el => el.remove());
+  const items = [...track.querySelectorAll("span")];
+  if (!items.length) return;
   items.forEach(item => {
     const clone = item.cloneNode(true);
     clone.setAttribute("data-ticker-clone", "1");
