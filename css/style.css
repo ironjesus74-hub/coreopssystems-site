@@ -6541,3 +6541,170 @@ min-height:420px;
     grid-template-columns:minmax(280px,1fr) 310px minmax(280px,1fr) !important;
   }
 }
+
+/* ===== ATLAS 34 — COPILOT CREDITS PANEL ===== */
+
+.copilot-credits-panel{
+  margin-top:24px;
+}
+
+.copilot-credits-body{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* Meter */
+.copilot-credits-meter-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.copilot-credits-label-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
+
+.copilot-credits-label{
+  font-size:13px;
+  letter-spacing:.06em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.copilot-credits-value{
+  font-size:15px;
+  color:var(--text);
+}
+
+.copilot-credits-bar{
+  height:8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  overflow:hidden;
+}
+
+.copilot-credits-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  transition:width .6s ease,background .4s ease;
+}
+
+.copilot-credits-note{
+  margin:0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+/* Tier grid */
+.copilot-tier-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.copilot-tier-card{
+  padding:14px 16px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.copilot-tier-card.copilot-tier-current{
+  border-color:rgba(100,180,255,.25);
+  background:rgba(100,180,255,.06);
+}
+
+.copilot-tier-card.copilot-tier-highlight{
+  border-color:rgba(168,109,255,.30);
+  background:rgba(168,109,255,.07);
+}
+
+.copilot-tier-name{
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.copilot-tier-card strong{
+  font-size:18px;
+  color:var(--text);
+  line-height:1.2;
+}
+
+.copilot-tier-card p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* Action buttons */
+.copilot-upgrade-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.copilot-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 20px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.04em;
+  cursor:pointer;
+  border:none;
+  text-decoration:none;
+  transition:opacity .18s,transform .14s;
+}
+
+.copilot-btn:hover{
+  opacity:.82;
+  transform:translateY(-1px);
+}
+
+.copilot-btn-topup{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+}
+
+.copilot-btn-upgrade{
+  background:linear-gradient(135deg,var(--violet),#6633cc);
+  color:#fff;
+}
+
+.copilot-btn-faq{
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .copilot-tier-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (max-width:600px){
+  .copilot-tier-grid{
+    grid-template-columns:1fr;
+  }
+  .copilot-upgrade-actions{
+    flex-direction:column;
+  }
+  .copilot-btn{
+    width:100%;
+  }
+}

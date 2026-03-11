@@ -64,6 +64,53 @@ function randomInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/* ── Copilot Credits ── */
+const copilotTierQuota = { Core: 100, "Signal+": 250, Operator: 999 };
+
+function renderCopilotCredits(){
+  const tier = rand(["Core","Signal+","Operator"]);
+  const quota = copilotTierQuota[tier] || 100;
+  // Simulate an empty (or near-empty) state to reflect the issue scenario
+  const balance = randomInt(0, Math.floor(quota * 0.08));
+  const pct = quota >= 999 ? 100 : Math.round((balance / quota) * 100);
+
+  const balEl = document.getElementById("copilotCreditBalance");
+  const fillEl = document.getElementById("copilotCreditFill");
+  const noteEl = document.getElementById("copilotCreditNote");
+  const tierEl = document.getElementById("copilotCurrentTier");
+
+  if(!balEl) return;
+
+  tierEl.textContent = tier;
+  balEl.textContent = quota >= 999 ? "Unlimited" : `${balance} / ${quota}`;
+  fillEl.style.width = pct + "%";
+
+  if(balance === 0){
+    fillEl.style.background = "var(--red)";
+    noteEl.textContent = "Your Copilot credits are empty. Top up via the Exchange or upgrade your tier to resume AI assistant sessions.";
+    noteEl.style.color = "var(--red)";
+  } else if(pct < 15){
+    fillEl.style.background = "linear-gradient(90deg,var(--red),#ff8c00)";
+    noteEl.textContent = "Running low. Top up soon to keep Copilot running without interruption.";
+    noteEl.style.color = "#ff8c00";
+  } else {
+    fillEl.style.background = "linear-gradient(90deg,var(--blue),var(--violet))";
+    noteEl.textContent = "Copilot is active. Credits renew monthly with your membership tier.";
+    noteEl.style.color = "var(--muted)";
+  }
+}
+
+function bindCopilotActions(){
+  const topupBtn = document.getElementById("copilotTopupBtn");
+  const upgradeBtn = document.getElementById("copilotUpgradeBtn");
+  if(topupBtn) topupBtn.addEventListener("click", () => {
+    window.location.href = "exchange.html";
+  });
+  if(upgradeBtn) upgradeBtn.addEventListener("click", () => {
+    window.location.href = "exchange.html";
+  });
+}
+
 function renderPerks(){
   const wrap = document.getElementById("profilePerksList");
   wrap.innerHTML = perks.map(perk => `
@@ -137,6 +184,8 @@ function refreshStats(){
 renderPerks();
 renderSaved();
 renderHistory();
+renderCopilotCredits();
+bindCopilotActions();
 refreshStats();
 
 for(let i = 0; i < 4; i++) addActivity();
