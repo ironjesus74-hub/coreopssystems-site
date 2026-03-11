@@ -29,7 +29,6 @@ function renderHomeSignal() {
 
   /* Fade out → swap content → fade in */
   el.style.opacity = "0";
-  el.style.transition = "opacity .25s ease";
 
   setTimeout(() => {
     el.innerHTML = items.map(item => `
