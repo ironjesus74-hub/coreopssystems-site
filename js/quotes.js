@@ -33,5 +33,12 @@ const QUOTES = [
   if (textEl) textEl.textContent = "\u201C" + quote.text + "\u201D";
   if (authorEl) authorEl.textContent = "\u2014 " + quote.author;
 
-  el.classList.add("quote-visible");
+  document.body.classList.add("js");
+
+  const makeVisible = () => el.classList.add("quote-visible");
+  if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(makeVisible);
+  } else {
+    setTimeout(makeVisible, 0);
+  }
 })();

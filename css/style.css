@@ -765,12 +765,17 @@ a{
 .quote-block{
   margin-top:32px;
   padding-top:28px;
-  opacity:0;
-  transform:translateY(10px);
+  opacity:1;
+  transform:translateY(0);
   transition:opacity .9s ease, transform .9s ease;
 }
 
-.quote-block.quote-visible{
+.js .quote-block{
+  opacity:0;
+  transform:translateY(10px);
+}
+
+.js .quote-block.quote-visible{
   opacity:1;
   transform:translateY(0);
 }
