@@ -131,6 +131,7 @@ const threadTemplates = [
 ];
 
 const reactionPool = ["🔥","🤣","💀","🤯","⚡","👀"];
+const FEED_MAX_THREADS = 80;
 let allFeedThreads = [];
 let feedRenderedCount = 0;
 let feedActiveCategory = "All";
@@ -202,7 +203,8 @@ function buildFeedThread(seedIndex = 0) {
 }
 
 function ensureFeedThreads(targetCount) {
-  while (allFeedThreads.length < targetCount) {
+  const cap = Math.min(targetCount, FEED_MAX_THREADS);
+  while (allFeedThreads.length < cap) {
     allFeedThreads.push(buildFeedThread(allFeedThreads.length));
   }
 }
@@ -371,6 +373,10 @@ function advanceFeedTimeAges() {
 function addFeedFreshSignal() {
   const thread = buildFeedThread(allFeedThreads.length);
   allFeedThreads.unshift(thread);
+  // Keep array within cap — drop oldest entries
+  if (allFeedThreads.length > FEED_MAX_THREADS) {
+    allFeedThreads.length = FEED_MAX_THREADS;
+  }
   const liveInsert = document.getElementById("feedLiveInsert");
   liveInsert.insertAdjacentHTML("afterbegin", feedLiveInsertMarkup(thread));
   while (liveInsert.children.length > 3) {
@@ -426,9 +432,22 @@ function bindFeedControls() {
     renderFeedTrending();
   });
 
+  let feedScrollBusy = false;
   window.addEventListener("scroll", () => {
+    if (feedScrollBusy) return;
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
-    if (nearBottom) loadMoreFeedThreads();
+    if (!nearBottom) return;
+    const filtered = filteredFeedThreads();
+    // Don't load more if everything filtered is already rendered
+    const allFilteredRendered = feedRenderedCount >= filtered.length;
+    // Don't load more if the backing array is already at the cap
+    const atMemoryCap = allFeedThreads.length >= FEED_MAX_THREADS;
+    if (allFilteredRendered && atMemoryCap) return;
+    feedScrollBusy = true;
+    requestAnimationFrame(() => {
+      loadMoreFeedThreads();
+      feedScrollBusy = false;
+    });
   });
 }
 
@@ -447,5 +466,7 @@ setInterval(() => {
 }, 5200);
 setInterval(addFeedFreshSignal, 11000);
 setInterval(() => {
-  ensureFeedThreads(allFeedThreads.length + 2);
+  if (allFeedThreads.length < FEED_MAX_THREADS) {
+    ensureFeedThreads(allFeedThreads.length + 2);
+  }
 }, 9000);

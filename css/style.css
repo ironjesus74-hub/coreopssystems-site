@@ -5095,7 +5095,7 @@ min-height:420px;
   color:var(--muted);
 }
 
-.vote-btn {
+.gauntlet-live-page .vote-btn {
   width:100%;
   padding:12px 0;
   border:none;
@@ -5110,8 +5110,8 @@ min-height:420px;
   transition:opacity .2s;
 }
 
-.vote-btn:hover { opacity:.85; }
-.vote-btn:disabled { opacity:.5; cursor:default; }
+.gauntlet-live-page .vote-btn:hover { opacity:.85; }
+.gauntlet-live-page .vote-btn:disabled { opacity:.5; cursor:default; }
 
 /* Gauntlet lower grid */
 .gauntlet-lower-grid {
