@@ -86,10 +86,26 @@ function driftLiveCounters() {
   });
 }
 
+/** Scroll-reveal: add .sr-visible to .sr elements when they enter viewport */
+function initScrollReveal() {
+  const els = document.querySelectorAll(".sr");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("sr-visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -32px 0px" });
+  els.forEach(el => io.observe(el));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTickerLoops();
   initQuoteSystem();
   initLiveCounters();
+  initScrollReveal();
   setInterval(driftLiveCounters, 4800);
   setInterval(rotateQuotes, 45000);
 });

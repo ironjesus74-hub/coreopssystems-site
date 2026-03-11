@@ -12,6 +12,7 @@ function rand(list){
 
 function addNote(){
   const feed = document.getElementById("aboutNotesFeed");
+  if (!feed) return;
   const row = document.createElement("div");
   row.className = "profile-activity-item";
   row.innerHTML = `
@@ -26,9 +27,12 @@ function addNote(){
 }
 
 function refreshStats(){
-  document.getElementById("aboutPillarsCount").textContent = ["6","7","6","6"][Math.floor(Math.random() * 4)];
-  document.getElementById("aboutPlatformState").textContent = rand(["Growing","Expanding","Sharpening","Stacking"]);
-  document.getElementById("aboutSignalType").textContent = rand(["Live","Hybrid","Cinematic","Active"]);
+  const pillars = document.getElementById("aboutPillarsCount");
+  const state = document.getElementById("aboutPlatformState");
+  const signal = document.getElementById("aboutSignalType");
+  if (pillars) pillars.textContent = ["6","7","6","6"][Math.floor(Math.random() * 4)];
+  if (state) state.textContent = rand(["Growing","Expanding","Sharpening","Stacking"]);
+  if (signal) signal.textContent = rand(["Live","Hybrid","Cinematic","Active"]);
 }
 
 for(let i = 0; i < 4; i++) addNote();

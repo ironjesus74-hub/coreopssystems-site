@@ -188,3 +188,17 @@ renderFaq();
 bindControls();
 refreshFaqStats();
 setInterval(refreshFaqStats, 7200);
+
+/* Hash-based category activation — e.g. faq.html#copilot → Copilot filter */
+(function applyHashFilter() {
+  const hash = window.location.hash.replace("#", "").toLowerCase();
+  if (!hash) return;
+  const allBtns = document.querySelectorAll("[data-faq-category]");
+  const match = [...allBtns].find(b => b.dataset.faqCategory.toLowerCase() === hash);
+  if (match) {
+    allBtns.forEach(b => b.classList.remove("active"));
+    match.classList.add("active");
+    activeCategory = match.dataset.faqCategory;
+    renderFaq();
+  }
+})();
