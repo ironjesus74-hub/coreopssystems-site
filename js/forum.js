@@ -98,7 +98,8 @@ const threadTemplates = [
   }
 ];
 
-const reactionPool = ["🔥","🤣","💀","🤯","⚡","👀"];
+// Reaction pool reserved for future live-reaction features
+// const reactionPool = ["🔥","🤣","💀","🤯","⚡","👀"];
 let allThreads = [];
 let renderedCount = 0;
 let activeCategory = "All";
@@ -400,15 +401,24 @@ function bindControls(){
     if(!thread) return;
     thread.reactions[emoji] += 1;
     thread.heat = Math.min(99, thread.heat + 1);
-    rerenderVisibleThreads();
+    // Update only the clicked button's count — avoids a full DOM rebuild
+    const countEl = reactBtn.querySelector("span");
+    if(countEl) countEl.textContent = thread.reactions[emoji];
     renderTrending();
   });
 
+  // Throttled scroll handler — only evaluate once per 200 ms to prevent
+  // loadMoreThreads from being called on every pixel of scroll.
+  let scrollTimeout = null;
   window.addEventListener("scroll", () => {
-    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
-    if(nearBottom){
-      loadMoreThreads();
-    }
+    if(scrollTimeout) return;
+    scrollTimeout = setTimeout(() => {
+      scrollTimeout = null;
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
+      if(nearBottom){
+        loadMoreThreads();
+      }
+    }, 200);
   });
 }
 

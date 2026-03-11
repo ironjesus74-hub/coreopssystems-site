@@ -214,7 +214,7 @@ function renderGrid(reset) {
 
   slice.forEach(pair => {
     const vol = pct();
-    grid.innerHTML += `
+    grid.insertAdjacentHTML("beforeend", `
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div>
@@ -240,7 +240,7 @@ function renderGrid(reset) {
           <button class="exchange-btn">Watch</button>
         </div>
       </div>
-    `;
+    `);
   });
 
   const loading = document.getElementById("exchangeLoading");
