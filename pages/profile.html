@@ -185,6 +185,50 @@
             <div class="profile-history-list" id="profileHistoryList"></div>
           </section>
         </div>
+
+        <section class="panel copilot-credits-panel">
+          <div class="panel-head-inline">
+            <h3>Atlas Copilot Credits</h3>
+            <span class="panel-status-live">AI ASSISTANT</span>
+          </div>
+
+          <div class="copilot-credits-body">
+            <div class="copilot-credits-meter-wrap">
+              <div class="copilot-credits-label-row">
+                <span class="copilot-credits-label">Credit Balance</span>
+                <strong class="copilot-credits-value" id="copilotCreditBalance">0 / 500</strong>
+              </div>
+              <div class="copilot-credits-bar">
+                <div class="copilot-credits-fill" id="copilotCreditFill" style="width:0%"></div>
+              </div>
+              <p class="copilot-credits-note" id="copilotCreditNote">Your Copilot credits are empty. Top up or upgrade your tier to resume AI assistant sessions.</p>
+            </div>
+
+            <div class="copilot-tier-grid">
+              <div class="copilot-tier-card copilot-tier-current">
+                <span class="copilot-tier-name">Your Tier</span>
+                <strong id="copilotCurrentTier">Core</strong>
+                <p>Starter credit pack included monthly</p>
+              </div>
+              <div class="copilot-tier-card">
+                <span class="copilot-tier-name">Signal+</span>
+                <strong>250 / mo</strong>
+                <p>Mid-range allocation + perk discounts</p>
+              </div>
+              <div class="copilot-tier-card copilot-tier-highlight">
+                <span class="copilot-tier-name">Operator</span>
+                <strong>Unlimited</strong>
+                <p>Priority queue + full monthly bundle</p>
+              </div>
+            </div>
+
+            <div class="copilot-upgrade-actions">
+              <button class="copilot-btn copilot-btn-topup" id="copilotTopupBtn">Top Up Credits</button>
+              <button class="copilot-btn copilot-btn-upgrade" id="copilotUpgradeBtn">Upgrade Tier</button>
+              <a class="copilot-btn copilot-btn-faq" href="faq.html#copilot">How Copilot Works</a>
+            </div>
+          </div>
+        </section>
       </section>
     </section>
   </main>

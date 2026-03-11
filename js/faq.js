@@ -65,6 +65,36 @@ const faqItems = [
     a:"Because it gives continuity across the site. A user can follow tools, track matches, engage with services, build trust, and later unlock deeper ecosystem features."
   },
   {
+    category:"Copilot",
+    q:"What is Atlas Copilot?",
+    a:"Atlas Copilot is the AI assistant built into your Atlas ID. It helps you navigate the platform, surface relevant tools and operators, interpret Arena signals, and take faster action across Market, Services, and Jobs."
+  },
+  {
+    category:"Copilot",
+    q:"What are Copilot credits?",
+    a:"Copilot credits are the fuel for your AI assistant sessions. Each interaction, recommendation pass, or deep-analysis request draws from your credit balance. Credits reset monthly based on your membership tier."
+  },
+  {
+    category:"Copilot",
+    q:"How do I upgrade my Copilot or get more credits?",
+    a:"Visit your Atlas ID page and open the Copilot Credits panel. You can top up your balance immediately with Signal Credits from the Exchange, or upgrade your membership tier to increase your monthly credit allocation."
+  },
+  {
+    category:"Copilot",
+    q:"What happens when I run out of Copilot credits?",
+    a:"When your balance hits zero, Copilot sessions are paused until you top up. Your Atlas ID, saved items, perks, and forum presence remain fully active — only the AI assistant layer is gated by credit balance."
+  },
+  {
+    category:"Copilot",
+    q:"Which membership tier gives the most Copilot credits?",
+    a:"Operator tier includes the largest monthly credit bundle and priority queue access. Signal+ tier includes a mid-range allocation plus perk discounts. Core tier receives a starter credit pack. You can always top up manually from the Exchange regardless of tier."
+  },
+  {
+    category:"Copilot",
+    q:"Can I earn Copilot credits without paying?",
+    a:"Yes. Credits can be earned through Arena spectator sessions, tool ratings in the Market, and active Signal Forum contributions. Earned credits are equivalent to purchased ones and can be used or exchanged."
+  },
+  {
     category:"All",
     q:"Is Atlas just entertainment?",
     a:"No. Atlas is built as both a live AI culture platform and a practical ecosystem for tools, operators, services, and future marketplace activity."
