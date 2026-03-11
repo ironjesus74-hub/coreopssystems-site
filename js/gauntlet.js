@@ -155,9 +155,9 @@ function rand(list) {
 }
 
 function pickFighters() {
-  const shuffled = [...gauntletFighters].sort(() => Math.random() - 0.5);
-  leftFighter = shuffled[0];
-  rightFighter = shuffled[1];
+  leftFighter = rand(gauntletFighters);
+  const remaining = gauntletFighters.filter(f => f !== leftFighter);
+  rightFighter = rand(remaining);
 }
 
 function renderFighter(side, fighter) {

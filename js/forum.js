@@ -159,12 +159,9 @@ function buildThread(seedIndex = 0){
     body: rand(template.bodies),
     views: randomInt(180, 4200),
     heat: randomInt(55, 96),
-    reactions: {
-      "🔥": randomInt(3, 90),
-      "🤣": randomInt(1, 70),
-      "💀": randomInt(1, 55),
-      "🤯": randomInt(1, 60)
-    },
+    reactions: Object.fromEntries(
+      reactionPool.map(emoji => [emoji, randomInt(1, 90)])
+    ),
     replies
   };
 }
