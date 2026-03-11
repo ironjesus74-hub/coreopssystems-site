@@ -92,19 +92,34 @@ function initScrollReveal() {
   if (!els.length) return;
   /* Gate the hidden state — makes .js-enabled .sr rules in CSS take effect */
   document.documentElement.classList.add("js-enabled");
-  /* Fallback: if IntersectionObserver unsupported, show all elements immediately */
-  if (!("IntersectionObserver" in window)) {
+
+  /* Helper: reveal all elements immediately (fallback path) */
+  const revealAll = () => {
     els.forEach(el => el.classList.add("sr-visible"));
+  };
+
+  /* Fallback: if IntersectionObserver unsupported or not in a browser, show all elements immediately */
+  if (typeof window === "undefined" || typeof window.IntersectionObserver !== "function") {
+    revealAll();
     return;
   }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("sr-visible");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -32px 0px" });
+
+  let io;
+  try {
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("sr-visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -32px 0px" });
+  } catch (err) {
+    /* If constructing the observer fails for any reason, fall back to revealing all */
+    revealAll();
+    return;
+  }
+
   els.forEach(el => io.observe(el));
 }
 
