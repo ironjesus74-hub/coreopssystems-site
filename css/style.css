@@ -6541,3 +6541,264 @@ min-height:420px;
     grid-template-columns:minmax(280px,1fr) 310px minmax(280px,1fr) !important;
   }
 }
+
+/* ===== ATLAS 34 — CONVERSION, TRUST & LEAD CAPTURE ===== */
+
+/* ---- Trust bar beneath hero CTAs ---- */
+.home-trust-bar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:18px 0 0;
+  padding:12px 16px;
+  border-radius:12px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  font-size:12px;
+  letter-spacing:.06em;
+  color:#7b96b8;
+}
+
+.trust-bar-item{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.trust-bar-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--blue);
+  box-shadow:0 0 8px rgba(103,217,255,.55);
+  flex-shrink:0;
+}
+
+.trust-bar-dot-violet{
+  background:#9b84ff;
+  box-shadow:0 0 8px rgba(155,132,255,.55);
+}
+
+.trust-bar-dot-green{
+  background:#45e38e;
+  box-shadow:0 0 8px rgba(69,227,142,.55);
+}
+
+.trust-bar-sep{
+  width:1px;
+  height:12px;
+  background:rgba(255,255,255,.08);
+  flex-shrink:0;
+}
+
+/* ---- Platform card header with status badge ---- */
+.home-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.home-card-status{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.18em;
+  padding:3px 9px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.home-card-status-live{
+  color:#45e38e;
+  background:rgba(69,227,142,.07);
+  border-color:rgba(69,227,142,.18);
+}
+
+.home-card-status-soon{
+  color:#f4c55a;
+  background:rgba(244,197,90,.07);
+  border-color:rgba(244,197,90,.18);
+}
+
+/* Premium card — Signal+ teaser */
+.home-platform-card-premium{
+  border-color:rgba(155,132,255,.20) !important;
+  background:
+    linear-gradient(160deg, rgba(155,132,255,.06) 0%, rgba(8,12,21,.96) 60%) !important;
+  box-shadow:
+    0 0 30px rgba(155,132,255,.06),
+    0 2px 0 rgba(155,132,255,.12) inset !important;
+}
+
+.home-platform-card-premium .home-card-icon{
+  color:#9b84ff !important;
+}
+
+.home-platform-card-premium .home-card-link{
+  color:#9b84ff !important;
+}
+
+.home-platform-card-premium .home-card-link:hover{
+  color:#b8a6ff !important;
+}
+
+/* ---- Waitlist / lead-capture section ---- */
+.home-waitlist-section{
+  margin-bottom:22px;
+  border-radius:24px;
+  background:
+    linear-gradient(135deg, rgba(78,158,255,.06) 0%, rgba(155,132,255,.05) 50%, rgba(8,12,21,.96) 100%),
+    linear-gradient(180deg, rgba(15,22,37,.96), rgba(8,12,21,.98));
+  border:1px solid rgba(78,158,255,.12);
+  padding:38px 36px;
+  position:relative;
+  overflow:hidden;
+}
+
+.home-waitlist-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(78,158,255,.05), transparent 70%);
+  pointer-events:none;
+}
+
+.waitlist-inner{
+  position:relative;
+  z-index:1;
+  max-width:620px;
+}
+
+.waitlist-copy h2{
+  margin:12px 0 10px;
+  font-size:clamp(22px,3vw,30px);
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#e8edf6;
+  line-height:1.2;
+}
+
+.waitlist-copy p{
+  margin:0 0 22px;
+  font-size:15px;
+  line-height:1.6;
+  color:#8da4c0;
+}
+
+.waitlist-form{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.waitlist-input{
+  flex:1;
+  min-width:220px;
+  padding:11px 16px;
+  border-radius:10px;
+  border:1px solid rgba(78,158,255,.22);
+  background:rgba(255,255,255,.04);
+  color:#e0e8f4;
+  font-family:inherit;
+  font-size:14px;
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+.waitlist-input::placeholder{
+  color:#4d6580;
+}
+
+.waitlist-input:focus{
+  border-color:rgba(78,158,255,.55);
+  box-shadow:0 0 0 3px rgba(78,158,255,.08);
+}
+
+.waitlist-btn{
+  padding:11px 24px;
+  border-radius:10px;
+  border:none;
+  background:linear-gradient(135deg, #4e9eff, #3b7ae0);
+  color:#fff;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.06em;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+  white-space:nowrap;
+}
+
+.waitlist-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(78,158,255,.32);
+}
+
+.waitlist-btn:active{
+  transform:translateY(0);
+}
+
+.waitlist-disclaimer{
+  font-size:11px;
+  color:#3d5470;
+  letter-spacing:.04em;
+  margin:0;
+  transition:color .3s ease;
+}
+
+.waitlist-disclaimer.success{
+  color:#45e38e;
+}
+
+.waitlist-disclaimer.error{
+  color:#ff6b6b;
+}
+
+/* ---- Footer waitlist nudge ---- */
+.footer-waitlist-nudge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:#3d5470;
+  letter-spacing:.06em;
+  margin-top:8px;
+}
+
+.footer-waitlist-link{
+  color:#4e9eff;
+  text-decoration:none;
+  font-weight:600;
+  transition:color .18s ease;
+}
+
+.footer-waitlist-link:hover{
+  color:#7bb8ff;
+}
+
+@media (max-width:600px){
+  .home-trust-bar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+  .trust-bar-sep{
+    display:none;
+  }
+  .home-waitlist-section{
+    padding:24px 18px;
+  }
+  .waitlist-form{
+    flex-direction:column;
+  }
+  .waitlist-btn{
+    width:100%;
+    text-align:center;
+  }
+}
