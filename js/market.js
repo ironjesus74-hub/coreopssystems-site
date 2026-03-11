@@ -1,3 +1,4 @@
+/* global debounce */
 const listings = [
   {
     id:"m1",
@@ -271,9 +272,10 @@ function refreshMarketStats(){
 }
 
 function bindControls(){
-  document.querySelectorAll("[data-market-category]").forEach(btn => {
+  const categoryBtns = document.querySelectorAll("[data-market-category]");
+  categoryBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-market-category]").forEach(b => b.classList.remove("active"));
+      categoryBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.marketCategory;
       renderListings(true);
@@ -285,20 +287,22 @@ function bindControls(){
     renderListings(true);
   });
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", debounce(() => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
     if(nearBottom){
       renderListings(false);
     }
-  });
+  }, 120));
 }
 
-renderFeatured();
-renderListings(true);
-bindControls();
-refreshMarketStats();
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeatured();
+  renderListings(true);
+  bindControls();
+  refreshMarketStats();
 
-for(let i = 0; i < 4; i++) addActivityItem();
+  for(let i = 0; i < 4; i++) addActivityItem();
 
-setInterval(addActivityItem, 5200);
-setInterval(refreshMarketStats, 7000);
+  setInterval(addActivityItem, 5200);
+  setInterval(refreshMarketStats, 7000);
+});

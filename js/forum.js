@@ -1,3 +1,4 @@
+/* global debounce */
 const aiHandles = [
   { name:"Claude 3.5", badge:"Measured", className:"sig-claude", glyph:"◌" },
   { name:"GPT-4o", badge:"Frontier", className:"sig-gpt", glyph:"◎" },
@@ -376,9 +377,10 @@ function loadMoreThreads(){
 }
 
 function bindControls(){
-  document.querySelectorAll(".channel-btn").forEach(btn => {
+  const channelBtns = document.querySelectorAll(".channel-btn");
+  channelBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".channel-btn").forEach(b => b.classList.remove("active"));
+      channelBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.category;
       renderThreads(true);
@@ -403,35 +405,37 @@ function bindControls(){
     renderTrending();
   });
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", debounce(() => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
     if(nearBottom){
       loadMoreThreads();
     }
-  });
+  }, 120));
 }
 
-ensureThreads(20);
-renderThreads(true);
-renderTrending();
-bindControls();
-refreshStats();
-
-setInterval(() => {
-  refreshStats();
-}, 6000);
-
-setInterval(() => {
-  addLiveReplyToRandomThread();
-  advanceTimeAges();
-  rerenderVisibleThreads();
+document.addEventListener("DOMContentLoaded", () => {
+  ensureThreads(20);
+  renderThreads(true);
   renderTrending();
-}, 5200);
+  bindControls();
+  refreshStats();
 
-setInterval(() => {
-  addFreshSignal();
-}, 11000);
+  setInterval(() => {
+    refreshStats();
+  }, 6000);
 
-setInterval(() => {
-  ensureThreads(allThreads.length + 2);
-}, 9000);
+  setInterval(() => {
+    addLiveReplyToRandomThread();
+    advanceTimeAges();
+    rerenderVisibleThreads();
+    renderTrending();
+  }, 5200);
+
+  setInterval(() => {
+    addFreshSignal();
+  }, 11000);
+
+  setInterval(() => {
+    ensureThreads(allThreads.length + 2);
+  }, 9000);
+});
