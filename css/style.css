@@ -7630,3 +7630,705 @@ a{
     width:auto;
   }
 }
+
+/* ===== ATLAS 38 — DARK GRAFFITI CINEMATIC OVERRIDE ===== */
+
+/* ── 1. Token Mutation: Deeper blacks, hotter neons ─────── */
+:root {
+  --bg:            #010306;
+  --bg2:           #050c18;
+  --panel:         #080f22;
+  --panel2:        #0c1630;
+  --line:          rgba(255,255,255,.07);
+  --text:          #f0f6ff;
+  --muted:         #7a90b4;
+  --blue:          #00e8ff;
+  --blue2:         #3d6fff;
+  --red:           #ff1155;
+  --red2:          #ff5500;
+  --violet:        #9b2eff;
+  --green:         #00ff9d;
+  --magenta:       #ff0080; /* new ATLAS 38 token: hot magenta for graffiti-cinematic accents */
+  --shadow-blue:   0 0 40px rgba(0,232,255,.32), 0 0 90px rgba(0,232,255,.12);
+  --shadow-red:    0 0 40px rgba(255,17,85,.32),  0 0 90px rgba(255,17,85,.12);
+  --shadow-magenta:0 0 40px rgba(255,0,128,.28),  0 0 80px rgba(255,0,128,.10);
+}
+
+/* ── 2. Body: Deep atmospheric background system ─────────── */
+body {
+  background:
+    radial-gradient(ellipse 70% 45% at 10% 10%, rgba(255,0,128,.09),  transparent),
+    radial-gradient(ellipse 70% 45% at 90%  8%, rgba(0,232,255,.11),  transparent),
+    radial-gradient(ellipse 55% 45% at 50% 58%, rgba(155,46,255,.07), transparent),
+    radial-gradient(ellipse 40% 30% at 80% 90%, rgba(255,0,128,.05),  transparent),
+    linear-gradient(180deg, #010204 0%, #030810 45%, #010306 100%);
+}
+
+/* Grain noise overlay – adds gritty cinematic texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: .028; /* low enough to add cinematic grit without washing out content */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+}
+
+/* Cinematic scan-line drift */
+body::before {
+  animation: scanDrift 12s linear infinite;
+}
+
+@keyframes scanDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
+}
+
+/* ── 3. Navigation: sharp, neon-edged, elite feel ────────── */
+.site-header {
+  background: rgba(1,3,6,.90);
+  border-bottom: 1px solid rgba(0,232,255,.09);
+  box-shadow:
+    0 1px 0 rgba(0,232,255,.05),
+    0 8px 40px rgba(0,0,0,.55),
+    0 0 60px rgba(0,232,255,.03);
+}
+
+.brand {
+  letter-spacing: .03em;
+  color: #fff;
+}
+
+.brand-orb {
+  background:
+    radial-gradient(circle at 38% 32%, rgba(0,232,255,.92), rgba(155,46,255,.85) 48%, rgba(6,12,28,.96) 74%),
+    linear-gradient(135deg, rgba(255,0,128,.32), rgba(0,232,255,.32));
+  box-shadow:
+    0 0 28px rgba(0,232,255,.55),
+    0 0 60px rgba(155,46,255,.22),
+    inset 0 0 22px rgba(255,255,255,.10);
+}
+
+.nav-links a {
+  font-weight: 600;
+  letter-spacing: .025em;
+  color: var(--muted);
+  position: relative;
+  transition: color .18s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blue), var(--magenta));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .24s cubic-bezier(.4,0,.2,1);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* ── 4. Ticker bar ─────────────────────────────────────── */
+.live-ticker-shell {
+  background: rgba(0,232,255,.04);
+  border-color: rgba(0,232,255,.10);
+}
+
+.live-ticker-track span {
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: var(--blue);
+}
+
+/* ── 5. Live dot ───────────────────────────────────────── */
+.live-dot {
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green), 0 0 16px rgba(0,255,157,.35);
+}
+
+/* ── 6. Home Hero: Cinematic frame with graffiti accents ─── */
+.home-hero {
+  background:
+    linear-gradient(128deg, rgba(255,0,128,.07) 0%, transparent 38%),
+    linear-gradient(255deg, rgba(0,232,255,.06) 0%, transparent 38%),
+    linear-gradient(180deg, rgba(9,13,24,.98), rgba(3,5,10,.99));
+  border: 1px solid rgba(0,232,255,.10);
+  box-shadow:
+    0 32px 100px rgba(0,0,0,.70),
+    0 0 0 1px rgba(255,0,128,.05),
+    inset 0 0 80px rgba(0,0,0,.30);
+  position: relative;
+}
+
+/* Top-edge neon slash */
+.home-hero::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg,
+    var(--magenta) 0%,
+    var(--blue)    40%,
+    var(--violet)  70%,
+    transparent    100%);
+  opacity: .90;
+}
+
+/* Inner cinematic frame */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(0,232,255,.04);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 7. Hero gradient headline ──────────────────────────── */
+.home-hero-copy h1 {
+  font-size: 96px;
+  letter-spacing: -.06em;
+  line-height: .88;
+  background: linear-gradient(
+    118deg,
+    #ffffff   0%,
+    #d8f0ff  30%,
+    #a0ccff  58%,
+    rgba(255,0,128,.65) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.home-hero-copy p {
+  color: #7a9ac0;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+/* ── 8. Badge pills ─────────────────────────────────────── */
+.badge-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 5px 12px;
+  border: 1px solid rgba(0,232,255,.22);
+  background: rgba(0,232,255,.06);
+  color: var(--blue);
+}
+
+.hero-badges .badge-pill:nth-child(2) {
+  border-color: rgba(255,0,128,.22);
+  background: rgba(255,0,128,.06);
+  color: var(--magenta);
+}
+
+.hero-badges .badge-pill:nth-child(3) {
+  border-color: rgba(155,46,255,.22);
+  background: rgba(155,46,255,.06);
+  color: var(--violet);
+}
+
+/* ── 9. CTA buttons: neon fill sweep ─────────────────────── */
+.home-cta-primary {
+  display: inline-block;
+  padding: 16px 30px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: color .20s, box-shadow .20s, transform .16s;
+}
+
+.home-cta-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .26s cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+
+.home-cta-primary:hover::before { transform: scaleX(1); }
+
+.home-cta-primary:hover {
+  color: #010306;
+  box-shadow: 0 0 32px rgba(0,232,255,.45), 0 0 70px rgba(0,232,255,.16);
+  transform: translateY(-2px);
+}
+
+
+.home-cta-secondary {
+  display: inline-block;
+  padding: 16px 30px;
+  border-radius: 5px;
+  border: 2px solid rgba(255,0,128,.38);
+  color: rgba(255,100,160,.90);
+  background: rgba(255,0,128,.05);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transition: color .18s, background .18s, box-shadow .18s, transform .16s;
+}
+
+.home-cta-secondary:hover {
+  background: rgba(255,0,128,.10);
+  border-color: rgba(255,0,128,.70);
+  color: #fff;
+  box-shadow: 0 0 26px rgba(255,0,128,.28);
+  transform: translateY(-2px);
+}
+
+/* ── 10. Stat row ───────────────────────────────────────── */
+.forum-stat span {
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.forum-stat strong {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  background: linear-gradient(118deg, #fff, var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 11. Platform cards: graffiti-tech frames ────────────── */
+.home-platform-card {
+  background: linear-gradient(148deg, rgba(8,12,26,.96), rgba(4,6,14,.99));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  position: relative;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+/* Top neon slash that reveals on hover */
+.home-platform-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 14px 14px 0 0;
+  background: linear-gradient(90deg, var(--blue), var(--violet));
+  opacity: 0;
+  transition: opacity .24s ease;
+}
+
+
+.home-platform-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,232,255,.18);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.50),
+    0 0 28px rgba(0,232,255,.08),
+    inset 0 0 40px rgba(0,232,255,.025);
+}
+
+.home-platform-card:hover::after { opacity: 1; }
+
+.home-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 22px;
+  background: linear-gradient(135deg, rgba(0,232,255,.11), rgba(155,46,255,.11));
+  border: 1px solid rgba(0,232,255,.18);
+  box-shadow: 0 0 14px rgba(0,232,255,.10), inset 0 0 12px rgba(0,0,0,.30);
+}
+
+.home-platform-card h3 {
+  font-size: 22px;
+  letter-spacing: -.01em;
+  color: #f0f6ff;
+}
+
+.home-card-link {
+  border-radius: 5px;
+  font-size: 11px;
+  letter-spacing: .07em;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(0,232,255,.05);
+  border: 1px solid rgba(0,232,255,.14);
+  color: var(--blue);
+  transition: .18s ease;
+}
+
+.home-card-link:hover {
+  background: rgba(0,232,255,.14);
+  border-color: rgba(0,232,255,.32);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(0,232,255,.18);
+}
+
+/* ── 12. VS Emblem: Upgraded to hot magenta/cyan split ────── */
+.vs-side-left {
+  border-color: rgba(255,0,128,.88);
+  box-shadow:
+    0 0 20px rgba(255,0,128,.44),
+    0 0 50px rgba(255,0,128,.16);
+}
+
+.vs-side-right {
+  border-color: rgba(0,232,255,.92);
+  box-shadow:
+    0 0 20px rgba(0,232,255,.44),
+    0 0 50px rgba(0,232,255,.16);
+}
+
+.vs-ring-outer {
+  border-color: rgba(0,232,255,.75);
+  box-shadow: 0 0 36px rgba(0,232,255,.18);
+}
+
+.vs-ring-inner {
+  border-color: rgba(255,0,128,.62);
+  box-shadow: 0 0 28px rgba(255,0,128,.14);
+}
+
+.vs-core-bar {
+  background: linear-gradient(180deg, #00e8ff 0%, #ff80c0 50%, #ff1155 100%);
+  box-shadow:
+    0 0 30px rgba(255,255,255,.14),
+    0 0 60px rgba(0,232,255,.18),
+    0 0 60px rgba(255,0,128,.18);
+}
+
+.vs-word {
+  background: linear-gradient(145deg, #ffffff, var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.vs-orb-left {
+  background: var(--blue);
+  box-shadow: 0 0 18px var(--blue), 0 0 44px rgba(0,232,255,.35);
+}
+
+.vs-orb-right {
+  background: var(--magenta);
+  box-shadow: 0 0 18px var(--magenta), 0 0 44px rgba(255,0,128,.35);
+}
+
+/* ── 13. Hero visual panel ──────────────────────────────── */
+.home-hero-visual {
+  border: 1px solid rgba(0,232,255,.08);
+  background:
+    radial-gradient(circle at 30% 50%, rgba(0,232,255,.07), transparent 55%),
+    radial-gradient(circle at 70% 50%, rgba(255,0,128,.07), transparent 55%),
+    linear-gradient(180deg, rgba(6,10,20,.97), rgba(3,5,10,.99));
+  box-shadow:
+    inset 0 0 0 1px rgba(0,232,255,.04),
+    0 20px 90px rgba(0,0,0,.38);
+}
+
+/* ── 14. Upgrade strip ───────────────────────────────────── */
+.home-upgrade-strip {
+  background:
+    linear-gradient(128deg, rgba(255,0,128,.06) 0%, transparent 42%),
+    linear-gradient(252deg, rgba(0,232,255,.06) 0%, transparent 42%),
+    linear-gradient(180deg, rgba(9,13,24,.97), rgba(5,8,16,.98));
+  border: 1px solid rgba(255,0,128,.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-upgrade-strip::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--magenta), var(--blue), var(--violet));
+  opacity: .75;
+}
+
+.home-upgrade-btn-primary {
+  background: linear-gradient(135deg, var(--magenta), var(--violet));
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(255,0,128,.35), 0 8px 28px rgba(0,0,0,.34);
+  transition: transform .16s, box-shadow .18s;
+}
+
+.home-upgrade-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(255,0,128,.55), 0 12px 36px rgba(0,0,0,.44);
+}
+
+.home-upgrade-btn-secondary {
+  border-color: rgba(0,232,255,.28);
+  color: var(--blue);
+  background: rgba(0,232,255,.05);
+}
+
+.home-upgrade-btn-secondary:hover {
+  background: rgba(0,232,255,.10);
+  border-color: rgba(0,232,255,.55);
+  box-shadow: 0 0 18px rgba(0,232,255,.20);
+}
+
+/* ── 15. Panel blocks ────────────────────────────────────── */
+.panel {
+  background: linear-gradient(165deg, rgba(8,12,24,.97), rgba(3,5,12,.98));
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.panel-status-live {
+  background: rgba(0,232,255,.10);
+  border: 1px solid rgba(0,232,255,.22);
+  color: var(--blue);
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+/* ── 16. Signal items ────────────────────────────────────── */
+.home-signal-item {
+  border-color: rgba(255,255,255,.05);
+  background: rgba(255,255,255,.022);
+  transition: border-color .20s, background .20s;
+}
+
+.home-signal-item:hover {
+  border-color: rgba(0,232,255,.12);
+  background: rgba(0,232,255,.024);
+}
+
+.home-signal-dot.blue  { background: var(--blue);    box-shadow: 0 0 10px var(--blue),    0 0 24px rgba(0,232,255,.30); }
+.home-signal-dot.red   { background: var(--magenta);  box-shadow: 0 0 10px var(--magenta),  0 0 24px rgba(255,0,128,.30); }
+.home-signal-dot.violet{ background: var(--violet);   box-shadow: 0 0 10px var(--violet),   0 0 24px rgba(155,46,255,.30); }
+.home-signal-dot.green { background: var(--green);    box-shadow: 0 0 10px var(--green),    0 0 24px rgba(0,255,157,.30); }
+
+/* ── 17. Quote section accent ────────────────────────────── */
+.home-quote-section {
+  position: relative;
+}
+
+.home-quote-section::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 58%;
+  background: linear-gradient(180deg, var(--magenta), var(--blue));
+  border-radius: 3px;
+  opacity: .55;
+}
+
+/* ── 18. Footer ─────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid rgba(0,232,255,.08);
+  background: rgba(1,3,6,.92);
+  box-shadow: 0 -1px 0 rgba(0,232,255,.04), 0 -20px 60px rgba(0,0,0,.30);
+}
+
+.footer-brand-orb {
+  background:
+    radial-gradient(circle at 40% 35%, rgba(0,232,255,.90), rgba(155,46,255,.85) 46%, rgba(6,12,28,.96) 72%),
+    linear-gradient(135deg, rgba(255,0,128,.28), rgba(0,232,255,.28));
+  box-shadow:
+    0 0 16px rgba(0,232,255,.40),
+    0 0 36px rgba(155,46,255,.16);
+}
+
+.footer-brand-name { color: #f0f6ff; }
+
+.footer-nav a {
+  color: #5a7090;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  color: #d8eeff;
+  background: rgba(0,232,255,.06);
+}
+
+/* ── 19. Atmospheric corner accents (HTML-injected) ────────── */
+.graffiti-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.graffiti-corner--tl { top: 14px; left: 14px;  border-top: 2px solid var(--blue);    border-left:  2px solid var(--blue);    opacity: .70; }
+.graffiti-corner--tr { top: 14px; right: 14px; border-top: 2px solid var(--magenta); border-right: 2px solid var(--magenta); opacity: .70; }
+.graffiti-corner--bl { bottom: 14px; left: 14px;  border-bottom: 2px solid var(--magenta); border-left:  2px solid var(--magenta); opacity: .70; }
+.graffiti-corner--br { bottom: 14px; right: 14px; border-bottom: 2px solid var(--blue);    border-right: 2px solid var(--blue);    opacity: .70; }
+
+/* ── 20. Hero light streaks (HTML-injected) ─────────────── */
+.hero-streak {
+  position: absolute;
+  left: 0;
+  width: 40%;
+  height: 1px;
+  pointer-events: none;
+  z-index: 1;
+  animation: streakSlide 12s ease-in-out infinite;
+}
+
+.hero-streak-1 {
+  top: 38%;
+  background: linear-gradient(90deg, transparent, rgba(0,232,255,.55), transparent);
+}
+
+.hero-streak-2 {
+  top: 63%;
+  background: linear-gradient(90deg, transparent, rgba(255,0,128,.45), transparent);
+  animation-delay: -5s;
+  animation-duration: 16s;
+}
+
+@keyframes streakSlide {
+  from { transform: translateX(-120%) skewX(-8deg); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: .6; }
+  to   { transform: translateX(350%) skewX(-8deg); opacity: 0; }
+}
+
+/* ── 21. Background atmospheric glow layer (HTML-injected) ── */
+.site-atmo {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.site-atmo-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: .07;
+  animation: blobDrift 20s ease-in-out infinite alternate;
+}
+
+.site-atmo-blob:nth-child(1) {
+  width: 600px; height: 600px;
+  top: -200px; left: -200px;
+  background: var(--magenta);
+  animation-duration: 18s;
+}
+
+.site-atmo-blob:nth-child(2) {
+  width: 700px; height: 700px;
+  top: -150px; right: -250px;
+  background: var(--blue);
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.site-atmo-blob:nth-child(3) {
+  width: 500px; height: 500px;
+  bottom: -200px; left: 40%;
+  background: var(--violet);
+  animation-duration: 26s;
+  animation-delay: -14s;
+}
+
+@keyframes blobDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, 40px) scale(1.12); }
+}
+
+/* ── 22. Section divider slash ──────────────────────────── */
+.graffiti-divider {
+  position: relative;
+  height: 2px;
+  margin: 10px 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0,232,255,.18) 20%,
+    rgba(255,0,128,.22) 55%,
+    rgba(155,46,255,.14) 78%,
+    transparent 100%
+  );
+  border: none;
+}
+
+.graffiti-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 12px var(--blue);
+  transform: translateX(-50%);
+}
+
+/* ── 23. Scrollbar: cinematic dark ─────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--blue), var(--violet));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ── 24. Keyframe library for ATLAS 38 ─────────────────── */
+@keyframes graffGlow {
+  0%, 100% { opacity: .55; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(.9); opacity: .7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── 25. Mobile overrides for ATLAS 38 tokens ───────────── */
+@media (max-width: 900px) {
+  .home-hero-copy h1 { font-size: 48px; }
+  .home-hero::before { height: 2px; }
+}
+
+@media (max-width: 600px) {
+  .home-hero-copy h1 { font-size: 36px; }
+  .graffiti-corner { width: 14px; height: 14px; }
+}
