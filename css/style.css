@@ -5200,7 +5200,7 @@ min-height:420px;
 }
 
 .thread-react-btn{
-  transition:transform .18s ease, box-shadow .18s ease;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
 
 .thread-react-btn:hover{
