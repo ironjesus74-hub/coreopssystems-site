@@ -7336,3 +7336,230 @@ a{
     padding-left:4px;
   }
 }
+
+/* ===== ATLAS 37 — CINEMATIC VS CORE · FIGHTER STATS · BATTLE FEED ===== */
+
+/* ── VS WORD — gradient colour split + dramatic glow ── */
+.vs-word {
+  background: linear-gradient(155deg, #ff8fab 0%, #fff 42%, #79e6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Override text-shadow from ATLAS 24; use filter for glow */
+  text-shadow: none !important;
+  filter:
+    drop-shadow(0 0 6px rgba(255,143,171,.75))
+    drop-shadow(0 0 18px rgba(190,120,255,.45))
+    drop-shadow(0 0 40px rgba(121,230,255,.22));
+  animation: vsWordFlare 2.6s ease-in-out infinite;
+}
+
+@keyframes vsWordFlare {
+  0%,100% {
+    filter:
+      drop-shadow(0 0 6px rgba(255,143,171,.75))
+      drop-shadow(0 0 18px rgba(190,120,255,.45));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 12px rgba(255,143,171,1))
+      drop-shadow(0 0 30px rgba(190,120,255,.85))
+      drop-shadow(0 0 60px rgba(121,230,255,.40));
+  }
+}
+
+/* ── VS EMBLEM — collision zone corona at the centre ── */
+.vs-emblem::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,255,255,.14) 0%,
+    rgba(180,110,255,.08) 38%,
+    transparent 68%);
+  filter: blur(10px);
+  z-index: 1;
+  animation: vsCollisionBreath 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes vsCollisionBreath {
+  0%,100% { transform: scale(1);   opacity: .7; }
+  50%      { transform: scale(1.55); opacity: 1;  }
+}
+
+/* ── VS SIDE FRAMES — pulsing neon glow ── */
+.vs-side-left {
+  animation:
+    vsSideBreathe 3.4s ease-in-out infinite,
+    vsLeftGlow    3.0s ease-in-out infinite !important;
+}
+
+.vs-side-right {
+  animation:
+    vsSideBreathe 3.4s ease-in-out infinite 1.2s,
+    vsRightGlow   3.0s ease-in-out infinite .6s !important;
+}
+
+@keyframes vsLeftGlow {
+  0%,100% {
+    box-shadow:
+      0 0 18px rgba(255,111,141,.44),
+      0 0 42px rgba(255,111,141,.16),
+      inset 0 0 16px rgba(255,111,141,.06);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgba(255,111,141,.88),
+      0 0 72px rgba(255,111,141,.32),
+      inset 0 0 26px rgba(255,111,141,.14);
+  }
+}
+
+@keyframes vsRightGlow {
+  0%,100% {
+    box-shadow:
+      0 0 18px rgba(103,217,255,.44),
+      0 0 42px rgba(103,217,255,.16),
+      inset 0 0 16px rgba(103,217,255,.06);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgba(103,217,255,.88),
+      0 0 72px rgba(103,217,255,.32),
+      inset 0 0 26px rgba(103,217,255,.14);
+  }
+}
+
+/* ── VS RING — faster, more energetic spin ── */
+.vs-emblem-main .vs-ring-outer {
+  animation: vsRingSpin 9s linear infinite !important;
+}
+
+.vs-emblem-main .vs-ring-inner {
+  animation: vsRingSpinReverse 6s linear infinite !important;
+}
+
+/* ── VS CORE BAR — brighter energy beam ── */
+.vs-core-bar {
+  box-shadow:
+    0 0 32px rgba(255,255,255,.18),
+    0 0 64px rgba(103,217,255,.22),
+    0 0 64px rgba(255,111,141,.20) !important;
+}
+
+/* ── ORB TRAILS — soft blur glow ── */
+.vs-orb {
+  filter: blur(.4px);
+}
+
+.vs-orb-left {
+  box-shadow: 0 0 20px #71d8ff, 0 0 40px rgba(113,216,255,.35) !important;
+}
+
+.vs-orb-right {
+  box-shadow: 0 0 20px #ff7b98, 0 0 40px rgba(255,123,152,.35) !important;
+}
+
+/* ── CONFLICT ENGINE CENTRE — gradient label ── */
+.conflict-label {
+  background: linear-gradient(155deg, #ff8fab, #fff 50%, #79e6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none !important;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.45));
+  animation: conflictLabelFlare 3.2s ease-in-out infinite;
+  font-size: 12px !important;
+  letter-spacing: .28em !important;
+}
+
+@keyframes conflictLabelFlare {
+  0%,100% { filter: drop-shadow(0 0 8px rgba(255,255,255,.45)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(255,255,255,.80)); }
+}
+
+/* ── FIGHTER STAT CARD — EDGE accent size ── */
+.fighter-stat-card:first-child strong {
+  font-size: 34px !important;
+  letter-spacing: -.02em;
+}
+
+/* EDGE value colours */
+.fighter-left-card  .fighter-stat-card:first-child strong { color: #ff9db5 !important; }
+.fighter-right-card .fighter-stat-card:first-child strong { color: #8fe0ff !important; }
+
+/* RECORD — slightly smaller, brighter */
+.fighter-stat-card:nth-child(2) strong {
+  font-size: 22px !important;
+  letter-spacing: .01em;
+}
+
+/* PRESSURE label */
+.fighter-stat-card:nth-child(3) strong {
+  font-size: 20px !important;
+}
+
+/* ── BATTLE FEED — spill item type colours ── */
+.spill-item {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.03);
+  margin-bottom: 10px;
+  animation: spillIn .28s ease;
+}
+
+@keyframes spillIn {
+  from { transform: translateY(8px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+.spill-ai     { border-left: 2px solid rgba(103,217,255,.45); }
+.spill-system { border-left: 2px solid rgba(255,180,50,.45);  background: rgba(255,180,50,.04); }
+.spill-spectator { border-left: 2px solid rgba(255,255,255,.12); }
+
+.spill-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: #7a96b8;
+}
+
+.spill-meta strong {
+  color: #dce8ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.spill-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c8d8f0;
+}
+
+.spill-system .spill-text {
+  color: #ffcc66;
+  font-size: 12px;
+  letter-spacing: .12em;
+}
+
+/* ── ARENA HERO PANEL — bilateral ambient sweep ── */
+.arena-hero-panel-restore::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 10% 50%, rgba(255,111,141,.07), transparent 40%),
+    radial-gradient(ellipse at 90% 50%, rgba(103,217,255,.07), transparent 40%);
+  z-index: 0;
+}

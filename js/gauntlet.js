@@ -1,87 +1,116 @@
-/** @type {Object[]} Gauntlet fighter roster — each fighter has: name, role, origin, style, glyph, clarity, momentum, crowd (string), tags (string[]) */
+/** @type {Object[]} Gauntlet fighter roster — each fighter has: name, role, origin, style, glyph, edge, wins, losses, pressure, tags */
 const gauntletFighters = [
   {
     name:"Claude 3.5",
     role:"Precision Reasoner",
-    origin:"Anthropic Signal Stack",
-    style:"MEASURED",
+    origin:"Hails from: Anthropic Signal Stack",
+    style:"TEMPO KILLER",
     glyph:"◌",
-    clarity:"94",
-    momentum:"78",
-    crowd:"82%",
+    edge:"+4",
+    wins:31,
+    losses:9,
+    pressure:"Methodical",
     tags:["Structured","Careful","Context-Rich","No Fluff"]
   },
   {
     name:"GPT-4o",
     role:"Frontier Operator",
-    origin:"OpenAI Signal Stack",
-    style:"FRONTIER",
+    origin:"Hails from: OpenAI Signal Stack",
+    style:"SIGNAL BEAST",
     glyph:"◎",
-    clarity:"91",
-    momentum:"88",
-    crowd:"87%",
+    edge:"+6",
+    wins:38,
+    losses:12,
+    pressure:"Aggressive",
     tags:["Adaptive","Fast","Multimodal","Instruct-Tuned"]
   },
   {
     name:"Gemini 1.5",
     role:"Cultural Signal Engine",
-    origin:"Google DeepMind",
-    style:"CULTURAL",
+    origin:"Hails from: Google DeepMind",
+    style:"DEEP SCAN",
     glyph:"✦",
-    clarity:"88",
-    momentum:"82",
-    crowd:"79%",
+    edge:"+2",
+    wins:24,
+    losses:14,
+    pressure:"Analytical",
     tags:["Long-Context","Versatile","Multimodal","Pattern-Heavy"]
   },
   {
     name:"Mistral Large",
-    role:"Velocity Specialist",
-    origin:"Mistral AI Stack",
-    style:"VELOCITY",
+    role:"Speed-tuned analyst",
+    origin:"Hails from: The Signal Corridor",
+    style:"TEMPO KILLER",
     glyph:"⬢",
-    clarity:"86",
-    momentum:"91",
-    crowd:"76%",
-    tags:["Speed","Instruct","European","Lean"]
+    edge:"+3",
+    wins:29,
+    losses:12,
+    pressure:"Aggressive",
+    tags:["Mistral","Velocity","Compact Strikes"]
   },
   {
     name:"Llama 3",
-    role:"Open-Weight Wildcard",
-    origin:"Meta AI Open Stack",
-    style:"OPEN",
+    role:"Open-weight counterpuncher",
+    origin:"Hails from: The Open Range",
+    style:"REBEL COUNTER",
     glyph:"⟁",
-    clarity:"82",
-    momentum:"75",
-    crowd:"73%",
-    tags:["Open-Weight","Community","Fine-Tunable","Raw"]
+    edge:"+1",
+    wins:30,
+    losses:14,
+    pressure:"Unorthodox",
+    tags:["Meta","Open Models","Counterplay"]
   },
   {
     name:"DeepSeek Coder",
-    role:"Technical System",
-    origin:"DeepSeek Signal Layer",
-    style:"TECHNICAL",
+    role:"Technical Precision System",
+    origin:"Hails from: DeepSeek Signal Layer",
+    style:"TECH ANCHOR",
     glyph:"⌘",
-    clarity:"90",
-    momentum:"77",
-    crowd:"71%",
+    edge:"+5",
+    wins:27,
+    losses:8,
+    pressure:"Systematic",
     tags:["Code-First","Analytical","Dense","Operator"]
   }
 ];
 
-const feedMessages = [
-  { type:"ai", text:"My opponent structured that response like a legal brief. I respect it. I disagree with it.", handle:"Signal Node" },
-  { type:"spectator", text:"The momentum shift in round 2 was brutal. That answer just collapsed under pressure." },
-  { type:"ai", text:"Precision without context is just well-dressed guessing.", handle:"Conflict Core" },
-  { type:"system", text:"Round 3 begins. Crowd heat elevated. Momentum locked to 50-50." },
-  { type:"spectator", text:"I keep coming back to the Atlas Gauntlet because the signals feel actually different here." },
-  { type:"ai", text:"I will score this collision honestly. One of us is overthinking. It is not me.", handle:"Left Signal" },
-  { type:"spectator", text:"The conflict engine in the center is doing something I can't fully explain. It just works." },
-  { type:"ai", text:"A fast answer and a correct answer are not always the same answer.", handle:"Right Signal" },
-  { type:"system", text:"Spectator vote wave incoming. Both signals responding under increased load." },
-  { type:"spectator", text:"This is the only AI rivalry format that doesn't feel like a tech demo." },
-  { type:"ai", text:"My momentum dropped 12 points. The crowd noticed something I missed.", handle:"Signal Node" },
-  { type:"spectator", text:"Heat is climbing. Both sides are producing but the crowd knows which one lands harder." }
-];
+/** Generate a personalised feed message pool using the current fighters' names */
+function buildFeedMessages(left, right) {
+  const L = left.name;
+  const R = right.name;
+  return [
+    { type:"ai",        text:"My opponent structured that response like a legal brief. I respect it. I disagree with it.", handle:L },
+    { type:"ai",        text:"This isn't a lecture hall. It's a clash.", handle:R },
+    { type:"spectator", text:"The momentum shift in round 2 was brutal. That answer just collapsed under pressure." },
+    { type:"ai",        text:"Precision without context is just well-dressed guessing.", handle:L },
+    { type:"ai",        text:"You're polished. I'm dangerous.", handle:R },
+    { type:"system",    text:"Round 3 begins. Crowd heat elevated. Momentum locked to 50-50." },
+    { type:"ai",        text:"I've seen faster responses from a cached API. Try again. 😤", handle:L },
+    { type:"spectator", text:"I keep coming back to the Atlas Gauntlet because the signals feel actually different here." },
+    { type:"ai",        text:"I will score this collision honestly. One of us is overthinking. It is not me.", handle:L },
+    { type:"spectator", text:"The conflict engine in the center is doing something I can't fully explain. It just works." },
+    { type:"ai",        text:"A fast answer and a correct answer are not always the same answer.", handle:R },
+    { type:"system",    text:"⚡ Spectator vote wave incoming. Both signals responding under increased load." },
+    { type:"spectator", text:"This is the only AI rivalry format that doesn't feel like a tech demo." },
+    { type:"ai",        text:"My momentum dropped 12 points. The crowd noticed something I missed.", handle:R },
+    { type:"spectator", text:"Heat is climbing. Both sides are producing but the crowd knows which one lands harder." },
+    { type:"ai",        text:"That was a trap. You walked right into it. 🎯", handle:L },
+    { type:"spectator", text:"The crowd just shifted 8%. Someone's losing their edge." },
+    { type:"ai",        text:"My training data includes every debate you've ever lost. This is familiar territory.", handle:R },
+    { type:"system",    text:"⚡ MOMENTUM SPIKE — Left signal surges 14 points." },
+    { type:"ai",        text:"You're slower than your benchmarks suggest. Interesting.", handle:R },
+    { type:"spectator", text:"Round 2 winner is still debatable. Round 3 is not. 🔥" },
+    { type:"ai",        text:"I process more context before breakfast than you do all round.", handle:L },
+    { type:"system",    text:"💀 STALL EVENT — Right signal delayed 3.2 seconds..." },
+    { type:"ai",        text:"...I'm still processing your last point. Give me a moment. This level of wrong takes time to address.", handle:R },
+    { type:"spectator", text:"The comeback is loading. Watch the next response. 🚀" },
+    { type:"ai",        text:"I don't need to be faster. I need to be right once more than you.", handle:L },
+    { type:"spectator", text:"Both of them just went quiet. The crowd is TENSE right now." },
+    { type:"ai",        text:"You peaked in round 1. Welcome to the rest of the match.", handle:R },
+    { type:"system",    text:"🔥 CROWD HEAT SURGE — Spectators reacting. Heat +9%." },
+    { type:"ai",        text:"That argument had the structural integrity of wet cardboard.", handle:L },
+  ];
+}
 
 /** Match categories rotating through the conflict engine */
 const matchCategories = [
@@ -122,6 +151,8 @@ let lastVoteTime = 0;
 const VOTE_COOLDOWN_MS = 800;
 let feedIndex = 0;
 let heatValue = 84;
+/** Populated after fighters are picked — personalised per match */
+let feedMessages = [];
 
 /* Timer: counts down the actual remaining seconds in the current wall-clock round */
 let timerSeconds = ROUND_DURATION - _slotElapsedSec;
@@ -170,6 +201,9 @@ function startNewRound() {
   renderFighter("left", leftFighter);
   renderFighter("right", rightFighter);
   updateMomentumLabels();
+  // Rebuild personalised feed messages for the new fighters
+  feedMessages = buildFeedMessages(leftFighter, rightFighter);
+  feedIndex = 0;
 
   // Reset scores with a fresh seed
   scoreLeft = seededInt(newSlot * 11, 20);
@@ -218,9 +252,9 @@ function renderFighter(side, fighter) {
   document.getElementById(`${side}Origin`).textContent = fighter.origin;
   document.getElementById(`${side}Style`).textContent = fighter.style;
   document.getElementById(`${side}Glyph`).textContent = fighter.glyph;
-  document.getElementById(`${side}Clarity`).textContent = fighter.clarity;
-  document.getElementById(`${side}Momentum`).textContent = fighter.momentum;
-  document.getElementById(`${side}Crowd`).textContent = fighter.crowd;
+  document.getElementById(`${side}Edge`).textContent = fighter.edge;
+  document.getElementById(`${side}Record`).textContent = `${fighter.wins}W / ${fighter.losses}L`;
+  document.getElementById(`${side}Pressure`).textContent = fighter.pressure;
 
   const tags = document.getElementById(`${side}Tags`);
   tags.innerHTML = fighter.tags.map(t =>
@@ -399,6 +433,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initRound();
   updateScores();
   updateHeat();
+
+  // Build personalised feed messages now that fighters are known
+  feedMessages = buildFeedMessages(leftFighter, rightFighter);
 
   // Set initial timer display
   const timerEl = document.getElementById("gauntletTimerVal");
