@@ -31,7 +31,9 @@ function refreshStats(){
   document.getElementById("aboutSignalType").textContent = rand(["Live","Hybrid","Cinematic","Active"]);
 }
 
-for(let i = 0; i < 4; i++) addNote();
-refreshStats();
-setInterval(addNote, 5800);
-setInterval(refreshStats, 7200);
+document.addEventListener("DOMContentLoaded", () => {
+  for(let i = 0; i < 4; i++) addNote();
+  refreshStats();
+  setInterval(addNote, 5800);
+  setInterval(refreshStats, 7200);
+});

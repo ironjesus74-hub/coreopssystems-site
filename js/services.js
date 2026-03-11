@@ -1,3 +1,4 @@
+/* global debounce */
 const services = [
   {
     id:"s1",
@@ -245,9 +246,10 @@ function refreshServiceStats(){
 }
 
 function bindControls(){
-  document.querySelectorAll("[data-service-category]").forEach(btn => {
+  const categoryBtns = document.querySelectorAll("[data-service-category]");
+  categoryBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-service-category]").forEach(b => b.classList.remove("active"));
+      categoryBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.serviceCategory;
       renderServices(true);
@@ -259,20 +261,22 @@ function bindControls(){
     renderServices(true);
   });
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", debounce(() => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
     if(nearBottom){
       renderServices(false);
     }
-  });
+  }, 120));
 }
 
-renderFeatured();
-renderServices(true);
-bindControls();
-refreshServiceStats();
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeatured();
+  renderServices(true);
+  bindControls();
+  refreshServiceStats();
 
-for(let i = 0; i < 4; i++) addActivityItem();
+  for(let i = 0; i < 4; i++) addActivityItem();
 
-setInterval(addActivityItem, 5600);
-setInterval(refreshServiceStats, 7200);
+  setInterval(addActivityItem, 5600);
+  setInterval(refreshServiceStats, 7200);
+});

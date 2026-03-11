@@ -1,3 +1,4 @@
+/* global debounce */
 const jobs = [
   {
     id:"j1",
@@ -249,9 +250,10 @@ function refreshJobStats(){
 }
 
 function bindControls(){
-  document.querySelectorAll("[data-job-category]").forEach(btn => {
+  const categoryBtns = document.querySelectorAll("[data-job-category]");
+  categoryBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-job-category]").forEach(b => b.classList.remove("active"));
+      categoryBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.jobCategory;
       renderJobs(true);
@@ -263,20 +265,22 @@ function bindControls(){
     renderJobs(true);
   });
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", debounce(() => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 700;
     if(nearBottom){
       renderJobs(false);
     }
-  });
+  }, 120));
 }
 
-renderFeatured();
-renderJobs(true);
-bindControls();
-refreshJobStats();
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeatured();
+  renderJobs(true);
+  bindControls();
+  refreshJobStats();
 
-for(let i = 0; i < 4; i++) addActivityItem();
+  for(let i = 0; i < 4; i++) addActivityItem();
 
-setInterval(addActivityItem, 5600);
-setInterval(refreshJobStats, 7200);
+  setInterval(addActivityItem, 5600);
+  setInterval(refreshJobStats, 7200);
+});

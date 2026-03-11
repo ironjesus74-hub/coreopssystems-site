@@ -1,4 +1,33 @@
 /* ===== Atlas Shared UI — Quote System + Micro Interactions ===== */
+/* exported shuffle, debounce */
+
+/**
+ * Fisher-Yates shuffle — uniform, unbiased array shuffle.
+ * @param {Array} arr - Source array (not mutated)
+ * @returns {Array} New shuffled array
+ */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+/**
+ * Returns a debounced version of fn that fires at most once per `delay` ms.
+ * @param {Function} fn
+ * @param {number} delay - milliseconds
+ * @returns {Function}
+ */
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
 
 /**
  * Philosophical quotes rotated on page load and periodically.
@@ -37,7 +66,7 @@ function initQuoteSystem() {
   const containers = document.querySelectorAll(".atlas-quote-block");
   if (!containers.length) return;
 
-  const pool = [...ATLAS_QUOTES].sort(() => Math.random() - 0.5);
+  const pool = shuffle(ATLAS_QUOTES);
   containers.forEach((el, i) => {
     const quote = pool[i % pool.length];
     el.innerHTML = quoteHTML(quote);
@@ -48,7 +77,7 @@ function initQuoteSystem() {
 function rotateQuotes() {
   const containers = document.querySelectorAll(".atlas-quote-block");
   if (!containers.length) return;
-  const pool = [...ATLAS_QUOTES].sort(() => Math.random() - 0.5);
+  const pool = shuffle(ATLAS_QUOTES);
   containers.forEach((el, i) => {
     const quote = pool[i % pool.length];
     el.classList.remove("atlas-quote-loaded");
@@ -68,8 +97,12 @@ function initTickerLoops() {
   });
 }
 
+/** Cached live counter elements — populated once in initLiveCounters to avoid repeated DOM traversal. */
+let _liveCounterEls = null;
+
 function initLiveCounters() {
-  document.querySelectorAll("[data-live-count]").forEach(el => {
+  _liveCounterEls = document.querySelectorAll("[data-live-count]");
+  _liveCounterEls.forEach(el => {
     const base = parseInt(el.dataset.liveCount, 10);
     if (isNaN(base)) return;
     el.textContent = base + Math.floor(Math.random() * 7) - 2;
@@ -77,7 +110,8 @@ function initLiveCounters() {
 }
 
 function driftLiveCounters() {
-  document.querySelectorAll("[data-live-count]").forEach(el => {
+  if (!_liveCounterEls) return;
+  _liveCounterEls.forEach(el => {
     const current = parseInt(el.textContent, 10);
     if (isNaN(current)) return;
     const base = parseInt(el.dataset.liveCount, 10) || current;

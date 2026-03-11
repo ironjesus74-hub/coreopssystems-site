@@ -212,9 +212,10 @@ function renderGrid(reset) {
   const slice = filtered.slice(rendered, rendered + PAGE);
   rendered += slice.length;
 
-  slice.forEach(pair => {
+  // Build all markup as a single string, then insert once to avoid O(n²) innerHTML re-parsing
+  const html = slice.map(pair => {
     const vol = pct();
-    grid.innerHTML += `
+    return `
       <div class="exchange-card">
         <div class="exchange-card-top">
           <div>
@@ -241,7 +242,8 @@ function renderGrid(reset) {
         </div>
       </div>
     `;
-  });
+  }).join("");
+  if (html) grid.insertAdjacentHTML("beforeend", html);
 
   const loading = document.getElementById("exchangeLoading");
   if (loading) loading.style.display = rendered >= filtered.length ? "none" : "block";
@@ -257,9 +259,10 @@ function initExchangeSearch() {
 }
 
 function initPairFilter() {
-  document.querySelectorAll("[data-exchange-pair]").forEach(btn => {
+  const btns = document.querySelectorAll("[data-exchange-pair]");
+  btns.forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-exchange-pair]").forEach(b => b.classList.remove("active"));
+      btns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activePair = btn.dataset.exchangePair;
       renderGrid(true);
