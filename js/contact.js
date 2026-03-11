@@ -12,6 +12,7 @@ function rand(list){
 
 function addNote(){
   const feed = document.getElementById("contactActivityFeed");
+  if (!feed) return;
   const row = document.createElement("div");
   row.className = "profile-activity-item";
   row.innerHTML = `
@@ -26,9 +27,12 @@ function addNote(){
 }
 
 function refreshStats(){
-  document.getElementById("contactSupportState").textContent = rand(["Open","Live","Active","Ready"]);
-  document.getElementById("contactResponseFlow").textContent = rand(["Active","Steady","Moving","Focused"]);
-  document.getElementById("contactPriority").textContent = rand(["Builders","Partners","Sellers","Operators"]);
+  const supportState = document.getElementById("contactSupportState");
+  const responseFlow = document.getElementById("contactResponseFlow");
+  const priority = document.getElementById("contactPriority");
+  if (supportState) supportState.textContent = rand(["Open","Live","Active","Ready"]);
+  if (responseFlow) responseFlow.textContent = rand(["Active","Steady","Moving","Focused"]);
+  if (priority) priority.textContent = rand(["Builders","Partners","Sellers","Operators"]);
 }
 
 for(let i = 0; i < 4; i++) addNote();
