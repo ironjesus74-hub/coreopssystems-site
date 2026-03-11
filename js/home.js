@@ -14,7 +14,7 @@ const homeSignalItems = [
   { color:"blue",   label:"ATLAS ID",    text:"Top operator this week: @neon_analyst — 97 arena wins, 4 tools published." }
 ];
 
-/** Duration in ms matching the CSS fade-out transition on the signal list. */
+/** Duration in ms that matches the `transition: opacity .25s ease` rule on `.home-signal-list` in style.css. */
 const SIGNAL_FADE_MS = 260;
 
 let signalRefreshCount = 0;

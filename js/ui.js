@@ -90,14 +90,32 @@ function driftLiveCounters() {
 function initScrollReveal() {
   const els = document.querySelectorAll(".reveal-on-scroll");
   if (!els.length) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
+
+  // Feature-detect IntersectionObserver; fall back by marking all as visible.
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("visible"));
+    return;
+  }
+
+  // Opt the page into the hidden-by-default reveal behaviour.
+  document.documentElement.classList.add("reveal-enabled");
+
+  let io;
+  try {
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+  } catch {
+    // If constructing IntersectionObserver fails, reveal all elements immediately.
+    els.forEach(el => el.classList.add("visible"));
+    return;
+  }
+
   els.forEach(el => io.observe(el));
 }
 

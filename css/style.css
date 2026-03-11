@@ -5079,6 +5079,8 @@ a{
   display:grid;
   gap:12px;
   margin-top:14px;
+  opacity:1;
+  transition:opacity .25s ease;
 }
 
 .home-signal-item{
