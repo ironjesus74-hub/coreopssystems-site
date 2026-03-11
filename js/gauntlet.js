@@ -198,15 +198,6 @@ function startNewRound() {
   if (phaseEl) phaseEl.textContent = "Opening";
 }
 
-function cycleCategory() {
-  categoryIndex = (categoryIndex + 1) % matchCategories.length;
-  const cat = matchCategories[categoryIndex];
-  const labelEl = document.getElementById("gauntletCategory");
-  const iconEl = document.getElementById("gauntletCatIcon");
-  if (labelEl) labelEl.textContent = cat.label;
-  if (iconEl) iconEl.textContent = cat.icon;
-}
-
 /** Pick fighters deterministically from the current slot seed */
 function pickFighters() {
   pickFightersForSlot(_slotIndex);
