@@ -6570,8 +6570,8 @@ min-height:420px;
   width:6px;
   height:6px;
   border-radius:50%;
-  background:var(--blue,#4e9eff);
-  box-shadow:0 0 8px rgba(78,158,255,.55);
+  background:var(--blue);
+  box-shadow:0 0 8px rgba(103,217,255,.55);
   flex-shrink:0;
 }
 

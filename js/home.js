@@ -49,14 +49,17 @@ function initWaitlistForm() {
       return;
     }
 
-    // Store locally (no server endpoint yet — future integration hook)
+    // Store locally (no server endpoint yet — temporary placeholder, future backend integration hook)
     try {
       const list = JSON.parse(localStorage.getItem("atlasWaitlist") || "[]");
       if (!list.includes(email)) {
         list.push(email);
         localStorage.setItem("atlasWaitlist", JSON.stringify(list));
       }
-    } catch (_) { /* storage unavailable */ }
+    } catch (storageErr) {
+      // localStorage unavailable (private browsing, quota exceeded, etc.) — non-fatal
+      console.warn("Atlas waitlist: localStorage unavailable", storageErr);
+    }
 
     // Success state
     emailInput.value = "";
