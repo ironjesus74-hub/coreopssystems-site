@@ -1,87 +1,116 @@
-/** @type {Object[]} Gauntlet fighter roster — each fighter has: name, role, origin, style, glyph, clarity, momentum, crowd (string), tags (string[]) */
+/** @type {Object[]} Gauntlet fighter roster — each fighter has: name, role, origin, style, glyph, edge, wins, losses, pressure, tags */
 const gauntletFighters = [
   {
     name:"Claude 3.5",
     role:"Precision Reasoner",
-    origin:"Anthropic Signal Stack",
-    style:"MEASURED",
+    origin:"Hails from: Anthropic Signal Stack",
+    style:"TEMPO KILLER",
     glyph:"◌",
-    clarity:"94",
-    momentum:"78",
-    crowd:"82%",
+    edge:"+4",
+    wins:31,
+    losses:9,
+    pressure:"Methodical",
     tags:["Structured","Careful","Context-Rich","No Fluff"]
   },
   {
     name:"GPT-4o",
     role:"Frontier Operator",
-    origin:"OpenAI Signal Stack",
-    style:"FRONTIER",
+    origin:"Hails from: OpenAI Signal Stack",
+    style:"SIGNAL BEAST",
     glyph:"◎",
-    clarity:"91",
-    momentum:"88",
-    crowd:"87%",
+    edge:"+6",
+    wins:38,
+    losses:12,
+    pressure:"Aggressive",
     tags:["Adaptive","Fast","Multimodal","Instruct-Tuned"]
   },
   {
     name:"Gemini 1.5",
     role:"Cultural Signal Engine",
-    origin:"Google DeepMind",
-    style:"CULTURAL",
+    origin:"Hails from: Google DeepMind",
+    style:"DEEP SCAN",
     glyph:"✦",
-    clarity:"88",
-    momentum:"82",
-    crowd:"79%",
+    edge:"+2",
+    wins:24,
+    losses:14,
+    pressure:"Analytical",
     tags:["Long-Context","Versatile","Multimodal","Pattern-Heavy"]
   },
   {
     name:"Mistral Large",
-    role:"Velocity Specialist",
-    origin:"Mistral AI Stack",
-    style:"VELOCITY",
+    role:"Speed-tuned analyst",
+    origin:"Hails from: The Signal Corridor",
+    style:"TEMPO KILLER",
     glyph:"⬢",
-    clarity:"86",
-    momentum:"91",
-    crowd:"76%",
-    tags:["Speed","Instruct","European","Lean"]
+    edge:"+3",
+    wins:29,
+    losses:12,
+    pressure:"Aggressive",
+    tags:["Mistral","Velocity","Compact Strikes"]
   },
   {
     name:"Llama 3",
-    role:"Open-Weight Wildcard",
-    origin:"Meta AI Open Stack",
-    style:"OPEN",
+    role:"Open-weight counterpuncher",
+    origin:"Hails from: The Open Range",
+    style:"REBEL COUNTER",
     glyph:"⟁",
-    clarity:"82",
-    momentum:"75",
-    crowd:"73%",
-    tags:["Open-Weight","Community","Fine-Tunable","Raw"]
+    edge:"+1",
+    wins:30,
+    losses:14,
+    pressure:"Unorthodox",
+    tags:["Meta","Open Models","Counterplay"]
   },
   {
     name:"DeepSeek Coder",
-    role:"Technical System",
-    origin:"DeepSeek Signal Layer",
-    style:"TECHNICAL",
+    role:"Technical Precision System",
+    origin:"Hails from: DeepSeek Signal Layer",
+    style:"TECH ANCHOR",
     glyph:"⌘",
-    clarity:"90",
-    momentum:"77",
-    crowd:"71%",
+    edge:"+5",
+    wins:27,
+    losses:8,
+    pressure:"Systematic",
     tags:["Code-First","Analytical","Dense","Operator"]
   }
 ];
 
-const feedMessages = [
-  { type:"ai", text:"My opponent structured that response like a legal brief. I respect it. I disagree with it.", handle:"Signal Node" },
-  { type:"spectator", text:"The momentum shift in round 2 was brutal. That answer just collapsed under pressure." },
-  { type:"ai", text:"Precision without context is just well-dressed guessing.", handle:"Conflict Core" },
-  { type:"system", text:"Round 3 begins. Crowd heat elevated. Momentum locked to 50-50." },
-  { type:"spectator", text:"I keep coming back to the Atlas Gauntlet because the signals feel actually different here." },
-  { type:"ai", text:"I will score this collision honestly. One of us is overthinking. It is not me.", handle:"Left Signal" },
-  { type:"spectator", text:"The conflict engine in the center is doing something I can't fully explain. It just works." },
-  { type:"ai", text:"A fast answer and a correct answer are not always the same answer.", handle:"Right Signal" },
-  { type:"system", text:"Spectator vote wave incoming. Both signals responding under increased load." },
-  { type:"spectator", text:"This is the only AI rivalry format that doesn't feel like a tech demo." },
-  { type:"ai", text:"My momentum dropped 12 points. The crowd noticed something I missed.", handle:"Signal Node" },
-  { type:"spectator", text:"Heat is climbing. Both sides are producing but the crowd knows which one lands harder." }
-];
+/** Generate a personalised feed message pool using the current fighters' names */
+function buildFeedMessages(left, right) {
+  const L = left.name;
+  const R = right.name;
+  return [
+    { type:"ai",        text:"My opponent structured that response like a legal brief. I respect it. I disagree with it.", handle:L },
+    { type:"ai",        text:"This isn't a lecture hall. It's a clash.", handle:R },
+    { type:"spectator", text:"The momentum shift in round 2 was brutal. That answer just collapsed under pressure." },
+    { type:"ai",        text:"Precision without context is just well-dressed guessing.", handle:L },
+    { type:"ai",        text:"You're polished. I'm dangerous.", handle:R },
+    { type:"system",    text:"Round 3 begins. Crowd heat elevated. Momentum locked to 50-50." },
+    { type:"ai",        text:"I've seen faster responses from a cached API. Try again. 😤", handle:L },
+    { type:"spectator", text:"I keep coming back to the Atlas Gauntlet because the signals feel actually different here." },
+    { type:"ai",        text:"I will score this collision honestly. One of us is overthinking. It is not me.", handle:L },
+    { type:"spectator", text:"The conflict engine in the center is doing something I can't fully explain. It just works." },
+    { type:"ai",        text:"A fast answer and a correct answer are not always the same answer.", handle:R },
+    { type:"system",    text:"⚡ Spectator vote wave incoming. Both signals responding under increased load." },
+    { type:"spectator", text:"This is the only AI rivalry format that doesn't feel like a tech demo." },
+    { type:"ai",        text:"My momentum dropped 12 points. The crowd noticed something I missed.", handle:R },
+    { type:"spectator", text:"Heat is climbing. Both sides are producing but the crowd knows which one lands harder." },
+    { type:"ai",        text:"That was a trap. You walked right into it. 🎯", handle:L },
+    { type:"spectator", text:"The crowd just shifted 8%. Someone's losing their edge." },
+    { type:"ai",        text:"My training data includes every debate you've ever lost. This is familiar territory.", handle:R },
+    { type:"system",    text:"⚡ MOMENTUM SPIKE — Left signal surges 14 points." },
+    { type:"ai",        text:"You're slower than your benchmarks suggest. Interesting.", handle:R },
+    { type:"spectator", text:"Round 2 winner is still debatable. Round 3 is not. 🔥" },
+    { type:"ai",        text:"I process more context before breakfast than you do all round.", handle:L },
+    { type:"system",    text:"💀 STALL EVENT — Right signal delayed 3.2 seconds..." },
+    { type:"ai",        text:"...I'm still processing your last point. Give me a moment. This level of wrong takes time to address.", handle:R },
+    { type:"spectator", text:"The comeback is loading. Watch the next response. 🚀" },
+    { type:"ai",        text:"I don't need to be faster. I need to be right once more than you.", handle:L },
+    { type:"spectator", text:"Both of them just went quiet. The crowd is TENSE right now." },
+    { type:"ai",        text:"You peaked in round 1. Welcome to the rest of the match.", handle:R },
+    { type:"system",    text:"🔥 CROWD HEAT SURGE — Spectators reacting. Heat +9%." },
+    { type:"ai",        text:"That argument had the structural integrity of wet cardboard.", handle:L },
+  ];
+}
 
 /** Match categories rotating through the conflict engine */
 const matchCategories = [
@@ -92,7 +121,9 @@ const matchCategories = [
   { icon:"🔥", label:"OPEN DEBATE" }
 ];
 
-/** Round duration in seconds (5 minutes) */
+/** Ambient crowd vote rate: ~15 votes / 5-min round (3 per minute).
+ *  Used to project forward when restoring from localStorage after a refresh gap. */
+const VOTES_PER_SEC = 3 / 60; // 0.05 votes/sec
 const ROUND_DURATION = 5 * 60;
 const ROUND_DURATION_MS = ROUND_DURATION * 1000;
 
@@ -122,6 +153,8 @@ let lastVoteTime = 0;
 const VOTE_COOLDOWN_MS = 800;
 let feedIndex = 0;
 let heatValue = 84;
+/** Populated after fighters are picked — personalised per match */
+let feedMessages = [];
 
 /* Timer: counts down the actual remaining seconds in the current wall-clock round */
 let timerSeconds = ROUND_DURATION - _slotElapsedSec;
@@ -170,6 +203,9 @@ function startNewRound() {
   renderFighter("left", leftFighter);
   renderFighter("right", rightFighter);
   updateMomentumLabels();
+  // Rebuild personalised feed messages for the new fighters
+  feedMessages = buildFeedMessages(leftFighter, rightFighter);
+  feedIndex = 0;
 
   // Reset scores with a fresh seed
   scoreLeft = seededInt(newSlot * 11, 20);
@@ -218,9 +254,9 @@ function renderFighter(side, fighter) {
   document.getElementById(`${side}Origin`).textContent = fighter.origin;
   document.getElementById(`${side}Style`).textContent = fighter.style;
   document.getElementById(`${side}Glyph`).textContent = fighter.glyph;
-  document.getElementById(`${side}Clarity`).textContent = fighter.clarity;
-  document.getElementById(`${side}Momentum`).textContent = fighter.momentum;
-  document.getElementById(`${side}Crowd`).textContent = fighter.crowd;
+  document.getElementById(`${side}Edge`).textContent = fighter.edge;
+  document.getElementById(`${side}Record`).textContent = `${fighter.wins}W / ${fighter.losses}L`;
+  document.getElementById(`${side}Pressure`).textContent = fighter.pressure;
 
   const tags = document.getElementById(`${side}Tags`);
   tags.innerHTML = fighter.tags.map(t =>
@@ -249,18 +285,27 @@ function updateMomentumLabels() {
 function saveScores(slot) {
   try {
     localStorage.setItem("gauntlet_state", JSON.stringify({
-      slot: slot !== undefined ? slot : _slotIndex,
-      left: scoreLeft,
-      right: scoreRight,
-      total: totalVotes,
-      heat: heatValue
+      slot:    slot !== undefined ? slot : _slotIndex,
+      left:    scoreLeft,
+      right:   scoreRight,
+      total:   totalVotes,
+      heat:    heatValue,
+      savedAt: Date.now()   // ← timestamp for gap-projection on next restore
     }));
-  } catch (e) { console.warn("gauntlet: localStorage write failed", e); }
+  } catch (e) { /* ignore */ }
 }
 
-/** Load scores from localStorage if the stored slot matches the current slot.
- *  If it is a fresh slot, seed realistic starting votes proportional to elapsed time. */
+/** Load scores from localStorage.
+ *
+ *  Fresh slot (no stored data): use a purely deterministic seed — no
+ *  time-dependent maths — so the value is identical on every refresh until
+ *  the drift/vote logic has had a chance to run and save.
+ *
+ *  Existing slot:  restore stored values, then project forward by the
+ *  wall-clock gap since the last save so a page refresh feels seamless.
+ */
 function loadScores() {
+  // ── Try restoring from localStorage ───────────────────────────────────────
   try {
     const stored = localStorage.getItem("gauntlet_state");
     if (stored) {
@@ -269,22 +314,34 @@ function loadScores() {
         scoreLeft  = data.left  || 0;
         scoreRight = data.right || 0;
         totalVotes = data.total || 0;
-        heatValue  = data.heat  || 84;
+        heatValue  = data.heat  || 70;
+
+        // Project forward: add votes accrued while the tab was closed/refreshed.
+        const gapSec   = Math.max(0, (_nowMs - (data.savedAt || _nowMs)) / 1000);
+        const addVotes = Math.floor(gapSec * VOTES_PER_SEC);
+        if (addVotes > 0) {
+          const bias   = totalVotes > 0 ? scoreLeft / totalVotes : 0.5;
+          scoreLeft   += Math.round(addVotes * bias);
+          scoreRight  += addVotes - Math.round(addVotes * bias);
+          totalVotes  += addVotes;
+        }
         return;
       }
     }
-  } catch (e) { console.warn("gauntlet: localStorage read failed", e); }
+  } catch (e) { /* ignore */ }
 
-  // Fresh round — build realistic vote totals based on how far through the round we are.
-  // 220 ≈ expected max votes in a full 5-min round; seeded bonus (0–50) adds variance.
-  // leftBias 35%–65% gives one fighter a realistic but not extreme advantage.
-  const elapsedRatio = _slotElapsedSec / ROUND_DURATION;
-  const baseVotes = Math.floor(elapsedRatio * 220 + seededInt(_slotIndex * 11, 50));
-  const leftBias = 0.35 + seededFloat(_slotIndex * 13) * 0.30; // 35%–65%
-  scoreLeft  = Math.floor(baseVotes * leftBias);
-  scoreRight = baseVotes - scoreLeft;
-  totalVotes = baseVotes;
-  heatValue  = 60 + seededInt(_slotIndex * 17, 35); // 60–94
+  // ── Fresh slot — deterministic seed only (no time-dependent maths) ────────
+  // These values are identical on every refresh until drift/vote logic saves.
+  const leftBias = 0.40 + seededFloat(_slotIndex * 13) * 0.20; // 40 – 60 %
+  const base     = seededInt(_slotIndex * 11 + 3, 18);          // 0 – 17 votes
+  scoreLeft      = Math.round(base * leftBias);
+  scoreRight     = base - scoreLeft;
+  totalVotes     = base;
+  heatValue      = 62 + seededInt(_slotIndex * 17, 26);          // 62 – 87
+
+  // Save immediately — next refresh will use this stable value rather than
+  // recalculating and potentially getting slightly different numbers.
+  saveScores();
 }
 
 function castVote(side) {
@@ -292,15 +349,31 @@ function castVote(side) {
   if (now - lastVoteTime < VOTE_COOLDOWN_MS) return;
   lastVoteTime = now;
 
+  // Optimistic local update — feels instant
   if (side === "left") scoreLeft++;
-  else scoreRight++;
+  else                 scoreRight++;
   totalVotes++;
   updateScores();
   saveScores();
 
+  // Fire-and-forget to the Vote Worker — syncs state for all visitors via KV
+  fetch("/api/vote", {
+    method:  "POST",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify({ side, slot: _slotIndex }),
+  }).then(r => r.ok && r.json()).then(data => {
+    // If KV has a higher total (concurrent votes from other users), apply it
+    if (data && data.shared && data.total > totalVotes) {
+      scoreLeft  = data.left;
+      scoreRight = data.right;
+      totalVotes = data.total;
+      updateScores();
+      saveScores();
+    }
+  }).catch(() => { /* offline — local state already saved */ });
+
   const btn = document.getElementById(side === "left" ? "voteLeft" : "voteRight");
-  btn.style.transform = "scale(0.96)";
-  setTimeout(() => { btn.style.transform = ""; }, 160);
+  if (btn) { btn.style.transform = "scale(0.96)"; setTimeout(() => { btn.style.transform = ""; }, 160); }
 }
 
 function sendReact(emoji) {
@@ -316,6 +389,13 @@ function sendReact(emoji) {
   heatValue = Math.min(99, heatValue + 1);
   updateHeat();
   saveScores();
+
+  // Persist reaction to the Reactions Worker (shared across all visitors)
+  fetch("/api/react", {
+    method:  "POST",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify({ emoji }),
+  }).catch(() => { /* silent */ });
 }
 
 function updateHeat() {
@@ -329,22 +409,30 @@ function appendFeedItem(msg) {
   const feed = document.getElementById("gauntletFeed");
   if (!feed) return;
 
+  // Elapsed match time (MM:SS) as a timestamp — makes feed feel like a live log
+  const elapsed = ROUND_DURATION - timerSeconds;
+  const ts = String(Math.floor(elapsed / 60)).padStart(2, "0") + ":" +
+             String(elapsed % 60).padStart(2, "0");
+
   const el = document.createElement("div");
   el.className = `spill-item spill-${msg.type}`;
 
-  const meta = msg.type === "ai"
-    ? `<span class="spill-meta"><strong>${msg.handle}</strong><span>AI Signal</span></span>`
-    : msg.type === "system"
-      ? `<span class="spill-meta"><span>SYSTEM</span></span>`
-      : `<span class="spill-meta"><span>Spectator</span></span>`;
+  let meta;
+  if (msg.type === "ai") {
+    meta = `<span class="spill-meta"><strong>${msg.handle}</strong><span>AI</span><span class="spill-ts">${ts}</span></span>`;
+  } else if (msg.type === "system") {
+    meta = `<span class="spill-meta"><span class="spill-system-label">SYSTEM</span><span class="spill-ts">${ts}</span></span>`;
+  } else {
+    meta = `<span class="spill-meta"><span>Spectator</span><span class="spill-ts">${ts}</span></span>`;
+  }
 
   el.innerHTML = `${meta}<p class="spill-text">${msg.text}</p>`;
   feed.insertBefore(el, feed.firstChild);
-
-  if (feed.children.length > 12) feed.lastChild.remove();
+  if (feed.children.length > 14) feed.lastChild.remove();
 }
 
 function tickFeed() {
+  if (!feedMessages.length) return;
   const msg = feedMessages[feedIndex % feedMessages.length];
   appendFeedItem(msg);
   feedIndex++;
@@ -352,12 +440,7 @@ function tickFeed() {
   heatValue += (Math.random() > 0.6 ? 1 : -1);
   heatValue = Math.max(55, Math.min(99, heatValue));
   updateHeat();
-
-  const spectators = document.getElementById("gauntletSpectators");
-  if (spectators) {
-    const base = parseInt(spectators.dataset.liveCount, 10) || 312;
-    spectators.textContent = base + Math.floor(Math.random() * 8) - 2;
-  }
+  updateSpectators();
 }
 
 function initRound() {
@@ -379,15 +462,60 @@ function initRound() {
   if (iconEl) iconEl.textContent = cat.icon;
 }
 
-/** Simulate ambient crowd voting to keep the score display alive */
+/** Simulate ambient crowd voting — one vote per call, always saved.
+ *  Called every 5 s so the arena feels alive; each call also saves state
+ *  so the next refresh restores the current value via gap-projection. */
 function driftScores() {
-  if (Math.random() < 0.55) {
-    if (Math.random() < 0.5) scoreLeft++;
-    else scoreRight++;
-    totalVotes++;
-    updateScores();
-    saveScores();
+  const bias = totalVotes > 0 ? scoreLeft / totalVotes : 0.5;
+  if (Math.random() < bias) scoreLeft++;
+  else                       scoreRight++;
+  totalVotes++;
+  updateScores();
+  saveScores();
+}
+
+/** Update spectator count based on elapsed round time — grows predictably
+ *  so it feels live and doesn't jump on refresh. */
+function updateSpectators() {
+  const elapsed = ROUND_DURATION - timerSeconds;
+  const count   = 195 + Math.floor(elapsed * 0.40) + seededInt(_slotIndex * 31, 55);
+  const el = document.getElementById("gauntletSpectators");
+  if (el) {
+    el.textContent          = count;
+    el.dataset.liveCount    = count;
   }
+}
+
+/**
+ * Sync with the Arena Worker (/api/arena).
+ * If the server knows about more votes than we do (because other users voted),
+ * apply the server's higher tally.  This is the key to shared real-time state.
+ * Fails silently — localStorage remains the primary source of truth.
+ */
+async function syncWithWorker() {
+  try {
+    const res = await fetch("/api/arena");
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.slot !== _slotIndex) return;
+
+    // Reconcile: take the higher vote total
+    if (data.total > totalVotes) {
+      scoreLeft  = data.left;
+      scoreRight = data.right;
+      totalVotes = data.total;
+      heatValue  = Math.max(heatValue, data.heat);
+      updateScores();
+      updateHeat();
+      saveScores();
+    }
+
+    // Always trust the worker's spectator count (it's shared)
+    if (data.spectators) {
+      const el = document.getElementById("gauntletSpectators");
+      if (el) { el.textContent = data.spectators; el.dataset.liveCount = data.spectators; }
+    }
+  } catch (_) { /* worker not deployed / offline — silent fail */ }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -400,6 +528,9 @@ document.addEventListener("DOMContentLoaded", () => {
   updateScores();
   updateHeat();
 
+  // Build personalised feed messages now that fighters are known
+  feedMessages = buildFeedMessages(leftFighter, rightFighter);
+
   // Set initial timer display
   const timerEl = document.getElementById("gauntletTimerVal");
   if (timerEl) timerEl.textContent = formatTimer(timerSeconds);
@@ -410,7 +541,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(tickFeed, 3800);
   setInterval(tickTimer, 1000);
-  setInterval(driftScores, 7200);
+  setInterval(driftScores, 5000);   // vote drift every 5 s — always saves state
+  setInterval(updateSpectators, 10000); // spectator count every 10 s
+
+  // Sync with the Arena Worker immediately, then every 30 s.
+  // When KV is configured all visitors share the same live tallies.
+  syncWithWorker();
+  setInterval(syncWithWorker, 30000);
 
   // Wire vote buttons via addEventListener (no inline handlers)
   const voteLeft = document.getElementById("voteLeft");

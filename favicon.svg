@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#07111e"/>
+  <!-- Atlas A lettermark — neon cyan glow -->
+  <path d="M16 4L5.5 27h4.5l2.5-6h7l2.5 6h4.5L16 4zm-2 16L16 12.5 18 20h-4z"
+        fill="#67d9ff" fill-rule="evenodd"/>
+  <!-- Subtle inner glow layer -->
+  <path d="M16 4L5.5 27h4.5l2.5-6h7l2.5 6h4.5L16 4zm-2 16L16 12.5 18 20h-4z"
+        fill="rgba(103,217,255,0.3)" fill-rule="evenodd" filter="url(#glow)"/>
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>

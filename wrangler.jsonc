@@ -10,5 +10,22 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+
+  // ── Cloudflare KV — Atlas Arena State ─────────────────────────────────────
+  // To enable shared real-time scores across all visitors:
+  //   1. Cloudflare Dashboard → Workers & Pages → KV → Create namespace "atlas-arena"
+  //   2. Replace the placeholder IDs below with your real namespace IDs
+  //   3. Re-deploy — all Workers will begin sharing state via KV
+  //
+  // Without KV the Workers fall back to deterministic wall-clock calculations,
+  // so the site remains fully functional.
+  "kv_namespaces": [
+    {
+      "binding":     "ARENA_KV",
+      "id":          "REPLACE_WITH_YOUR_KV_NAMESPACE_ID",
+      "preview_id":  "REPLACE_WITH_YOUR_PREVIEW_KV_NAMESPACE_ID"
+    }
   ]
 }
+
