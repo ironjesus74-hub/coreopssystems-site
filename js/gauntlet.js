@@ -151,6 +151,10 @@ function cycleCategory() {
 }
 
 
+function rand(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 function pickFighters() {
   leftFighter = rand(gauntletFighters);
   const remaining = gauntletFighters.filter(f => f !== leftFighter);
