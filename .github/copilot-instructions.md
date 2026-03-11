@@ -69,7 +69,7 @@ Before presenting any result, run an internal self-check and report:
 - Nav structure (7 items): Home → Atlas Gauntlet → Signal Feed → Market → Atlas Exchange → Atlas ID → FAQ
 - Footer nav mirrors the header nav
 - Shared UI script tag: `<script src="../js/ui.js"></script>` (or `js/ui.js` for root pages) before the page-specific script
-- Use `class="site-shell"` as the top-level wrapper; flagship Gauntlet page adds `class="site-shell gauntlet-forge"` for ATLAS 33 overrides
+- Use `class="site-shell"` as the top-level wrapper; flagship Gauntlet page adds `class="site-shell gauntlet-live-page"` for ATLAS 33 overrides
 
 ---
 
