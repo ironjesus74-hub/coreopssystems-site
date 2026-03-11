@@ -9,15 +9,18 @@
 <meta property="og:description" content="Get in touch with the Atlas team. Reach out for partnerships, press inquiries, or operator support.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atlas.coreopssystems.com/pages/contact.html">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://atlas.coreopssystems.com/assets/og-atlas.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Atlas Contact — Built Different">
 <meta name="twitter:description" content="Get in touch with the Atlas team. Reach out for partnerships, press inquiries, or operator support.">
+<meta name="twitter:image" content="https://atlas.coreopssystems.com/assets/og-atlas.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=atlas33">
+<link rel="stylesheet" href="../css/style.css?v=atlas35">
 </head>
 <body>
+<div id="atlasScrollProgress" class="atlas-scroll-progress"></div>
 <div class="site-shell contact-live-page">
   <header class="site-header">
     <div class="nav-shell">
@@ -142,23 +145,27 @@
             <span class="panel-status-live">DIRECT</span>
           </div>
 
-          <div class="contact-form-grid">
-            <input type="text" placeholder="Your name or handle">
-            <input type="text" placeholder="Email or preferred contact">
-            <input type="text" placeholder="Subject">
-            <select>
+          <form id="atlasContactForm" class="contact-form-grid">
+            <input id="contactName" type="text" placeholder="Your name or handle" autocomplete="name">
+            <input id="contactEmail" type="email" placeholder="Email or preferred contact" autocomplete="email">
+            <input id="contactSubject" type="text" placeholder="Subject">
+            <select id="contactType">
               <option>General Support</option>
               <option>Partnership</option>
               <option>Seller Interest</option>
               <option>Service Inquiry</option>
               <option>Bug Report</option>
             </select>
-            <textarea placeholder="What are you reaching out about?"></textarea>
+            <textarea id="contactMessage" placeholder="What are you reaching out about?"></textarea>
+          </form>
+
+          <div id="contactConfirm" class="contact-confirm" style="display:none">
+            <span class="live-dot"></span> Signal received — we&#x2019;ll respond to operators first.
           </div>
 
           <div class="market-card-actions">
-            <button class="market-btn market-btn-primary">Send Signal</button>
-            <button class="market-btn">Clear</button>
+            <button id="contactSendBtn" class="market-btn market-btn-primary" type="submit" form="atlasContactForm">Send Signal</button>
+            <button id="contactClearBtn" class="market-btn" type="button">Clear</button>
           </div>
         </div>
 
@@ -217,7 +224,7 @@
   </footer>
 </div>
 
-<script src="../js/ui.js?v=atlas33"></script>
-<script src="../js/contact.js?v=atlas33"></script>
+<script src="../js/ui.js?v=atlas35"></script>
+<script src="../js/contact.js?v=atlas35"></script>
 </body>
 </html>

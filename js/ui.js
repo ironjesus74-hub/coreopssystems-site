@@ -86,10 +86,62 @@ function driftLiveCounters() {
   });
 }
 
+/** Scroll progress bar — updates a fixed element with id="atlasScrollProgress". */
+function initScrollProgress() {
+  const bar = document.getElementById("atlasScrollProgress");
+  if (!bar) return;
+  function update() {
+    const scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+    const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + "%" : "0%";
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
+
+/**
+ * Scroll-reveal system — any element with class "reveal-item" fades + slides in when
+ * it enters the viewport.  Uses IntersectionObserver (no-op if unsupported).
+ */
+function initScrollReveal() {
+  if (!("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal-item").forEach(el => observer.observe(el));
+}
+
+/**
+ * Lightweight analytics event tracker.
+ * Fires a dataLayer event (Google Tag Manager compatible) if present,
+ * and also logs to console in development.  Call from page-specific JS for CTA clicks.
+ * @param {string} event - event name (e.g. "cta_click")
+ * @param {string} label - descriptive label (e.g. "enter_gauntlet")
+ */
+function atlasTrack(event, label) {
+  if (typeof window.dataLayer !== "undefined") {
+    window.dataLayer.push({ event: event, label: label });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTickerLoops();
   initQuoteSystem();
   initLiveCounters();
+  initScrollProgress();
+  initScrollReveal();
   setInterval(driftLiveCounters, 4800);
   setInterval(rotateQuotes, 45000);
+
+  /* Attach analytics tracking to primary CTA buttons */
+  document.querySelectorAll("[data-track]").forEach(el => {
+    el.addEventListener("click", () => {
+      atlasTrack("cta_click", el.dataset.track);
+    });
+  });
 });

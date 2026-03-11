@@ -6558,3 +6558,155 @@ a{
     width:100%;
   }
 }
+
+/* ===== ATLAS 35 — SCROLL REVEAL · TRUST BAR · SCROLL PROGRESS · MICRO-INTERACTIONS ===== */
+
+/* --- Scroll progress bar --- */
+.atlas-scroll-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:3px;
+  z-index:9999;
+  background:linear-gradient(90deg, var(--blue), var(--violet), var(--red));
+  border-radius:0 2px 2px 0;
+  transition:width .08s linear;
+  pointer-events:none;
+}
+
+/* --- Scroll-reveal base state --- */
+.reveal-item{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .55s cubic-bezier(.22,.64,.36,1), transform .55s cubic-bezier(.22,.64,.36,1);
+}
+
+.reveal-item.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* Staggered delay for sibling reveal items inside grids */
+.home-platform-grid .reveal-item:nth-child(2){ transition-delay:.08s; }
+.home-platform-grid .reveal-item:nth-child(3){ transition-delay:.16s; }
+.home-platform-grid .reveal-item:nth-child(4){ transition-delay:.24s; }
+.home-platform-grid .reveal-item:nth-child(5){ transition-delay:.32s; }
+.home-platform-grid .reveal-item:nth-child(6){ transition-delay:.40s; }
+
+/* --- Trust bar --- */
+.atlas-trust-bar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px 32px;
+  margin:0 0 32px;
+}
+
+.trust-bar-stat{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  padding:0 28px;
+  flex:1;
+  min-width:0;
+}
+
+.trust-bar-stat strong,
+.trust-bar-stat .trust-uptime{
+  font-size:22px;
+  font-weight:800;
+  color:var(--blue);
+  line-height:1;
+  letter-spacing:-.01em;
+}
+
+.trust-bar-stat span{
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  white-space:nowrap;
+}
+
+.trust-bar-divider{
+  width:1px;
+  height:40px;
+  background:var(--line);
+  flex-shrink:0;
+}
+
+/* --- Contact form confirm message --- */
+.contact-confirm{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  background:rgba(57,217,138,.10);
+  border:1px solid rgba(57,217,138,.25);
+  border-radius:10px;
+  color:var(--green);
+  font-size:13px;
+  font-weight:500;
+  margin-bottom:12px;
+}
+
+/* --- Enhanced card hover micro-interactions --- */
+.home-platform-card{
+  transition:
+    transform .22s cubic-bezier(.22,.64,.36,1),
+    box-shadow .22s ease,
+    border-color .22s ease;
+}
+
+.home-platform-card:hover{
+  transform:translateY(-4px) scale(1.012);
+  box-shadow:0 8px 40px rgba(103,217,255,.12), 0 2px 12px rgba(0,0,0,.4);
+  border-color:rgba(103,217,255,.22);
+}
+
+.home-platform-card .home-card-icon{
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+
+.home-platform-card:hover .home-card-icon{
+  transform:scale(1.18);
+}
+
+/* --- Responsive: trust bar --- */
+@media (max-width:900px){
+  .atlas-trust-bar{
+    flex-wrap:wrap;
+    gap:16px;
+    padding:18px 20px;
+  }
+
+  .trust-bar-divider{
+    display:none;
+  }
+
+  .trust-bar-stat{
+    padding:0 12px;
+    flex:0 0 calc(50% - 24px);
+  }
+}
+
+@media (max-width:600px){
+  .atlas-trust-bar{
+    padding:16px;
+  }
+
+  .trust-bar-stat{
+    flex:0 0 calc(50% - 16px);
+  }
+
+  .trust-bar-stat strong,
+  .trust-bar-stat .trust-uptime{
+    font-size:18px;
+  }
+}
