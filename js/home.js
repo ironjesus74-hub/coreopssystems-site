@@ -29,6 +29,31 @@ function renderHomeSignal() {
   `).join("");
 }
 
+function initWaitlistForm() {
+  const form = document.getElementById("waitlistForm");
+  const note = document.getElementById("waitlistNote");
+  if (!form || !note) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = form.querySelector(".waitlist-input");
+    const email = input ? input.value.trim() : "";
+
+    if (!email || !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      note.style.color = "var(--red)";
+      note.textContent = "Please enter a valid email address.";
+      return;
+    }
+
+    // Store locally (no backend in static build; replace with real endpoint later)
+    note.style.color = "var(--green)";
+    note.textContent = "✓ You're on the list. We'll reach out when Signal+ launches.";
+    form.querySelector(".waitlist-submit").disabled = true;
+    if (input) { input.value = ""; input.disabled = true; }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderHomeSignal();
+  initWaitlistForm();
 });

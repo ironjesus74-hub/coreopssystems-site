@@ -316,4 +316,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (btn && btn.dataset.emoji) sendReact(btn.dataset.emoji);
     });
   }
+
+  // Share button
+  const shareBtn = document.getElementById("gauntletShareBtn");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", () => {
+      const url = window.location.href;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          shareBtn.textContent = "Link Copied ✓";
+          shareBtn.classList.add("copied");
+          setTimeout(() => {
+            shareBtn.textContent = "Share Match ↗";
+            shareBtn.classList.remove("copied");
+          }, 2400);
+        }).catch(() => {
+          shareBtn.textContent = "Copy: " + url;
+        });
+      } else {
+        shareBtn.textContent = url;
+      }
+    });
+  }
 });
