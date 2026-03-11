@@ -3198,6 +3198,12 @@ a{
   margin-top:20px;
 }
 
+.profile-hero-main{
+  min-width:0;
+  display:grid;
+  gap:20px;
+}
+
 .profile-hero-side{
   display:grid;
   gap:14px;
@@ -3358,6 +3364,13 @@ a{
   .profile-content-grid{
     grid-template-columns:1fr;
   }
+}
+
+.profile-perks-panel,
+.profile-activity-panel,
+.profile-saved-panel,
+.profile-history-panel{
+  min-width:0;
 }
 
 /* ===== ATLAS 21 FAQ ===== */
@@ -3916,6 +3929,13 @@ a{
   .about-map-grid{
     grid-template-columns:1fr;
   }
+}
+
+.about-story-panel,
+.about-map-panel,
+.about-future-panel,
+.about-notes-panel{
+  min-width:0;
 }
 
 /* ===== ATLAS 24 ARENA VS FIX / POLISH ===== */
@@ -6195,6 +6215,17 @@ min-height:420px;
     text-align:center;
   }
 
+  /* Profile layout: sidebar+main → single column */
+  .profile-layout{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Profile & About stat grids: 3-col → 2-col */
+  .profile-stat-grid,
+  .about-stat-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
   /* Footer */
   .footer-shell{
     width:100%;
@@ -6223,7 +6254,9 @@ min-height:420px;
   .services-hero-stats,
   .jobs-hero-stats,
   .faq-hero-stats,
-  .arena-top-stats{
+  .arena-top-stats,
+  .profile-stat-grid,
+  .about-stat-grid{
     grid-template-columns:1fr;
   }
 
