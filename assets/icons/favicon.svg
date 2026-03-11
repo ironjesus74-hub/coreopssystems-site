@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="fg-apex" cx="50%" cy="0%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#c084ff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#c084ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fg-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#060d1a"/>
+
+  <!-- Subtle outer ring -->
+  <rect width="100" height="100" rx="20" fill="none"
+        stroke="rgba(103,217,255,0.20)" stroke-width="1.5"/>
+
+  <!-- LEFT ARM — coral/magenta signal -->
+  <line x1="16" y1="88" x2="50" y2="11"
+        stroke="rgba(255,107,138,0.30)" stroke-width="14" stroke-linecap="round"/>
+  <line x1="16" y1="88" x2="50" y2="11"
+        stroke="#ff6b8a" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- RIGHT ARM — cyan signal -->
+  <line x1="84" y1="88" x2="50" y2="11"
+        stroke="rgba(103,217,255,0.26)" stroke-width="14" stroke-linecap="round"/>
+  <line x1="84" y1="88" x2="50" y2="11"
+        stroke="#67d9ff" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- CROSSBAR — violet collision zone -->
+  <line x1="26" y1="64" x2="74" y2="64"
+        stroke="rgba(181,109,255,0.45)" stroke-width="7" stroke-linecap="round"/>
+  <line x1="26" y1="64" x2="74" y2="64"
+        stroke="#b56dff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- APEX — collision burst (white core + violet halo) -->
+  <circle cx="50" cy="11" r="10" fill="url(#fg-apex)"/>
+  <circle cx="50" cy="11" r="5" fill="#ffffff" filter="url(#fg-glow)"/>
+
+  <!-- Base signal sources -->
+  <circle cx="16" cy="88" r="4" fill="#ff6b8a" opacity="0.85"/>
+  <circle cx="84" cy="88" r="4" fill="#67d9ff" opacity="0.85"/>
+</svg>

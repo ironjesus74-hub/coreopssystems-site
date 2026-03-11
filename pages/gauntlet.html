@@ -7,7 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=atlas33">
+<link rel="stylesheet" href="../css/style.css?v=atlas34">
+<!-- Favicon / browser identity — Atlas Signal Core -->
+<link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+<meta name="theme-color" content="#060d1a">
 </head>
 <body>
 <div class="site-shell gauntlet-live-page">
@@ -77,15 +80,89 @@
       </div>
 
       <div class="arena-hero-mark arena-hero-mark-restore">
-        <div class="vs-emblem vs-emblem-main restore-vs-main">
-          <div class="vs-side vs-side-left"></div>
-          <div class="vs-side vs-side-right"></div>
-          <div class="vs-ring vs-ring-outer"></div>
-          <div class="vs-ring vs-ring-inner"></div>
-          <div class="vs-core-bar"></div>
-          <div class="vs-orb vs-orb-left"></div>
-          <div class="vs-orb vs-orb-right"></div>
-          <span class="vs-word">VS</span>
+        <div class="atlas-signal-core" aria-label="Atlas Signal Core — primary battle mark">
+          <svg class="atlas-signal-core-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="asc-apex" cx="50%" cy="0%" r="80%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="40%" stop-color="#c084ff" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#c084ff" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="asc-center" cx="50%" cy="65%" r="55%">
+                <stop offset="0%" stop-color="rgba(181,109,255,0.12)"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <filter id="asc-arm-glow" x="-30%" y="-10%" width="160%" height="120%">
+                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="asc-apex-glow" x="-80%" y="-80%" width="360%" height="360%">
+                <feGaussianBlur stdDeviation="6" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Outer precision ring -->
+            <circle class="asc-ring-outer" cx="100" cy="100" r="97" fill="none"
+                    stroke="rgba(103,217,255,0.20)" stroke-width="1"/>
+            <!-- Dashed orbit ring -->
+            <circle class="asc-ring-dash" cx="100" cy="100" r="84" fill="none"
+                    stroke="rgba(103,217,255,0.10)" stroke-width="0.8" stroke-dasharray="5 10"/>
+
+            <!-- Center atmosphere -->
+            <circle cx="100" cy="100" r="70" fill="url(#asc-center)"/>
+
+            <!-- ── LEFT SIGNAL ARM (coral) ── -->
+            <line x1="22" y1="180" x2="100" y2="22"
+                  stroke="rgba(255,107,138,0.22)" stroke-width="16" stroke-linecap="round"/>
+            <polygon points="22,180 100,22 100,42 38,168"
+                     fill="rgba(255,111,141,0.07)"/>
+            <line class="asc-arm-left" x1="22" y1="180" x2="100" y2="22"
+                  stroke="#ff6b8a" stroke-width="2.5" stroke-linecap="round"
+                  filter="url(#asc-arm-glow)"/>
+
+            <!-- ── RIGHT SIGNAL ARM (cyan) ── -->
+            <line x1="178" y1="180" x2="100" y2="22"
+                  stroke="rgba(103,217,255,0.18)" stroke-width="16" stroke-linecap="round"/>
+            <polygon points="178,180 100,22 100,42 162,168"
+                     fill="rgba(103,217,255,0.06)"/>
+            <line class="asc-arm-right" x1="178" y1="180" x2="100" y2="22"
+                  stroke="#67d9ff" stroke-width="2.5" stroke-linecap="round"
+                  filter="url(#asc-arm-glow)"/>
+
+            <!-- ── CROSSBAR — violet collision zone ── -->
+            <line x1="40" y1="130" x2="160" y2="130"
+                  stroke="rgba(181,109,255,0.28)" stroke-width="10" stroke-linecap="round"/>
+            <line class="asc-bar" x1="40" y1="130" x2="160" y2="130"
+                  stroke="#b56dff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="40" y1="125" x2="40" y2="135"
+                  stroke="rgba(181,109,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="160" y1="125" x2="160" y2="135"
+                  stroke="rgba(181,109,255,0.65)" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- ── APEX — collision burst ── -->
+            <circle class="asc-apex-halo" cx="100" cy="22" r="18"
+                    fill="url(#asc-apex)" opacity="0.75"/>
+            <circle cx="100" cy="22" r="10"
+                    fill="rgba(192,132,255,0.55)" filter="url(#asc-apex-glow)"/>
+            <circle class="asc-apex-core" cx="100" cy="22" r="4.5" fill="#ffffff"/>
+
+            <!-- ── BASE SIGNAL SOURCES ── -->
+            <circle cx="22" cy="180" r="11" fill="rgba(255,107,138,0.12)"/>
+            <circle class="asc-base-left" cx="22" cy="180" r="5.5" fill="#ff6b8a" opacity="0.85"/>
+            <circle cx="178" cy="180" r="11" fill="rgba(103,217,255,0.10)"/>
+            <circle class="asc-base-right" cx="178" cy="180" r="5.5" fill="#67d9ff" opacity="0.85"/>
+
+            <!-- Precision ticks on outer ring -->
+            <line x1="100" y1="2" x2="100" y2="10"
+                  stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="100" y1="190" x2="100" y2="198"
+                  stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="2" y1="100" x2="10" y2="100"
+                  stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="190" y1="100" x2="198" y2="100"
+                  stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
     </section>
@@ -163,7 +240,7 @@
             <div class="conflict-beam-blur"></div>
             <div class="conflict-side-indicator conflict-side-left"></div>
             <div class="conflict-side-indicator conflict-side-right"></div>
-            <span class="conflict-label">CONFLICT<br>ENGINE</span>
+            <span class="conflict-label"><span class="conflict-label-mark">Λ</span>SIGNAL<br>CORE</span>
           </div>
 
           <div class="gauntlet-timer" id="gauntletTimerBlock">
@@ -306,7 +383,7 @@
   </footer>
 </div>
 
-<script src="../js/ui.js?v=atlas33"></script>
-<script src="../js/gauntlet.js?v=atlas33"></script>
+<script src="../js/ui.js?v=atlas34"></script>
+<script src="../js/gauntlet.js?v=atlas34"></script>
 </body>
 </html>
