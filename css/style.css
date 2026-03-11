@@ -1524,7 +1524,7 @@ a{
   padding:0 16px;
   font-size:16px;
   outline:none;
-  transition:border-color .18s ease, box-shadow .18s ease;
+  transition:background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .user-chime-row input::placeholder{
@@ -4905,9 +4905,7 @@ min-height:420px;
 
 
 
-/* ===================================================
-   ATLAS DETAIL PASS — PREMIUM UI POLISH
-   =================================================== */
+/* ===== ATLAS 26 — DETAIL PASS — PREMIUM UI POLISH ===== */
 
 /* ── 1. NAVIGATION ─────────────────────────────── */
 
@@ -5006,12 +5004,6 @@ min-height:420px;
   animation:livePing 1.6s ease-out infinite;
 }
 
-@media (prefers-reduced-motion: reduce){
-  .live-dot::after{
-    animation:none;
-    opacity:.6;
-  }
-}
 @keyframes livePing{
   0%{transform:scale(.55);opacity:.45}
   100%{transform:scale(2);opacity:0}
@@ -5064,22 +5056,8 @@ min-height:420px;
   transition:transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease;
 }
 
-.market-card:hover{
-  transform:translateY(-3px);
-  box-shadow:
-    0 28px 80px rgba(0,0,0,.32),
-    0 0 0 1px rgba(103,217,255,.10),
-    0 0 28px rgba(103,217,255,.10);
-}
-
-.service-card:hover{
-  transform:translateY(-3px);
-  box-shadow:
-    0 28px 80px rgba(0,0,0,.32),
-    0 0 0 1px rgba(103,217,255,.10),
-    0 0 28px rgba(103,217,255,.10);
-}
-
+.market-card:hover,
+.service-card:hover,
 .job-card:hover{
   transform:translateY(-3px);
   box-shadow:
@@ -5518,4 +5496,4 @@ min-height:420px;
   border-color:rgba(255,255,255,.10);
 }
 
-/* ── END ATLAS DETAIL PASS ───────────────────── */
+/* ── END ATLAS 26 ────────────────────────────── */
