@@ -6108,6 +6108,7 @@ min-height:420px;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
+  color:transparent;
 }
 
 /* Hero mark enhanced */
@@ -6429,6 +6430,7 @@ min-height:420px;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
+  color:transparent;
 }
 
 .gauntlet-forge .fighter-right-card h2{
@@ -6436,6 +6438,7 @@ min-height:420px;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
+  color:transparent;
 }
 
 /* Avatar size and glow upgrade */
@@ -6614,5 +6617,36 @@ min-height:420px;
   }
   .gauntlet-forge .gauntlet-score-display{
     font-size:58px;
+  }
+}
+
+/* Override the global atlas-25 1380px collapse so gauntlet-forge
+   keeps its 3-column layout between 1281–1380px */
+@media (max-width:1380px){
+  .gauntlet-forge .arena-hero-panel-restore{
+    grid-template-columns:1.1fr .9fr !important;
+  }
+
+  .gauntlet-forge .arena-stage-grid-restore{
+    grid-template-columns:minmax(280px,1fr) 320px minmax(280px,1fr) !important;
+    gap:16px !important;
+  }
+
+  .gauntlet-forge .arena-lower-grid-restore{
+    grid-template-columns:1.25fr .75fr !important;
+  }
+}
+
+/* Allow gauntlet page to be fully responsive on narrow viewports */
+@media (max-width:959.98px){
+  .gauntlet-live-page.gauntlet-forge{
+    min-width:0;
+    width:100%;
+  }
+
+  /* Override desktop-stage fixed width inside the gauntlet */
+  .gauntlet-live-page.gauntlet-forge .desktop-stage{
+    min-width:0;
+    width:100%;
   }
 }
