@@ -121,8 +121,8 @@ function tickTimer() {
   if (timerSeconds < 0) {
     timerSeconds = ROUND_DURATION;
     cycleCategory();
-    // New round: push a system message to the feed
-    appendFeedItem({ type:"system", text:`New round begins. Category: ${matchCategories[categoryIndex].label}. Crowd heat locked and climbing.` });
+    // Category rotation: push a system message to the feed
+    appendFeedItem({ type:"system", text:`New category rotation. Now featuring: ${matchCategories[categoryIndex].label}. Crowd heat locked and climbing.` });
   }
   const el = document.getElementById("gauntletTimerVal");
   if (el) el.textContent = formatTimer(timerSeconds);
