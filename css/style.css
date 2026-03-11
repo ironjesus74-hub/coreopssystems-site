@@ -7529,6 +7529,7 @@ a{
   font-size: 11px;
   letter-spacing: .14em;
   color: #7a96b8;
+  width: 100%;
 }
 
 .spill-meta strong {
@@ -7562,4 +7563,252 @@ a{
     radial-gradient(ellipse at 10% 50%, rgba(255,111,141,.07), transparent 40%),
     radial-gradient(ellipse at 90% 50%, rgba(103,217,255,.07), transparent 40%);
   z-index: 0;
+}
+
+/* ===== ATLAS 38 — PROFESSIONAL ELITE PASS · WORKERS · REAL-TIME ===== */
+
+/* ── Home hero — stronger, more editorial headline ── */
+.home-hero-copy h1 {
+  font-size: 82px !important;
+  letter-spacing: -.05em !important;
+  line-height: .90 !important;
+  /* Subtle gradient gives depth without being garish */
+  background: linear-gradient(160deg, #fff 0%, #d8e8ff 60%, #a8cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── CTAs — more polished, contrast-first ── */
+.home-cta-primary {
+  background: linear-gradient(135deg, #67d9ff, #4a88ff) !important;
+  box-shadow: 0 0 0 1px rgba(103,217,255,.20), 0 8px 32px rgba(74,136,255,.22);
+  letter-spacing: .01em;
+  font-size: 15px !important;
+}
+
+.home-cta-primary:hover {
+  box-shadow: 0 0 24px rgba(103,217,255,.38), 0 12px 40px rgba(74,136,255,.28) !important;
+}
+
+.home-cta-secondary {
+  border-color: rgba(255,255,255,.18) !important;
+  font-size: 15px !important;
+}
+
+/* ── Trust / credibility strip ── */
+.home-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  margin-bottom: 22px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.025);
+  overflow: hidden;
+}
+
+.home-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  font-size: 13px;
+  color: #8da4c4;
+  font-weight: 500;
+  border-right: 1px solid rgba(255,255,255,.06);
+  flex: 1;
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+.home-trust-item:last-child { border-right: none; }
+
+.home-trust-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .home-trust-strip { flex-direction: column; }
+  .home-trust-item  { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); width: 100%; }
+  .home-trust-item:last-child { border-bottom: none; }
+}
+
+/* ── Platform cards — accent colours for key cards ── */
+.home-card-gauntlet {
+  border-color: rgba(255,111,141,.14) !important;
+  background: linear-gradient(160deg, rgba(255,111,141,.06) 0%, rgba(11,15,28,.97) 40%) !important;
+}
+
+.home-card-gauntlet:hover {
+  box-shadow: 0 22px 70px rgba(0,0,0,.26), 0 0 24px rgba(255,111,141,.12) !important;
+  border-color: rgba(255,111,141,.22) !important;
+}
+
+.home-card-tools {
+  border-color: rgba(103,217,255,.14) !important;
+  background: linear-gradient(160deg, rgba(103,217,255,.06) 0%, rgba(11,15,28,.97) 40%) !important;
+}
+
+.home-card-tools:hover {
+  box-shadow: 0 22px 70px rgba(0,0,0,.26), 0 0 24px rgba(103,217,255,.12) !important;
+  border-color: rgba(103,217,255,.22) !important;
+}
+
+.home-card-services {
+  border-color: rgba(184,113,255,.14) !important;
+  background: linear-gradient(160deg, rgba(184,113,255,.06) 0%, rgba(11,15,28,.97) 40%) !important;
+}
+
+.home-card-services:hover {
+  box-shadow: 0 22px 70px rgba(0,0,0,.26), 0 0 24px rgba(184,113,255,.12) !important;
+  border-color: rgba(184,113,255,.22) !important;
+}
+
+/* ── Upgrade strip — more premium feel ── */
+.home-upgrade-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px;
+  margin-bottom: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(103,217,255,.18);
+  background:
+    linear-gradient(135deg, rgba(103,217,255,.06) 0%, rgba(74,136,255,.04) 50%, rgba(184,113,255,.06) 100%),
+    rgba(9,14,26,.96);
+  box-shadow: 0 0 60px rgba(103,217,255,.06), inset 0 1px 0 rgba(103,217,255,.08);
+  flex-wrap: wrap;
+}
+
+.home-upgrade-strip-eyebrow {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .22em;
+  color: #67d9ff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.home-upgrade-strip-heading {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #eef3ff;
+}
+
+.home-upgrade-strip-sub {
+  margin: 0;
+  font-size: 14px;
+  color: #7a96b8;
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+.home-upgrade-strip-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.home-upgrade-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  transition: transform .18s ease, box-shadow .18s ease;
+  white-space: nowrap;
+}
+
+.home-upgrade-btn-primary {
+  background: linear-gradient(135deg, #67d9ff, #4a88ff);
+  color: #07111a;
+  box-shadow: 0 6px 24px rgba(74,136,255,.22);
+}
+
+.home-upgrade-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(103,217,255,.35), 0 10px 32px rgba(74,136,255,.28);
+}
+
+.home-upgrade-btn-secondary {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #dde7fb;
+}
+
+.home-upgrade-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.10);
+}
+
+/* ── Signal feed — structured rows with "ago" time ── */
+.home-signal-body { flex: 1; min-width: 0; }
+
+.home-signal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.home-signal-ago {
+  font-size: 11px;
+  color: #4d6580;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Battle feed — timestamp pill ── */
+.spill-ts {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: .10em;
+  color: #3d5265;
+  font-variant-numeric: tabular-nums;
+}
+
+.spill-system-label {
+  font-size: 10px;
+  letter-spacing: .20em;
+  color: #b87a00;
+  font-weight: 700;
+}
+
+/* ── Nav — subtler active state, cleaner weight ── */
+.nav-links a.active {
+  color: #fff;
+  background: rgba(255,255,255,.07);
+}
+
+/* ── Typography — tighter tracking on h2/h3 for cards ── */
+.home-platform-card h3 {
+  font-size: 22px !important;
+  letter-spacing: -.02em !important;
+}
+
+/* ── Footer — stronger brand signature ── */
+.footer-tagline {
+  font-size: 10px !important;
+  letter-spacing: .22em !important;
+  color: rgba(103,217,255,.45) !important;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .home-hero-copy h1 { font-size: 44px !important; }
+  .home-upgrade-strip { flex-direction: column; }
+  .home-trust-item { font-size: 12px; padding: 14px 18px; }
 }
