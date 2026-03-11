@@ -29,6 +29,46 @@ function renderHomeSignal() {
   `).join("");
 }
 
+/** Waitlist form — stores emails to localStorage and shows confirmation */
+function initWaitlistForm() {
+  const form = document.getElementById("atlasWaitlistForm");
+  const msgEl = document.getElementById("waitlistMsg");
+  if (!form || !msgEl) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const emailInput = document.getElementById("waitlistEmail");
+    if (!emailInput) return;
+
+    const email = emailInput.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      msgEl.textContent = "Please enter a valid email address.";
+      msgEl.className = "waitlist-disclaimer error";
+      return;
+    }
+
+    // Store locally (no server endpoint yet — future integration hook)
+    try {
+      const list = JSON.parse(localStorage.getItem("atlasWaitlist") || "[]");
+      if (!list.includes(email)) {
+        list.push(email);
+        localStorage.setItem("atlasWaitlist", JSON.stringify(list));
+      }
+    } catch (_) { /* storage unavailable */ }
+
+    // Success state
+    emailInput.value = "";
+    emailInput.disabled = true;
+    form.querySelector(".waitlist-btn").disabled = true;
+    form.querySelector(".waitlist-btn").textContent = "You're in ✓";
+    msgEl.textContent = "You're on the list. We'll reach out when Signal+ opens.";
+    msgEl.className = "waitlist-disclaimer success";
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderHomeSignal();
+  initWaitlistForm();
 });
