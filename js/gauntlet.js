@@ -133,6 +133,12 @@ function tickTimer() {
       block.classList.remove("gauntlet-timer-urgent");
     }
   }
+
+  // Update match phase based on timer position
+  const ratio = timerSeconds / ROUND_DURATION;
+  const phase = ratio > 0.66 ? "Opening" : ratio > 0.33 ? "Mid-Round" : "Final Phase";
+  const phaseEl = document.getElementById("gauntletPhase");
+  if (phaseEl) phaseEl.textContent = phase;
 }
 
 function cycleCategory() {
@@ -178,6 +184,13 @@ function updateScores() {
   const total = scoreLeft + scoreRight || 1;
   const pct = Math.round((scoreLeft / total) * 100);
   document.getElementById("gauntletMomentumFill").style.width = pct + "%";
+}
+
+function updateMomentumLabels() {
+  const leftLabel = document.getElementById("gauntletMomentumLeft");
+  const rightLabel = document.getElementById("gauntletMomentumRight");
+  if (leftLabel && leftFighter) leftLabel.textContent = leftFighter.style;
+  if (rightLabel && rightFighter) rightLabel.textContent = rightFighter.style;
 }
 
 function castVote(side) {
@@ -259,10 +272,21 @@ function initRound() {
   document.getElementById("gauntletSignalQuality").textContent = "High";
 }
 
+/** Simulate ambient crowd voting to keep the score display alive */
+function driftScores() {
+  if (Math.random() < 0.55) {
+    if (Math.random() < 0.5) scoreLeft++;
+    else scoreRight++;
+    totalVotes++;
+    updateScores();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   pickFighters();
   renderFighter("left", leftFighter);
   renderFighter("right", rightFighter);
+  updateMomentumLabels();
   initRound();
   updateHeat();
 
@@ -276,6 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(tickFeed, 3800);
   setInterval(tickTimer, 1000);
+  setInterval(driftScores, 7200);
 
   // Wire vote buttons via addEventListener (no inline handlers)
   const voteLeft = document.getElementById("voteLeft");

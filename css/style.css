@@ -6270,3 +6270,243 @@ min-height:420px;
     border-radius:13px;
   }
 }
+
+/* ===== ATLAS 33 — GAUNTLET FORGE ENGINE ===== */
+
+/* Atmospheric arena mesh overlay */
+.gauntlet-arena-mesh{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.055;
+  background:
+    linear-gradient(rgba(103,217,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103,217,255,.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  animation:meshDrift 50s linear infinite;
+}
+
+@keyframes meshDrift{
+  0%{background-position:0 0,0 0}
+  100%{background-position:64px 64px,64px 64px}
+}
+
+/* Stage floats above mesh */
+.gauntlet-live-page .desktop-stage{
+  position:relative;
+  z-index:1;
+}
+
+/* Hero glow overlay — bilateral energy feel */
+.gauntlet-hero-glow{
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(ellipse at 26% 50%, rgba(255,111,141,.09), transparent 54%),
+    radial-gradient(ellipse at 74% 50%, rgba(103,217,255,.09), transparent 54%);
+}
+
+.arena-hero-panel-restore .arena-hero-copy,
+.arena-hero-panel-restore .arena-hero-mark-restore{
+  position:relative;
+  z-index:1;
+}
+
+/* "Built Different" brand signature */
+.arena-built-different{
+  margin:14px 0 0;
+  font-size:11px;
+  letter-spacing:.28em;
+  color:rgba(255,255,255,.13);
+  font-weight:700;
+}
+
+/* Fighter accent bars — color-coded top edge */
+.fighter-accent-bar{
+  position:absolute;
+  top:0;
+  left:16px;
+  right:16px;
+  height:2px;
+  border-radius:0 0 999px 999px;
+}
+
+.fighter-left-card .fighter-accent-bar{
+  background:linear-gradient(90deg, transparent, rgba(255,111,141,.85), transparent);
+}
+
+.fighter-right-card .fighter-accent-bar{
+  background:linear-gradient(90deg, transparent, rgba(103,217,255,.85), transparent);
+}
+
+/* Fighter card hover — color-tinted elevation */
+.arena-fighter-card{
+  transition:box-shadow .26s ease, border-color .26s ease;
+}
+
+.fighter-left-card:hover{
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.30),
+    0 0 44px rgba(255,111,141,.17);
+  border-color:rgba(255,111,141,.22);
+}
+
+.fighter-right-card:hover{
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.30),
+    0 0 44px rgba(103,217,255,.17);
+  border-color:rgba(103,217,255,.22);
+}
+
+/* Vote button hover states */
+.arena-vote-btn{
+  transition:transform .18s ease, box-shadow .18s ease;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+.arena-vote-left:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 32px rgba(255,111,141,.38),0 8px 24px rgba(200,80,100,.22);
+}
+
+.arena-vote-right:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 32px rgba(103,217,255,.38),0 8px 24px rgba(100,180,255,.22);
+}
+
+/* Center column — heightened atmospheric glow */
+.arena-center-column{
+  box-shadow:
+    0 22px 72px rgba(0,0,0,.30),
+    0 0 50px rgba(103,217,255,.09),
+    0 0 90px rgba(103,217,255,.05);
+}
+
+/* Engine status indicator row */
+.gauntlet-engine-status{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:7px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.02);
+  font-size:10px;
+  letter-spacing:.22em;
+  color:#3d5470;
+}
+
+.gauntlet-engine-dot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#45e38e;
+  box-shadow:0 0 7px #45e38e;
+  animation:livePulse 1.5s infinite;
+  flex-shrink:0;
+}
+
+/* Spark orbit ring inside conflict core */
+.conflict-spark-ring{
+  position:absolute;
+  inset:52px;
+  border-radius:50%;
+  border:1px solid transparent;
+  animation:spinB 20s linear infinite reverse;
+}
+
+.conflict-spark-ring::before,
+.conflict-spark-ring::after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  top:50%;
+  margin-top:-3.5px;
+}
+
+.conflict-spark-ring::before{
+  left:-3.5px;
+  background:#ff8fab;
+  box-shadow:0 0 10px #ff8fab,0 0 22px rgba(255,111,141,.45);
+}
+
+.conflict-spark-ring::after{
+  right:-3.5px;
+  background:#7dd8ff;
+  box-shadow:0 0 10px #7dd8ff,0 0 22px rgba(103,217,255,.45);
+}
+
+/* Vertical scan line through the conflict core */
+.conflict-scan-bar{
+  position:absolute;
+  left:12%;
+  right:12%;
+  height:1px;
+  border-radius:999px;
+  background:linear-gradient(90deg, transparent, rgba(103,217,255,.55), rgba(255,111,141,.55), transparent);
+  top:10%;
+  z-index:4;
+  animation:conflictScan 3.6s ease-in-out infinite;
+}
+
+@keyframes conflictScan{
+  0%{top:10%;opacity:0}
+  15%{opacity:.85}
+  85%{opacity:.85}
+  100%{top:90%;opacity:0}
+}
+
+/* Core glow breath */
+.conflict-core-glow{
+  animation:coreBreath 4.4s ease-in-out infinite;
+}
+
+@keyframes coreBreath{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.24)}
+}
+
+/* Conflict engine label — upgraded hierarchy */
+.conflict-label{
+  font-size:11px !important;
+  letter-spacing:.30em !important;
+  text-align:center;
+  line-height:1.7;
+  text-shadow:
+    0 0 20px rgba(255,255,255,.45),
+    0 0 40px rgba(103,217,255,.26) !important;
+}
+
+/* Momentum labels row */
+.gauntlet-momentum-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  letter-spacing:.14em;
+  color:#4d6580;
+  padding:0 2px;
+  margin-bottom:6px;
+}
+
+.gauntlet-momentum-label-left{
+  color:rgba(255,157,181,.70);
+}
+
+.gauntlet-momentum-label-right{
+  color:rgba(143,224,255,.70);
+}
+
+/* Responsive: enforce 3-col at mid-range screens before the 900px mobile collapse */
+@media (min-width:901px){
+  .arena-stage-grid-restore{
+    grid-template-columns:minmax(280px,1fr) 310px minmax(280px,1fr) !important;
+  }
+}

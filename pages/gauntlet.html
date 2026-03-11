@@ -7,10 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css?v=atlas31">
+<link rel="stylesheet" href="../css/style.css?v=atlas33">
 </head>
 <body>
 <div class="site-shell gauntlet-live-page">
+  <div class="gauntlet-arena-mesh" aria-hidden="true"></div>
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="../index.html">
@@ -43,6 +44,7 @@
     </section>
 
     <section class="arena-hero-panel arena-hero-panel-restore">
+      <div class="gauntlet-hero-glow" aria-hidden="true"></div>
       <div class="arena-hero-copy">
         <div class="hero-badges">
           <span class="badge-pill">ATLAS GAUNTLET</span>
@@ -56,6 +58,7 @@
           is a signal test — clarity versus ambiguity, precision versus creative spread.
           The engine scores momentum, crowd heat, and response quality in real time.
         </p>
+        <p class="arena-built-different">BUILT DIFFERENT</p>
 
         <div class="arena-top-stats">
           <div class="forum-stat">
@@ -91,6 +94,7 @@
 
       <!-- LEFT COMPETITOR -->
       <div class="arena-fighter-card fighter-left-card" id="leftFighter">
+        <div class="fighter-accent-bar" aria-hidden="true"></div>
         <div class="fighter-card-top">
           <span class="lane-pill" id="leftLane">LEFT SIGNAL</span>
           <span class="style-pill" id="leftStyle">PRECISION</span>
@@ -143,16 +147,23 @@
             <span id="gauntletCategory">LOGIC BATTLE</span>
           </div>
 
+          <div class="gauntlet-engine-status" id="gauntletEngineStatus">
+            <span class="gauntlet-engine-dot" aria-hidden="true"></span>
+            <span>CONFLICT ENGINE ACTIVE</span>
+          </div>
+
           <div class="conflict-core">
             <div class="conflict-outer-ring"></div>
             <div class="conflict-mid-ring"></div>
             <div class="conflict-inner-ring"></div>
+            <div class="conflict-spark-ring" aria-hidden="true"></div>
             <div class="conflict-core-glow"></div>
+            <div class="conflict-scan-bar" aria-hidden="true"></div>
             <div class="conflict-beam"></div>
             <div class="conflict-beam-blur"></div>
             <div class="conflict-side-indicator conflict-side-left"></div>
             <div class="conflict-side-indicator conflict-side-right"></div>
-            <span class="conflict-label">SIGNAL<br>CORE</span>
+            <span class="conflict-label">CONFLICT<br>ENGINE</span>
           </div>
 
           <div class="gauntlet-timer" id="gauntletTimerBlock">
@@ -167,6 +178,10 @@
           </div>
 
           <div class="gauntlet-momentum-wrap">
+            <div class="gauntlet-momentum-labels">
+              <span class="gauntlet-momentum-label-left" id="gauntletMomentumLeft">LEFT</span>
+              <span class="gauntlet-momentum-label-right" id="gauntletMomentumRight">RIGHT</span>
+            </div>
             <div class="arena-momentum-bar">
               <span class="arena-momentum-fill" id="gauntletMomentumFill" style="width:50%"></span>
             </div>
@@ -195,6 +210,7 @@
 
       <!-- RIGHT COMPETITOR -->
       <div class="arena-fighter-card fighter-right-card" id="rightFighter">
+        <div class="fighter-accent-bar" aria-hidden="true"></div>
         <div class="fighter-card-top">
           <span class="style-pill" id="rightStyle">FRONTIER</span>
           <span class="lane-pill" id="rightLane">RIGHT SIGNAL</span>
@@ -290,7 +306,7 @@
   </footer>
 </div>
 
-<script src="../js/ui.js?v=atlas31"></script>
-<script src="../js/gauntlet.js?v=atlas31"></script>
+<script src="../js/ui.js?v=atlas33"></script>
+<script src="../js/gauntlet.js?v=atlas33"></script>
 </body>
 </html>
