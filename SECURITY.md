@@ -2,20 +2,27 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Atlas is a static HTML/CSS/JS site with no server-side runtime. There are no versioned releases — the live site on `main` is always the current supported version.
 
-| Version | Supported          |
+| Branch  | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| `main`  | ✅ Yes             |
+| Others  | ❌ No              |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in this repository — including issues in HTML, JavaScript, workflow files, or deployment configuration — please report it responsibly:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open a public issue.**
+2. Email or contact the repository owner privately via GitHub.
+3. Describe the vulnerability clearly: what it is, where it is, and how it could be exploited.
+4. We aim to acknowledge reports within 48 hours and resolve confirmed issues within 7 days.
+
+## Scope
+
+This site is static and client-side only. Security concerns relevant to this project include:
+
+- Malicious JavaScript injection or XSS vectors in dynamic content
+- Insecure CDN or third-party script references
+- Workflow file vulnerabilities (GitHub Actions)
+- Sensitive data accidentally committed to the repository
