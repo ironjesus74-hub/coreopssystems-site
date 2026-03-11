@@ -6541,3 +6541,194 @@ min-height:420px;
     grid-template-columns:minmax(280px,1fr) 310px minmax(280px,1fr) !important;
   }
 }
+
+/* ===== ATLAS 34 — SIGNAL CORE ICON SYSTEM ===== */
+
+/*
+  Atlas Signal Core — the primary arena battle mark.
+  Visual language: two signal arms (left=coral, right=cyan) converge
+  at an apex burst, forming the Atlas "A" collision symbol.
+  Used in: Gauntlet hero, favicon, brand system.
+*/
+
+/* ── Wrapper ── */
+.atlas-signal-core{
+  position:relative;
+  width:300px;
+  height:300px;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  animation:ascFloat 5.4s ease-in-out infinite;
+}
+
+/* Centre atmospheric glow behind the SVG */
+.atlas-signal-core::before{
+  content:"";
+  position:absolute;
+  inset:30px;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 30% 80%, rgba(255,111,141,.07), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(103,217,255,.07), transparent 55%),
+    radial-gradient(ellipse at 50% 20%, rgba(181,109,255,.10), transparent 45%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* The SVG itself */
+.atlas-signal-core-svg{
+  width:100%;
+  height:100%;
+  display:block;
+  position:relative;
+  z-index:1;
+  overflow:visible;
+}
+
+/* ── Outer ring slow spin ── */
+.atlas-signal-core-svg .asc-ring-outer{
+  transform-origin:100px 100px;
+  animation:ascRingSpin 28s linear infinite;
+}
+
+/* ── Dashed ring counter-spin ── */
+.atlas-signal-core-svg .asc-ring-dash{
+  transform-origin:100px 100px;
+  animation:ascRingSpinRev 40s linear infinite;
+}
+
+/* ── Left arm breathe (coral glow pulse) ── */
+.atlas-signal-core-svg .asc-arm-left{
+  animation:ascArmGlowL 3.8s ease-in-out infinite;
+}
+
+/* ── Right arm breathe (cyan glow pulse) ── */
+.atlas-signal-core-svg .asc-arm-right{
+  animation:ascArmGlowR 3.8s ease-in-out infinite 1.4s;
+}
+
+/* ── Crossbar shimmer ── */
+.atlas-signal-core-svg .asc-bar{
+  animation:ascBarShimmer 2.6s ease-in-out infinite;
+}
+
+/* ── Apex core pulse ── */
+.atlas-signal-core-svg .asc-apex-core{
+  transform-origin:100px 22px;
+  animation:ascApexPulse 2.2s ease-in-out infinite;
+}
+
+/* ── Apex halo throb ── */
+.atlas-signal-core-svg .asc-apex-halo{
+  transform-origin:100px 22px;
+  animation:ascApexHalo 2.2s ease-in-out infinite;
+}
+
+/* ── Base orb pulse ── */
+.atlas-signal-core-svg .asc-base-left{
+  transform-origin:22px 180px;
+  animation:ascBaseOrb 4.4s ease-in-out infinite;
+}
+
+.atlas-signal-core-svg .asc-base-right{
+  transform-origin:178px 180px;
+  animation:ascBaseOrb 4.4s ease-in-out infinite 2.2s;
+}
+
+/* ── Keyframes ── */
+
+@keyframes ascFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+
+@keyframes ascRingSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes ascRingSpinRev{
+  from{transform:rotate(360deg)}
+  to{transform:rotate(0deg)}
+}
+
+@keyframes ascArmGlowL{
+  0%,100%{
+    stroke:#ff6b8a;
+    filter:drop-shadow(0 0 3px rgba(255,107,138,.55));
+  }
+  50%{
+    stroke:#ff8fab;
+    filter:drop-shadow(0 0 8px rgba(255,107,138,.85));
+  }
+}
+
+@keyframes ascArmGlowR{
+  0%,100%{
+    stroke:#67d9ff;
+    filter:drop-shadow(0 0 3px rgba(103,217,255,.55));
+  }
+  50%{
+    stroke:#9de8ff;
+    filter:drop-shadow(0 0 8px rgba(103,217,255,.85));
+  }
+}
+
+@keyframes ascBarShimmer{
+  0%,100%{stroke:rgba(181,109,255,.70)}
+  50%{stroke:rgba(210,150,255,.95);filter:drop-shadow(0 0 5px rgba(181,109,255,.70))}
+}
+
+@keyframes ascApexPulse{
+  0%,100%{r:4.5;opacity:.95}
+  50%{r:5.5;opacity:1;filter:drop-shadow(0 0 8px rgba(255,255,255,.90))}
+}
+
+@keyframes ascApexHalo{
+  0%,100%{r:18;opacity:.70}
+  50%{r:22;opacity:.90}
+}
+
+@keyframes ascBaseOrb{
+  0%,100%{opacity:.80;r:5.5}
+  50%{opacity:1;r:7}
+}
+
+/* ── Responsive — scale down on narrow screens ── */
+@media (max-width:900px){
+  .atlas-signal-core{
+    width:220px;
+    height:220px;
+  }
+}
+
+@media (max-width:600px){
+  .atlas-signal-core{
+    width:160px;
+    height:160px;
+  }
+}
+
+/* ── Reusable mini brand mark (nav / loading / social) ── */
+.atlas-mark-mini{
+  display:inline-block;
+  width:28px;
+  height:28px;
+  vertical-align:middle;
+}
+
+/* ── Conflict label upgrade — use Atlas glyph ── */
+.conflict-label-mark{
+  font-size:22px;
+  line-height:1;
+  letter-spacing:0;
+  font-weight:900;
+  color:rgba(255,255,255,.80);
+  text-shadow:
+    0 0 14px rgba(181,109,255,.60),
+    0 0 30px rgba(103,217,255,.30);
+  display:block;
+  text-align:center;
+  margin-bottom:4px;
+}
