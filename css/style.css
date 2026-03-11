@@ -6557,7 +6557,7 @@ min-height:420px;
   border:1px solid rgba(255,255,255,.06);
   font-size:12px;
   letter-spacing:.06em;
-  color:#7b96b8;
+  color:var(--muted);
 }
 
 .trust-bar-item{
