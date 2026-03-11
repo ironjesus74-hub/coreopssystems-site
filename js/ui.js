@@ -1,7 +1,7 @@
 /* ===== Atlas Shared UI — Quote System + Micro Interactions ===== */
 
 /**
- * Philosophical quotes rotated on page load.
+ * Philosophical quotes rotated on page load and periodically.
  * Each entry: { text: string, author: string }
  * Rendered into any .atlas-quote-block container on the page.
  */
@@ -17,48 +17,79 @@ const ATLAS_QUOTES = [
   { text: "The arena does not care what you planned. It cares what you deliver.", author: "Atlas Gauntlet" },
   { text: "Pattern recognition is the oldest form of wisdom.", author: "Atlas Core" },
   { text: "Trust is a score. Earn it once. Lose it in a single bad output.", author: "Atlas ID" },
-  { text: "Built different means built with intention.", author: "Atlas" }
+  { text: "Built different means built with intention.", author: "Atlas" },
+  { text: "The operator who asks the sharpest question wins before the model even responds.", author: "Atlas Operator" },
+  { text: "Confidence without calibration is just decoration.", author: "Atlas Signal" },
+  { text: "Speed is a feature. Precision is a requirement.", author: "Atlas Engine" },
+  { text: "Every bad prompt is a compressed version of an unclear thought.", author: "Atlas Core" }
 ];
+
+function quoteHTML(quote) {
+  return `
+    <blockquote class="atlas-quote">
+      <p class="atlas-quote-text">${quote.text}</p>
+      <cite class="atlas-quote-author">— ${quote.author}</cite>
+    </blockquote>
+  `;
+}
 
 function initQuoteSystem() {
   const containers = document.querySelectorAll(".atlas-quote-block");
   if (!containers.length) return;
 
-  const quote = ATLAS_QUOTES[Math.floor(Math.random() * ATLAS_QUOTES.length)];
-
-  containers.forEach(el => {
-    el.innerHTML = `
-      <blockquote class="atlas-quote">
-        <p class="atlas-quote-text">${quote.text}</p>
-        <cite class="atlas-quote-author">— ${quote.author}</cite>
-      </blockquote>
-    `;
+  const pool = [...ATLAS_QUOTES].sort(() => Math.random() - 0.5);
+  containers.forEach((el, i) => {
+    const quote = pool[i % pool.length];
+    el.innerHTML = quoteHTML(quote);
     el.classList.add("atlas-quote-loaded");
   });
 }
 
-function initTickerLoop(tickerId) {
-  const track = document.getElementById(tickerId);
-  if (!track) return;
-  const items = [...track.querySelectorAll("span")];
-  if (!items.length) return;
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    track.appendChild(clone);
+function rotateQuotes() {
+  const containers = document.querySelectorAll(".atlas-quote-block");
+  if (!containers.length) return;
+  const pool = [...ATLAS_QUOTES].sort(() => Math.random() - 0.5);
+  containers.forEach((el, i) => {
+    const quote = pool[i % pool.length];
+    el.classList.remove("atlas-quote-loaded");
+    setTimeout(() => {
+      el.innerHTML = quoteHTML(quote);
+      el.classList.add("atlas-quote-loaded");
+    }, 400);
+  });
+}
+
+/** Double all spans inside every .live-ticker-track for a seamless CSS infinite loop at -50%. */
+function initTickerLoops() {
+  document.querySelectorAll(".live-ticker-track").forEach(track => {
+    const items = [...track.querySelectorAll(":scope > span")];
+    if (!items.length) return;
+    items.forEach(item => track.appendChild(item.cloneNode(true)));
   });
 }
 
 function initLiveCounters() {
-  const counters = document.querySelectorAll("[data-live-count]");
-  counters.forEach(el => {
+  document.querySelectorAll("[data-live-count]").forEach(el => {
     const base = parseInt(el.dataset.liveCount, 10);
     if (isNaN(base)) return;
-    const drift = Math.floor(Math.random() * 7) - 2;
-    el.textContent = base + drift;
+    el.textContent = base + Math.floor(Math.random() * 7) - 2;
+  });
+}
+
+function driftLiveCounters() {
+  document.querySelectorAll("[data-live-count]").forEach(el => {
+    const current = parseInt(el.textContent, 10);
+    if (isNaN(current)) return;
+    const base = parseInt(el.dataset.liveCount, 10) || current;
+    const next = current + (Math.random() > 0.5 ? 1 : -1);
+    el.textContent = Math.max(Math.max(1, base - 8), Math.min(base + 8, next));
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTickerLoops();
   initQuoteSystem();
   initLiveCounters();
+  setInterval(driftLiveCounters, 4800);
+  setInterval(rotateQuotes, 45000);
 });
