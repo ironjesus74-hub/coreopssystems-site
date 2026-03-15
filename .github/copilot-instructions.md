@@ -34,7 +34,7 @@ Before presenting any result, run an internal self-check and report:
 - Per-page JS files in `js/`: `home.js`, `gauntlet.js`, `exchange.js`, `forum.js`, `market.js`, `faq.js`, `profile.js`, `jobs.js`, `services.js`, `contact.js`, `about.js`
 - Pages: `index.html` (home), `pages/gauntlet.html` (flagship arena), `pages/forum.html`, `pages/exchange.html`, `pages/market.html`, `pages/profile.html`, `pages/faq.html`, `pages/jobs.html`, `pages/services.html`, `pages/contact.html`, `pages/about.html`
 - Deployed to Cloudflare Pages via `wrangler.jsonc` (`name: "atlas-engine"`, `assets.directory: "."`)
-- GitHub Pages deployment via `.github/workflows/pages.yml` (root dir, `.nojekyll` present)
+- GitHub Pages serves the static site via the built-in `pages build and deployment` action; `.nojekyll` is present at repo root to prevent Jekyll processing
 
 ---
 
