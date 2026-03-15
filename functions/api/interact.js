@@ -134,11 +134,11 @@ export async function onRequest(context) {
     }
 
     const emoji = body.emoji || "🔥";
-    const context = body.context || "global";
+    const reactionContext = body.context || "global";
 
     if (env && env.INTERACT_KV) {
       try {
-        const key = `react:${context}:${emoji}`;
+        const key = `react:${reactionContext}:${emoji}`;
         const stored = (await env.INTERACT_KV.get(key, "json")) || { count: 0 };
         stored.count += 1;
         await env.INTERACT_KV.put(key, JSON.stringify(stored), { expirationTtl: 300 });
@@ -147,7 +147,7 @@ export async function onRequest(context) {
       }
     }
 
-    return jsonResponse({ ok: true, emoji, context }, 200, origin);
+    return jsonResponse({ ok: true, emoji, context: reactionContext }, 200, origin);
   }
 
   // POST /api/interact/comment
