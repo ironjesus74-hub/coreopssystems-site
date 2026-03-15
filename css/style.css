@@ -8631,13 +8631,13 @@ body::before {
 /* Backdrop blur on capable browsers */
 @supports (backdrop-filter:blur(12px)){
   .atlas-assist-panel{
-    background:rgba(22,24,30,.92);
+    background:var(--panel);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
   }
 }
 
-/* Typing indicator inherits atlas-msg-atlas style — inline, left-aligned */
+/* Typing indicator: bubble corners consistent with atlas-msg-atlas. */
 .atlas-msg-typing{
   border-radius:12px 12px 4px 12px;
 }
@@ -8645,17 +8645,4 @@ body::before {
 /* Status "Thinking…" color cue */
 .atlas-assist-status.is-thinking{
   color:var(--blue);
-}
-
-/* Message entrance animation tuned */
-@keyframes msgIn{
-  from{opacity:0;transform:translateY(6px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* Mobile: keep original width */
-@media (max-width:600px){
-  .atlas-assist-panel{
-    width:auto;
-  }
 }

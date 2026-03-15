@@ -1,5 +1,14 @@
 {
   // See https://developers.cloudflare.com/workers/wrangler/configuration/ for full schema.
+  //
+  // ── Deployment model ──────────────────────────────────────────────────────
+  // This site deploys exclusively via Cloudflare Pages (git integration).
+  // Connect the repo in the Cloudflare dashboard → Pages → Create project →
+  // Connect to Git → select this repo.  No CI workflow is needed — Cloudflare
+  // builds and deploys automatically on every push to the production branch.
+  //
+  // Functions under functions/api/ are served as Cloudflare Pages Functions
+  // at /api/* routes.  They require KV namespaces and the AI binding below.
   "name": "atlas-engine",
   "compatibility_date": "2025-09-27",
   "observability": {
