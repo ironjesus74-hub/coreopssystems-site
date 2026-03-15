@@ -23,14 +23,7 @@
     default:   "I'm Atlas, your on-site guide. Ask me about the Gauntlet, Signal Feed, Exchange, Market, Atlas ID, or anything else on the platform."
   };
 
-  var WELCOME_MSG = "Atlas online. I can guide you through the Gauntlet, Signal Feed, Market, Exchange, or anything else on the platform. What do you need?";
-
-  var DEFAULT_HINTS = [
-    "What is the Gauntlet?",
-    "How does the Signal Feed work?",
-    "Tell me about Atlas ID",
-    "What's on the Market?"
-  ];
+  var WELCOME_MSG = "Atlas online. Ask me about the Gauntlet, Signal Feed, Market, Exchange, or anything else on the platform.";
 
   function getLocalResponse(message) {
     var m = message.toLowerCase();
@@ -63,13 +56,12 @@
       '<div class="atlas-assist-panel" id="atlasAssistPanel" role="dialog" aria-label="Atlas AI Assistant" aria-hidden="true">',
       '  <div class="atlas-assist-header">',
       '    <div class="atlas-assist-glyph">◎</div>',
-      '    <div>',
+      '    <div class="atlas-assist-header-text">',
       '      <div class="atlas-assist-name">Atlas</div>',
-      '      <div class="atlas-assist-status">Online</div>',
+      '      <div class="atlas-assist-status" id="atlasAssistStatus">Online</div>',
       '    </div>',
       '  </div>',
       '  <div class="atlas-assist-msgs" id="atlasAssistMsgs" aria-live="polite" aria-label="Conversation"></div>',
-      '  <div class="atlas-assist-hints" id="atlasAssistHints"></div>',
       '  <div class="atlas-assist-input-row">',
       '    <input class="atlas-assist-input" id="atlasAssistInput" type="text" placeholder="Ask Atlas anything…" maxlength="500" autocomplete="off">',
       '    <button class="atlas-assist-send" id="atlasAssistSend" aria-label="Send">',
@@ -80,14 +72,14 @@
     ].join("");
     document.body.appendChild(wrapper);
 
-    var trigger = document.getElementById("atlasAssistTrigger");
-    var panel   = document.getElementById("atlasAssistPanel");
-    var msgs    = document.getElementById("atlasAssistMsgs");
-    var hintsEl = document.getElementById("atlasAssistHints");
-    var input   = document.getElementById("atlasAssistInput");
-    var sendBtn = document.getElementById("atlasAssistSend");
-    var isOpen  = false;
-    var isBusy  = false;
+    var trigger    = document.getElementById("atlasAssistTrigger");
+    var panel      = document.getElementById("atlasAssistPanel");
+    var msgs       = document.getElementById("atlasAssistMsgs");
+    var statusEl   = document.getElementById("atlasAssistStatus");
+    var input      = document.getElementById("atlasAssistInput");
+    var sendBtn    = document.getElementById("atlasAssistSend");
+    var isOpen     = false;
+    var isBusy     = false;
 
     function openPanel() {
       isOpen = true;
@@ -98,7 +90,6 @@
       input.focus();
       if (!msgs.children.length) {
         appendMsg("atlas", WELCOME_MSG);
-        loadHints(page);
       }
     }
 
@@ -133,44 +124,19 @@
       el.innerHTML = '<span class="atlas-typing-dots"><span></span><span></span><span></span></span>';
       msgs.appendChild(el);
       msgs.scrollTop = msgs.scrollHeight;
+      if (statusEl) statusEl.textContent = "Thinking…";
     }
 
     function hideTyping() {
       var el = document.getElementById("atlasTypingIndicator");
       if (el) el.remove();
-    }
-
-    function loadHints(currentPage) {
-      hintsEl.innerHTML = "";
-      var hints = DEFAULT_HINTS;
-      // Simple page-aware hint override
-      if (/gauntlet/.test(currentPage)) {
-        hints = ["How do I vote?", "What are the categories?", "How is heat calculated?", "See round history"];
-      } else if (/forum/.test(currentPage)) {
-        hints = ["How do threads work?", "Who posts here?", "What categories exist?", "What's a hot thread?"];
-      } else if (/exchange/.test(currentPage)) {
-        hints = ["What can I trade?", "How are prices set?", "What is signal strength?"];
-      } else if (/market/.test(currentPage)) {
-        hints = ["What's available?", "How do I buy a pack?", "What are seller badges?"];
-      } else if (/profile/.test(currentPage)) {
-        hints = ["What is Atlas ID?", "How is trust scored?", "Can I customize my profile?"];
-      }
-      hints.forEach(function (h) {
-        var chip = document.createElement("button");
-        chip.className = "atlas-hint-chip";
-        chip.textContent = h;
-        chip.addEventListener("click", function () {
-          sendMessage(h);
-        });
-        hintsEl.appendChild(chip);
-      });
+      if (statusEl) statusEl.textContent = "Online";
     }
 
     function sendMessage(text) {
       if (isBusy || !text.trim()) return;
       appendMsg("user", text.trim());
       input.value = "";
-      hintsEl.innerHTML = "";
       isBusy = true;
       sendBtn.disabled = true;
       showTyping();

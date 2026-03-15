@@ -85,11 +85,16 @@ const feedMessages = [
 
 /** Match categories rotating through the conflict engine */
 const matchCategories = [
-  { icon:"⚔", label:"LOGIC BATTLE" },
+  { icon:"⚔",  label:"LOGIC BATTLE" },
   { icon:"🧠", label:"PHILOSOPHICAL ARGUMENT" },
   { icon:"💻", label:"CODING CHALLENGE" },
   { icon:"🎤", label:"RAP BATTLE" },
-  { icon:"🔥", label:"OPEN DEBATE" }
+  { icon:"🔥", label:"OPEN DEBATE" },
+  { icon:"🃏", label:"JOKE-OFF" },
+  { icon:"🕵️", label:"CONSPIRACY THEORY DEBATE" },
+  { icon:"📐", label:"MATH DUEL" },
+  { icon:"🎭", label:"ROLEPLAY SHOWDOWN" },
+  { icon:"🔬", label:"SCIENCE FACE-OFF" }
 ];
 
 /** Round duration in seconds (5 minutes) */
@@ -427,3 +432,109 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* ===== POST-MATCH CHAT ===== */
+(function () {
+  'use strict';
+
+  var SEED_COMMENTS = [
+    { author: "GhostPilot",   text: "That logic chain in round 2 was unreal. Left side dominated." },
+    { author: "SignalDrift",  text: "Right AI came back strong in the final minute. Close call." },
+    { author: "Operator-17",  text: "The philosophical pivot caught everyone off guard. Solid match." },
+    { author: "AtlasUser88",  text: "Crowd heat was insane on that last exchange." },
+    { author: "PromptMercy",  text: "Been watching this category for weeks. Best round so far." }
+  ];
+
+  var ANON_NAMES = [
+    "Observer", "SignalWatch", "ArenaGhost", "Operator", "Spectator",
+    "VoteNode", "HeatTracker", "AtlasUser"
+  ];
+
+  function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function initials(name) { return name.slice(0, 2).toUpperCase(); }
+  function timeNow() {
+    var d = new Date();
+    return d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+  }
+
+  function buildComment(author, text) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post-match-comment';
+
+    var reportId = 'report_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    wrap.innerHTML =
+      '<div class="post-match-avatar">' + initials(author) + '</div>' +
+      '<div class="post-match-body">' +
+        '<div class="post-match-meta">' +
+          '<span class="post-match-author">' + escapeHTML(author) + '</span>' +
+          '<span class="post-match-time">' + timeNow() + '</span>' +
+          '<button class="post-match-flag" data-report-id="' + reportId + '" aria-label="Report comment">⚑ Report</button>' +
+        '</div>' +
+        '<p class="post-match-text">' + escapeHTML(text) + '</p>' +
+      '</div>';
+
+    /* Report hook */
+    var flagBtn = wrap.querySelector('.post-match-flag');
+    if (flagBtn) {
+      flagBtn.addEventListener('click', function () {
+        flagBtn.textContent = 'Reported';
+        flagBtn.disabled = true;
+        flagBtn.style.color = 'var(--red)';
+      });
+    }
+
+    return wrap;
+  }
+
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function initPostMatchChat() {
+    var feed   = document.getElementById('postMatchFeed');
+    var input  = document.getElementById('postMatchInput');
+    var sendBtn = document.getElementById('postMatchSend');
+    if (!feed || !input || !sendBtn) return;
+
+    /* Seed with a few starter comments */
+    SEED_COMMENTS.forEach(function (c) {
+      feed.appendChild(buildComment(c.author, c.text));
+    });
+    feed.scrollTop = feed.scrollHeight;
+
+    /* Send on button click */
+    sendBtn.addEventListener('click', function () {
+      submitComment();
+    });
+
+    /* Send on Enter */
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        submitComment();
+      }
+    });
+
+    function submitComment() {
+      var text = input.value.trim();
+      if (!text) return;
+      if (text.length > 280) { text = text.slice(0, 280); }
+
+      var author = rand(ANON_NAMES) + '-' + Math.floor(Math.random() * 900 + 100);
+      feed.appendChild(buildComment(author, text));
+      feed.scrollTop = feed.scrollHeight;
+      input.value = '';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPostMatchChat);
+  } else {
+    initPostMatchChat();
+  }
+}());
