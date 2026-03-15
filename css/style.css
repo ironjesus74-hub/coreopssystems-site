@@ -8646,3 +8646,70 @@ body::before {
 .atlas-assist-status.is-thinking{
   color:var(--blue);
 }
+
+/* ===== ATLAS 42 — PHASE 2 SITE CLEANUP & AI CHAT POLISH ===== */
+
+/* ── 1. Assistant panel: cleaner shadow and border ── */
+.atlas-assist-panel{
+  box-shadow:0 24px 64px rgba(0,0,0,.70),0 0 0 1px rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.08);
+}
+
+/* ── 2. Header: subtle gradient strip ── */
+.atlas-assist-header{
+  background:linear-gradient(90deg,var(--panel2) 0%,rgba(0,20,60,.95) 100%);
+  border-bottom-color:rgba(255,255,255,.08);
+}
+
+/* ── 3. Input row: cleaner separation ── */
+.atlas-assist-input-row{
+  border-top-color:rgba(255,255,255,.08);
+  background:var(--panel2);
+  padding:10px 12px 14px;
+}
+
+/* ── 4. Atlas message bubble: subtle left accent bar ── */
+.atlas-msg-atlas{
+  border-left:2px solid rgba(0,232,255,.30);
+}
+
+/* ── 5. Typing indicator: matches atlas bubble style ── */
+.atlas-msg-typing{
+  border-left:2px solid rgba(0,232,255,.20);
+}
+
+/* ── 6. Input focus ring: uses brand blue ── */
+.atlas-assist-input:focus{
+  border-color:rgba(0,232,255,.50);
+  box-shadow:0 0 0 3px rgba(0,232,255,.08);
+}
+
+/* ── 7. Send button: consistent brand gradient on hover ── */
+.atlas-assist-send{
+  background:linear-gradient(135deg,var(--blue2) 0%,var(--blue) 100%);
+}
+.atlas-assist-send:hover{
+  background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 100%);
+}
+
+/* ── 8. Thinking status animation: smoother pulse (extends ATLAS 41 color rule) ── */
+.atlas-assist-status.is-thinking{
+  animation:thinkingPulse 1.4s ease-in-out infinite;
+}
+@keyframes thinkingPulse{
+  0%,100%{opacity:1;}
+  50%{opacity:.55;}
+}
+
+/* ── 9. Message area: consistent scrollbar styling ── */
+.atlas-assist-msgs::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.10);
+  border-radius:2px;
+}
+
+/* ── 10. Glyph: brand gradient consistent with trigger ── */
+.atlas-assist-glyph{
+  background:linear-gradient(135deg,var(--blue2) 0%,var(--blue) 100%);
+  font-weight:700;
+  letter-spacing:0;
+}
