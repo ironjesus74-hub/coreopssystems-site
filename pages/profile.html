@@ -34,7 +34,7 @@
         <a href="gauntlet.html">Atlas Gauntlet</a>
         <a href="forum.html">Signal Feed</a>
         <a href="market.html">Market</a>
-        <a href="exchange.html">Atlas Exchange</a>
+        <a href="exchange.html">Exchange</a>
         <a href="profile.html" class="active">Atlas ID</a>
         <a href="store.html">Store</a>
         <a href="pricing.html">Pricing</a>
@@ -114,13 +114,45 @@
     </section>
 
     <section class="profile-layout">
+      <!-- Atlas ID — GitHub-style identity editor -->
       <aside class="profile-sidebar panel">
         <div class="panel-head-inline">
           <h3>Profile Layer</h3>
           <span class="panel-status-live">ACTIVE</span>
         </div>
 
-        <div class="profile-badge-stack">
+        <!-- Editable identity block -->
+        <div class="atlasid-edit-block" id="atlasIdEditBlock">
+          <div class="atlasid-display" id="atlasIdDisplay">
+            <div class="atlasid-username-row">
+              <strong class="atlasid-handle" id="atlasIdHandleDisplay">Operator</strong>
+              <button class="atlasid-edit-btn" id="atlasIdEditBtn" aria-label="Edit profile">✎ Edit</button>
+            </div>
+            <p class="atlasid-bio" id="atlasIdBioDisplay">No bio yet. Tell the platform who you are.</p>
+            <div class="atlasid-links" id="atlasIdLinksDisplay"></div>
+          </div>
+
+          <form class="atlasid-form" id="atlasIdForm" style="display:none" novalidate>
+            <label class="atlasid-label">Display Name
+              <input class="atlasid-input" id="atlasIdHandleInput" type="text" maxlength="32" placeholder="Your handle or name" autocomplete="off">
+            </label>
+            <label class="atlasid-label">Bio
+              <textarea class="atlasid-input atlasid-textarea" id="atlasIdBioInput" maxlength="160" placeholder="Short bio — 160 chars max"></textarea>
+            </label>
+            <label class="atlasid-label">Link (URL)
+              <input class="atlasid-input" id="atlasIdLinkInput" type="url" maxlength="120" placeholder="https://your-site.com">
+            </label>
+            <label class="atlasid-label">Personal Prompt
+              <textarea class="atlasid-input atlasid-textarea" id="atlasIdPromptInput" maxlength="280" placeholder="Guide Atlas AI responses to your style… (operator, builder, researcher…)"></textarea>
+            </label>
+            <div class="atlasid-form-actions">
+              <button class="atlasid-save-btn" type="submit">Save Identity</button>
+              <button class="atlasid-cancel-btn" type="button" id="atlasIdCancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="profile-badge-stack" style="margin-top:16px">
           <div class="profile-badge-card">
             <span>Member Tier</span>
             <strong id="memberTierCard">Signal+</strong>

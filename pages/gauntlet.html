@@ -35,7 +35,7 @@
         <a href="gauntlet.html" class="active">Atlas Gauntlet</a>
         <a href="forum.html">Signal Feed</a>
         <a href="market.html">Market</a>
-        <a href="exchange.html">Atlas Exchange</a>
+        <a href="exchange.html">Exchange</a>
         <a href="profile.html">Atlas ID</a>
         <a href="store.html">Store</a>
         <a href="pricing.html">Pricing</a>
@@ -296,6 +296,29 @@
         </div>
       </section>
     </div>
+
+    <!-- POST-MATCH DISCUSSION -->
+    <section class="panel post-match-chat" id="postMatchChat">
+      <div class="panel-head-inline">
+        <h3>Post-Match Discussion</h3>
+        <span class="panel-status-live" id="postMatchBadge">LIVE</span>
+      </div>
+
+      <div class="post-match-feed" id="postMatchFeed" aria-live="polite"></div>
+
+      <div class="post-match-composer">
+        <input
+          class="post-match-input"
+          id="postMatchInput"
+          type="text"
+          placeholder="Share your take on this match…"
+          maxlength="280"
+          autocomplete="off"
+        >
+        <button class="post-match-send" id="postMatchSend">Post</button>
+      </div>
+      <p class="post-match-disclaimer">Discussion is moderated. Stay constructive.</p>
+    </section>
   </main>
 
   <footer class="site-footer">

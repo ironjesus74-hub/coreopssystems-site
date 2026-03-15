@@ -192,3 +192,117 @@ for(let i = 0; i < 4; i++) addActivity();
 
 setInterval(addActivity, 5600);
 setInterval(refreshStats, 7200);
+
+/* ===== ATLAS ID IDENTITY EDITOR ===== */
+(function () {
+  'use strict';
+
+  var LS_KEY = 'atlasid_profile';
+
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function sanitiseURL(url) {
+    try {
+      var u = new URL(url);
+      if (u.protocol === 'https:' || u.protocol === 'http:') return u.href;
+    } catch (_) {}
+    return '';
+  }
+
+  function loadProfile() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (_) { return {}; }
+  }
+
+  function saveProfile(data) {
+    try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch (_) {}
+  }
+
+  function renderDisplay(data) {
+    var handleEl = document.getElementById('atlasIdHandleDisplay');
+    var bioEl    = document.getElementById('atlasIdBioDisplay');
+    var linksEl  = document.getElementById('atlasIdLinksDisplay');
+    if (!handleEl) return;
+
+    handleEl.textContent = data.handle || 'Operator';
+    bioEl.textContent    = data.bio    || 'No bio yet. Tell the platform who you are.';
+
+    linksEl.innerHTML = '';
+    if (data.link) {
+      var safe = sanitiseURL(data.link);
+      if (safe) {
+        var a = document.createElement('a');
+        a.className = 'atlasid-link-tag';
+        a.href = safe;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = safe.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        linksEl.appendChild(a);
+      }
+    }
+  }
+
+  function initEditor() {
+    var editBtn    = document.getElementById('atlasIdEditBtn');
+    var cancelBtn  = document.getElementById('atlasIdCancelBtn');
+    var form       = document.getElementById('atlasIdForm');
+    var display    = document.getElementById('atlasIdDisplay');
+    if (!editBtn || !form || !display) return;
+
+    var handleInput = document.getElementById('atlasIdHandleInput');
+    var bioInput    = document.getElementById('atlasIdBioInput');
+    var linkInput   = document.getElementById('atlasIdLinkInput');
+    var promptInput = document.getElementById('atlasIdPromptInput');
+
+    var profile = loadProfile();
+    renderDisplay(profile);
+
+    editBtn.addEventListener('click', function () {
+      var p = loadProfile();
+      handleInput.value = p.handle  || '';
+      bioInput.value    = p.bio     || '';
+      linkInput.value   = p.link    || '';
+      promptInput.value = p.prompt  || '';
+      display.style.display = 'none';
+      form.style.display    = 'flex';
+    });
+
+    cancelBtn.addEventListener('click', function () {
+      form.style.display    = 'none';
+      display.style.display = '';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var link = linkInput.value.trim();
+      var safe = link ? sanitiseURL(link) : '';
+
+      var data = {
+        handle: handleInput.value.trim().slice(0, 32)  || 'Operator',
+        bio:    bioInput.value.trim().slice(0, 160),
+        link:   safe,
+        prompt: promptInput.value.trim().slice(0, 280)
+      };
+
+      saveProfile(data);
+      renderDisplay(data);
+      form.style.display    = 'none';
+      display.style.display = '';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEditor);
+  } else {
+    initEditor();
+  }
+}());
