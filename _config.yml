@@ -1,7 +1,8 @@
 # Jekyll configuration — Atlas platform
-# This site is pure static HTML/CSS/JS. GitHub Pages serves it via the built-in
-# pages build and deployment action. The .nojekyll file at repo root skips Jekyll
-# processing on GitHub Pages. This config is a safety net: if Jekyll is invoked,
+# This site is deployed exclusively via Cloudflare Pages (git integration).
+# GitHub Pages is NOT the deployment target. The .nojekyll file at repo root
+# prevents accidental Jekyll processing if GitHub Pages is ever triggered.
+# This config is a safety net only: if Jekyll is invoked for any reason,
 # exclude all source files so it produces no output and exits cleanly.
 exclude:
   - "js/"
