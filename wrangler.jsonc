@@ -7,8 +7,11 @@
   // Connect to Git → select this repo.  No CI workflow is needed — Cloudflare
   // builds and deploys automatically on every push to the production branch.
   //
+  // Production branch:  main  → auto-deployed to production
+  // Other branches:           → Cloudflare Pages preview deploy (no promotion)
+  //
   // Functions under functions/api/ are served as Cloudflare Pages Functions
-  // at /api/* routes.  They require KV namespaces and the AI binding below.
+  // at /api/* routes.  All functions degrade gracefully when KV is absent.
   "name": "atlas-engine",
   "compatibility_date": "2025-09-27",
   "observability": {
@@ -17,46 +20,28 @@
   "pages_build_output_dir": ".",
   "compatibility_flags": [
     "nodejs_compat"
-  ],
+  ]
 
-  // ── Cloudflare Pages Functions ──────────────────────────────────────────
-  // API workers live in functions/api/ and are auto-routed by Pages.
-  // KV namespaces must be created in the Cloudflare dashboard, then bind
-  // their IDs here.  Placeholders are shown below — replace with real IDs.
+  // ── Optional: KV namespace bindings ────────────────────────────────────
+  // KV bindings are NOT included here because Cloudflare Pages rejects
+  // placeholder IDs, which breaks preview builds.  All Pages Functions
+  // already degrade gracefully when KV is absent (seed-based fallbacks).
   //
-  // To create KV namespaces:
-  //   npx wrangler kv:namespace create GAUNTLET_KV
-  //   npx wrangler kv:namespace create FORUM_KV
-  //   npx wrangler kv:namespace create INTERACT_KV
-  //   npx wrangler kv:namespace create ASSISTANT_KV
-
-  "kv_namespaces": [
-    {
-      "binding": "GAUNTLET_KV",
-      "id": "REPLACE_WITH_GAUNTLET_KV_ID",
-      "preview_id": "REPLACE_WITH_GAUNTLET_KV_PREVIEW_ID"
-    },
-    {
-      "binding": "FORUM_KV",
-      "id": "REPLACE_WITH_FORUM_KV_ID",
-      "preview_id": "REPLACE_WITH_FORUM_KV_PREVIEW_ID"
-    },
-    {
-      "binding": "INTERACT_KV",
-      "id": "REPLACE_WITH_INTERACT_KV_ID",
-      "preview_id": "REPLACE_WITH_INTERACT_KV_PREVIEW_ID"
-    },
-    {
-      "binding": "ASSISTANT_KV",
-      "id": "REPLACE_WITH_ASSISTANT_KV_ID",
-      "preview_id": "REPLACE_WITH_ASSISTANT_KV_PREVIEW_ID"
-    }
-  ],
-
-  // ── Workers AI binding (optional) ────────────────────────────────────────
-  // Enables the assistant worker to use Cloudflare Workers AI for live
-  // inference. Remove this block if Workers AI is not enabled on the account.
-  "ai": {
-    "binding": "AI"
-  }
+  // To enable persistent KV state:
+  //   1. Create real namespaces:
+  //        npx wrangler kv:namespace create GAUNTLET_KV
+  //        npx wrangler kv:namespace create FORUM_KV
+  //        npx wrangler kv:namespace create INTERACT_KV
+  //        npx wrangler kv:namespace create ASSISTANT_KV
+  //   2. Add the kv_namespaces block below (replacing PLACEHOLDER with real IDs):
+  //        "kv_namespaces": [
+  //          { "binding": "GAUNTLET_KV",  "id": "<real-id>", "preview_id": "<real-preview-id>" },
+  //          { "binding": "FORUM_KV",     "id": "<real-id>", "preview_id": "<real-preview-id>" },
+  //          { "binding": "INTERACT_KV",  "id": "<real-id>", "preview_id": "<real-preview-id>" },
+  //          { "binding": "ASSISTANT_KV", "id": "<real-id>", "preview_id": "<real-preview-id>" }
+  //        ]
+  //
+  // ── Optional: Workers AI binding ────────────────────────────────────────
+  // Uncomment and add when Workers AI is enabled on the Cloudflare account:
+  //   "ai": { "binding": "AI" }
 }
