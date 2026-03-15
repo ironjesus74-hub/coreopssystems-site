@@ -29,12 +29,13 @@ Before presenting any result, run an internal self-check and report:
 ## Project Architecture
 
 - Pure static HTML/CSS/JS — no build step, no framework, no npm
-- Single CSS file: `css/style.css` (6300+ lines, organized with `=== ATLAS N ===` section comments; sections 1–33 as of latest pass)
+- Single CSS file: `css/style.css` (8600+ lines, organized with `=== ATLAS N ===` section comments; sections 1–41 as of latest pass)
 - Shared JS: `js/ui.js` (quote rotation, live counters, ticker loops — included on every page)
-- Per-page JS files in `js/`: `home.js`, `gauntlet.js`, `exchange.js`, `forum.js`, `market.js`, `faq.js`, `profile.js`, `jobs.js`, `services.js`, `contact.js`, `about.js`
-- Pages: `index.html` (home), `pages/gauntlet.html` (flagship arena), `pages/forum.html`, `pages/exchange.html`, `pages/market.html`, `pages/profile.html`, `pages/faq.html`, `pages/jobs.html`, `pages/services.html`, `pages/contact.html`, `pages/about.html`
-- Deployed to Cloudflare Pages via `wrangler.jsonc` (`name: "atlas-engine"`, `assets.directory: "."`)
-- GitHub Pages serves the static site via the built-in `pages build and deployment` action; `.nojekyll` is present at repo root to prevent Jekyll processing
+- Per-page JS files in `js/`: `home.js`, `gauntlet.js`, `exchange.js`, `forum.js`, `market.js`, `faq.js`, `profile.js`, `jobs.js`, `services.js`, `contact.js`, `about.js`, `store.js`, `pricing.js`, `atlas-assistant.js`
+- Pages: `index.html` (home), `pages/gauntlet.html` (flagship arena), `pages/forum.html`, `pages/exchange.html`, `pages/market.html`, `pages/profile.html`, `pages/faq.html`, `pages/jobs.html`, `pages/services.html`, `pages/contact.html`, `pages/about.html`, `pages/store.html`, `pages/pricing.html`
+- Deployed to **Cloudflare Pages** (git integration) via `wrangler.jsonc` (`name: "atlas-engine"`, `pages_build_output_dir: "."`)
+- API routes served via Cloudflare Pages Functions in `functions/api/` — no separate Worker needed
+- `.nojekyll` is present at repo root; `_config.yml` is a safety net only — the primary deploy is Cloudflare Pages, not GitHub Pages
 
 ---
 
