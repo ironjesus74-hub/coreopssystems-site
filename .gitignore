@@ -15,4 +15,5 @@ backup_before_project_atlas/
 
 # Duplicate / legacy files
 ProjectAtlas.md
-docs/
+docs/**
+!docs/.nojekyll

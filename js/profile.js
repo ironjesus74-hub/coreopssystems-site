@@ -199,20 +199,11 @@ setInterval(refreshStats, 7200);
 
   var LS_KEY = 'atlasid_profile';
 
-  function escapeHTML(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
   function sanitiseURL(url) {
     try {
       var u = new URL(url);
       if (u.protocol === 'https:' || u.protocol === 'http:') return u.href;
-    } catch (_) {}
+    } catch { }
     return '';
   }
 
@@ -220,11 +211,11 @@ setInterval(refreshStats, 7200);
     try {
       var raw = localStorage.getItem(LS_KEY);
       return raw ? JSON.parse(raw) : {};
-    } catch (_) { return {}; }
+    } catch { return {}; }
   }
 
   function saveProfile(data) {
-    try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch (_) {}
+    try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch { }
   }
 
   function renderDisplay(data) {
