@@ -34,7 +34,8 @@ Atlas is a pure static HTML/CSS/JS platform built by [CoreOps Systems](https://c
 - **CSS:** Single file `css/style.css` (~6,400 lines), organized in numbered `ATLAS N` sections with CSS custom property design tokens
 - **JS:** Shared `js/ui.js` (quote rotation, live counters, ticker loops) + per-page JS files
 - **Font:** [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts preconnect
-- **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/) (git integration) — configured via `wrangler.jsonc`; API routes served via `functions/api/` Pages Functions
+- **Static site:** [Cloudflare Pages](https://pages.cloudflare.com/) git integration — push to `main` → auto-deploy
+- **API Worker:** `atlas-engine` Cloudflare Worker (`worker.js`) routes `/api/*` to handlers in `functions/api/`; deployed separately with `npx wrangler deploy`
 
 ---
 
@@ -93,9 +94,35 @@ coreopssystems-site/
 │   ├── contact.js          # Contact
 │   └── about.js            # About
 ├── og-image.png            # Open Graph / Twitter card image
-├── .nojekyll               # Disable Jekyll for GitHub Pages
-├── wrangler.jsonc          # Cloudflare Pages config
+├── .nojekyll               # Prevents accidental Jekyll processing
+├── worker.js               # atlas-engine Worker entry point (API only)
+├── wrangler.jsonc          # Cloudflare Worker config (atlas-engine)
 └── eslint.config.mjs       # ESLint config (security + quality rules)
+```
+
+---
+
+## Deployment Architecture
+
+```
+GitHub (main branch)
+  │
+  ├─► Cloudflare Pages (git integration)   ← static site auto-deploy
+  │     coreopssystems-site (primary frontend)
+  │     Serves: index.html, pages/*, css/*, js/*, og-image.png
+  │
+  └─► atlas-engine (Cloudflare Worker)     ← deploy: npx wrangler deploy
+        Serves: /api/gauntlet, /api/forum, /api/interact, /api/assistant
+        Entry:  worker.js → functions/api/*.js handlers
+```
+
+**Active deployments:**
+- **Frontend:** `coreopssystems-site` on Cloudflare Pages — git integration, `main` branch
+- **API Worker:** `atlas-engine` — deployed via `npx wrangler deploy`
+
+**Manual step required for Worker deploy:**
+```bash
+npx wrangler deploy
 ```
 
 ---

@@ -33,8 +33,8 @@ Before presenting any result, run an internal self-check and report:
 - Shared JS: `js/ui.js` (quote rotation, live counters, ticker loops — included on every page)
 - Per-page JS files in `js/`: `home.js`, `gauntlet.js`, `exchange.js`, `forum.js`, `market.js`, `faq.js`, `profile.js`, `jobs.js`, `services.js`, `contact.js`, `about.js`, `store.js`, `pricing.js`, `atlas-assistant.js`
 - Pages: `index.html` (home), `pages/gauntlet.html` (flagship arena), `pages/forum.html`, `pages/exchange.html`, `pages/market.html`, `pages/profile.html`, `pages/faq.html`, `pages/jobs.html`, `pages/services.html`, `pages/contact.html`, `pages/about.html`, `pages/store.html`, `pages/pricing.html`
-- Deployed to **Cloudflare Pages** (git integration) via `wrangler.jsonc` (`name: "atlas-engine"`, `pages_build_output_dir: "."`)
-- API routes served via Cloudflare Pages Functions in `functions/api/` — no separate Worker needed
+- Static site deployed to **Cloudflare Pages** (git integration, `main` branch → production); no `pages_build_output_dir` — the Worker is API-only
+- API handled by **`atlas-engine` Cloudflare Worker** (`wrangler.jsonc`: `name: "atlas-engine"`, `main: "worker.js"`); `worker.js` routes `/api/*` to `functions/api/` handlers; deploy with `npx wrangler deploy`
 - `.nojekyll` is present at repo root; `_config.yml` is a safety net only — the primary deploy is Cloudflare Pages, not GitHub Pages
 
 ---
