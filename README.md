@@ -34,7 +34,7 @@ Atlas is a pure static HTML/CSS/JS platform built by [CoreOps Systems](https://c
 - **CSS:** Single file `css/style.css` (~6,400 lines), organized in numbered `ATLAS N` sections with CSS custom property design tokens
 - **JS:** Shared `js/ui.js` (quote rotation, live counters, ticker loops) + per-page JS files
 - **Font:** [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts preconnect
-- **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/) via `wrangler.jsonc` + [GitHub Pages](https://pages.github.com/) via `.github/workflows/pages.yml`
+- **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/) (git integration) — configured via `wrangler.jsonc`; API routes served via `functions/api/` Pages Functions
 
 ---
 
@@ -104,7 +104,7 @@ coreopssystems-site/
 
 | Workflow | File | Trigger | Purpose |
 |---|---|---|---|
-| Deploy to GitHub Pages | `.github/workflows/pages.yml` | Push to `main` | Publishes site to GitHub Pages |
+| Deploy to Cloudflare Pages | *(git integration)* | Push to `main` | Cloudflare Pages auto-deploys via git integration |
 | CodeQL & CI Security Gate | `.github/workflows/codeql.yml` | Push / PR to `main` | CodeQL SAST, ESLint, HTMLHint, Retire.js |
 
 The security gate checks:
