@@ -124,13 +124,19 @@
       el.innerHTML = '<span class="atlas-typing-dots"><span></span><span></span><span></span></span>';
       msgs.appendChild(el);
       msgs.scrollTop = msgs.scrollHeight;
-      if (statusEl) statusEl.textContent = "Thinking…";
+      if (statusEl) {
+        statusEl.textContent = "Thinking…";
+        statusEl.classList.add("is-thinking");
+      }
     }
 
     function hideTyping() {
       var el = document.getElementById("atlasTypingIndicator");
       if (el) el.remove();
-      if (statusEl) statusEl.textContent = "Online";
+      if (statusEl) {
+        statusEl.textContent = "Online";
+        statusEl.classList.remove("is-thinking");
+      }
     }
 
     function sendMessage(text) {

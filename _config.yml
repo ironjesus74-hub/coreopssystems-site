@@ -1,0 +1,18 @@
+# Jekyll configuration — Atlas platform
+# This site is pure static HTML/CSS/JS deployed via GitHub Actions (pages.yml).
+# The .nojekyll file at repo root skips Jekyll processing on GitHub Pages.
+# This config is a safety net: if Jekyll is invoked, exclude all source files
+# so it produces no output and exits cleanly.
+exclude:
+  - "js/"
+  - "css/"
+  - "pages/"
+  - "functions/"
+  - ".github/"
+  - "*.jsonc"
+  - "*.mjs"
+  - "*.md"
+  - "_headers"
+  - "README.md"
+  - "SECURITY.md"
+  - "Atlas.md"
